@@ -30,13 +30,12 @@ PkgConfigBR:
 # PkgBR:
 #   - package-needed-to-build
 PkgBR:
- - boost-devel
+# - boost-devel
 
 # Runtime dependencies which are not automatically detected
 Requires:
   - sailfishsilica-qt5 >= 0.10.9
-  - boost-build
-
+# - boost-build
 
 # All installed files
 Files:

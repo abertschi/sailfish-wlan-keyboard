@@ -12,7 +12,7 @@
 # The name of your application
 TARGET = harbour-wlan-keyboard
 
-CONFIG += sailfishapp
+CONFIG += sailfishapp warn_off
 
 SOURCES += \
     $$PWD/src/harbour-wlan-keyboard.cpp \
@@ -38,7 +38,7 @@ OTHER_FILES += \
 
 # to disable building translations every time, comment out the
 # following CONFIG line
-CONFIG += sailfishapp_i18n
+CONFIG += sailfishapp_i18n static
 TRANSLATIONS += translations/harbour-wlan-keyboard-de.ts
 
 HEADERS += \
@@ -47,3 +47,23 @@ HEADERS += \
 
 include(inc/qhttpserver/qhttpserver.pri)
 
+# Third Party libs
+LIB_BASE = _DO_DEFINE
+QMAKE_RPATHDIR +=  /usr/share/harbour-wlan-keyboard/lib
+
+linux-g++-32 {
+LIB_BASE = $$PWD/lib/i486
+}
+else:linux-g++ {
+LIB_BASE = $$PWD/lib/armv7hl
+}
+
+# LIBS += -L$$LIB_BASE -lqhttpserver
+
+LIBS += $$LIB_BASE/libqhttpserver.so.0
+
+lib.files += $$LIB_BASE/libqhttpserver.so.0
+lib.path = \
+    /usr/share/harbour-wlan-keyboard/lib
+
+INSTALLS += lib

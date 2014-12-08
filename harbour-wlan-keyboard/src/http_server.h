@@ -1,6 +1,7 @@
 #ifndef HTTP_SERVER_H
 #define HTTP_SERVER_H
 
+#include <qhttpserver/qhttpserverfwd.h>
 
 #include <QObject>
 
@@ -12,10 +13,14 @@ class http_server : public QObject
 
 public:
     explicit http_server(QObject *parent = 0);
-    virtual ~http_server();
 
     Q_INVOKABLE void startServer();
 
     Q_INVOKABLE void stopServer();
-};
 
+private slots:
+    void handleRequest(QHttpRequest *req, QHttpResponse *resp);
+
+private:
+
+};

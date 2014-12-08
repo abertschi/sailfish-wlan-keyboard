@@ -34,6 +34,12 @@
 
 #include <sailfishapp.h>
 #include <QDebug>
+#include <QScopedPointer>
+#include <QQuickView>
+#include <QQmlEngine>
+#include <QGuiApplication>
+
+#include "http_server.h"
 
 int main(int argc, char *argv[])
 {
@@ -46,11 +52,16 @@ int main(int argc, char *argv[])
     //
     // To display the view, call "show()" (will show fullscreen on device).
 
-    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
 
+    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view (SailfishApp::createView());
+
     view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
     view->showFullScreen();
+
+    http_server server();
+
     return app->exec();
+
 }
 
