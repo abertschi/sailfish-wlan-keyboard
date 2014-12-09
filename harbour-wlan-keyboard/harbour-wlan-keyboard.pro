@@ -16,14 +16,13 @@ CONFIG += sailfishapp warn_off
 
 SOURCES += \
     $$PWD/src/harbour-wlan-keyboard.cpp \
-    $$PWD/src/http_server.cpp #\
+    $$PWD/src/http_server.cpp
+
 #   $$PWD/src/websocket_server.cpp
 
 QT += core gui quick network
 
 INCLUDEPATH += inc src
-
-LIBS += -lboost_system
 
 OTHER_FILES += \
     qml/harbour-wlan-keyboard.qml \
@@ -55,7 +54,8 @@ linux-g++-32 {
 LIB_BASE = $$PWD/lib/i486
 }
 else:linux-g++ {
-LIB_BASE = $$PWD/lib/armv7hl
+LIB_BASE = $$PWD/lib/i486
+# armv7hl
 }
 
 # LIBS += -L$$LIB_BASE -lqhttpserver

@@ -34,6 +34,7 @@
 
 #include <sailfishapp.h>
 #include <QDebug>
+#include <QDir>
 #include <QScopedPointer>
 #include <QQuickView>
 #include <QQmlEngine>
@@ -51,15 +52,22 @@ int main(int argc, char *argv[])
     //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
     //
     // To display the view, call "show()" (will show fullscreen on device).
-
+    qDebug() << "hello sailfish";
 
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view (SailfishApp::createView());
 
+    http_server server;
+
+    // QDir dir(".");
+    // dir.relativeFilePath();
+
+    server.startServer(7778);
+    qDebug() << server.getIp();
+    qDebug() << "server instanciated";
+
     view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
     view->showFullScreen();
-
-    http_server server();
 
     return app->exec();
 
