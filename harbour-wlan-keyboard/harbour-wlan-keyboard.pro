@@ -10,19 +10,19 @@
 #   - translation filenames have to be changed
 
 # The name of your application
+
 TARGET = harbour-wlan-keyboard
 
 CONFIG += sailfishapp warn_off
 
 SOURCES += \
     $$PWD/src/harbour-wlan-keyboard.cpp \
-    $$PWD/src/http_server.cpp
-
-#   $$PWD/src/websocket_server.cpp
+    $$PWD/src/http_server.cpp \
+    $$PWD/src/websocket_server.cpp
 
 QT += core gui quick network
 
-INCLUDEPATH += inc src
+INCLUDEPATH += inc src ../qtwebsocket/QtWebsocket
 
 OTHER_FILES += \
     qml/harbour-wlan-keyboard.qml \
@@ -41,8 +41,8 @@ CONFIG += sailfishapp_i18n static
 TRANSLATIONS += translations/harbour-wlan-keyboard-de.ts
 
 HEADERS += \
-    src/http_server.h #\
- #  src/websocket_server.h
+    src/http_server.h \
+    src/websocket_server.h
 
 include(inc/qhttpserver/qhttpserver.pri)
 
@@ -61,8 +61,10 @@ LIB_BASE = $$PWD/lib/i486
 # LIBS += -L$$LIB_BASE -lqhttpserver
 
 LIBS += $$LIB_BASE/libqhttpserver.so.0
+LIBS += $$LIB_BASE/libQtWebsocket.so.0
 
-lib.files += $$LIB_BASE/libqhttpserver.so.0
+lib.files += $$LIB_BASE/libqhttpserver.so.0 \
+             $$LIB_BASE/libQtWebsocket.so.0
 lib.path = \
     /usr/share/harbour-wlan-keyboard/lib
 

@@ -22,7 +22,7 @@ public:
 
     Q_INVOKABLE bool isRunning() const;
 
-    void setStaticContent(const QString & filePath);
+    void setStaticContent(QString const & filePath);
 
     qint16 getPort() const;
 

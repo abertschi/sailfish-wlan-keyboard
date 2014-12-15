@@ -1,39 +1,32 @@
-/*
-namespace wlankeyboard {
+#include "websocket_server.h"
 
-class websocket_server
-{
-public:
-    explicit websocket_server(int port)
-        : port(port) {
-    }
+websocket_server::websocket_server(QObject *parent = 0) : {
+}
 
-    void start() {
-    }
+websocket_server:: ~ websocket_server() {
+}
 
-    void pause() {
+// ---------------------------------------------------
+// header websocket_server
+// ---------------------------------------------------
 
-    }
 
-    void resume() {
-
-    }
-
-    void stop() {
-    }
-
-    char* getIp() const {
-        return 0;
-    }
-
-    int  getPort() const {
-        return port;
-    }
-
-private:
-
-    int port;
-};
+void  websocket_server::startServer(qint16 port){
 
 }
-*/
+
+void websocket_server::stopServer() {
+
+}
+
+bool websocket_server::isRunning() const {
+
+}
+
+qint16 websocket_server::getPort() const {
+
+}
+
+websocket_server::QString getIp() const {
+
+}

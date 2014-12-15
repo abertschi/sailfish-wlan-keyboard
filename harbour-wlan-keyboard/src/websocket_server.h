@@ -1,5 +1,6 @@
 #ifndef WEBSOCKET_SERVER_H
 #define WEBSOCKET_SERVER_H
+#include <
 
 #include <QObject>
 
@@ -10,19 +11,21 @@ class websocket_server : public QObject
     Q_OBJECT
 
 public:
-    explicit websocket_server(QObject *parent = 0);
+    explicit websocket_server(QObject *parent);
 
-    Q_INVOKABLE void start();
+    virtual ~ websocket_server();
 
-    Q_INVOKABLE void stop();
+    Q_INVOKABLE void startServer(qint16 port);
 
-    void getPort() const;
+    Q_INVOKABLE void stopServer();
 
-    void setPort(qint16 port);
+    Q_INVOKABLE bool isRunning() const;
 
-    QString* getIp() const;
+    qint16 getPort() const;
 
-signals:
-    void portChanged();
+    Q_INVOKABLE QString getIp() const;
+
+private:
+    QWebSocketServer * server;
 };
 
