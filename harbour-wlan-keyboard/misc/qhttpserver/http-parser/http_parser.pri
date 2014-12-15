@@ -1,7 +1,0 @@
-HTTP_PARSER_DIR = $$PWD
-
-INCLUDEPATH += $$HTTP_PARSER_DIR
-
-HEADERS += $$HTTP_PARSER_DIR/http_parser.h
-
-SOURCES += $$HTTP_PARSER_DIR/http_parser.c
