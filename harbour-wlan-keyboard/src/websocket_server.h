@@ -1,11 +1,10 @@
 #ifndef WEBSOCKET_SERVER_H
 #define WEBSOCKET_SERVER_H
-#include <
 
 #include <QObject>
 
 #endif // WEBSOCKET_SERVER_H
-
+/*
 class websocket_server : public QObject
 {
     Q_OBJECT
@@ -26,6 +25,7 @@ public:
     Q_INVOKABLE QString getIp() const;
 
 private:
-    QWebSocketServer * server;
+    //QWebSocketServer * server;
 };
 
+*/

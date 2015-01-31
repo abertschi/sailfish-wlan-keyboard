@@ -1,11 +1,12 @@
 TEMPLATE = subdirs
 
-SUBDIRS += \
-    QtWebsocket \
-    Example/Client \
-    Example/Server \
-    Example/ServerThreaded \
-    AutobahnTestSuite
+
+# SUBDIRS += \
+#     QtWebsocket \
+#     Example/Client \
+#     Example/Server \
+#     Example/ServerThreaded \
+#     AutobahnTestSuite
 
 Client.depends = QtWebsocket
 Server.depends = QtWebsocket

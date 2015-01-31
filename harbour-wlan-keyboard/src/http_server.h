@@ -22,7 +22,7 @@ public:
 
     Q_INVOKABLE bool isRunning() const;
 
-    void setStaticContent(QString const & filePath);
+    void setStaticContent(QString filePath);
 
     qint16 getPort() const;
 
@@ -33,7 +33,7 @@ private slots:
 
 private:
     QHttpServer *server;
-    QString *filePath;
+    QString filePath;
     qint16 port;
     bool running;
 };

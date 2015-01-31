@@ -42,7 +42,7 @@ bool http_server::isRunning() const{
 }
 
 
-void http_server::setStaticContent(QString const &filePath){
+void http_server::setStaticContent(QString filePath){
     this->filePath = filePath;
 }
 

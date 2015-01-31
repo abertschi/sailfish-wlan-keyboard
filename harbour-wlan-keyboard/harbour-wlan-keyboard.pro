@@ -22,7 +22,7 @@ SOURCES += \
 
 QT += core gui quick network
 
-INCLUDEPATH += inc src ../qtwebsocket/QtWebsocket
+INCLUDEPATH += inc src
 
 OTHER_FILES += \
     qml/harbour-wlan-keyboard.qml \
@@ -61,10 +61,10 @@ LIB_BASE = $$PWD/lib/i486
 # LIBS += -L$$LIB_BASE -lqhttpserver
 
 LIBS += $$LIB_BASE/libqhttpserver.so.0
-LIBS += $$LIB_BASE/libQtWebsocket.so.0
+LIBS += $$LIB_BASE/libQtWebsocket.so.1
 
 lib.files += $$LIB_BASE/libqhttpserver.so.0 \
-             $$LIB_BASE/libQtWebsocket.so.0
+             $$LIB_BASE/libQtWebsocket.so.1
 lib.path = \
     /usr/share/harbour-wlan-keyboard/lib
 

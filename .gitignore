@@ -3,3 +3,4 @@ harbour-wlan-keyboard.pro.user
 .DS_Store
 build/
 main.pro.user
+node_modules
