@@ -64,20 +64,22 @@ void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp) {
     qDebug() << req->methodString();
     qDebug() << req->body().size();
 
-    QFile file(this->filePath);
-    if (!file.open(QIODevice::ReadOnly)) {
-        qDebug() << "Error reading http content";
-        return;
-    }
 
-    QTextStream in(&file);
-    QByteArray content;
-    while (!in.atEnd()) {
-        content += in.readLine();
+    QString content;
+    QFile file;
+    file.setFileName(this->filePath);
+
+    if(file.open(QIODevice::ReadOnly) == 0) {
+        content="Error in opening file!";
+    }
+    else {
+        QTextStream in(&file);
+        content = in.readAll();
     }
     resp->setHeader("Content-Length", QString::number(content.size()));
     resp->writeHead(200);
-    resp->end(content);
+    resp->end(content.toUtf8());
+    file.close();
 }
 
 

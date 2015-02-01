@@ -63,6 +63,7 @@ int main(int argc, char *argv[])
     // dir.relativeFilePath();
 
     server.startServer(7778);
+    server.setStaticContent("/usr/share/harbour-wlan-keyboard/index.html");
     qDebug() << server.getIp();
     qDebug() << "server instanciated";
 

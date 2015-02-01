@@ -31,9 +31,10 @@ OTHER_FILES += \
     qml/pages/SecondPage.qml \
     rpm/harbour-wlan-keyboard.changes.in \
     rpm/harbour-wlan-keyboard.spec \
-    rpm/harbour-wlan-keyboard.yaml \
+    rpm/harbour-wlan-ke yboard.yaml \
     translations/*.ts \
-    harbour-wlan-keyboard.desktop
+    harbour-wlan-keyboard.desktop \
+    index.html
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -45,6 +46,7 @@ HEADERS += \
     src/websocket_server.h
 
 include(inc/qhttpserver/qhttpserver.pri)
+include(inc/QtWebsocket/qtwebsocket_headers.pri)
 
 # Third Party libs
 LIB_BASE = _DO_DEFINE
@@ -69,3 +71,10 @@ lib.path = \
     /usr/share/harbour-wlan-keyboard/lib
 
 INSTALLS += lib
+
+resources.files += index.html
+resources.path = /usr/share/harbour-wlan-keyboard
+
+INSTALLS += resources
+
+
