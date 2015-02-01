@@ -56,14 +56,11 @@ QString http_server::getIp() const{
     return QString::number(ipv4);
 }
 
-
 void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp) {
-    qDebug() << "handling new request";
-    qDebug() << req->path();
-    qDebug() << req->remoteAddress();
-    qDebug() << req->methodString();
-    qDebug() << req->body().size();
-
+    qDebug() << "handling new request using path: " << req->path()
+             << " remoteAddress: " << req->remoteAddress()
+             <<  "methodString: " <<req->methodString()
+             << " body-size: " << req->body().size();
 
     QString content;
     QFile file;
