@@ -41,6 +41,7 @@
 #include <QGuiApplication>
 
 #include "http_server.h"
+#include "websocket_server.h"
 
 int main(int argc, char *argv[])
 {
@@ -57,15 +58,17 @@ int main(int argc, char *argv[])
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view (SailfishApp::createView());
 
+    qDebug() << "Starting http-server ...";
     http_server server;
-
-    // QDir dir(".");
-    // dir.relativeFilePath();
-
     server.startServer(7778);
     server.setStaticContent("/usr/share/harbour-wlan-keyboard/index.html");
     qDebug() << server.getIp();
-    qDebug() << "server instanciated";
+    qDebug() << "http-server started";
+
+    qDebug() << "Starting websocket-server ...";
+    websocket_server websocket;
+    websocket.startServer(7777);
+    qDebug() << "websocket-server started";
 
     view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
     view->showFullScreen();
