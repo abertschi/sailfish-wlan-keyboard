@@ -8,23 +8,33 @@
         <link inline="" rel="stylesheet" type="text/css" href="style/normalize.css/normalize.css" ></link>
         <link inline="" rel="stylesheet" type="text/css" href="style/csswizardry-grids/csswizardry-grids.css" ></link>
         <link inline="" rel="stylesheet" type="text/css" href="style/style.css" ></link>
+        <script inline="" type="text/javascript" src="js/sockjs-0.3.4.js"></script>
         <script inline="" type="text/javascript" src="js/source.js"></script>
     </head>
     <body>
-      <div class="grid container">
-        <div class="grid__item one-whole">
+      <div class="container">
           <div class="header">
             <div class="header__title">
               sailfish-wlan-keyboard
             </div>
           </div>
+          <div class="message">
+            <input class="message__input" placeholder="Enter your text" autofocus>
+        </div>
+        <div class="configuration">
+           <div class="configuration__status">
+            Server:
+              <span id="status">
+              192.168.1.100:7777
+             </span>
           </div>
-         <div class="grid__item one-whole message">
-           <div class="grid--center">
-             <input class="message__input" placeholder="Enter your text" autofocus>
-            </div>
-           </div>   
+          <div class="configuration__status">
+            Status:
+             <span id="status">
+             connected
+             </span>
+          </div>
         </div>
-        </div>
+      </div>
     </body>
 </html>
