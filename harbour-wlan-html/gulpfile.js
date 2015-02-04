@@ -18,7 +18,7 @@ gulp.task('html', function () {
 });
 
 gulp.task('sass', function () {
-  return gulp.src('app/style/*.scss')
+  return gulp.src('app/style/**/*.scss')
     .pipe(sass())
     .pipe(gulp.dest('./app/style'))
     .pipe(connect.reload());

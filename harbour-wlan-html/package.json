@@ -19,5 +19,8 @@
     "mocha": "~1.17.1",
     "mocha-lcov-reporter": "0.0.1",
     "node-sass": "^2.0.0-beta"
+  },
+  "dependencies": {
+    "sockjs-client": "^1.0.0-beta.12"
   }
 }
