@@ -58,20 +58,33 @@ int main(int argc, char *argv[])
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view (SailfishApp::createView());
 
+
+
+
     qDebug() << "Starting http-server ...";
     http_server server;
-    server.startServer(7778);
+    //server.startServer(7778);
     server.setStaticContent("/usr/share/harbour-wlan-keyboard/index.html");
     qDebug() << server.getIp();
     qDebug() << "http-server started";
 
+
+    view->rootContext()->setContextProperty("httpServer", &server);
+
     qDebug() << "Starting websocket-server ...";
     websocket_server websocket;
-    websocket.startServer(7777);
+   // websocket.startServer(7777);
     qDebug() << "websocket-server started";
+
+    view->rootContext()->setContextProperty("websocketServer", &websocket);
+
+    //QObject *rootObject = dynamic_cast<QObject*>(view->rootObject());
+    //QObject::connect(&websocket, SIGNAL(newMessageSignal(QString)), rootObject, SLOT(newMessageSlot(QString)));
 
     view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
     view->showFullScreen();
+
+
 
     return app->exec();
 

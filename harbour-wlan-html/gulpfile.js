@@ -2,7 +2,8 @@ var gulp     = require('gulp'),
 sass         = require('gulp-sass'),
 connect      = require('gulp-connect'),
 inlinesource = require('gulp-inline-source'),
-img64 = require('gulp-img64');
+img64 = require('gulp-img64'),
+uglify      = require('gulp-uglify');
  
 
 gulp.task('connect', function() {
@@ -24,9 +25,19 @@ gulp.task('sass', function () {
     .pipe(connect.reload());
 });
 
+
+//gulp.task('scripts', function() {
+//  gulp.src(['./app/js/**/*.js',
+//           '!./app/js/**/*.ugly.js'])
+//    .pipe(uglify())
+//    .pipe(gulp.dest('./app/js/**/*.ugly.js'))
+// });
+
+
 gulp.task('watch', function () {
   gulp.watch([ 'app/**/*.scss'], ['sass']);
   gulp.watch(['app/*.html', 'app/**/*.css', 'app/**/*.js'], ['html', 'dist']);
+  //gulp.watch(['app/js/**/*.js', '!app/js/all.js'], ['scripts']);
 });
 
 gulp.task('dist', function () {

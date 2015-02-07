@@ -35,9 +35,10 @@ CoverBackground {
     Label {
         id: label
         anchors.centerIn: parent
-        text: qsTr("My Cover")
+        text: qsTr("Sailfish Wlan Keyboard")
     }
 
+     /*
     CoverActionList {
         id: coverAction
 
@@ -48,7 +49,7 @@ CoverBackground {
         CoverAction {
             iconSource: "image://theme/icon-cover-pause"
         }
-    }
+        */
 }
 
 

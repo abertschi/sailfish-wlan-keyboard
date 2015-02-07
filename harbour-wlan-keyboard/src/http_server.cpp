@@ -1,4 +1,5 @@
 #include "http_server.h"
+#include "utils.h"
 #include <QDebug>
 #include <QFile>
 #include <qtcpserver.h>
@@ -23,11 +24,21 @@ http_server:: ~ http_server() {
 // header http_server
 // ---------------------------------------------------
 
-void http_server::startServer(qint16 port = 7777) {
+void http_server::startServer(qint16 port) {
     qDebug() << "starting listening on " << port;
-    server->listen(QHostAddress::Any, port);
-    running = true;
-    this->port = port;
+    try {
+        if (server->listen(port)) {
+            running = true;
+            this->port = port;
+            qDebug() << "Server started";
+        }
+        else {
+            qDebug() << "Error in starting http-server, error: " << server->getEngine()->errorString();
+        }
+    } catch(int e) {
+        qDebug() << "Catch occurred "<< e;
+    }
+
 }
 
 void http_server::stopServer() {
@@ -51,9 +62,16 @@ qint16 http_server::getPort() const{
 }
 
 QString http_server::getIp() const{
-    QTcpServer *engine =  this->server->getEngine();
-    qint32 ipv4 = engine->serverAddress().toIPv4Address();
-    return QString::number(ipv4);
+    return Utils::getIpAddress();
+}
+
+QString http_server::getFullAddress() const {
+    QString addr = "-";
+
+    if (running)
+        addr = "http://" + getIp() + ":" + QString::number(getPort());
+
+    return addr;
 }
 
 void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp) {
@@ -72,6 +90,7 @@ void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp) {
     else {
         QTextStream in(&file);
         content = in.readAll();
+        //content.replace(QString("__ws_addr__"), QString("ws://" + getIp() + ":7777"));
     }
     resp->setHeader("Content-Length", QString::number(content.size()));
     resp->writeHead(200);

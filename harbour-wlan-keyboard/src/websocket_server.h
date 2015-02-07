@@ -17,7 +17,7 @@ public:
 
     virtual ~ websocket_server();
 
-    Q_INVOKABLE void startServer(qint16 port);
+    Q_INVOKABLE void startServer(qint16 port = 7777);
 
     Q_INVOKABLE void stopServer();
 
@@ -32,6 +32,10 @@ public slots:
     void processMessage(QString message);
     void processPong(quint64 elapsedTime);
     void socketDisconnected();
+
+
+signals:
+    void newMessageSignal(QString message);
 
 private:
     QtWebsocket::QWsServer * server;

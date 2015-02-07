@@ -24,7 +24,9 @@ public:
 
     void setStaticContent(QString filePath);
 
-    qint16 getPort() const;
+    Q_INVOKABLE qint16 getPort() const;
+
+    Q_INVOKABLE QString getFullAddress() const;
 
     Q_INVOKABLE QString getIp() const;
 

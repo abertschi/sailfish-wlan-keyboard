@@ -3,6 +3,7 @@
 
 websocket_server::websocket_server(QObject *parent) :QObject(parent) {
     server = new QtWebsocket::QWsServer(this, QtWebsocket::Tcp);
+    QObject::connect(server, SIGNAL(newConnection()), this, SLOT(processNewConnection()));
 }
 
 websocket_server:: ~ websocket_server() {
@@ -19,7 +20,7 @@ void  websocket_server::startServer(qint16 port){
     else {
         qDebug() << "Server is listening on port " << port;
     }
-    QObject::connect(server, SIGNAL(newConnection()), this, SLOT(processNewConnection()));
+
 }
 
 void websocket_server::processNewConnection() {
@@ -36,6 +37,8 @@ void websocket_server::processNewConnection() {
 
 void websocket_server::processMessage(QString message) {
     qDebug() << "Message from client received: " << message;
+    //QVariant v(message);
+    emit newMessageSignal(message);
 }
 
 void websocket_server::processPong(quint64 elapsedTime) {

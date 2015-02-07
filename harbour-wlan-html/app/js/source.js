@@ -1,25 +1,24 @@
-// Websocket client
-var sfKeyboard = function() {
+
+
+var SfKeyboard = function(url) {
+  
+  var socket = new FancyWebSocket(url);
+    
+   this.sendKeyCode = function(keycode) {
+     console.log(keycode);
+    socket.send('new_keycode', keycode);
+  };
+    
+  // sever events
+  socket.bind('close', function(data){
+   console.log(data.name )
+  });
+  
+  socket.bind('open', function(data){
+   console.log('open'.name )
+  });
+  
 };
 
-var sock = new SockJS('ws://localhost:7776');
-sock.onopen = function() {
-  console.log('open');
-}
 
-sock.onmessage = function(e) {
-  console.log('message: ', e.data);
-}
-
-stock.onclose = function() {
-  console.log('close');
-}
-
-while(true) {
-  sock.send('test');
-  console.log('sent');
-}
-
-function start() {
   
-}

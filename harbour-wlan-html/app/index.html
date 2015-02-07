@@ -6,12 +6,12 @@
         <meta name="viewport" content="width=device-width, minimum-scale=1.0">
         <title>Sailfish Wlan Keyboard</title>
         <link inline="" rel="stylesheet" type="text/css" href="style/normalize.css/normalize.css" ></link>
-        <link inline="" rel="stylesheet" type="text/css" href="style/csswizardry-grids/csswizardry-grids.css" ></link>
+       
         <link inline="" rel="stylesheet" type="text/css" href="style/style.css" ></link>
-        <script inline="" type="text/javascript" src="js/sockjs-0.3.4.js"></script>
+        <script inline="" type="text/javascript" src="js/lib/ws_events_dispatcher.js"></script>
         <script inline="" type="text/javascript" src="js/source.js"></script>
     </head>
-    <body>
+    <body>      
       <div class="container">
           <div class="header">
             <div class="header__title">
@@ -19,22 +19,37 @@
             </div>
           </div>
           <div class="message">
-            <input class="message__input" placeholder="Enter your text" autofocus>
+            <input id="message_input" class="message__input" placeholder="Enter your text" autofocus>
         </div>
         <div class="configuration">
            <div class="configuration__status">
             Server:
-              <span id="status">
-              192.168.1.100:7777
+              <span id="ip">
+              -
              </span>
           </div>
           <div class="configuration__status">
             Status:
              <span id="status">
-             connected
+             -
              </span>
           </div>
         </div>
       </div>
+      
+      <script type="text/javascript">
+        var __ws_addr__ = 'ws://localhost:7777';
+        var socket = new FancyWebSocket(__ws_addr__);
+      
+        var message_input = document.getElementById('message_input');
+        message_input.addEventListener('keydown', function(event) {
+          socket.send('new_keycode', event.keyCode);
+          
+          //message_input.value = '';
+        });
+        
+        
+        
+      </script>
     </body>
 </html>

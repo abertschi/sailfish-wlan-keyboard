@@ -18,7 +18,8 @@ CONFIG += sailfishapp warn_off
 SOURCES += \
     $$PWD/src/harbour-wlan-keyboard.cpp \
     $$PWD/src/http_server.cpp \
-    $$PWD/src/websocket_server.cpp
+    $$PWD/src/websocket_server.cpp \
+    src/utils.cpp
 
 QT += core gui quick network
 
@@ -27,14 +28,14 @@ INCLUDEPATH += inc src
 OTHER_FILES += \
     qml/harbour-wlan-keyboard.qml \
     qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
     qml/pages/SecondPage.qml \
     rpm/harbour-wlan-keyboard.changes.in \
     rpm/harbour-wlan-keyboard.spec \
     rpm/harbour-wlan-ke yboard.yaml \
     translations/*.ts \
     harbour-wlan-keyboard.desktop \
-    index.html
+    index.html \
+    qml/pages/HomePage.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -43,7 +44,8 @@ TRANSLATIONS += translations/harbour-wlan-keyboard-de.ts
 
 HEADERS += \
     src/http_server.h \
-    src/websocket_server.h
+    src/websocket_server.h \
+    src/utils.h
 
 include(inc/qhttpserver/qhttpserver.pri)
 include(inc/QtWebsocket/qtwebsocket_headers.pri)
@@ -52,12 +54,11 @@ include(inc/QtWebsocket/qtwebsocket_headers.pri)
 LIB_BASE = _DO_DEFINE
 QMAKE_RPATHDIR +=  /usr/share/harbour-wlan-keyboard/lib
 
-linux-g++-32 {
+linux-g++-64 {
 LIB_BASE = $$PWD/lib/i486
 }
 else:linux-g++ {
-LIB_BASE = $$PWD/lib/i486
-# armv7hl
+LIB_BASE = $$PWD/lib/i486 # $$PWD/lib/i486
 }
 
 # LIBS += -L$$LIB_BASE -lqhttpserver
