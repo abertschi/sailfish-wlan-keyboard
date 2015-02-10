@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -38,16 +38,24 @@
       </div>
       
       <script type="text/javascript">
-        var __ws_addr__ = 'ws://localhost:7777';
-        var socket = new FancyWebSocket(__ws_addr__);
+        var wsEndpoint = '__WS_ENDPOINT__';
+        var debugCheck = '__WS_' + 'ENDPOINT__';
+        
+        if (wsEndpoint == debugCheck) {
+          wsEndpoint = 'ws://localhost:7777';
+        }
+        
+        var socket = new FancyWebSocket(wsEndpoint);
       
         var message_input = document.getElementById('message_input');
-        message_input.addEventListener('keydown', function(event) {
+        message_input.addEventListener('keyup', function(event) {
           socket.send('new_keycode', event.keyCode);
-          //message_input.value = '';
+          
+          if (event.keyCode == 13) {
+             socket.send('new_keyrow', message_input.value); 
+             message_input.value = '';
+          }
         });
-        
-        
         
       </script>
     </body>

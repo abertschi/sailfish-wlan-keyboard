@@ -5,11 +5,16 @@
 
 #include <QObject>
 
+
 #endif // HTTP_SERVER_H
 
 class http_server : public QObject
 {
     Q_OBJECT
+
+    Q_PROPERTY(QString staticContent READ getStaticContent WRITE setStaticContent)
+
+    Q_PROPERTY(bool running READ isRunning NOTIFY runningChanged)
 
 public:
     explicit http_server(QObject *parent = 0);
@@ -24,18 +29,24 @@ public:
 
     void setStaticContent(QString filePath);
 
-    Q_INVOKABLE qint16 getPort() const;
+    QString getStaticContent();
+
+    qint16 getPort() const;
 
     Q_INVOKABLE QString getFullAddress() const;
 
     Q_INVOKABLE QString getIp() const;
+
+signals:
+    void runningChanged(bool isRunning);
+    void modifyStaticContent(QString *response);
 
 private slots:
     void handleRequest(QHttpRequest *req, QHttpResponse *resp);
 
 private:
     QHttpServer *server;
-    QString filePath;
+    QString staticContent;
     qint16 port;
     bool running;
 };

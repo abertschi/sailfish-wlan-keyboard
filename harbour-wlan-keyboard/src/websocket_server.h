@@ -5,12 +5,16 @@
 #include <QtNetwork>
 #include "QtWebsocket/QWsSocket.h"
 #include <QObject>
+#include "utils.h"
+
 
 #endif // WEBSOCKET_SERVER_H
 
 class websocket_server : public QObject
 {
     Q_OBJECT
+
+    Q_PROPERTY(bool running READ isRunning NOTIFY runningChanged)
 
 public:
     explicit websocket_server(QObject *parent = 0);
@@ -23,23 +27,25 @@ public:
 
     Q_INVOKABLE bool isRunning() const;
 
-    qint16 getPort() const;
+    Q_INVOKABLE qint16 getPort() const;
 
     Q_INVOKABLE QString getIp() const;
 
-public slots:
+private slots:
     void processNewConnection();
-    void processMessage(QString message);
+    void processMessageInternal(QString message);
     void processPong(quint64 elapsedTime);
     void socketDisconnected();
 
 
 signals:
-    void newMessageSignal(QString message);
+    void processMessage(QString *message);
+    void runningChanged(bool isRunning);
 
 private:
     QtWebsocket::QWsServer * server;
-    QList<QtWebsocket::QWsSocket*> clients;
+    QList<QtWebsocket::QWsSocket*>  clients;
+    qint16 m_port;
 };
 
 

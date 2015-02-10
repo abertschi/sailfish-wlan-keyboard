@@ -2,43 +2,47 @@
 
 
 websocket_server::websocket_server(QObject *parent) :QObject(parent) {
-    server = new QtWebsocket::QWsServer(this, QtWebsocket::Tcp);
-    QObject::connect(server, SIGNAL(newConnection()), this, SLOT(processNewConnection()));
+    this->server = new QtWebsocket::QWsServer(this, QtWebsocket::Tcp);
 }
 
 websocket_server:: ~ websocket_server() {
 }
 
 // ---------------------------------------------------
-// header websocket_server
+// websocket_server::public
 // ---------------------------------------------------
+
 void  websocket_server::startServer(qint16 port){
     if (! server->listen(QHostAddress::Any, port)) {
-        qDebug() << "Error: Can't launch server";
-        qDebug() << tr("QWsServer error : %1").arg(server->errorString());
+        qDebug() << "Error: Can't launch server, " << server->errorString();
     }
     else {
-        qDebug() << "Server is listening on port " << port;
+        this->m_port = port;
+        QObject::connect(server, SIGNAL(newConnection()), this, SLOT(processNewConnection()));
+         qDebug() << "WebsocketServer started and listening on port port " << port;
     }
-
 }
+
+// ---------------------------------------------------
+// websocket_server::private
+// ---------------------------------------------------
 
 void websocket_server::processNewConnection() {
     QtWebsocket::QWsSocket* clientSocket = server -> nextPendingConnection();
 
-    QObject::connect(clientSocket, SIGNAL(frameReceived(QString)), this, SLOT(processMessage(QString)));
-    //QObject::connect(clientSocket, SIGNAL(disconnected()), this, SLOT(socketDisconnected()));
+    QObject::connect(clientSocket, SIGNAL(frameReceived(QString)), this, SLOT(processMessageInternal(QString)));
+    QObject::connect(clientSocket, SIGNAL(disconnected()), this, SLOT(socketDisconnected()));
     QObject::connect(clientSocket, SIGNAL(pong(quint64)), this, SLOT(processPong(quint64)));
 
     //clients << clientSocket;
 
-    qDebug() << "Client connected";
+    qDebug() << "New websocket client connected";
 }
 
-void websocket_server::processMessage(QString message) {
+void websocket_server::processMessageInternal(QString message) {
     qDebug() << "Message from client received: " << message;
-    //QVariant v(message);
-    emit newMessageSignal(message);
+
+    emit processMessage(&message);
 }
 
 void websocket_server::processPong(quint64 elapsedTime) {
@@ -46,19 +50,22 @@ void websocket_server::processPong(quint64 elapsedTime) {
 }
 
 void websocket_server::stopServer() {
+    QObject::disconnect(server, SIGNAL(newConnection()), this, SLOT(processNewConnection()));
     server->close();
 }
 
 void websocket_server::socketDisconnected() {
-
 }
 
 bool websocket_server::isRunning() const {
+    return this->isRunning();
 }
 
 qint16 websocket_server::getPort() const {
+    return this->m_port;
 }
 
 QString websocket_server::getIp() const {
+    return Utils::getIpAddress();
 }
 

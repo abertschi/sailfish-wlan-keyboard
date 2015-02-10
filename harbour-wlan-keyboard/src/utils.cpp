@@ -1,6 +1,9 @@
 #include "utils.h"
 
-Utils::Utils() {
+Utils::Utils(QObject *parent) :QObject(parent)
+{
+    QGuiApplication * app = (QGuiApplication*) parent;
+    this->m_clipboard = app->clipboard();
 }
 
 QString Utils::getIpAddress() {
@@ -20,5 +23,13 @@ QString Utils::getIpAddress() {
         break;
     }
     return foundIp;
+}
+
+void Utils::setClipboard(QString content) {
+    m_clipboard->setText(content);
+}
+
+QClipboard * Utils::getClipboard() {
+    return this->m_clipboard;
 }
 

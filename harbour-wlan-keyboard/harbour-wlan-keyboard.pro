@@ -13,13 +13,15 @@
 
 TARGET = harbour-wlan-keyboard
 
-CONFIG += sailfishapp warn_off
+CONFIG += sailfishapp warn_off plugin c++11
 
 SOURCES += \
     $$PWD/src/harbour-wlan-keyboard.cpp \
     $$PWD/src/http_server.cpp \
     $$PWD/src/websocket_server.cpp \
-    src/utils.cpp
+    src/utils.cpp \
+    src/key_mapper.cpp \
+    src/server_configurator.cpp
 
 QT += core gui quick network
 
@@ -45,10 +47,13 @@ TRANSLATIONS += translations/harbour-wlan-keyboard-de.ts
 HEADERS += \
     src/http_server.h \
     src/websocket_server.h \
-    src/utils.h
+    src/utils.h \
+    src/key_mapper.h \
+    src/server_configurator.h
 
 include(inc/qhttpserver/qhttpserver.pri)
 include(inc/QtWebsocket/qtwebsocket_headers.pri)
+include(inc/rapidjson/rapidjson.pri)
 
 # Third Party libs
 LIB_BASE = _DO_DEFINE
@@ -58,7 +63,7 @@ linux-g++-64 {
 LIB_BASE = $$PWD/lib/i486
 }
 else:linux-g++ {
-LIB_BASE = $$PWD/lib/i486 # $$PWD/lib/i486
+LIB_BASE = $$PWD/lib/i486 # $$PWD/lib/armv7hl  i486
 }
 
 # LIBS += -L$$LIB_BASE -lqhttpserver

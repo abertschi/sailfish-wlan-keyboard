@@ -30,7 +30,6 @@
 
 #ifdef QT_QML_DEBUG
 #include <QtQuick>
-#endif
 
 #include <sailfishapp.h>
 #include <QDebug>
@@ -40,8 +39,8 @@
 #include <QQmlEngine>
 #include <QGuiApplication>
 
-#include "http_server.h"
-#include "websocket_server.h"
+#include "server_configurator.h"
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -57,10 +56,21 @@ int main(int argc, char *argv[])
 
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view (SailfishApp::createView());
+    QScopedPointer<ServerConfigurator> serverConfigurator (new ServerConfigurator(app.data()));
+    serverConfigurator->configure(view.data());
 
 
+    /*
+    qDebug() << "offlineStoragPath orig: " << view->engine()->offlineStoragePath();
+    view->engine()->setOfflineStoragePath(QString("/home/nemo/.local/share/harbour-marker/harbour-marker/QML/OfflineStorage/"));
+    qDebug() << "offlineStoragPath new: " << view->engine()->offlineStoragePath();
 
+    */
 
+    view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
+    view->showFullScreen();
+
+    /*
     qDebug() << "Starting http-server ...";
     http_server server;
     //server.startServer(7778);
@@ -80,13 +90,16 @@ int main(int argc, char *argv[])
 
     //QObject *rootObject = dynamic_cast<QObject*>(view->rootObject());
     //QObject::connect(&websocket, SIGNAL(newMessageSignal(QString)), rootObject, SLOT(newMessageSlot(QString)));
-
-    view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
-    view->showFullScreen();
-
+*/
 
 
     return app->exec();
 
 }
 
+/*
+void httpModifier(QString * message){
+    QString addr = QString(websocket.getIp());
+    message->replace(QString("__WS_ENDPOINT__"), QString("ws://" + websocket.getIp() + ":" + websocket.getPort()));
+}
+*/

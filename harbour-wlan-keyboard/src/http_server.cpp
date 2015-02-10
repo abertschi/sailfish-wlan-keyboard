@@ -8,12 +8,6 @@
 #include <qhttpserver/qhttpresponse.h>
 
 http_server::http_server(QObject *parent): QObject(parent), running(false){
-
-    server = new QHttpServer(this);
-    qDebug() << "creating http server ";
-
-    connect(server, SIGNAL(newRequest(QHttpRequest*, QHttpResponse*)),
-            this, SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
 }
 
 http_server:: ~ http_server() {
@@ -25,6 +19,16 @@ http_server:: ~ http_server() {
 // ---------------------------------------------------
 
 void http_server::startServer(qint16 port) {
+
+    this->server = new QHttpServer(this);
+
+
+    qDebug() << "creating http server " << server;
+
+    connect(server, SIGNAL(newRequest(QHttpRequest*, QHttpResponse*)),
+           this, SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
+
+
     qDebug() << "starting listening on " << port;
     try {
         if (server->listen(port)) {
@@ -39,22 +43,33 @@ void http_server::startServer(qint16 port) {
         qDebug() << "Catch occurred "<< e;
     }
 
+    emit runningChanged(true);
+
 }
 
 void http_server::stopServer() {
+    disconnect(server, SIGNAL(newRequest(QHttpRequest*, QHttpResponse*)),
+           this, SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
     server->close();
+    //delete server;
+
     qDebug() << "server closed";
 
     running = false;
+    emit runningChanged(false);
 }
 
 bool http_server::isRunning() const{
     return running;
 }
 
-
 void http_server::setStaticContent(QString filePath){
-    this->filePath = filePath;
+    qDebug() << "static content set " << filePath;
+    this->staticContent = filePath;
+}
+
+QString http_server::getStaticContent() {
+    return this->staticContent;
 }
 
 qint16 http_server::getPort() const{
@@ -82,7 +97,7 @@ void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp) {
 
     QString content;
     QFile file;
-    file.setFileName(this->filePath);
+    file.setFileName(this->staticContent);
 
     if(file.open(QIODevice::ReadOnly) == 0) {
         content="Error in opening file!";
@@ -90,12 +105,13 @@ void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp) {
     else {
         QTextStream in(&file);
         content = in.readAll();
-        //content.replace(QString("__ws_addr__"), QString("ws://" + getIp() + ":7777"));
+        emit modifyStaticContent(&content);
     }
     resp->setHeader("Content-Length", QString::number(content.size()));
     resp->writeHead(200);
     resp->end(content.toUtf8());
     file.close();
 }
+
 
 
