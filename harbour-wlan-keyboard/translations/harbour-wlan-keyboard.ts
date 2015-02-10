@@ -22,10 +22,6 @@
 <context>
     <name>websocket_server</name>
     <message>
-        <source>QWsServer error : %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>ping: %1 ms</source>
         <translation type="unfinished"></translation>
     </message>
