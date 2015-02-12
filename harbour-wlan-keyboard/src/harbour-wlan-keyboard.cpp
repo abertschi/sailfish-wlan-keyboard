@@ -44,62 +44,15 @@
 
 int main(int argc, char *argv[])
 {
-    // SailfishApp::main() will display "qml/template.qml", if you need more
-    // control over initialization, you can use:
-    //
-    //   - SailfishApp::application(int, char *[]) to get the QGuiApplication *
-    //   - SailfishApp::createView() to get a new QQuickView * instance
-    //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
-    //
-    // To display the view, call "show()" (will show fullscreen on device).
-    qDebug() << "hello sailfish";
-
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view (SailfishApp::createView());
+
     QScopedPointer<ServerConfigurator> serverConfigurator (new ServerConfigurator(app.data()));
     serverConfigurator->configure(view.data());
-
-
-    /*
-    qDebug() << "offlineStoragPath orig: " << view->engine()->offlineStoragePath();
-    view->engine()->setOfflineStoragePath(QString("/home/nemo/.local/share/harbour-marker/harbour-marker/QML/OfflineStorage/"));
-    qDebug() << "offlineStoragPath new: " << view->engine()->offlineStoragePath();
-
-    */
 
     view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
     view->showFullScreen();
 
-    /*
-    qDebug() << "Starting http-server ...";
-    http_server server;
-    //server.startServer(7778);
-    server.setStaticContent("/usr/share/harbour-wlan-keyboard/index.html");
-    qDebug() << server.getIp();
-    qDebug() << "http-server started";
-
-
-    view->rootContext()->setContextProperty("httpServer", &server);
-
-    qDebug() << "Starting websocket-server ...";
-    websocket_server websocket;
-   // websocket.startServer(7777);
-    qDebug() << "websocket-server started";
-
-    view->rootContext()->setContextProperty("websocketServer", &websocket);
-
-    //QObject *rootObject = dynamic_cast<QObject*>(view->rootObject());
-    //QObject::connect(&websocket, SIGNAL(newMessageSignal(QString)), rootObject, SLOT(newMessageSlot(QString)));
-*/
-
-
     return app->exec();
 
 }
-
-/*
-void httpModifier(QString * message){
-    QString addr = QString(websocket.getIp());
-    message->replace(QString("__WS_ENDPOINT__"), QString("ws://" + websocket.getIp() + ":" + websocket.getPort()));
-}
-*/

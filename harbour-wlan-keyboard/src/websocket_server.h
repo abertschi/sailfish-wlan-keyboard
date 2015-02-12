@@ -14,7 +14,7 @@ class websocket_server : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(bool running READ isRunning NOTIFY runningChanged)
+    Q_PROPERTY(bool m_isRunning READ isRunning NOTIFY runningChanged)
 
 public:
     explicit websocket_server(QObject *parent = 0);
@@ -43,9 +43,10 @@ signals:
     void runningChanged(bool isRunning);
 
 private:
-    QtWebsocket::QWsServer * server;
-    QList<QtWebsocket::QWsSocket*>  clients;
+    QtWebsocket::QWsServer * m_server;
+    QList<QtWebsocket::QWsSocket*>  m_clients;
     qint16 m_port;
+    bool m_isRunning;
 };
 
 

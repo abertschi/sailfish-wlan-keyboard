@@ -14,14 +14,14 @@ class http_server : public QObject
 
     Q_PROPERTY(QString staticContent READ getStaticContent WRITE setStaticContent)
 
-    Q_PROPERTY(bool running READ isRunning NOTIFY runningChanged)
+    Q_PROPERTY(bool m_isRunning READ isRunning NOTIFY runningChanged)
 
 public:
     explicit http_server(QObject *parent = 0);
 
     virtual ~ http_server();
 
-    Q_INVOKABLE void startServer(qint16 port);
+    Q_INVOKABLE void startServer(qint16 m_port);
 
     Q_INVOKABLE void stopServer();
 
@@ -45,8 +45,8 @@ private slots:
     void handleRequest(QHttpRequest *req, QHttpResponse *resp);
 
 private:
-    QHttpServer *server;
-    QString staticContent;
-    qint16 port;
-    bool running;
+    QHttpServer * m_server;
+    QString m_staticContent;
+    qint16 m_port;
+    bool m_isRunning;
 };

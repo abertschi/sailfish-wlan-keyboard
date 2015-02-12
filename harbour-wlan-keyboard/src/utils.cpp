@@ -16,7 +16,6 @@ QString Utils::getIpAddress() {
 
     for(int i = 0; i < addrs.count(); i ++) {
         QString ip = addrs[i].toString();
-        qDebug() << ip;
         if(ignores.contains(ip))
             continue;
         foundIp = ip;

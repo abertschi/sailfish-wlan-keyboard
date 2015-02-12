@@ -7,11 +7,15 @@
 #include <qhttpserver/qhttprequest.h>
 #include <qhttpserver/qhttpresponse.h>
 
-http_server::http_server(QObject *parent): QObject(parent), running(false){
+http_server::http_server(QObject *parent): QObject(parent), m_isRunning(false){
+    this->m_server = new QHttpServer(this);
 }
 
 http_server:: ~ http_server() {
-
+    if (m_isRunning) {
+        stopServer();
+    }
+    delete(this->m_server);
 }
 
 // ---------------------------------------------------
@@ -19,61 +23,49 @@ http_server:: ~ http_server() {
 // ---------------------------------------------------
 
 void http_server::startServer(qint16 port) {
+    qDebug() << "Starting httpServer on port " << m_server;
 
-    this->server = new QHttpServer(this);
+    this->m_port = port;
+    if (m_server->listen(port)) {
 
+        connect(m_server, SIGNAL(newRequest(QHttpRequest*, QHttpResponse*)),
+                this, SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
 
-    qDebug() << "creating http server " << server;
-
-    connect(server, SIGNAL(newRequest(QHttpRequest*, QHttpResponse*)),
-           this, SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
-
-
-    qDebug() << "starting listening on " << port;
-    try {
-        if (server->listen(port)) {
-            running = true;
-            this->port = port;
-            qDebug() << "Server started";
-        }
-        else {
-            qDebug() << "Error in starting http-server, error: " << server->getEngine()->errorString();
-        }
-    } catch(int e) {
-        qDebug() << "Catch occurred "<< e;
+        m_isRunning = true;
+        emit runningChanged(true);
+        qDebug() << "HttpServer successfully started";
     }
-
-    emit runningChanged(true);
-
+    else {
+        qDebug() << "Error in starting httpServer, error: " << m_server->getEngine()->errorString();
+    }
 }
 
 void http_server::stopServer() {
-    disconnect(server, SIGNAL(newRequest(QHttpRequest*, QHttpResponse*)),
-           this, SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
-    server->close();
-    //delete server;
+    if (m_isRunning) {
+        m_server->close();
+        disconnect(m_server, SIGNAL(newRequest(QHttpRequest*, QHttpResponse*)),
+                   this, SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
 
-    qDebug() << "server closed";
-
-    running = false;
-    emit runningChanged(false);
+        m_isRunning = false;
+        emit runningChanged(false);
+    }
 }
 
 bool http_server::isRunning() const{
-    return running;
+    return m_isRunning;
 }
 
 void http_server::setStaticContent(QString filePath){
     qDebug() << "static content set " << filePath;
-    this->staticContent = filePath;
+    this->m_staticContent = filePath;
 }
 
 QString http_server::getStaticContent() {
-    return this->staticContent;
+    return this->m_staticContent;
 }
 
 qint16 http_server::getPort() const{
-     return this->port;
+    return this->m_port;
 }
 
 QString http_server::getIp() const{
@@ -82,8 +74,7 @@ QString http_server::getIp() const{
 
 QString http_server::getFullAddress() const {
     QString addr = "-";
-
-    if (running)
+    if (m_isRunning)
         addr = "http://" + getIp() + ":" + QString::number(getPort());
 
     return addr;
@@ -97,7 +88,7 @@ void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp) {
 
     QString content;
     QFile file;
-    file.setFileName(this->staticContent);
+    file.setFileName(this->m_staticContent);
 
     if(file.open(QIODevice::ReadOnly) == 0) {
         content="Error in opening file!";

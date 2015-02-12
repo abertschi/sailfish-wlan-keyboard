@@ -1,34 +1,30 @@
 #include "websocket_server.h"
 
-
 websocket_server::websocket_server(QObject *parent) :QObject(parent) {
-    this->server = new QtWebsocket::QWsServer(this, QtWebsocket::Tcp);
+    this->m_server = new QtWebsocket::QWsServer(this, QtWebsocket::Tcp);
 }
 
 websocket_server:: ~ websocket_server() {
+    if (this->isRunning())  {
+        stopServer();
+    }
+    delete(this->m_server);
 }
 
-// ---------------------------------------------------
-// websocket_server::public
-// ---------------------------------------------------
-
 void  websocket_server::startServer(qint16 port){
-    if (! server->listen(QHostAddress::Any, port)) {
-        qDebug() << "Error: Can't launch server, " << server->errorString();
+    if (! m_server->listen(QHostAddress::Any, port)) {
+        qDebug() << "Error: Can't launch server, " << m_server->errorString();
     }
     else {
         this->m_port = port;
-        QObject::connect(server, SIGNAL(newConnection()), this, SLOT(processNewConnection()));
-         qDebug() << "WebsocketServer started and listening on port port " << port;
+        this->m_isRunning = true;
+        QObject::connect(m_server, SIGNAL(newConnection()), this, SLOT(processNewConnection()));
+        qDebug() << "WebsocketServer started and listening on port " << port;
     }
 }
 
-// ---------------------------------------------------
-// websocket_server::private
-// ---------------------------------------------------
-
 void websocket_server::processNewConnection() {
-    QtWebsocket::QWsSocket* clientSocket = server -> nextPendingConnection();
+    QtWebsocket::QWsSocket* clientSocket = m_server -> nextPendingConnection();
 
     QObject::connect(clientSocket, SIGNAL(frameReceived(QString)), this, SLOT(processMessageInternal(QString)));
     QObject::connect(clientSocket, SIGNAL(disconnected()), this, SLOT(socketDisconnected()));
@@ -50,15 +46,16 @@ void websocket_server::processPong(quint64 elapsedTime) {
 }
 
 void websocket_server::stopServer() {
-    QObject::disconnect(server, SIGNAL(newConnection()), this, SLOT(processNewConnection()));
-    server->close();
+    this->m_isRunning = false;
+    QObject::disconnect(m_server, SIGNAL(newConnection()), this, SLOT(processNewConnection()));
+    m_server->close();
 }
 
 void websocket_server::socketDisconnected() {
 }
 
 bool websocket_server::isRunning() const {
-    return this->isRunning();
+    return this->m_isRunning;
 }
 
 qint16 websocket_server::getPort() const {

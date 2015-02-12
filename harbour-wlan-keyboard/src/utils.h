@@ -14,7 +14,6 @@ public:
     static QString getIpAddress();
 
     void setClipboard(QString content);
-
     QClipboard * getClipboard();
 
 private:
