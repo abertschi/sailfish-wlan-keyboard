@@ -1,0 +1,15 @@
+{
+  "name": "harbour-wlan-keyboard",
+  "description": "development tools"
+  "version": "0.0.1",
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  },
+  "private": true,
+  "config": {
+    "name" : "dev",
+    "config" : { 
+      "jolla_mount_qml" : "/Users/abertschi/sshfs/jolla/usr/share/harbour-wlan-keyboard/qml" 
+    } 
+  }
+}

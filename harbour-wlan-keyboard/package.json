@@ -1,0 +1,13 @@
+{
+  "name": "harbour-wlan-keyboard",
+  "description": "development tools",
+  "version": "0.0.1",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-bg": "0.0.5",
+    "gulp-shell": "^0.3.0",
+    "gulp-ssh": "^0.3.3",
+    "gutil": "^1.6.0"
+  },
+  "private": true
+}
