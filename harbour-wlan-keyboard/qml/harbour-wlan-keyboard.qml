@@ -62,6 +62,10 @@ ApplicationWindow
         return httpServer.isRunning() && websocketServer.isRunning();
     }
 
+    Popup {
+        id: popup
+    }
+
 
     /*
     onPortChanged: {

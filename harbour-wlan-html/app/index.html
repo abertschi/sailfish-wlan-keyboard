@@ -49,7 +49,12 @@
       
         var message_input = document.getElementById('message_input');
         message_input.addEventListener('keyup', function(event) {
-          socket.send('new_keycode', event.keyCode);
+          var msg = {
+            'keycode' : event.keyCode,
+            'keyvalue': String.fromCharCode(event.keyCode)
+          };
+          
+          socket.send('new_keycode', msg);
           
           if (event.keyCode == 13) {
              socket.send('new_keyrow', message_input.value); 

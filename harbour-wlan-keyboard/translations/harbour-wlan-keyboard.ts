@@ -2,9 +2,29 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>CoverPage</name>
+    <name>HomePage</name>
     <message>
-        <source>Sailfish Wlan Keyboard</source>
+        <source>Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server is running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server is not running</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

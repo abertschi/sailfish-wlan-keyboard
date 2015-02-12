@@ -20,7 +20,6 @@ SOURCES += \
     $$PWD/src/http_server.cpp \
     $$PWD/src/websocket_server.cpp \
     src/utils.cpp \
-    src/key_mapper.cpp \
     src/server_configurator.cpp
 
 QT += core gui quick network
@@ -37,7 +36,8 @@ OTHER_FILES += \
     translations/*.ts \
     harbour-wlan-keyboard.desktop \
     index.html \
-    qml/pages/HomePage.qml
+    qml/pages/HomePage.qml \
+    qml/pages/Popup.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -48,7 +48,6 @@ HEADERS += \
     src/http_server.h \
     src/websocket_server.h \
     src/utils.h \
-    src/key_mapper.h \
     src/server_configurator.h
 
 include(inc/qhttpserver/qhttpserver.pri)

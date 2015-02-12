@@ -31,6 +31,7 @@ PkgConfigBR:
 #   - package-needed-to-build
 PkgBR:
 # - boost-devel
+ - libsailfishapp-launcher
 
 # Runtime dependencies which are not automatically detected
 Requires:
