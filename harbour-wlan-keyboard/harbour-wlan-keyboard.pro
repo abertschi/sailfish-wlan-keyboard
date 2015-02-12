@@ -29,7 +29,6 @@ INCLUDEPATH += inc src
 OTHER_FILES += \
     qml/harbour-wlan-keyboard.qml \
     qml/cover/CoverPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/harbour-wlan-keyboard.changes.in \
     rpm/harbour-wlan-keyboard.spec \
     rpm/harbour-wlan-ke yboard.yaml \
