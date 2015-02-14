@@ -53,32 +53,27 @@ CoverBackground {
         fontSizeMode: Text.Fit
         font.pixelSize: Theme.fontSizeExtraSmall
 
-        text: "-"
+        text: "Not running"
 
         Connections {
             target: httpServer
 
             onRunningChanged: {
                 if(isRunning) {
-                    label.text = "Server running <br/>" + httpServer.getFullAddress() + ""
+                    label.text = "Running at <br/><b>" + extractHttpPrefix(httpServer.getFullAddress()) + "</b>"
                 }
                 else {
-                   label.text = "Server not running"
+                   label.text = "Not running"
                 }
             }
         }
     }
 
-    CoverActionList {
-        id: coverAction
-
-        CoverAction {
-            iconSource: "image://theme/icon-cover-next"
+    function extractHttpPrefix(addr) {
+        if(addr != 'undefined' && addr.length > 1) {
+            return addr.substr(7, addr.length);
         }
-
-        CoverAction {
-            iconSource: "image://theme/icon-cover-pause"
-        }
+        return addr;
     }
 }
 

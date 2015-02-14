@@ -40,9 +40,10 @@ body {
   outline: 0px; }
 
 .configuration {
-  margin-top: 30px;
+  margin-top: 35px;
   font-size: 15px;
   font-weight: 100; }
 
-.configuration__status {
-  padding-top: 2px; }
+.configuration__item {
+  padding-top: 2px;
+  font-size: 15px; }

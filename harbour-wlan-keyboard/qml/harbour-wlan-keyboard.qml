@@ -30,8 +30,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-//import harbour.wlankeyboard.HttpServer 1.0
-// import harbour.wlankeyboard.WebsocketServer 1.0
 import "pages"
 
 ApplicationWindow
@@ -41,9 +39,6 @@ ApplicationWindow
     }
 
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
-
-    Component.onCompleted: {
-    }
 
     property int httpServerPort: 7778
     property int websocketServerPort: 7777;
@@ -58,54 +53,12 @@ ApplicationWindow
         websocketServer.stopServer();
     }
 
-    function isAnyServerRunning() {
+    function isServerRunning() {
         return httpServer.isRunning() && websocketServer.isRunning();
     }
 
     Popup {
         id: popup
     }
-
-
-    /*
-    onPortChanged: {
-        console.log("Port changed for httpServer");
-
-        if (httpServer.isRunning()) {
-            console.log("Restarting httpServer on new port " + port);
-            httpServer.stopServer();
-            httpServer.startServer(port);
-        }
-    }
-
-    HttpServer {
-        id: httpServer
-        staticContent: "/usr/share/harbour-wlan-keyboard/index.html"
-
-
-
-
-
-    }
-
-    */
-
-    /*
-    WebsocketServer {
-        id: websocketServer
-
-        property int port: 7777
-
-        onPortChanged: {
-            console.log("Port changed for webSocketServer");
-
-            if (websocketServer.isRunning()) {
-                console.log("Restarting webSocketServer on new port " + port);
-                websocketServer.stopServer();
-                websocketServer.startServer(port);
-            }
-        }
-    }
-    */
 }
 

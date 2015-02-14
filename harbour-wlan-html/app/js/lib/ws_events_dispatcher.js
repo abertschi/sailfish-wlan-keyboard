@@ -35,11 +35,15 @@ socket.bind('some_event', function(data){
 socket.send( 'some_event', {name: 'ismael', message : 'Hello world'} );
 */
  
-var FancyWebSocket = function(url){
+var WebSocketWrapper = function(url){
   var conn = new WebSocket(url);
  
   var callbacks = {};
  
+  this.getSocket = function() {
+    return conn;
+  }
+  
   this.bind = function(event_name, callback){
     callbacks[event_name] = callbacks[event_name] || [];
     callbacks[event_name].push(callback);

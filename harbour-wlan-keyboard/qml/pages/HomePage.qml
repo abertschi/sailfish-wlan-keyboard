@@ -24,7 +24,7 @@ Page {
 
             anchors.top: pageHeader.bottom;
             anchors.topMargin: Theme.paddingLarge
-            checked: isAnyServerRunning()
+            checked: isServerRunning()
 
             icon.source: {
                 if (! isFirstLoad) {
@@ -100,10 +100,6 @@ Page {
                 color: Theme.secondaryColor
             }
         }
-
-
-
-
     }
 
     // ---------------------------------------------------------

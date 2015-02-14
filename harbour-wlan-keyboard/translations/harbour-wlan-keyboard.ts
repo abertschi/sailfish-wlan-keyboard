@@ -29,17 +29,6 @@
     </message>
 </context>
 <context>
-    <name>SecondPage</name>
-    <message>
-        <source>Nested Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>websocket_server</name>
     <message>
         <source>ping: %1 ms</source>

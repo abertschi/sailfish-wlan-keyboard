@@ -9,9 +9,8 @@
        
         <link inline="" rel="stylesheet" type="text/css" href="style/style.css" ></link>
         <script inline="" type="text/javascript" src="js/lib/ws_events_dispatcher.js"></script>
-        <script inline="" type="text/javascript" src="js/source.js"></script>
     </head>
-    <body>      
+    <body>  
       <div class="container">
           <div class="header">
             <div class="header__title">
@@ -22,16 +21,10 @@
             <input id="message_input" class="message__input" placeholder="Enter your text" autofocus>
         </div>
         <div class="configuration">
-           <div class="configuration__status">
-            Server:
-              <span id="ip">
-              -
-             </span>
-          </div>
-          <div class="configuration__status">
+          <div class="configuration__item">
             Status:
              <span id="status">
-             -
+              not connected
              </span>
           </div>
         </div>
@@ -45,8 +38,8 @@
           wsEndpoint = 'ws://localhost:7777';
         }
         
-        var socket = new FancyWebSocket(wsEndpoint);
-      
+        var socket = new WebSocketWrapper(wsEndpoint);
+        
         var message_input = document.getElementById('message_input');
         message_input.addEventListener('keyup', function(event) {
           var msg = {
@@ -61,6 +54,22 @@
              message_input.value = '';
           }
         });
+        
+       updateReadyState();
+        
+        function updateReadyState() {
+          setTimeout(function() {
+            var status = document.getElementById('status');
+            
+            var readyStateMsg = [[0, 'connecting'],
+                                 [1, 'connected'],
+                                 [2, 'disconnecting'],
+                                 [3, 'not connected']];
+                                 
+            status.innerHTML = readyStateMsg[socket.getSocket().readyState][1]; 
+            updateReadyState();  
+        }, 1000);
+        }
         
       </script>
     </body>
