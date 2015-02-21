@@ -6,18 +6,20 @@
 Name:       harbour-wlan-keyboard
 
 # >> macros
+# list here all the libraries your RPM installs
+%define __requires_exclude ^libqhttpserver|libQtWebsocket.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
 %{!?qtc_qmake5:%define qtc_qmake5 %qmake5}
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
-Summary:    Wlan keyboard for Sailfish OS
+Summary:    Wlan keyboard for SailfishOS
 Version:    0.1
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://example.org/
+URL:        http://github.com/abertschi
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-wlan-keyboard.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
@@ -29,7 +31,7 @@ BuildRequires:  libsailfishapp-launcher
 BuildRequires:  desktop-file-utils
 
 %description
-Short description of my SailfishOS Application
+Use your computer keyboard as input device on SailfishOS
 
 
 %prep

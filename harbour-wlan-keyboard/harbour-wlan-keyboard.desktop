@@ -3,7 +3,7 @@ Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=harbour-wlan-keyboard
 Exec=harbour-wlan-keyboard
-Name=Wlan Keyboard
+Name=WlanKeyboard
 # translation example:
 # your app name in German locale (de)
 # Name[de]=harbour-wlan-keyboard

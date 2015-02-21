@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-// copyright by http://sailfishdev.tumblr.com/page/2
+// based on tutorial by by http://sailfishdev.tumblr.com/page/2
 
 MouseArea {
     id: popup
@@ -55,8 +55,6 @@ MouseArea {
         anchors.leftMargin: Theme.paddingLarge
         anchors.right: parent.right
         anchors.rightMargin: Theme.paddingRight
-        horizontalAlignment: Text.AlignHCenter
-        //elide: Text.ElideRight
         wrapMode: Text.Wrap
     }
     onClicked: hide()

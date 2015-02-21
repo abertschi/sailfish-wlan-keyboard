@@ -34,7 +34,9 @@ OTHER_FILES += \
     rpm/harbour-wlan-ke yboard.yaml \
     translations/*.ts \
     harbour-wlan-keyboard.desktop \
+    harbour-wlan-keyboard.png \
     index.html \
+    qm/cover/cover.png \
     qml/pages/HomePage.qml \
     qml/pages/Popup.qml
 
