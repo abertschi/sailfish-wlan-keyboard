@@ -7,7 +7,7 @@ CoverBackground {
         id: image
         y: Theme.paddingLarge
         anchors.horizontalCenter: parent.horizontalCenter
-        opacity: 0.7
+        opacity: 0.5
         source: "image://theme/harbour-wlan-keyboard"
     }
 
