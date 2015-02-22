@@ -7,7 +7,6 @@ Page {
         id: flickable
         anchors.fill: parent
         contentWidth: parent.width
-        contentHeight: column.height + Theme.paddingLarge
 
         VerticalScrollDecorator {}
 
@@ -81,7 +80,7 @@ Page {
                 rightMargin: Theme.paddingLarge
                 left: parent.left
                 leftMargin: Theme.paddingLarge
-                topMargin:  Theme.paddingLarge
+                topMargin: Theme.paddingLarge
                 top: seperator.bottom
             }
 
@@ -100,7 +99,30 @@ Page {
                 color: Theme.secondaryColor
             }
         }
+
+        Column {
+            anchors {
+                right: parent.right
+                rightMargin: Theme.paddingLarge
+                left: parent.left
+                leftMargin: Theme.paddingLarge
+                topMargin: Theme.paddingLarge * 2
+                top: addressColumn.bottom
+            }
+            width: parent.width
+
+            Label {
+                id: connHint
+                width: parent.width
+                text: qsTr("Connect your phone to a WLAN network.")
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+                wrapMode: Text.Wrap
+            }
+        }
     }
+
+
 
     // ---------------------------------------------------------
     // functions
