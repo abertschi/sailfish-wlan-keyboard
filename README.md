@@ -33,7 +33,7 @@ I am about to write an alternative keyboard layout that should automatically pas
 - sailfish-wlan-keyboard license
 
         sailfish-wlan-keyboard - Use your computer keyboard to type on your phone.
-        Copyright (C) 2015 by Andrin Bertschi (andrin.bertschi@gmail.com)
+        Copyright (C) 2015 by Andrin Bertschi
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -69,7 +69,7 @@ I am about to write an alternative keyboard layout that should automatically pas
 
 
 - *QtWebsocket* by Antoine Lafarge, see https://github.com/antlafarge/QtWebsocket  
-- 
+
         Copyright 2013 Antoine Lafarge qtwebsocket@gmail.com
         This file is part of QtWebsocket.
         QtWebsocket is free software: you can redistribute it and/or modify it under
