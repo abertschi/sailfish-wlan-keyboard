@@ -8,6 +8,7 @@ Name:       harbour-wlan-keyboard
 # >> macros
 # list here all the libraries your RPM installs
 %define __requires_exclude ^libqhttpserver|libQtWebsocket.*$
+%define __provides_exclude_from ^%{_datadir}/.*$
 # << macros
 
 %{!?qtc_qmake:%define qtc_qmake %qmake}
@@ -19,7 +20,7 @@ Version:    0.1
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://github.com/abertschi
+URL:        https://github.com/abertschi/sailfish-wlan-keyboard
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-wlan-keyboard.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
