@@ -39,7 +39,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Connect your phone to a WLAN network or via USB to your computer.</source>
+        <source>Connect your phone to a WLAN network.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
