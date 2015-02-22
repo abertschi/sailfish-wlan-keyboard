@@ -2,12 +2,12 @@
 
 > Use your computer keyboard to type on your phone
 
-![Sailfish WlanKeyboard](http://abertschi.ch/default_public/harbour-wlan-keyboard.png)
-
 Did you get fed up with small smartphone keyboards? Do you have your computer anyway always with you? Use *WlanKeyboard for SailfishOS* to type on your phone by using your computer keyboard.
 
+![Sailfish WlanKeyboard](http://abertschi.ch/default_public/harbour-wlan-keyboard.png)
+
 # How does it work
-Connect your phone to the same network as your computer. Browse a website published by your phone and start typing. This app provides Http and Websocket services enabling you to stream keystrokes to your phone.
+Simply connect your phone to the same network as your computer. Browse a website published by your phone and start typing. Your keystrokes are available in your clipboard and can be pasted into a focused input widget of any application.
 
 # Harbour store restrictions
 Due to some harbour restrictions, an alternative keyboard layout cannot be provided. Therefore, this app copies your keystrokes into the clipboard and you need to paste them into the focused widget.
@@ -68,7 +68,8 @@ I am about to write an alternative keyboard layout that should automatically pas
         THE SOFTWARE.
 
 
-- *QtWebsocket* by Antoine Lafarge, see https://github.com/antlafarge/QtWebsocket
+- *QtWebsocket* by Antoine Lafarge, see https://github.com/antlafarge/QtWebsocket  
+- 
         Copyright 2013 Antoine Lafarge qtwebsocket@gmail.com
         This file is part of QtWebsocket.
         QtWebsocket is free software: you can redistribute it and/or modify it under
