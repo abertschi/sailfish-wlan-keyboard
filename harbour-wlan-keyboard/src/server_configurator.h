@@ -10,6 +10,7 @@
 #include <QQmlEngine>
 #include <QGuiApplication>
 #include "rapidjson/document.h"
+#include "rapidjson/error/en.h"
 #include "http_server.h"
 #include "websocket_server.h"
 #endif // SERVER_CONFIGURATOR_H

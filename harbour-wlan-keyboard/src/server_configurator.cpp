@@ -1,6 +1,7 @@
 #include "server_configurator.h"
 #include <QQuickItem>
 
+
 static const QString ENDPOINT_MARKER("__WS_ENDPOINT__");
 
 ServerConfigurator::ServerConfigurator(QObject *parent): QObject(parent)
@@ -33,12 +34,16 @@ void ServerConfigurator::modifyHttpContent(QString *content) {
 }
 
 void ServerConfigurator::processSocketMessage(QString *message) {
-    char *messageChar = message->toLocal8Bit().data();
+
+     QByteArray byteArray = message->toUtf8();
+     const char* messageChar = byteArray.constData();
+
+    qDebug() <<QString::fromUtf8(messageChar);
 
     QScopedPointer<rapidjson::Document> document (new rapidjson::Document);
 
-    if (document->Parse(messageChar).HasParseError())
-        qDebug() << "error in parsing message";
+        if (document->Parse(messageChar).HasParseError())
+        qDebug() << "error in parsing message " << rapidjson::GetParseError_En(document->Parse(messageChar).GetParseError()); // todo fix
 
     if (document->IsObject() && document->HasMember("event")) {
         QString event = (*document.data())["event"].GetString();
@@ -55,7 +60,7 @@ void ServerConfigurator::processSocketMessage(QString *message) {
 }
 
 void ServerConfigurator::processEventNewKeycode(rapidjson::Document * document) {
-    qDebug() << "processing event: newKeycode";
+    //qDebug() << "processing event: newKeycode";
 }
 
 void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document) {
@@ -67,7 +72,7 @@ void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document) {
      * To recognize content set by this class in clipboard,
      * we mark all clipboard entries with an invisible char
      */
-    keyrow = "\u200B" + keyrow;
+    //keyrow = "\u200B" + keyrow;
     qDebug() << "Clipboard set: " << keyrow;
     m_keyboardUtils->setClipboard(keyrow);
 }
