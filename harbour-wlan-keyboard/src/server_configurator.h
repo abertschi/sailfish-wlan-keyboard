@@ -24,7 +24,7 @@ public:
     void configure(QQuickView *view);
 
 private slots:
-    void modifyHttpContent(QString *content);
+    void modifyHtmlContent(QString *content);
     void processSocketMessage(QString *message);
 
 private:

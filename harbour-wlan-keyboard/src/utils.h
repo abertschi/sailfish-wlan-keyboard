@@ -12,6 +12,7 @@ public:
     Utils(QObject *parent = 0);
 
     static QString getIpAddress();
+    static QList<QHostAddress> getAvailableIpAddresses();
 
     void setClipboard(QString content);
     QClipboard * getClipboard();

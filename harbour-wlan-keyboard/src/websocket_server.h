@@ -22,13 +22,12 @@ public:
     virtual ~ websocket_server();
 
     Q_INVOKABLE void startServer(qint16 port = 7777);
-
+    Q_INVOKABLE void startServer(const QHostAddress &address, qint16 m_port);
     Q_INVOKABLE void stopServer();
 
     Q_INVOKABLE bool isRunning() const;
 
     Q_INVOKABLE qint16 getPort() const;
-
     Q_INVOKABLE QString getIp() const;
 
 private slots:
@@ -37,7 +36,6 @@ private slots:
     void processPong(quint64 elapsedTime);
     void socketDisconnected();
 
-
 signals:
     void processMessage(QString *message);
     void runningChanged(bool isRunning);
@@ -45,7 +43,6 @@ signals:
 private:
     QtWebsocket::QWsServer * m_server;
     QList<QtWebsocket::QWsSocket*>  m_clients;
-    qint16 m_port;
     bool m_isRunning;
 };
 

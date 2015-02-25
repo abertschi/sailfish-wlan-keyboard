@@ -22,10 +22,10 @@ void ServerConfigurator::configure(QQuickView *view) {
     m_http_server->setStaticContent("/usr/share/harbour-wlan-keyboard/index.html");
     view->rootContext()->setContextProperty("httpServer", m_http_server);
 
-    connect(m_http_server, SIGNAL(modifyStaticContent(QString*)), this, SLOT(modifyHttpContent(QString*)));
+    connect(m_http_server, SIGNAL(modifyHtmlResponse(QString*)), this, SLOT(modifyHtmlContent(QString*)));
 }
 
-void ServerConfigurator::modifyHttpContent(QString *content) {
+void ServerConfigurator::modifyHtmlContent(QString *content) {
     QString addr ("ws://" + m_websocket_server->getIp() + ":" + QString::number(m_websocket_server->getPort()));
 
     if(content->contains(ENDPOINT_MARKER)) {
