@@ -38,7 +38,9 @@ OTHER_FILES += \
     index.html \
     qm/cover/cover.png \
     qml/pages/HomePage.qml \
-    qml/pages/Popup.qml
+    qml/pages/Popup.qml \
+    qml/pages/NoConnection.qml \
+    qml/pages/ListView.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -82,5 +84,7 @@ resources.files += index.html
 resources.path = /usr/share/harbour-wlan-keyboard
 
 INSTALLS += resources
+
+RESOURCES +=
 
 
