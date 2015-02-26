@@ -28,6 +28,8 @@ I am about to write an alternative keyboard layout that should automatically pas
  - html5, websockets
  - npm, gulp
 
+# Feedback and Issues  
+Are you missing a feature or did you find a bug? File an issue [here](https://github.com/abertschi/sailfish-wlan-keyboard/issues).
 
 ## License
 - sailfish-wlan-keyboard license
