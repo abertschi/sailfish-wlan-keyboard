@@ -40,7 +40,10 @@ OTHER_FILES += \
     qml/pages/HomePage.qml \
     qml/pages/Popup.qml \
     qml/pages/NoConnection.qml \
-    qml/pages/ListView.qml
+    qml/pages/NewHomePage.qml \
+    qml/pages/ConfigTab.qml \
+    qml/pages/RuntimeTab.qml \
+    qml/widget/IconButton.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -62,10 +65,10 @@ LIB_BASE = _DO_DEFINE
 QMAKE_RPATHDIR +=  /usr/share/harbour-wlan-keyboard/lib
 
 linux-g++-64 {
-LIB_BASE = $$PWD/lib/armv7hl
+LIB_BASE = $$PWD/lib/i486
 }
 else:linux-g++ {
-LIB_BASE = $$PWD/lib/armv7hl # $$PWD/lib/armv7hl  i486
+LIB_BASE = $$PWD/lib/i486 # $$PWD/lib/armv7hl  i486
 }
 
 # LIBS += -L$$LIB_BASE -lqhttpserver

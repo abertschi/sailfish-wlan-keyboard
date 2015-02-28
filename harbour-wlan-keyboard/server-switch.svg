@@ -14,9 +14,9 @@
    width="86"
    inkscape:version="0.91 r13725"
    sodipodi:docname="server-switch.svg"
-   inkscape:export-filename="/Users/abertschi/git-projs/harbour-wlan-keyboard/harbour-wlan-html/app/favicon.png"
-   inkscape:export-xdpi="66.976746"
-   inkscape:export-ydpi="66.976746">
+   inkscape:export-filename="/Users/abertschi/git-projs/harbour-wlan-keyboard/harbour-wlan-keyboard/server-switch.png"
+   inkscape:export-xdpi="523.2558"
+   inkscape:export-ydpi="523.2558">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -31,7 +31,7 @@
      id="namedview3532"
      showgrid="false"
      inkscape:zoom="2.744186"
-     inkscape:cx="42.635593"
+     inkscape:cx="57.446921"
      inkscape:cy="36.790529"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -113,7 +113,7 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="matrix(1,0,0,0.73983585,6.5593222,2.1824835)"
+     transform="matrix(1,0,0,0.73983585,100.21186,16.394348)"
      style="display:inline"
      id="layer2">
     <path
@@ -122,11 +122,6 @@
        style="opacity:1;fill:#b40a0d;fill-opacity:1;fill-rule:nonzero"
        inkscape:connector-curvature="0" />
   </g>
-  <path
-     inkscape:connector-curvature="0"
-     d="m 76.447876,70.520855 c 0.173275,-3.316913 0.190348,-6.638213 0.224453,-9.958011 0.02942,-4.309921 0.0011,-8.619956 -0.08299,-12.929069 -0.126582,-1.430175 0.179407,-3.191084 -0.772615,-4.450756 0,0 5.238581,-2.775618 5.238581,-2.775618 l 0,0 c 0.932969,1.444951 0.641415,3.254114 0.649968,4.854793 -0.08304,4.33497 -0.112761,8.670634 -0.08299,13.006066 0.03371,3.25042 0.04833,6.502802 0.224456,9.750105 0,0 -5.398856,2.50249 -5.398856,2.50249 z"
-     id="path4363"
-     style="display:inline;fill:none;stroke:none;stroke-width:1.79999995;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <g
      id="g6751"
      transform="translate(1.0106349,4.968095)">
