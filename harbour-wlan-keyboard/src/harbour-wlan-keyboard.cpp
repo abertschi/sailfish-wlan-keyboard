@@ -50,6 +50,9 @@ int main(int argc, char *argv[])
     QScopedPointer<ServerConfigurator> serverConfigurator (new ServerConfigurator(app.data()));
     serverConfigurator->configure(view.data());
 
+    Utils appUtils;
+    view->rootContext()->setContextProperty("appUtils", &appUtils);
+
     view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
     view->showFullScreen();
 

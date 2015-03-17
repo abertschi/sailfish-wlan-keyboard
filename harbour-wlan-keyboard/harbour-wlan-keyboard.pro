@@ -40,10 +40,11 @@ OTHER_FILES += \
     qml/pages/HomePage.qml \
     qml/pages/Popup.qml \
     qml/pages/NoConnection.qml \
-    qml/pages/NewHomePage.qml \
-    qml/pages/ConfigTab.qml \
+    qml/widget/MyActionButton.qml \
+    qml/pages/ContainerPage.qml \
+    qml/pages/ConfigHandler.js \
     qml/pages/RuntimeTab.qml \
-    qml/widget/MyActionButton.qml
+    qml/pages/ConfigTab.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

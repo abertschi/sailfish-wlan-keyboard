@@ -1,6 +1,7 @@
 import QtQuick 2.1
 import QtFeedback 5.0
 import Sailfish.Silica 1.0
+import "ConfigHandler.js" as ConfigHandler
 
 Item {
     height: tabs.height
@@ -11,31 +12,79 @@ Item {
         anchors {
             left: parent.left
             //leftMargin: Theme.paddingLarge * 2
-
-            verticalCenter: parent.verticalCenter
+            topMargin: 50
+            top: parent.top
 
         }
 
-        Rectangle {
-            color: Theme.highlightBackgroundColor
-            anchors.horizontalCenter: parent.horizontalCenter
-            height: Theme.itemSizeSmall
-            width: page.width
-            Label {
-                text: "http://192.168.221.111:7777"
-                anchors.centerIn: parent
+        ComboBox {
+            width: parent.width
+            label: "Interface"
+            currentIndex: 0
+            anchors.left: parent.left
+
+            menu: ContextMenu {
+                id: interfaceMenu
+                MenuItem { text: "192.168.1.11" }
+                MenuItem { text: "192.1.1.11" }
+                onActivated: {
+                    console.log("changed" + index)
+                }
+
+                Component.onCompleted: {
+                    var c = Qt.createComponent("MenuItem.qml");
+                    console.log(c);
+
+                    var created = c.createObject(interfaceMenu, {"text": "100"});
+                }
+            }
+
+        }
+
+        ComboBox {
+            width: parent.width
+            label: "Port"
+            anchors.left: parent.left
+            menu: ContextMenu {
+                MenuItem { text: "7777" }
             }
         }
 
-        Text {
-            text: "Open the above site in your browser"
-            color: Theme.secondaryColor
-            font.pixelSize: Theme.fontSizeExtraSmall
-            anchors.horizontalCenter: parent.horizontalCenter
+        TextSwitch {
+            text: "Start on launch"
+            description: "Start server on app launch"
         }
 
 
+        TextSwitch {
+            text: "Use HTTPS"
+        }
+
+
+        ComboBox {
+            id: keyboardMode
+            width: parent.width
+            label: "Keyboard mode"
+            currentIndex: 0
+            anchors.left: parent.left
+
+            menu: ContextMenu {
+                MenuItem { text: "Clipboard" }
+                MenuItem { text: "Keyboard layout" }
+            }
+        }
+
+        Label {
+            id: desc
+            width: parent.width
+            text: "Experimental"
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.paddingLarge
+            opacity: 1
+            wrapMode: Text.Wrap
+            font.pixelSize: Theme.fontSizeExtraSmall
+            color: Theme.secondaryColor
+        }
 
     }
-
 }

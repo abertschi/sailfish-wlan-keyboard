@@ -16,19 +16,24 @@ Page {
         width: parent.width
         height: heightHeader
 
-
-        //Rectangle {
-         //   anchors.fill: parent
-          //  color: "green"
-       // }
-
-         MyActionButton {
-            text: "Start server"
-            iconSource: "image://theme/harbour-wlan-keyboard"
-            //: console.log("pressend")
-            width: parent.width
-            height: parent.height
+        SilicaFlickable {
             anchors.fill: parent
+            PullDownMenu {
+                id: pullDownMenu
+                MenuItem {
+                    text: "Start server"
+                    onClicked: console.log("Clicked option 1")
+                }
+            }
+
+            MyActionButton {
+                text: "Start server"
+                iconSource: "image://theme/harbour-wlan-keyboard"
+                //: console.log("pressend")
+                width: parent.width
+                height: parent.height
+                anchors.fill: parent
+            }
         }
     }
 
@@ -51,9 +56,8 @@ Page {
         highlightFollowsCurrentItem: true
 
         model: VisualItemModel {
-            ConfigTab { id: configTab }
             RuntimeTab { id: runtimeTab }
-
+            ConfigTab { id: configTab }
         }
     }
 
@@ -64,10 +68,10 @@ Page {
         anchors {
             top: tabs.bottom
         }
-
-        Rectangle {
-            anchors.fill: parent
-            color: "red"
+        Row {
+            Label {
+                text: "todo: navi"
+            }
         }
 
     }

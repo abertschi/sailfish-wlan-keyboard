@@ -5,18 +5,23 @@ import "widget"
 
 ApplicationWindow
 {
+    id: app
+
     initialPage: Component {
-        NewHomePage { }
+        ContainerPage { }
     }
 
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
-    property int httpServerPort: 7778
-    property int websocketServerPort: 7777;
+    QtObject {
+        id: settings
+        property int httpPort: 7778
+        property int wsPort: 7777;
+    }
 
     function startServers() {
-        httpServer.startServer(httpServerPort);
-        websocketServer.startServer(websocketServerPort);
+        httpServer.startServer(settings.httpPort);
+        websocketServer.startServer(settings.wsPort);
     }
 
     function stopServers() {

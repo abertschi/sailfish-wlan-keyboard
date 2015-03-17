@@ -25,7 +25,7 @@ QString Utils::getIpAddress()
     return foundIp;
 }
 
-QList<QHostAddress> getAvailableIpAddresses()
+QList<QHostAddress> Utils::getAvailableIpAddresses()
 {
     QList<QHostAddress> resultAddrs;
     QList<QHostAddress> addrs = QNetworkInterface::allAddresses();

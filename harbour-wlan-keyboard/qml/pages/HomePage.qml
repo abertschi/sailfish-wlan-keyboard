@@ -72,77 +72,79 @@ Page {
             color: Theme.highlightColor
 
         }
+        IconButton {
 
-        Column {
-            id: addressColumn
-            anchors {
-                right: parent.right
-                rightMargin: Theme.paddingLarge
-                left: parent.left
-                leftMargin: Theme.paddingLarge
-                topMargin: Theme.paddingLarge
-                top: seperator.bottom
+            Column {
+                id: addressColumn
+                anchors {
+                    right: parent.right
+                    rightMargin: Theme.paddingLarge
+                    left: parent.left
+                    leftMargin: Theme.paddingLarge
+                    topMargin: Theme.paddingLarge
+                    top: seperator.bottom
+                }
+
+                Label {
+                    id: title
+                    text: qsTr("Address");
+                    truncationMode: TruncationMode.Fade
+                    wrapMode: Text.Wrap
+                    color: Theme.primaryColor
+                }
+                Label {
+                    id: ipAddressLabel
+                    text: "-"
+                    truncationMode: TruncationMode.Fade
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                    color: Theme.secondaryColor
+                }
             }
 
-            Label {
-                id: title
-                text: qsTr("Address");
-                truncationMode: TruncationMode.Fade
-                wrapMode: Text.Wrap
-                color: Theme.primaryColor
-            }
-            Label {
-                id: ipAddressLabel
-                text: "-"
-                truncationMode: TruncationMode.Fade
-                font.pixelSize: Theme.fontSizeExtraSmall
-                color: Theme.secondaryColor
-            }
-        }
-
-        Column {
-            anchors {
-                right: parent.right
-                rightMargin: Theme.paddingLarge
-                left: parent.left
-                leftMargin: Theme.paddingLarge
-                topMargin: Theme.paddingLarge * 2
-                top: addressColumn.bottom
-            }
-            width: parent.width
-
-            Label {
-                id: connHint
+            Column {
+                anchors {
+                    right: parent.right
+                    rightMargin: Theme.paddingLarge
+                    left: parent.left
+                    leftMargin: Theme.paddingLarge
+                    topMargin: Theme.paddingLarge * 2
+                    top: addressColumn.bottom
+                }
                 width: parent.width
-                text: qsTr("Connect your phone to a WLAN network.")
-                font.pixelSize: Theme.fontSizeExtraSmall
-                color: Theme.secondaryColor
-                wrapMode: Text.Wrap
+
+                Label {
+                    id: connHint
+                    width: parent.width
+                    text: qsTr("Connect your phone to a WLAN network.")
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                    color: Theme.secondaryColor
+                    wrapMode: Text.Wrap
+                }
             }
         }
-    }
 
 
 
-    // ---------------------------------------------------------
-    // functions
-    // ---------------------------------------------------------
+        // ---------------------------------------------------------
+        // functions
+        // ---------------------------------------------------------
 
-    Item {
-        id: functions
-        function updateServerStatus(isRunning) {
+        Item {
+            id: functions
+            function updateServerStatus(isRunning) {
 
-            if (isRunning) {
-                var notifyMsg = qsTr("Browse") + " " + httpServer.getFullAddress();
-                popup.notify(notifyMsg);
-                serverStatusSwitch.icon.source = "image://theme/icon-cover-play";
-                serverStatusSwitch.description = qsTr("Server is running");
-                ipAddressLabel.text = httpServer.getFullAddress();
-            }
-            else {
-                serverStatusSwitch.icon.source = "image://theme/icon-cover-pause";
-                serverStatusSwitch.description = qsTr("Server is not running");
-                ipAddressLabel.text = "-";
+                if (isRunning) {
+                    var notifyMsg = qsTr("Browse") + " " + httpServer.getFullAddress();
+                    popup.notify(notifyMsg);
+                    serverStatusSwitch.icon.source = "image://theme/icon-cover-play";
+                    serverStatusSwitch.description = qsTr("Server is running");
+                    ipAddressLabel.text = httpServer.getFullAddress();
+                }
+                else {
+                    serverStatusSwitch.icon.source = "image://theme/icon-cover-pause";
+                    serverStatusSwitch.description = qsTr("Server is not running");
+                    ipAddressLabel.text = "-";
+                }
             }
         }
     }

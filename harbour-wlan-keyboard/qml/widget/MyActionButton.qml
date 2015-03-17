@@ -17,7 +17,7 @@
     https://github.com/jklingen/harbour-usb-switch/blob/master/qml/components/ModeButton.qml
 */
 
-import QtQuick 2.0
+import QtQuick 2.1
 import Sailfish.Silica 1.0
 
 
@@ -33,12 +33,13 @@ Item {
     //icon.anchors.horizontalCenter: parent.horizontalCenter
     //icon.anc hors.left: parent.lef
 
+    /*
     Rectangle {
         id: bg
         anchors.fill: parent
         anchors.horizontalCenter: parent.horizontalCenter
-        color: Theme.secondaryHighlightColor
-        opacity: mouse.pressed ? .25 : 0
+        //color: Theme.secondaryHighlightColor
+        //opacity: mouse.pressed ? .25 : 0
     }
 
     /*
@@ -52,15 +53,13 @@ Item {
 */
     Image {
         id: icon
-        source: "../pages/server-switch.png"
+        source: "../pages/server-switch.png" + '?' + ((mouse.pressed || selected) ? Theme.highlightColor : Theme.primaryColor)
         fillMode: Image.PreserveAspectFit
         anchors.centerIn: parent
-        width: parent.width /2
-        opacity: 0.5
-
-
+        height: parent.height
+        opacity: mouse.pressed ? 1 : .7
+        smooth: true
     }
-
     MouseArea {
         id: mouse
         anchors.fill: parent
