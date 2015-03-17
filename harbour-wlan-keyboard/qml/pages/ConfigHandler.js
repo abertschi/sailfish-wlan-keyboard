@@ -1,17 +1,16 @@
 
-function createInterfaceOptions(container) {
+function createIfOptions(container) {
     var component = Qt.createComponent("MenuItem.qml");
-    console.log(component);
-
-    var created = component.createObject(container, {"text": "100"});
-
+    if (component.status == Component.Ready)
+        _finishCreateIfOptions(container, component);
+    else
+        component.statusChanged.connect(_finishCreateIfOptions(container, component));
 }
 
-function _completeInterfaceOptions(component, container) {
+function _finishCreateIfOptions(container, component) {
     if (component.status == Component.Ready) {
-
-        console.log(created)
-        if (created == null) {
+        var widget = component.createObject(container, {"text": "100"});
+        if (widget == null) {
             // Error Handling
             console.log("Error creating object");
         }

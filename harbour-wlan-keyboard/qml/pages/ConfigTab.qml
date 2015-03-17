@@ -32,10 +32,7 @@ Item {
                 }
 
                 Component.onCompleted: {
-                    var c = Qt.createComponent("MenuItem.qml");
-                    console.log(c);
-
-                    var created = c.createObject(interfaceMenu, {"text": "100"});
+                    ConfigHandler.createIfOptions(interfaceMenu);
                 }
             }
 

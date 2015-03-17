@@ -39,12 +39,13 @@ OTHER_FILES += \
     qm/cover/cover.png \
     qml/pages/HomePage.qml \
     qml/pages/Popup.qml \
-    qml/pages/NoConnection.qml \
     qml/widget/MyActionButton.qml \
     qml/pages/ContainerPage.qml \
     qml/pages/ConfigHandler.js \
     qml/pages/RuntimeTab.qml \
-    qml/pages/ConfigTab.qml
+    qml/pages/ConfigTab.qml \
+    qml/pages/TraceTab.qml \
+    qml/pages/NoConnectionTab.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

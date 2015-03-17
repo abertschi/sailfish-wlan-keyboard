@@ -56,6 +56,7 @@ Page {
         highlightFollowsCurrentItem: true
 
         model: VisualItemModel {
+            NoConnectionTab { id: noConnTab }
             RuntimeTab { id: runtimeTab }
             ConfigTab { id: configTab }
         }
