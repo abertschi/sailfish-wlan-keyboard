@@ -6,11 +6,36 @@ Item {
     height: tabs.height
     width: tabs.width
 
-    Rectangle {
-        anchors.centerIn: parent
+    Column {
         width: parent.width
-        height: parent.height
-        color: "green"
-   }
+        anchors {
+            left: parent.left
+            //leftMargin: Theme.paddingLarge * 2
+
+            verticalCenter: parent.verticalCenter
+
+        }
+
+        Rectangle {
+            color: Theme.highlightBackgroundColor
+            anchors.horizontalCenter: parent.horizontalCenter
+            height: Theme.itemSizeSmall
+            width: page.width
+            Label {
+                text: "http://192.168.221.111:7777"
+                anchors.centerIn: parent
+            }
+        }
+
+        Text {
+            text: "Open the above site in your browser"
+            color: Theme.secondaryColor
+            font.pixelSize: Theme.fontSizeExtraSmall
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+
+
+
+    }
 
 }

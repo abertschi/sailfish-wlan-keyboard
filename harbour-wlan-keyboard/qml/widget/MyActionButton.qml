@@ -21,25 +21,51 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 
-IconButton {
-    property bool alwaysHighlighted
+Item {
+    id: startSwitch
+    property bool selected
     property string text
     property string iconSource
 
-    signal onClicked
 
-    icon.source: iconSource + '?' + ((parent.pressed || alwaysHighlight) ? Theme.highlightColor : Theme.primaryColor)
+    //icon.source: iconSource + '?' + ((parent.pressed || selected) ? Theme.highlightColor : Theme.primaryColor)
+    //icon.x:
+    //icon.anchors.horizontalCenter: parent.horizontalCenter
+    //icon.anc hors.left: parent.lef
 
-    Label {
-        y: 2*Theme.paddingLarge
-        anchors.horizontalCenter: parent.horizontalCenter
-        color: (parent.pressed || alwaysHighlighted ) ? Theme.highlightColor : Theme.primaryColor
-        text:parent.text
-    }
     Rectangle {
-        width:parent.width
-        height:parent.height-2*Theme.paddingLarge
-        color:Theme.secondaryHighlightColor
-        opacity: parent.pressed ? .25 : 0
+        id: bg
+        anchors.fill: parent
+        anchors.horizontalCenter: parent.horizontalCenter
+        color: Theme.secondaryHighlightColor
+        opacity: mouse.pressed ? .25 : 0
     }
+
+    /*
+    Label {
+        anchors.top: icon.bottom
+        anchors.topMargin: 0
+        color: (mouse.pressed || selected ) ? Theme.highlightColor : Theme.primaryColor
+        text: startSwitch.text
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
+*/
+    Image {
+        id: icon
+        source: "../pages/server-switch.png"
+        fillMode: Image.PreserveAspectFit
+        anchors.centerIn: parent
+        width: parent.width /2
+        opacity: 0.5
+
+
+    }
+
+    MouseArea {
+        id: mouse
+        anchors.fill: parent
+    }
+
+
+
 }

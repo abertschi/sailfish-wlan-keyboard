@@ -43,7 +43,7 @@ OTHER_FILES += \
     qml/pages/NewHomePage.qml \
     qml/pages/ConfigTab.qml \
     qml/pages/RuntimeTab.qml \
-    qml/widget/IconButton.qml
+    qml/widget/MyActionButton.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
