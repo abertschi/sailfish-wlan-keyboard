@@ -48,7 +48,8 @@ OTHER_FILES += \
     qml/pages/PortSelectionPage.qml \
     qml/LocalStore.js \
     qml/Settings.js \
-    qml/Settings.qml
+    qml/Settings.qml \
+    qml/pages/Popup2.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

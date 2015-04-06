@@ -14,6 +14,10 @@ Item {
 
         }
 
+        ListView {
+
+        }
+
         Rectangle {
             color: Theme.highlightBackgroundColor
             anchors.horizontalCenter: parent.horizontalCenter

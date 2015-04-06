@@ -51,5 +51,6 @@ ApplicationWindow
     Popup {
         id: popup
     }
+
 }
 

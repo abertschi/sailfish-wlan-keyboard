@@ -52,7 +52,7 @@ Item {
                         settings.useAnyConnection = false
                         settings.connectionIndex = index -1
                     }
-                    popup.notify("Restart server to apply changes");
+                    popup2.notify("Restart server to apply changes");
                 }
             }
         }

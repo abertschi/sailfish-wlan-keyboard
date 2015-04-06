@@ -30,7 +30,6 @@ Page {
                         app.startServers();
                         visible = false;
                         stop.visible = true;
-
                     }
                 }
                 MenuItem {
@@ -73,6 +72,10 @@ Page {
         pressDelay: 300
         keyNavigationWraps: true
 
+
+        NumberAnimation { target: parent; property: "contentX"; duration: 1000; easing.type: Easing.InOutQuad }
+
+
         onContentXChanged: {
             console.log("changed")
         }
@@ -84,10 +87,9 @@ Page {
         VerticalScrollDecorator{}
 
         model: VisualItemModel {
-            ConfigTab { id: configTab }
-            NoConnectionTab { id: noConnTab }
             RuntimeTab { id: runtimeTab }
-
+            ConfigTab { id: configTab }
+            //NoConnectionTab { id: noConnTab }
         }
     }
 
@@ -101,7 +103,21 @@ Page {
             top: tabs.bottom
         }
 
+        Rectangle {
+            id: marker
+            color: Theme.highlightBackgroundColor
+            width: parent.width / naviRepeater.count
+            x: tabs.currentIndex * width
+            height: 5
+            anchors.bottom: naviRow.top
+            opacity: 0.5
 
+            Behavior on x {
+                NumberAnimation {
+                    duration:  100
+                }
+            }
+        }
 
         Row {
             width: parent.width
@@ -117,10 +133,15 @@ Page {
                     height: parent.height
                     width: naviRow.width / naviRepeater.count
 
+                    property int ind: index
+
                     Component.onCompleted: console.log(parent.count)
+
                     Label {
                         text: modelData
+
                         anchors.centerIn: parent
+
                         font.pixelSize: Theme.fontSizeExtraSmall
                         font.bold: true
                         color: Theme.secondaryColor
@@ -129,10 +150,12 @@ Page {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            tabs.incrementCurrentIndex()
-                            console.log(parent.x);
-                            console.log(mouse.x)
+                            if (tabs.currentIndex != parent.ind)
+                                tabs.incrementCurrentIndex()
+
                         }
+
+
                     }
                 }
 
