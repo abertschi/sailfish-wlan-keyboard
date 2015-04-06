@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 import "pages"
 import "widget"
 import "Settings.js" as Settings
+import "."
 
 ApplicationWindow
 {
@@ -13,23 +14,26 @@ ApplicationWindow
     }
 
     Component.onCompleted: {
-        Settings.init()
-        if (Settings.isAutostart()) {
-            startServers()
+        if (settings.autostart) {
+            //startServers()
         }
+    }
+
+    Settings {
+        id: settings
     }
 
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
     function startServers() {
-        var httpPort = Settings.getHttpPort();
-        var wsPort = Settings.getWsPort();
+        var httpPort = settings.httpPort
+        var wsPort = settings.wsPor;
         if (Settings.getUseAnyConnection()) {
             httpServer.startServer(httpPort);
             websocketServer.startServer(wsPort);
         } else {
             //attention: interface/ ip could change, check here first, if changed, pubish on any interface
-            var interf = Settings.getPreferedIp();
+            var interf = settings.prefferedIp
             httpServer.startServer(interf, httpPort);
             websocketServer.startServer(interf, wsPort);
         }

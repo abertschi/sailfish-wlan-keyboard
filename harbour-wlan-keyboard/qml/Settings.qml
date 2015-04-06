@@ -3,32 +3,37 @@ import "LocalStore.js" as LocalStore
 
 QtObject {
 
-    property int httpPort: 7777
-    property int wsPort: 7778
-    property bool autostart: false
-    property bool useHttps: false
-    property int keyboardMode: 1
-    property bool useAnyConnection: true
-    property string prefferedIp
+    property int _KEYBOARD_MODE_ALT_KEYBOARD: 2
+    property int _KEYBOARD_MODE_CLIPBOARD: 1
+
+    property int httpPort
+    property int wsPort
+    property int autostart
+    property int useHttps
+    property int keyboardMode
+    property bool useAnyConnection
+
+    // index of interfaces if not useAnyConnection is chosen
+    property string connectionIndex
 
     Component.onCompleted: {
-        if (LocalStore.isEmpty()) {
+        if (LocalStore.isEmpty() ) {
             LocalStore.set('httpPort', wsPort);
             LocalStore.set('wsPort', wsPort);
             LocalStore.set('autostart', autostart);
             LocalStore.set('useHttps', useHttps);
             LocalStore.set('keyboardMode', keyboardMode);
             LocalStore.set('useAnyConnection', useAnyConnection);
-            LocalStore.set('prefferedIp', prefferedIp);
+            LocalStore.set('connectionIndex', connectionIndex);
         }
         else {
-            httpPort = LocalStore.get('httpPort');
-            wsPort = LocalStore.get('wsPort');
-            autostart = LocalStore.get('autostart');
-            useHttps = LocalStore.get('useHttps');
-            keyboardMode = LocalStore.get('keyboardMode');
-            useAnyConnection = LocalStore.get('useAnyConnection');
-            prefferedIp = LocalStore.get('prefferedIp');
+            httpPort = LocalStore.get('httpPort', 7777);
+            wsPort = LocalStore.get('wsPort', 7778);
+            autostart = LocalStore.get('autostart', false);
+            useHttps = LocalStore.get('useHttps', false);
+            keyboardMode = LocalStore.get('keyboardMode', _KEYBOARD_MODE_CLIPBOARD);
+            useAnyConnection = LocalStore.get('useAnyConnection', true);
+            connectionIndex = LocalStore.get('connectionIndex', 0);
         }
     }
 
@@ -47,7 +52,7 @@ QtObject {
     onKeyboardModeChanged: {
         LocalStore.set('keyboardMode', keyboardMode)
     }
-    onPrefferedIpChanged: {
-        LocalStore.set('prefferedIp', prefferedIp)
+    onConnectionIndexChanged: {
+        LocalStore.set('connectionIndex', connectionIndex)
     }
 }

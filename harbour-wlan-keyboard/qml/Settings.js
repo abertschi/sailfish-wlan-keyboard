@@ -1,6 +1,8 @@
 .pragma library
 .import "LocalStore.js" as LocalStore
 
+// DEPRECATED
+
 var KeyboardMode = {
     CLIPBOARD: "1",
     ALT_KEYBOARD: "2"
@@ -22,7 +24,7 @@ var DbVals = {
 }
 
 function init() {
-    if(LocalStore.isEmpty()) {
+    if(LocalStore.isEmpty() || false) {
         LocalStore.set(Keys.httpPort, 7777);
         LocalStore.set(Keys.wsPort, 7778);
         LocalStore.set(Keys.autostart, false);

@@ -29,7 +29,11 @@ function isEmpty() {
 function set(key, value) {
     privateScope.getDatabase().transaction( function(tx){
         tx.executeSql('INSERT OR REPLACE INTO settings VALUES(?, ?)', [key, value]);
+       var rs = tx.executeSql('SELECT value FROM settings WHERE key=?;', [key]);
+        value = rs.rows.item(0).value;
     });
+
+    console.log(key + ": " + value)
 }
 
 function get(key, defvalue) {

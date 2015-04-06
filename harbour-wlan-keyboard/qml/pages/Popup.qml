@@ -8,7 +8,7 @@ MouseArea {
     anchors.top: parent.top
     anchors.horizontalCenter: parent.horizontalCenter
     width: parent.width
-    height: message.paintedHeight
+    height: message.paintedHeight *5
     property alias title: message.text
     property alias timeout: hideTimer.interval
     property alias background: bg.color
