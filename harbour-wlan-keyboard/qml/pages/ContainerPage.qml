@@ -17,10 +17,10 @@ Page {
         height: heightHeader
 
         SilicaFlickable {
+            id: flick
             anchors.fill: parent
             PullDownMenu {
-                id: pullDownMenu
-
+                id: powerSwitchPullDown
                 MenuItem {
                     id: start
                     text: "Start server"
@@ -30,6 +30,7 @@ Page {
                         app.startServers();
                         visible = false;
                         stop.visible = true;
+
                     }
                 }
                 MenuItem {
@@ -70,6 +71,11 @@ Page {
         highlightMoveDuration: 0
         clip: true
         pressDelay: 300
+        keyNavigationWraps: true
+
+        onContentXChanged: {
+            console.log("changed")
+        }
 
 
 
@@ -110,17 +116,25 @@ Page {
                     id: naviItem
                     height: parent.height
                     width: naviRow.width / naviRepeater.count
-                    //color: Theme.secondaryColor
+
                     Component.onCompleted: console.log(parent.count)
                     Label {
                         text: modelData
                         anchors.centerIn: parent
                         font.pixelSize: Theme.fontSizeExtraSmall
                         font.bold: true
+                        color: Theme.secondaryColor
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            tabs.incrementCurrentIndex()
+                            console.log(parent.x);
+                            console.log(mouse.x)
+                        }
                     }
                 }
-
-
 
             }
         }

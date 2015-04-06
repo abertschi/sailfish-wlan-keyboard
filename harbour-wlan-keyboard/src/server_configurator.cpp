@@ -60,13 +60,21 @@ void ServerConfigurator::processSocketMessage(QString *message) {
 }
 
 void ServerConfigurator::processEventNewKeycode(rapidjson::Document * document) {
-    //qDebug() << "processing event: newKeycode";
+    qDebug() << "processing event: newKeycode";
+
+    QString code = (*document)["data"].GetString();
+
+    //QString("\u200B%1\u200B\u200C%2\u200C").arg(m_http_server->getFullAddress(), code);
+    QString result = QString("\u200C\u200C%1").arg(code);
+    m_keyboardUtils->setClipboard(result);
+
 }
 
 void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document) {
     qDebug() << "processing event: newKeyrow";
 
     QString keyrow = (*document)["data"].GetString();
+
 
     /*
      * To recognize content set by this class in clipboard,

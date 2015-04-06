@@ -2,37 +2,36 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "pages"
 import "widget"
+import "Settings.js" as Settings
 
 ApplicationWindow
 {
     id: app
 
-    //property alias utils: utils
-
     initialPage: Component {
         ContainerPage { }
     }
 
-    cover: Qt.resolvedUrl("cover/CoverPage.qml")
-
-    QtObject {
-        id: settings
-        property int httpPort: 7778
-        property int wsPort: 7777;
-        property bool anyInterface: true
-        property string interfaceAddr
-        property bool isStartedOnLaunch: false
-        property bool useHttps: false
-
+    Component.onCompleted: {
+        Settings.init()
+        if (Settings.isAutostart()) {
+            startServers()
+        }
     }
 
+    cover: Qt.resolvedUrl("cover/CoverPage.qml")
+
     function startServers() {
-        if (settings.anyInterface) {
-            httpServer.startServer(settings.httpPort);
-            websocketServer.startServer(settings.wsPort);
+        var httpPort = Settings.getHttpPort();
+        var wsPort = Settings.getWsPort();
+        if (Settings.getUseAnyConnection()) {
+            httpServer.startServer(httpPort);
+            websocketServer.startServer(wsPort);
         } else {
-            httpServer.startServer(interfaceAddr, settings.httpPort);
-            websocketServer.startServer(interfaceAddr, settings.wsPort);
+            //attention: interface/ ip could change, check here first, if changed, pubish on any interface
+            var interf = Settings.getPreferedIp();
+            httpServer.startServer(interf, httpPort);
+            websocketServer.startServer(interf, wsPort);
         }
     }
 

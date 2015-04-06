@@ -1,7 +1,7 @@
 import QtQuick 2.1
 import QtFeedback 5.0
 import Sailfish.Silica 1.0
-import "ConfigHandler.js" as ConfigHandler
+import "../Settings.js" as Settings
 
 Item {
     height: tabs.height
@@ -41,13 +41,13 @@ Item {
                 onActivated: {
                     if (index == 0) {
                         // expose on any if
-                        settings.anyInterface = true;
+                        Settings.setUseAnyConnection(true);
                     }
                     else {
                         var selection = ifRepeat.itemAt(index - 1).text;
                         console.debug(selection + " selected");
-                        settings.anyInterface = false;
-                        settings.interfaceAddr = selection;
+                        Settings.setUseAnyConnection(false);
+                        Settings.setPreferedIp(selection);
                     }
                     popup.notify("Restart server to apply changes");
                 }
@@ -81,16 +81,15 @@ Item {
                 inputMethodHints: Qt.ImhDialableCharactersOnly
 
                 anchors.top: parent.top
-                text: "7777"
-
-
-
+                text:  parseInt(Settings.getHttpPort())
                 color: Theme.highlightColor
                 horizontalAlignment: TextInput.AlignTop
 
                 EnterKey.onClicked: {
-                    settings.httpPort = parseInt(tf.text)
-                    settings.wsPort = parseInt(tf.text + 1)
+                    var httpPort = parseInt(tf.text)
+                    var wsPort = parseInt(tf.text + 1)
+                    Settings.setHttpPort(httpPort);
+                    Settings.setWsPort(wsPort);
                     parent.focus = true
                     popup.notify("Restart server to apply changes");
                 }
@@ -113,22 +112,25 @@ Item {
         TextSwitch {
             text: "Start on launch"
             description: "Start server on app launch"
-            checked: settings.isStartedOnLaunch
+            checked: false
 
             onClicked: {
-                settings.isStartedOnLaunch != settings.isStartedOnLaunch
+                Settings.setAutostart(!checked)
             }
+
+            Component.onCompleted: checked = Settings.isAutostart()
 
         }
 
 
         TextSwitch {
             text: "Use HTTPS"
-            checked: settings.useHttps
-
+            checked: false
             onClicked: {
-                settings.useHttps != settings.useHttps
+              Settings.setHttps(!checked)
             }
+
+            Component.onCompleted: checked = Settings.isHttps()
         }
 
 
@@ -136,12 +138,17 @@ Item {
             id: keyboardMode
             width: parent.width
             label: "Keyboard mode"
-            currentIndex: 0
+            currentIndex: Settings.isKeyboardModeClipboard() ? 0 : 1
             anchors.left: parent.left
 
             menu: ContextMenu {
                 MenuItem { text: "Clipboard" }
                 MenuItem { text: "Keyboard layout" }
+            }
+
+            onClicked: {
+                currentIndex == 0 ? Settings.setKeyboardMode(Settings.KeyboardMode.CLIPBOARD) :
+                                    Settings.setKeyboardMode(Settings.KeyboardMode.ALT_KEYBOARD);
             }
         }
 

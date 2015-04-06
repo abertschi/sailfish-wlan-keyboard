@@ -7,7 +7,7 @@ Item {
     width: tabs.width
 
     Label {
-        text: "Connect your phone to USB or any WLAN network."
+        text: "Connect your phone to USB or any WLAN network"
         width: parent.width
         wrapMode: Text.Wrap
         horizontalAlignment: Text.AlignHCenter
@@ -17,5 +17,16 @@ Item {
         //anchors.top: parent.top
         anchors.verticalCenter: parent.verticalCenter
     }
+
+    MouseArea {
+        anchors {
+            fill: parent
+        }
+        onClicked: {
+
+        }
+    }
 }
+
+
 
