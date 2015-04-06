@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     serverConfigurator->configure(view.data());
 
     Utils appUtils;
-    view->rootContext()->setContextProperty("appUtils", &appUtils);
+    view->rootContext()->setContextProperty("utils", &appUtils);
 
     view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
     view->showFullScreen();

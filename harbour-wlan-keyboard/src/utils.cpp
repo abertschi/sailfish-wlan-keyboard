@@ -6,6 +6,7 @@ Utils::Utils(QObject *parent) :QObject(parent)
     this->m_clipboard = app->clipboard();
 }
 
+//depricated because too unprecise
 QString Utils::getIpAddress()
 {
     QList<QString> ignores;
@@ -25,7 +26,34 @@ QString Utils::getIpAddress()
     return foundIp;
 }
 
-QList<QHostAddress> Utils::getAvailableIpAddresses()
+QHostAddress Utils::getHostAddressByString(QString host)
+{
+    QList<QHostAddress> addrs = getAllHostAdresses();
+    for(int i = 0; i < addrs.count(); i ++)
+    {
+        if (addrs[i].toString() == host)
+        {
+            return addrs[i];
+        }
+    }
+
+    qDebug() << "host not found ...";
+}
+
+QStringList Utils::getAllIpAddresses()
+{
+    QStringList resultAddrs;
+    QList<QHostAddress> addrs = getAllHostAdresses();
+
+    for(int i = 0; i < addrs.count(); i ++)
+    {
+        resultAddrs << addrs[i].toString();
+    }
+    return resultAddrs;
+}
+
+
+QList<QHostAddress> Utils::getAllHostAdresses()
 {
     QList<QHostAddress> resultAddrs;
     QList<QHostAddress> addrs = QNetworkInterface::allAddresses();

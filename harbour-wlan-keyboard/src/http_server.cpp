@@ -20,6 +20,12 @@ http_server:: ~ http_server()
     delete(this->m_server);
 }
 
+void http_server::startServer(const QString &address, qint16 port)
+{
+    QHostAddress addr = Utils::getHostAddressByString(address);
+    this->startServer(addr, port);
+}
+
 void http_server::startServer(const QHostAddress &address, qint16 port)
 {
     qDebug() << "Starting httpServer on port " << m_server;

@@ -55,6 +55,7 @@ MouseArea {
         anchors.leftMargin: Theme.paddingLarge
         anchors.right: parent.right
         anchors.rightMargin: Theme.paddingRight
+        //anchors.horizontalCenter: bg.horizontalCenter
         wrapMode: Text.Wrap
     }
     onClicked: hide()

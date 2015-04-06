@@ -19,6 +19,12 @@ void  websocket_server::startServer(qint16 port)
     startServer(QHostAddress::Any, port);
 }
 
+void websocket_server::startServer(const QString &address, qint16 port)
+{
+    QHostAddress addr = Utils::getHostAddressByString(address);
+    this->startServer(addr, port);
+}
+
 void websocket_server::startServer(const QHostAddress &address, qint16 port)
 {
     if (! m_server->listen(address, port))

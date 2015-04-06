@@ -11,8 +11,11 @@ class Utils : public QObject
 public:
     Utils(QObject *parent = 0);
 
-    static QString getIpAddress();
-    static QList<QHostAddress> getAvailableIpAddresses();
+    Q_INVOKABLE static QString getIpAddress();
+    Q_INVOKABLE static QStringList getAllIpAddresses();
+
+    static QList<QHostAddress> getAllHostAdresses();
+    static QHostAddress getHostAddressByString(QString host);
 
     void setClipboard(QString content);
     QClipboard * getClipboard();

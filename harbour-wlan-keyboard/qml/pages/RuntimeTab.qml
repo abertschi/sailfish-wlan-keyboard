@@ -10,8 +10,6 @@ Item {
         width: parent.width
         anchors {
             left: parent.left
-            //leftMargin: Theme.paddingLarge * 2
-
             verticalCenter: parent.verticalCenter
 
         }

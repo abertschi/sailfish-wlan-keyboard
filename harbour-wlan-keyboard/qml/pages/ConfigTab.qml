@@ -8,53 +8,127 @@ Item {
     width: tabs.width
 
     Column {
-        width: parent.width
+        width: tabs.width
         anchors {
             left: parent.left
             //leftMargin: Theme.paddingLarge * 2
             topMargin: 50
             top: parent.top
-
         }
 
         ComboBox {
+            focus: true
+            id: me
             width: parent.width
             label: "Interface"
             currentIndex: 0
             anchors.left: parent.left
+            description: "Option <i>Any</i> &nbsp; exposes to WLAN and USB"
 
             menu: ContextMenu {
-                id: interfaceMenu
-                MenuItem { text: "192.168.1.11" }
-                MenuItem { text: "192.1.1.11" }
-                onActivated: {
-                    console.log("changed" + index)
+                MenuItem {
+                    id: anyIf
+                    text: "Any"
                 }
 
-                Component.onCompleted: {
-                    ConfigHandler.createIfOptions(interfaceMenu);
+                Repeater {
+                    id: ifRepeat
+                    model: utils.getAllIpAddresses()
+                    MenuItem {
+                        id: item; text: modelData
+                    }
+                }
+                onActivated: {
+                    if (index == 0) {
+                        // expose on any if
+                        settings.anyInterface = true;
+                    }
+                    else {
+                        var selection = ifRepeat.itemAt(index - 1).text;
+                        console.debug(selection + " selected");
+                        settings.anyInterface = false;
+                        settings.interfaceAddr = selection;
+                    }
+                    popup.notify("Restart server to apply changes");
                 }
             }
-
         }
 
-        ComboBox {
-            width: parent.width
-            label: "Port"
+
+        Row {
+            id: row
+            anchors.leftMargin: Theme.paddingLarge
+            anchors.rightMargin: Theme.paddingLarge
             anchors.left: parent.left
-            menu: ContextMenu {
-                MenuItem { text: "7777" }
+            anchors.right: parent.right
+            height: tf.height
+            Label {
+
+                id: portLabel
+                text: "Port"
+                anchors.top: parent.top
             }
+
+            Label {
+                id: spacer
+                width: Theme.paddingMedium
+
+            }
+
+            TextInput {
+                id: tf
+                width: parent.width - spacer.width - portLabel.width
+                inputMethodHints: Qt.ImhDialableCharactersOnly
+
+                anchors.top: parent.top
+                text: "7777"
+
+
+
+                color: Theme.highlightColor
+                horizontalAlignment: TextInput.AlignTop
+
+                EnterKey.onClicked: {
+                    settings.httpPort = parseInt(tf.text)
+                    settings.wsPort = parseInt(tf.text + 1)
+                    parent.focus = true
+                    popup.notify("Restart server to apply changes");
+                }
+
+                validator: RegExpValidator { regExp: /^[0-9]{4}$/ }
+            }
+        }
+
+        Label {
+
+            anchors.leftMargin: Theme.paddingLarge
+            anchors.rightMargin: Theme.paddingLarge
+            anchors.left: parent.left
+            anchors.right: parent.right
+            text: "Port to listen for keystrokes"
+            font.pixelSize: Theme.fontSizeExtraSmall
+            color: Theme.secondaryColor
         }
 
         TextSwitch {
             text: "Start on launch"
             description: "Start server on app launch"
+            checked: settings.isStartedOnLaunch
+
+            onClicked: {
+                settings.isStartedOnLaunch != settings.isStartedOnLaunch
+            }
+
         }
 
 
         TextSwitch {
             text: "Use HTTPS"
+            checked: settings.useHttps
+
+            onClicked: {
+                settings.useHttps != settings.useHttps
+            }
         }
 
 
@@ -74,7 +148,7 @@ Item {
         Label {
             id: desc
             width: parent.width
-            text: "Experimental"
+            text: "Mode how new keystrokes are processed"
             anchors.left: parent.left
             anchors.leftMargin: Theme.paddingLarge
             opacity: 1

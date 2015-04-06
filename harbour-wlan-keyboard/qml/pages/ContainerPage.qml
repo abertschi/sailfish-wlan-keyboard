@@ -20,9 +20,27 @@ Page {
             anchors.fill: parent
             PullDownMenu {
                 id: pullDownMenu
+
                 MenuItem {
+                    id: start
                     text: "Start server"
-                    onClicked: console.log("Clicked option 1")
+                    visible: true
+                    onClicked: {
+                        console.log("clicked");
+                        app.startServers();
+                        visible = false;
+                        stop.visible = true;
+                    }
+                }
+                MenuItem {
+                    id: stop
+                    text: "Stop server"
+                    visible: false
+                    onClicked: {
+                        app.stopServers();
+                        visible = false;
+                        start.visible = true;
+                    }
                 }
             }
 
@@ -53,27 +71,60 @@ Page {
         clip: true
         pressDelay: 300
 
+
+
         highlightFollowsCurrentItem: true
 
+        VerticalScrollDecorator{}
+
         model: VisualItemModel {
+            ConfigTab { id: configTab }
             NoConnectionTab { id: noConnTab }
             RuntimeTab { id: runtimeTab }
-            ConfigTab { id: configTab }
+
         }
     }
 
     Item {
-        id: navi
+        anchors.left: parent.left
+        anchors.right: parent.right
+
         height: heightNavi
         width: parent.width
         anchors {
             top: tabs.bottom
         }
+
+
+
         Row {
-            Label {
-                text: "todo: navi"
+            width: parent.width
+            height: parent.height
+            id: naviRow
+
+            Repeater {
+                id: naviRepeater
+                model: [qsTr("Runtime"), qsTr("Configuration")]
+
+                Item {
+                    id: naviItem
+                    height: parent.height
+                    width: naviRow.width / naviRepeater.count
+                    //color: Theme.secondaryColor
+                    Component.onCompleted: console.log(parent.count)
+                    Label {
+                        text: modelData
+                        anchors.centerIn: parent
+                        font.pixelSize: Theme.fontSizeExtraSmall
+                        font.bold: true
+                    }
+                }
+
+
+
             }
         }
+
 
     }
 }

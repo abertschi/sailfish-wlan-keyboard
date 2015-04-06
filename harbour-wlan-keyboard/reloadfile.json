@@ -13,7 +13,7 @@
     },
     "mount": "/mnt/jolla",
     "sailfish": {
-        "autoLaunch": true,
+        "autoLaunch": false,
         "app": "harbour-wlan-keyboard",
         "ssh": {
             "host": "localhost",

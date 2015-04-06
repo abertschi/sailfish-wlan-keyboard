@@ -45,7 +45,8 @@ OTHER_FILES += \
     qml/pages/RuntimeTab.qml \
     qml/pages/ConfigTab.qml \
     qml/pages/TraceTab.qml \
-    qml/pages/NoConnectionTab.qml
+    qml/pages/NoConnectionTab.qml \
+    qml/pages/PortSelectionPage.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
