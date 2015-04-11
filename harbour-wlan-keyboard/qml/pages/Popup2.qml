@@ -23,11 +23,13 @@ DockedPanel {
         interval: 4000
         onTriggered: popup.hide()
     }
+
     function hide() {
         if (hideTimer.running)
             hideTimer.stop()
-            popup.open = !popup.open
+        popup.open = !popup.open
     }
+
     function notify(msg) {
         hideTimer.restart()
         popup.open = !popup.open
@@ -45,27 +47,24 @@ DockedPanel {
         spacing: Theme.paddingLarge
         anchors.horizontalCenter: parent.horizontalCenter
 
+        ProgressCircle {
+            id: progressCircle
+            anchors.verticalCenter: parent.verticalCenter
 
-    ProgressCircle {
-        id: progressCircle
-        anchors.verticalCenter: parent.verticalCenter
-
-
-        NumberAnimation on value {
-            from: 0
-            to: 1
-            duration: 1000
-            running: progressPanel.expanded
-            loops: Animation.Infinite
+            NumberAnimation on value {
+                from: 0
+                to: 1
+                duration: 1000
+                running: progressPanel.expanded
+                loops: Animation.Infinite
+            }
         }
-    }
 
-    Label {
-        id: textLabel
-        text: "Server is restarting..."
-        anchors.verticalCenter: parent.verticalCenter
-        font.bold: false
-
-    }
+        Label {
+            id: textLabel
+            text: "Server is restarting..."
+            anchors.verticalCenter: parent.verticalCenter
+            font.bold: false
+        }
     }
 }

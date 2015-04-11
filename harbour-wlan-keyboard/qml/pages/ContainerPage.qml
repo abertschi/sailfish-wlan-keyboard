@@ -72,15 +72,11 @@ Page {
         pressDelay: 300
         keyNavigationWraps: true
 
-
         NumberAnimation { target: parent; property: "contentX"; duration: 1000; easing.type: Easing.InOutQuad }
-
 
         onContentXChanged: {
             console.log("changed")
         }
-
-
 
         highlightFollowsCurrentItem: true
 
@@ -89,7 +85,7 @@ Page {
         model: VisualItemModel {
             RuntimeTab { id: runtimeTab }
             ConfigTab { id: configTab }
-            //NoConnectionTab { id: noConnTab }
+
         }
     }
 
@@ -132,16 +128,12 @@ Page {
                     id: naviItem
                     height: parent.height
                     width: naviRow.width / naviRepeater.count
-
                     property int ind: index
-
                     Component.onCompleted: console.log(parent.count)
 
                     Label {
                         text: modelData
-
                         anchors.centerIn: parent
-
                         font.pixelSize: Theme.fontSizeExtraSmall
                         font.bold: true
                         color: Theme.secondaryColor
@@ -154,14 +146,9 @@ Page {
                                 tabs.incrementCurrentIndex()
 
                         }
-
-
                     }
                 }
-
             }
         }
-
-
     }
 }

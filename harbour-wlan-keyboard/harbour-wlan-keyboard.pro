@@ -44,12 +44,15 @@ OTHER_FILES += \
     qml/pages/RuntimeTab.qml \
     qml/pages/ConfigTab.qml \
     qml/pages/TraceTab.qml \
-    qml/pages/NoConnectionTab.qml \
     qml/pages/PortSelectionPage.qml \
     qml/LocalStore.js \
     qml/Settings.js \
     qml/Settings.qml \
-    qml/pages/Popup2.qml
+    qml/pages/Popup2.qml \
+    qml/pages/ClipboardModePage.qml \
+    qml/pages/HeadlessModePage.qml \
+    qml/pages/NoConnection.qml \
+    qml/pages/AvailableConnections.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
