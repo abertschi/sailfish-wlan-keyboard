@@ -28,7 +28,7 @@ Page {
 
                 text: "This mode copies all incomming keystrokes to your clipboard."
                 wrapMode: Text.Wrap
-                horizontalAlignment: Text.AlignHCenter
+                //horizontalAlignment: Text.AlignHCenter
             }
 
             AnimatedImage {

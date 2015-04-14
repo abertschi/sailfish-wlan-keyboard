@@ -6,6 +6,7 @@
 #include <qhttpserver/qhttpserver.h>
 #include <qhttpserver/qhttprequest.h>
 #include <qhttpserver/qhttpresponse.h>
+#include "server_endpoint.h"
 
 http_server::http_server(QObject *parent): QObject(parent), m_isRunning(false)
 {
@@ -20,10 +21,18 @@ http_server:: ~ http_server()
     delete(this->m_server);
 }
 
-void http_server::startServer(const QString &address, qint16 port)
+void http_server::startServer(const QString interfaceName, qint16 port)
 {
-    QHostAddress addr = Utils::getHostAddressByString(address);
-    this->startServer(addr, port);
+    QHostAddress addr = Utils::getHostAddressByInterfaceName(interfaceName);
+    qDebug() << interfaceName << addr.toString();
+    startServer(addr, port);
+    m_isBroadcasting = false;
+}
+
+void http_server::startServerBroadcast(qint16 port)
+{
+    m_isBroadcasting = true;
+    this->startServer(QHostAddress::Any, port);
 }
 
 void http_server::startServer(const QHostAddress &address, qint16 port)
@@ -36,16 +45,12 @@ void http_server::startServer(const QHostAddress &address, qint16 port)
                 this, SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
 
         m_isRunning = true;
+        emit runningChanged(true);
         qDebug() << "HttpServer successfully started";
     }
     else {
         qDebug() << "Error in starting httpServer, error: " << m_server->getEngine()->errorString();
     }
-}
-
-void http_server::startServer(qint16 port)
-{
-    this->startServer(QHostAddress::Any, port);
 }
 
 void http_server::stopServer()
@@ -56,6 +61,7 @@ void http_server::stopServer()
                    this, SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
 
         m_isRunning = false;
+        emit runningChanged(false);
     }
 }
 
@@ -64,7 +70,7 @@ void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp)
     qDebug() << "handling new request using path: " << req->path()
              << " remoteAddress: " << req->remoteAddress()
              <<  "methodString: " <<req->methodString()
-             << " body-size: " << req->body().size();
+              << " body-size: " << req->body().size();
 
     QString content;
     QFile file;
@@ -105,17 +111,36 @@ qint16 http_server::getPort() const
     return this->m_server->getEngine()->serverPort();
 }
 
-QString http_server::getIp() const
+QStringList http_server::getIpAddresses() const
 {
-    return this->m_server->getEngine()->serverAddress().toString();
-}
-
-QString http_server::getFullAddress() const
-{
-    QString addr = "-";
+    QStringList list;
     if (m_isRunning)
-        addr = "http://" + getIp() + ":" + QString::number(getPort());
-    return addr;
+    {
+        if (m_isBroadcasting)
+        {
+
+            foreach(ServerEndpoint* endpoint, Utils::getAvailableEndpoints())
+            {
+                list << endpoint->ipAddress();
+            }
+        }
+        else
+        {
+            list <<  this->m_server->getEngine()->serverAddress().toString();
+        }
+    }
+    return list;
 }
 
-
+QStringList http_server::getFullAddresses() const
+{
+    QStringList list;
+    if (m_isRunning)
+    {
+        foreach (QString ip, getIpAddresses())
+        {
+            list << "http://" + ip + ":" + QString::number(getPort());
+        }
+    }
+    return list;
+}

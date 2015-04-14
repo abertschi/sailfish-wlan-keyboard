@@ -12,6 +12,7 @@ Item {
         VerticalScrollDecorator {}
 
         Column {
+            id: column
             width: tabs.width
             anchors {
                 left: parent.left
@@ -19,12 +20,19 @@ Item {
                 top: parent.top
             }
 
+            Connections {
+                target: httpServer
+                onRunningChanged: {
+                    interfaceRepeater.model = httpServer.getAvailableEndpointsAsQVariant()
+                }
+            }
+
             ComboBox {
                 label: "Interface"
                 description: "Option <i>Any</i> &nbsp; exposes to WLAN and USB"
                 focus: true
                 width: parent.width
-                currentIndex: settings.useAnyConnection ? 0 : settings.connectionIndex
+                currentIndex: settings.connectionInterfaceIndex
                 anchors.left: parent.left
                 menu: ContextMenu {
                     MenuItem {
@@ -32,10 +40,11 @@ Item {
                     }
                     Repeater {
                         id: interfaceRepeater
-                        model: utils.getAllIpAddresses()
+                        model: utils.getAvailableEndpointsAsQVariant()
                         MenuItem {
-                            id: item;
-                            text: modelData
+                            property string iName: modelData.interfaceName()
+                            id: item
+                            text: modelData.interfaceName() + ' (' + modelData.ipAddress() + ')'
                         }
                     }
                     onActivated: {
@@ -44,11 +53,12 @@ Item {
                             settings.useAnyConnection = true
                         }
                         else {
-                            var selection = interfaceRepeater.itemAt(index - 1).text;
-                            console.debug(selection + " selected");
+                            var item = interfaceRepeater.itemAt(index - 1);
+                            console.debug(item.text + " selected");
                             settings.useAnyConnection = false
-                            settings.connectionIndex = index -1
+                            settings.connectionInterface = item.iName
                         }
+                        settings.connectionInterfaceIndex = index
                     }
                 }
             }

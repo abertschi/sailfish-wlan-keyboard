@@ -2,7 +2,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "pages"
 import "widget"
-import "Settings.js" as Settings
 import "."
 
 ApplicationWindow
@@ -28,12 +27,12 @@ ApplicationWindow
     function startServers() {
         var httpPort = settings.httpPort
         var wsPort = settings.wsPor;
-        if (Settings.getUseAnyConnection()) {
-            httpServer.startServer(httpPort);
-            websocketServer.startServer(wsPort);
+        if (settings.useAnyConnection) {
+            httpServer.startServerBroadcast(httpPort)
+            websocketServer.startServerBroadcast(wsPort);
         } else {
             //attention: interface/ ip could change, check here first, if changed, pubish on any interface
-            var interf = settings.prefferedIp
+            var interf = settings.connectionInterface
             httpServer.startServer(interf, httpPort);
             websocketServer.startServer(interf, wsPort);
         }
@@ -48,7 +47,13 @@ ApplicationWindow
         return httpServer.isRunning() && websocketServer.isRunning();
     }
 
-    Popup {
+    function restartServers() {
+            popup.load("Restarting server", 2000)
+            app.stopServers()
+            app.startServers()
+    }
+
+    Popup2 {
         id: popup
     }
 

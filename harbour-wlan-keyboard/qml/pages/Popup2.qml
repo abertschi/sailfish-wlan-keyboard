@@ -1,70 +1,118 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-DockedPanel {
+MouseArea {
     id: popup
-
+    anchors.bottom: parent.top
     width: parent.width
-    height: Theme.itemSizeExtraLarge + Theme.paddingLarge
+    height:busyIndicator.height + 2 * Theme.paddingLarge
 
-    dock: Dock.Top
-    open: true
-    z: 99999
+    onClicked: hide()
 
     Rectangle {
+        id: background
         anchors.fill: parent
-        color: Theme.secondaryHighlightColor
+        color: Theme.highlightBackgroundColor
+        z: -1
+        opacity: 0.95
+    }
+    state: "invisible"
+
+    states: [ State {
+            name: "visible"
+            AnchorChanges { target: popup; anchors.top: popup.parent.top; anchors.bottom: undefined }
+        },
+
+        State {
+            name: "invisible"
+            AnchorChanges { target: popup; anchors.bottom: popup.parent.top }
+        }
+
+    ]
+
+    Timer {
+        id: waitingBullets
+        property int count: 0
+        repeat: true
+        running: false
+        interval: 400
+        onTriggered: {
+            if (count == 3) {
+                ///var len = textLabel.text.length
+                //textLabel.text = textLabel.text.substring(0 , len -4);
+                count = 0
+            }
+            else {
+                if (count == 0) {
+                    //textLabel.text += " "
+                }
+                //textLabel.text += "."
+                //count ++
+            }
+        }
+    }
+
+    transitions: Transition {
+        // smoothly reanchor myRect and move into new position
+        AnchorAnimation { duration: 800; easing.type: Easing.OutExpo}
+    }
+
+    BusyIndicator {
+
+        id: busyIndicator
+        running: true
+        color: Theme.primaryColor
+        size: BusyIndicatorSize.Medium
+        anchors.left: parent.left
+        anchors.leftMargin: Theme.paddingLarge
+        anchors.verticalCenter: parent.verticalCenter
+    }
+
+    Label {
+        id: textLabel
+        text: ""
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: busyIndicator.right
+        anchors.leftMargin: Theme.paddingLarge
+        //font.bold: false
+        font.pixelSize: Theme.fontSizeSmall
     }
 
     Timer {
         id: hideTimer
         triggeredOnStart: false
         repeat: false
-        interval: 4000
-        onTriggered: popup.hide()
+        interval: 2000
+        onTriggered: {
+            hide()
+            interval = 2000
+        }
+    }
+
+    function _popupShow() {
+        popup.state = "visible"
+    }
+
+    function _popupHide() {
+        popup.state = "invisible"
     }
 
     function hide() {
         if (hideTimer.running)
             hideTimer.stop()
-        popup.open = !popup.open
+        if(waitingBullets.running)
+            waitingBullets.stop()
+        _popupHide()
     }
 
-    function notify(msg) {
+    function load(msg, time) {
+        if(time != 'undefined' && time != null) {
+            hideTimer.interval = time
+        }
+        _popupShow()
+        waitingBullets.restart()
         hideTimer.restart()
-        popup.open = !popup.open
+
         textLabel.text = msg
-    }
-
-    Row {
-        anchors.fill: parent
-        anchors.margins: {
-            left: Theme.paddingLarge
-            right: Theme.paddingLarge
-        }
-
-        width: parent.width
-        spacing: Theme.paddingLarge
-        anchors.horizontalCenter: parent.horizontalCenter
-
-        ProgressCircle {
-            id: progressCircle
-            anchors.verticalCenter: parent.verticalCenter
-
-            NumberAnimation on value {
-                from: 0
-                to: 1
-                duration: 1000
-                running: progressPanel.expanded
-                loops: Animation.Infinite
-            }
-        }
-
-        Label {
-            id: textLabel
-            text: "Server is restarting..."
-            anchors.verticalCenter: parent.verticalCenter
-            font.bold: false
-        }
     }
 }

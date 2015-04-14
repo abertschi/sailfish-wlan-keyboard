@@ -6,66 +6,80 @@ Utils::Utils(QObject *parent) :QObject(parent)
     this->m_clipboard = app->clipboard();
 }
 
-//depricated because too unprecise
-QString Utils::getIpAddress()
+QList<ServerEndpoint*> Utils::getAvailableEndpoints()
 {
-    QList<QString> ignores;
-    ignores << "127.0.0.1";
-    ignores << "::1";
-
-    QList<QHostAddress> addrs = QNetworkInterface::allAddresses();
-    QString foundIp = "localhost";
-
-    for(int i = 0; i < addrs.count(); i ++) {
-        QString ip = addrs[i].toString();
-        if(ignores.contains(ip))
-            continue;
-        foundIp = ip;
-        break;
-    }
-    return foundIp;
-}
-
-QHostAddress Utils::getHostAddressByString(QString host)
-{
-    QList<QHostAddress> addrs = getAllHostAdresses();
-    for(int i = 0; i < addrs.count(); i ++)
+    QList<ServerEndpoint*> endpoints;
+    foreach(QNetworkInterface interface, QNetworkInterface::allInterfaces())
     {
-        if (addrs[i].toString() == host)
+        if (interface.flags().testFlag(QNetworkInterface::IsUp) && !interface.flags().testFlag(QNetworkInterface::IsLoopBack))
         {
-            return addrs[i];
+            foreach (QNetworkAddressEntry entry, interface.addressEntries())
+            {
+                if ( interface.hardwareAddress() != "00:00:00:00:00:00" && entry.ip().toString().contains("."))
+                {
+                    ServerEndpoint* e = new ServerEndpoint();
+                    e->setInterfaceName(interface.name());
+                    e->setIpAddress(entry.ip().toString());
+                    e->setHardwareAddr(interface.hardwareAddress());
+                    qDebug() << interface.name() << " " << entry.ip().toString() << " " << interface.hardwareAddress();
+                    endpoints.append(e);
+                }
+            }
         }
     }
+    qDebug() << endpoints;
+    return endpoints;
+}
 
+QVariant Utils::getAvailableEndpointsAsQVariant()
+{
+    QList<QObject*> dataList;
+    foreach (ServerEndpoint* endpoint, getAvailableEndpoints())
+    {
+        qDebug() << "add as qvariant: " << endpoint->ipAddress();
+        dataList.append(endpoint);
+    }
+    return QVariant::fromValue(dataList);
+}
+
+QHostAddress Utils::getHostAddressByInterfaceName(QString host)
+{
+    foreach(QNetworkInterface interface, QNetworkInterface::allInterfaces())
+    {
+        if(interface.name().compare(host))
+        {
+            foreach (QNetworkAddressEntry entry, interface.addressEntries())
+            {
+                if ( interface.hardwareAddress() != "00:00:00:00:00:00" && entry.ip().toString().contains("."))
+                {
+                    qDebug() << "ip found: " << entry.ip().toString();
+                    return entry.ip();
+                }
+            }
+        }
+    }
+    // todo: exception handling
     qDebug() << "host not found ...";
 }
 
-QStringList Utils::getAllIpAddresses()
-{
-    QStringList resultAddrs;
-    QList<QHostAddress> addrs = getAllHostAdresses();
-
-    for(int i = 0; i < addrs.count(); i ++)
-    {
-        resultAddrs << addrs[i].toString();
-    }
-    return resultAddrs;
-}
-
-
+/*
 QList<QHostAddress> Utils::getAllHostAdresses()
 {
     QList<QHostAddress> resultAddrs;
     QList<QHostAddress> addrs = QNetworkInterface::allAddresses();
-    QString ignore("::1");
+    QList<QString> ignores;
+    ignores << "127.0.0.1";
+    ignores << "::1";
 
     for(int i = 0; i < addrs.count(); i ++) {
         QHostAddress addr = addrs[i];
-        if(ignore != addr.toString())
+        if(! ignores.contains(addr.toString()))
             resultAddrs << addr;
     }
     return resultAddrs;
 }
+
+*/
 
 void Utils::setClipboard(QString content)
 {

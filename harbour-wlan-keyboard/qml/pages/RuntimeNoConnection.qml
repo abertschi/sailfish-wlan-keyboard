@@ -10,12 +10,12 @@ Column {
     }
 
     Label {
-        text: "Connect your phone to USB or any WLAN network and start the server"
+        text: "<b>Sorry</b>, no connection available"
         width: parent.width - 2 * Theme.paddingLarge
         wrapMode: Text.Wrap
         horizontalAlignment: Text.AlignHCenter
         anchors.horizontalCenter: parent.horizontalCenter
-        font.pixelSize: Theme.fontSizeMedium
+        font.pixelSize: Theme.fontSizeLarge
         color: Theme.highlightColor
         anchors.verticalCenter: parent.verticalCenter
     }

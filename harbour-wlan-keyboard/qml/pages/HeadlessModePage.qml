@@ -25,7 +25,7 @@ Page {
 
             Label {
                 text: "This mode automatically inserts incomming keystrokes into your currently focused widget."
-                horizontalAlignment: Text.AlignHCenter
+                //horizontalAlignment: Text.AlignHCenter
                 width: parent.width
                 wrapMode: Text.Wrap
             }
@@ -52,12 +52,28 @@ Page {
                 text: "To use this mode, you need to install the <b> headless keyboard </b> layout."
                 width: parent.width
                 wrapMode: Text.Wrap
-                horizontalAlignment: Text.AlignHCenter
+                //horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            Label {
+                text: "The headless keyboard layout is completely Free and Opensource Software. However, alternative keyboard layouts are not yet supported in the official Harbor store. Therefore, you install it on your own risk."
+                width: parent.width
+                wrapMode: Text.Wrap
+                //horizontalAlignment: Text.AlignHCenter
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
             SectionHeader {
                 text: "Download"
+            }
+
+            Label {
+                text: "Download the keyboard with the Button below or take a look at the <a href='https://github.com/abertschi/sailfish-headless-keyboard-layout'>sourcecode</a>."
+                width: parent.width
+                wrapMode: Text.Wrap
+                //horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
             }
 
             Button {
@@ -68,14 +84,6 @@ Page {
                     Qt.openUrlExternally("www.abertschi.ch");
                     console.log('open url')
                 }
-            }
-
-            Label {
-                text: "The keyboard layout is opensource software and hosted on <a href='https://github.com/abertschi/sailfish-headless-keyboard-layout'>Github </a>"
-                width: parent.width
-                wrapMode: Text.Wrap
-                horizontalAlignment: Text.AlignHCenter
-                anchors.horizontalCenter: parent.horizontalCenter
             }
         }
     }

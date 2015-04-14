@@ -20,7 +20,9 @@ SOURCES += \
     $$PWD/src/http_server.cpp \
     $$PWD/src/websocket_server.cpp \
     src/utils.cpp \
-    src/server_configurator.cpp
+    src/server_configurator.cpp \
+    src/start_server_input.cpp \
+    src/server_endpoint.cpp
 
 QT += core gui quick network
 
@@ -44,15 +46,15 @@ OTHER_FILES += \
     qml/pages/RuntimeTab.qml \
     qml/pages/ConfigTab.qml \
     qml/pages/TraceTab.qml \
-    qml/pages/PortSelectionPage.qml \
     qml/LocalStore.js \
     qml/Settings.js \
     qml/Settings.qml \
     qml/pages/Popup2.qml \
     qml/pages/ClipboardModePage.qml \
     qml/pages/HeadlessModePage.qml \
-    qml/pages/NoConnection.qml \
-    qml/pages/AvailableConnections.qml
+    qml/pages/RuntimeNoConnection.qml \
+    qml/pages/RuntimeNotRunning.qml \
+    qml/pages/RuntimeConnections.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -63,7 +65,9 @@ HEADERS += \
     src/http_server.h \
     src/websocket_server.h \
     src/utils.h \
-    src/server_configurator.h
+    src/server_configurator.h \
+    src/start_server_input.h \
+    src/server_endpoint.h
 
 include(inc/qhttpserver/qhttpserver.pri)
 include(inc/QtWebsocket/qtwebsocket_headers.pri)

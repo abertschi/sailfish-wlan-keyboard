@@ -14,13 +14,11 @@ class http_server : public QObject
 
 public:
     explicit http_server(QObject *parent = 0);
-
     virtual ~ http_server();
 
-    Q_INVOKABLE void startServer(qint16 m_port);
+    Q_INVOKABLE void startServerBroadcast(qint16 port);
+    Q_INVOKABLE void startServer(const QString interfaceName, qint16 port);
     void startServer(const QHostAddress &address, qint16 port);
-
-    Q_INVOKABLE void startServer(const QString &address, qint16 port);
     Q_INVOKABLE void stopServer();
 
     Q_INVOKABLE bool isRunning() const;
@@ -29,8 +27,9 @@ public:
     Q_INVOKABLE QString getStaticContent();
 
     Q_INVOKABLE qint16 getPort() const;
-    Q_INVOKABLE QString getFullAddress() const;
-    Q_INVOKABLE QString getIp() const;
+
+    Q_INVOKABLE QStringList getFullAddresses() const;
+    Q_INVOKABLE QStringList getIpAddresses() const;
 
 signals:
     void runningChanged(bool isRunning);
@@ -43,4 +42,5 @@ private:
     QHttpServer * m_server;
     QString m_staticContent;
     bool m_isRunning;
+    bool m_isBroadcasting;
 };

@@ -16,11 +16,30 @@ Page {
         width: parent.width
         height: heightHeader
 
+        Timer {
+            id: startStopTimer
+            property string text
+            interval: 500
+            repeat: false
+            triggeredOnStart: false
+            onTriggered: {
+                popup.load(text, 1500)
+            }
+        }
+
         SilicaFlickable {
             id: flick
             anchors.fill: parent
             PullDownMenu {
                 id: powerSwitchPullDown
+
+                MenuItem {
+                    id: about
+                    text: "About"
+                    onClicked: {
+                    }
+                }
+
                 MenuItem {
                     id: start
                     text: "Start server"
@@ -30,6 +49,8 @@ Page {
                         app.startServers();
                         visible = false;
                         stop.visible = true;
+                        startStopTimer.text = "Starting server ..."
+                        startStopTimer.start()
                     }
                 }
                 MenuItem {
@@ -40,6 +61,8 @@ Page {
                         app.stopServers();
                         visible = false;
                         start.visible = true;
+                        startStopTimer.text = "Stopping server ..."
+                        startStopTimer.start()
                     }
                 }
             }

@@ -14,14 +14,15 @@ websocket_server:: ~ websocket_server()
     delete(this->m_server);
 }
 
-void  websocket_server::startServer(qint16 port)
+void  websocket_server::startServerBroadcast(qint16 port)
 {
     startServer(QHostAddress::Any, port);
 }
 
-void websocket_server::startServer(const QString &address, qint16 port)
+void websocket_server::startServer(const QString &interfaceName, qint16 port)
 {
-    QHostAddress addr = Utils::getHostAddressByString(address);
+    QHostAddress addr = Utils::getHostAddressByInterfaceName(interfaceName);
+     qDebug()  << addr.toString();
     this->startServer(addr, port);
 }
 
