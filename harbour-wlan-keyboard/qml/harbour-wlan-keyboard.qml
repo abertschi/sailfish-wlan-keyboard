@@ -9,7 +9,7 @@ ApplicationWindow
     id: app
 
     initialPage: Component {
-        ContainerPage { }
+        HeadlessModePage { }
     }
 
     Component.onCompleted: {

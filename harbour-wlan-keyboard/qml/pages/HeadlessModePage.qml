@@ -3,6 +3,7 @@ import QtFeedback 5.0
 import Sailfish.Silica 1.0
 
 Page {
+    id: page
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height + 2 * Theme.paddingLarge
@@ -43,6 +44,39 @@ Page {
                 source: "sample.gif"
             }
 
+            SectionHeader {
+                text: "Configuration"
+                font.bold: true
+                height: Theme.paddingMedium
+            }
+
+            /*
+            ComboBox {
+                id: submodeComboBox
+                width: page.width
+                label: "Headless mode"
+                anchors.left: parent.left
+                anchors.leftMargin: 0
+                menu: ContextMenu {
+                    MenuItem { text: "Continuous" }
+                    MenuItem { text: "Return key based" }
+                }
+            }
+
+            Label {
+                text: "Option <b>Continuous</b> delegates incomming keystrokes to the focused widget. The text appears instantly."
+                width: parent.width
+                wrapMode: Text.Wrap
+                font.pixelSize: Theme.fontSizeTiny
+            }
+
+            Label {
+                text: "Option <b>Return key based</b> caches incomming keystrokes until return is hit before the text appears."
+                width: parent.width
+                wrapMode: Text.Wrap
+                font.pixelSize: Theme.fontSizeTiny
+            }
+            */
 
             SectionHeader {
                 text: "Installation"
