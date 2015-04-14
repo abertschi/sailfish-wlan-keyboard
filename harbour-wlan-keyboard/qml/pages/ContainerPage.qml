@@ -37,6 +37,7 @@ Page {
                     id: about
                     text: "About"
                     onClicked: {
+                        pageStack.push(Qt.resolvedUrl("About.qml"))
                     }
                 }
 

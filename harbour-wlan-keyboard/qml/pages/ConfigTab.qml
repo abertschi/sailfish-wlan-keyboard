@@ -23,17 +23,21 @@ Item {
             Connections {
                 target: httpServer
                 onRunningChanged: {
-                    interfaceRepeater.model = httpServer.getAvailableEndpointsAsQVariant()
+                    interfaceRepeater.model = utils.getAvailableEndpointsAsQVariant()
                 }
             }
 
             ComboBox {
+                id: interfaceComboBox
                 label: "Interface"
                 description: "Option <i>Any</i> &nbsp; exposes to WLAN and USB"
                 focus: true
                 width: parent.width
                 currentIndex: settings.connectionInterfaceIndex
                 anchors.left: parent.left
+
+                onEntered: console.log("entered")
+
                 menu: ContextMenu {
                     MenuItem {
                         text: "Any"

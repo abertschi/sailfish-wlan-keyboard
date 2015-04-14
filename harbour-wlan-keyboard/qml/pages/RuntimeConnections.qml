@@ -6,6 +6,8 @@ import Sailfish.Silica 1.0
 Column {
     id: runtimeAddresses
     width: parent.width
+    anchors.top: parent.top
+    anchors.topMargin: parent.width * 0.25
     anchors {
         left: parent.left
         verticalCenter: parent.verticalCenter
@@ -14,7 +16,8 @@ Column {
     spacing:10
 
     Column {
-        anchors.horizontalCenter: parent.horizontalCenter
+        //anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
         width: parent.width
         spacing: 7
 

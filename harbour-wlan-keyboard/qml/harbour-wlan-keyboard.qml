@@ -14,7 +14,7 @@ ApplicationWindow
 
     Component.onCompleted: {
         if (settings.autostart) {
-            //startServers()
+            startServers()
         }
     }
 

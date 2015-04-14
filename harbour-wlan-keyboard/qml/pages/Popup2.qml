@@ -76,6 +76,7 @@ MouseArea {
         anchors.leftMargin: Theme.paddingLarge
         //font.bold: false
         font.pixelSize: Theme.fontSizeSmall
+        color: "black"
     }
 
     Timer {

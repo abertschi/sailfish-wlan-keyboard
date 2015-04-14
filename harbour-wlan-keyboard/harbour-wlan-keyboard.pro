@@ -54,7 +54,9 @@ OTHER_FILES += \
     qml/pages/HeadlessModePage.qml \
     qml/pages/RuntimeNoConnection.qml \
     qml/pages/RuntimeNotRunning.qml \
-    qml/pages/RuntimeConnections.qml
+    qml/pages/RuntimeConnections.qml \
+    qml/pages/About.qml \
+    qml/pages/AboutImage.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

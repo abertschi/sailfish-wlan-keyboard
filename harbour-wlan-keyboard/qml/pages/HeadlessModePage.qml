@@ -25,13 +25,13 @@ Page {
 
             Label {
                 text: "This mode automatically inserts incomming keystrokes into your currently focused widget."
-                //horizontalAlignment: Text.AlignHCenter
                 width: parent.width
                 wrapMode: Text.Wrap
             }
 
             SectionHeader {
                 text: "Preview"
+                font.bold: true
             }
 
             AnimatedImage {
@@ -46,6 +46,8 @@ Page {
 
             SectionHeader {
                 text: "Installation"
+                font.bold: true
+                height: Theme.paddingMedium
             }
 
             Label {
@@ -66,10 +68,12 @@ Page {
 
             SectionHeader {
                 text: "Download"
+                font.bold: true
+                height: Theme.paddingMedium
             }
 
             Label {
-                text: "Download the keyboard with the Button below or take a look at the <a href='https://github.com/abertschi/sailfish-headless-keyboard-layout'>sourcecode</a>."
+                text: "Download the keyboard with the Button below or take a look at the <a href='https://github.com/abertschi/sailfish-headless-keyboard-layout'>source code</a>."
                 width: parent.width
                 wrapMode: Text.Wrap
                 //horizontalAlignment: Text.AlignHCenter

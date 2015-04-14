@@ -48,7 +48,6 @@ Item {
 
     RuntimeNoConnection {
         id: noConnection
-        anchors.verticalCenter: parent.verticalCenter
     }
 
     RuntimeNotRunning {
