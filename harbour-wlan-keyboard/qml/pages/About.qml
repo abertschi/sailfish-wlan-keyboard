@@ -94,7 +94,7 @@ Page {
 
             Label {
                 width: parent.width
-                text: qsTr("Tell what you like about this app or what you'd like to see in a further release. File an issue on Github or just drop me a line at <i>sailfish@abertschi.ch</i>")
+                text: qsTr("Tell what you like about this app or what you'd like to see in a further release. File an issue on Github or write me an email at <i>sailfish@abertschi.ch</i>")
                 wrapMode: Text.Wrap
             }
 
