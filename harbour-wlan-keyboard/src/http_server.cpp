@@ -24,7 +24,7 @@ http_server:: ~ http_server()
 void http_server::startServer(const QString interfaceName, qint16 port)
 {
     QHostAddress addr = Utils::getHostAddressByInterfaceName(interfaceName);
-    qDebug() << interfaceName << addr.toString();
+    qDebug() << interfaceName << addr.toString() << "addr: " << addr.toString() << "port: " << port;
     startServer(addr, port);
     m_isBroadcasting = false;
 }

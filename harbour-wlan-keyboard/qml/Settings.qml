@@ -13,7 +13,7 @@ QtObject {
     property int keyboardMode
     property bool useAnyConnection
 
-    // index of interfaces if not useAnyConnection is chosen
+    // index of interfaces if not useAnyConnection is chosenx`
     property string connectionInterface
     property int connectionInterfaceIndex
 

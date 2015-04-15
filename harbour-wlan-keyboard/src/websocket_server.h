@@ -23,13 +23,16 @@ public:
 
     Q_INVOKABLE void startServerBroadcast(qint16 port = 7777);
     void startServer(const QHostAddress &address, qint16 m_port);
-    Q_INVOKABLE void startServer(const QString &address, qint16 port);
+    Q_INVOKABLE void startServer(const QString address, qint16 port);
     Q_INVOKABLE void stopServer();
 
     Q_INVOKABLE bool isRunning() const;
+    bool isBroadcasting() const;
 
     Q_INVOKABLE qint16 getPort() const;
-    Q_INVOKABLE QString getIp() const;
+
+    Q_INVOKABLE QStringList getIpAddresses() const;
+    Q_INVOKABLE QStringList getFullAddresses() const;
 
 private slots:
     void processNewConnection();
@@ -45,6 +48,7 @@ private:
     QtWebsocket::QWsServer * m_server;
     QList<QtWebsocket::QWsSocket*>  m_clients;
     bool m_isRunning;
+    bool m_isBroadcasting;
 };
 
 

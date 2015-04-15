@@ -9,7 +9,7 @@ ApplicationWindow
     id: app
 
     initialPage: Component {
-        HeadlessModePage { }
+        ContainerPage { }
     }
 
     Component.onCompleted: {
@@ -24,9 +24,26 @@ ApplicationWindow
 
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
+    Timer {
+        id: startStopTimer
+        property string text
+        interval: 500
+        repeat: false
+        triggeredOnStart: false
+        onTriggered: {
+            popup.load(text, 1500)
+        }
+    }
+
     function startServers() {
+        startStopTimer.text = "Starting server ..."
+        startStopTimer.start()
         var httpPort = settings.httpPort
-        var wsPort = settings.wsPor;
+        var wsPort = settings.wsPort;
+
+        console.log('httpPort: ' + httpPort)
+        console.log('wsPort: ' + wsPort)
+
         if (settings.useAnyConnection) {
             httpServer.startServerBroadcast(httpPort)
             websocketServer.startServerBroadcast(wsPort);
@@ -39,6 +56,8 @@ ApplicationWindow
     }
 
     function stopServers() {
+        startStopTimer.text = "Stopping server ..."
+        startStopTimer.start()
         httpServer.stopServer();
         websocketServer.stopServer();
     }

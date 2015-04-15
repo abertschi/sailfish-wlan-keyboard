@@ -43,12 +43,16 @@ Column {
                 }
             }
         }
+
+        Text {
+            text: "Open the above site in your browser"
+            color: Theme.secondaryColor
+            font.pixelSize: Theme.fontSizeExtraSmall
+            anchors.horizontalCenter: parent.horizontalCenter
+            horizontalAlignment: Text.AlignHCenter
+            width: parent.width
+        }
     }
 
-    Text {
-        text: "Open the above site in your browser"
-        color: Theme.secondaryColor
-        font.pixelSize: Theme.fontSizeExtraSmall
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
+
 }

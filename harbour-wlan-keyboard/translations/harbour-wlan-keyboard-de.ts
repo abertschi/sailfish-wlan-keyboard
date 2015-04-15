@@ -24,11 +24,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tell what you like about this app or what you&apos;d like to see in a further release. File an issue on Github or just drop me a line at &lt;i&gt;sailfish@abertschi.ch&lt;/i&gt;</source>
+        <source>Andrin Bertschi&lt;br/&gt; www.abertschi.ch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Andrin Bertschi&lt;br/&gt; www.abertschi.ch</source>
+        <source>Tell what you like about this app or what you&apos;d like to see in a further release. File an issue on Github or write me an email at &lt;i&gt;sailfish@abertschi.ch&lt;/i&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

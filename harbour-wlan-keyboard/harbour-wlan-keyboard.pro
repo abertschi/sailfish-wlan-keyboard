@@ -21,7 +21,6 @@ SOURCES += \
     $$PWD/src/websocket_server.cpp \
     src/utils.cpp \
     src/server_configurator.cpp \
-    src/start_server_input.cpp \
     src/server_endpoint.cpp
 
 QT += core gui quick network

@@ -26,7 +26,7 @@ void ServerConfigurator::configure(QQuickView *view) {
 }
 
 void ServerConfigurator::modifyHtmlContent(QString *content) {
-    QString addr ("ws://" + m_websocket_server->getIp() + ":" + QString::number(m_websocket_server->getPort()));
+    QString addr = m_websocket_server->getFullAddresses().at(0);
 
     if(content->contains(ENDPOINT_MARKER)) {
         *content = content->replace(ENDPOINT_MARKER, addr) ;
@@ -35,14 +35,14 @@ void ServerConfigurator::modifyHtmlContent(QString *content) {
 
 void ServerConfigurator::processSocketMessage(QString *message) {
 
-     QByteArray byteArray = message->toUtf8();
-     const char* messageChar = byteArray.constData();
+    QByteArray byteArray = message->toUtf8();
+    const char* messageChar = byteArray.constData();
 
     qDebug() <<QString::fromUtf8(messageChar);
 
     QScopedPointer<rapidjson::Document> document (new rapidjson::Document);
 
-        if (document->Parse(messageChar).HasParseError())
+    if (document->Parse(messageChar).HasParseError())
         qDebug() << "error in parsing message " << rapidjson::GetParseError_En(document->Parse(messageChar).GetParseError()); // todo fix
 
     if (document->IsObject() && document->HasMember("event")) {
@@ -60,7 +60,16 @@ void ServerConfigurator::processSocketMessage(QString *message) {
 }
 
 void ServerConfigurator::processEventNewKeycode(rapidjson::Document * document) {
+    const rapidjson::Value& data = (*document)["data"];
+
+    const rapidjson::Value& value = data["keyvalue"];
+
     qDebug() << "processing event: newKeycode";
+    QString insert("{\"cmd\":\"%1\",\"arg\":\"%2\"}");
+    insert = insert.arg("insert_text").arg(value.GetString());
+
+    qDebug() << "Clipboard set: " << insert;
+    //m_keyboardUtils->setClipboard(insert);
 }
 
 void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document) {
@@ -69,11 +78,11 @@ void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document) {
     QString keyrow = (*document)["data"].GetString();
 
 
-    /*
-     * To recognize content set by this class in clipboard,
-     * we mark all clipboard entries with an invisible char
-     */
-    //keyrow = "\u200B" + keyrow;
-    qDebug() << "Clipboard set: " << keyrow;
-    m_keyboardUtils->setClipboard(keyrow);
+    QString insert("{\"cmd\":\"%1\",\"arg\":\"%2\"}");
+    insert = insert.arg("insert_text").arg(keyrow);
+
+    qDebug() << "Clipboard set: " << insert;
+    m_keyboardUtils->setClipboard(insert);
 }
+
+

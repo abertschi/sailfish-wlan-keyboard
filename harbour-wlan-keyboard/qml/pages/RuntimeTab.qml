@@ -12,15 +12,32 @@ Item {
     Connections {
         target: httpServer
         onRunningChanged: {
-           if (isRunning) {
-               tabRuntime.state = "RUNNING"
-           }
-           else {
-               tabRuntime.state = "NOT_RUNNING"
-           }
+            if (isRunning) {
+                tabRuntime.state = "RUNNING"
+            }
+            else {
+                tabRuntime.checkOfflineState()
+            }
         }
     }
 
+    function checkOfflineState() {
+        console.log('logged')
+        if (utils.getAvailableEndpointsAsQVariant().size() === 0) {
+            tabRuntime.state = "NO_CONNECTION"
+        }
+        else {
+            tabRuntime.state = "NOT_RUNNING"
+        }
+    }
+
+    Timer {
+        id: noConnectionTimer
+        repeat: true //tabRuntime.state != "RUNNING"
+        interval: 2000
+        onIntervalChanged: checkOfflineState()
+    }
+    Component.onCompleted: noConnectionTimer.start()
     states: [
         State {
             name: "RUNNING"

@@ -16,12 +16,15 @@ websocket_server:: ~ websocket_server()
 
 void  websocket_server::startServerBroadcast(qint16 port)
 {
+    m_isBroadcasting = true;
     startServer(QHostAddress::Any, port);
 }
 
-void websocket_server::startServer(const QString &interfaceName, qint16 port)
+void websocket_server::startServer(const QString interfaceName, qint16 port)
 {
+    m_isBroadcasting = false;
     QHostAddress addr = Utils::getHostAddressByInterfaceName(interfaceName);
+    qDebug() << interfaceName << addr.toString() << "addr: " << addr.toString() << "port: " << port;
      qDebug()  << addr.toString();
     this->startServer(addr, port);
 }
@@ -94,8 +97,43 @@ qint16 websocket_server::getPort() const
     return this->m_server->serverPort();
 }
 
-QString websocket_server::getIp() const
+QStringList websocket_server::getIpAddresses() const
 {
-    return this->m_server->serverAddress().toString();
+    QStringList list;
+    if (m_isRunning)
+    {
+        if (m_isBroadcasting)
+        {
+
+            foreach(ServerEndpoint* endpoint, Utils::getAvailableEndpoints())
+            {
+                list.append(endpoint->ipAddress());
+            }
+        }
+        else
+        {
+            list.append(this->m_server->serverAddress().toString());
+        }
+    }
+    return list;
+}
+
+QStringList websocket_server::getFullAddresses() const
+{
+    QStringList list;
+    if (m_isRunning)
+    {
+        foreach (QString ip, getIpAddresses())
+        {
+            // todo: What is with encryption?
+            list << "ws://" + ip + ":" + QString::number(getPort());
+        }
+    }
+    return list;
+}
+
+bool websocket_server::isBroadcasting() const
+{
+    return m_isBroadcasting;
 }
 

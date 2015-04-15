@@ -46,7 +46,7 @@ QHostAddress Utils::getHostAddressByInterfaceName(QString host)
 {
     foreach(QNetworkInterface interface, QNetworkInterface::allInterfaces())
     {
-        if(interface.name().compare(host))
+        if(interface.name() == host)
         {
             foreach (QNetworkAddressEntry entry, interface.addressEntries())
             {

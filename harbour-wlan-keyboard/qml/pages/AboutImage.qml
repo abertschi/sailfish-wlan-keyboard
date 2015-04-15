@@ -23,10 +23,15 @@ Image {
     Connections {
         target: image
         onPressedChanged: {
-            if (pressed === 5) {
-                console.log('5 reached')
-                pressed = 0
+            if (pressed % 25) {
+                popup.load("You reached " + pressed + " :)")
+            } else if(pressed == 200) {
+
             }
         }
+    }
+
+    Popup2 {
+        id: popup
     }
 }
