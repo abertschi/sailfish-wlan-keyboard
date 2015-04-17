@@ -6,6 +6,11 @@ Utils::Utils(QObject *parent) :QObject(parent)
     this->m_clipboard = app->clipboard();
 }
 
+int Utils::getAvailableEndpointSize()
+{
+    return getAvailableEndpoints().length();
+}
+
 QList<ServerEndpoint*> Utils::getAvailableEndpoints()
 {
     QList<ServerEndpoint*> endpoints;

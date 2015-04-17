@@ -14,6 +14,7 @@ public:
 
     Q_INVOKABLE QVariant getAvailableEndpointsAsQVariant();
     static QList<ServerEndpoint*> getAvailableEndpoints();
+    Q_INVOKABLE static int getAvailableEndpointSize();
 
     static QHostAddress getHostAddressByInterfaceName(QString name);
     //static QList<QHostAddress> Utils::getAllHostAdresses();
