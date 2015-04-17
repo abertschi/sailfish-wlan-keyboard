@@ -8,10 +8,12 @@ Column {
     anchors {
         left: parent.left
         verticalCenter: parent.verticalCenter
+        top: parent.top
+        topMargin: parent.width * 0.25
     }
     height: parent.height
 
-
+    /*
     Label {
         text: "Connect your device to <b>WLAN</b> or <b>USB</b> and <b>start the server<b/>."
         width: parent.width - 2 * Theme.paddingLarge
@@ -21,10 +23,32 @@ Column {
         font.pixelSize: Theme.fontSizeLarge
         color: Theme.highlightColor
         //anchors.verticalCenter: parent.verticalCenter
-        anchors.top: parent.top
-        anchors.topMargin: parent.width * 0.25
-
     }
+    */
+
+    Label {
+        text: "Ready to start"
+        width: parent.width - 2 * Theme.paddingLarge
+        wrapMode: Text.Wrap
+        font.bold: true
+        horizontalAlignment: Text.AlignHCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.pixelSize: Theme.fontSizeExtraLarge
+        color: Theme.highlightColor
+        //anchors.verticalCenter: parent.verticalCenter
+    }
+
+    Label {
+        text: "Run the server and start typing."
+        width: parent.width - 2 * Theme.paddingLarge
+        wrapMode: Text.Wrap
+        horizontalAlignment: Text.AlignHCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.pixelSize: Theme.fontSizeMedium
+        color: Theme.highlightColor
+        //anchors.verticalCenter: parent.verticalCenter
+    }
+
 }
 
 

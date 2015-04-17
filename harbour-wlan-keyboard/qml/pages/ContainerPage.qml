@@ -39,6 +39,7 @@ Page {
                         app.startServers();
                         visible = false;
                         stop.visible = true;
+                        verticalFlick.stop()
                     }
                 }
                 MenuItem {
@@ -62,6 +63,20 @@ Page {
                 anchors.fill: parent
             }
         }
+
+        TouchInteractionHint {
+            id: verticalFlick
+            loops: Animation.Infinite
+            anchors.horizontalCenter: parent.horizontalCenter
+            direction:  TouchInteraction.Down
+        }
+
+        Component.onCompleted:  {
+            if(settings.firstRun) {
+                verticalFlick.start()
+                settings.firstRun = false
+            }
+        }
     }
 
     SilicaListView {
@@ -81,6 +96,9 @@ Page {
         pressDelay: 300
         keyNavigationWraps: true
 
+        property bool runtimeTabIsShowing
+        property bool configTabIsShowing
+
         NumberAnimation { target: parent; property: "contentX"; duration: 1000; easing.type: Easing.InOutQuad }
 
         onContentXChanged: {
@@ -94,6 +112,12 @@ Page {
         model: VisualItemModel {
             RuntimeTab { id: runtimeTab }
             ConfigTab { id: configTab }
+
+        }
+
+        onCurrentIndexChanged: {
+            runtimeTabIsShowing = tabs.currentIndex == 0
+            configTabIsShowing = tabs.currentIndex == 1
 
         }
     }

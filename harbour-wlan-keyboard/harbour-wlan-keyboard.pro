@@ -55,7 +55,8 @@ OTHER_FILES += \
     qml/pages/RuntimeNotRunning.qml \
     qml/pages/RuntimeConnections.qml \
     qml/pages/About.qml \
-    qml/pages/AboutImage.qml
+    qml/pages/AboutImage.qml \
+    qml/pages/AppEvents.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

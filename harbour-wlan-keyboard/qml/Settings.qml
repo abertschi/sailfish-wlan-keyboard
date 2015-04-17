@@ -12,6 +12,7 @@ QtObject {
     property int useHttps
     property int keyboardMode
     property bool useAnyConnection
+    property bool firstRun;
 
     // index of interfaces if not useAnyConnection is chosenx`
     property string connectionInterface
@@ -27,6 +28,7 @@ QtObject {
             LocalStore.set('useAnyConnection', useAnyConnection);
             LocalStore.set('connectionInterface', connectionInterface);
             LocalStore.set('connectionInterfaceIndex', connectionInterfaceIndex);
+            LocalStore.set('firstRun', firstRun);
         }
         else {
             httpPort = LocalStore.get('httpPort', 7777);
@@ -37,6 +39,7 @@ QtObject {
             useAnyConnection = LocalStore.get('useAnyConnection', true);
             connectionInterface = LocalStore.get('connectionInterface', null);
             connectionInterfaceIndex = LocalStore.get('connectionInterfaceIndex', 0);
+            firstRun = LocalStore.get('firstRun', true);
         }
     }
 
@@ -60,5 +63,9 @@ QtObject {
     }
     onConnectionInterfaceIndexChanged: {
         LocalStore.set('connectionInterfaceIndex', connectionInterfaceIndex)
+    }
+
+    onFirstRunChanged: {
+        LocalStore.set('firstRun', firstRun)
     }
 }

@@ -67,13 +67,17 @@ ApplicationWindow
     }
 
     function restartServers() {
-            popup.load("Restarting server", 2000)
-            app.stopServers()
-            app.startServers()
+        popup.load("Restarting server", 2000)
+        app.stopServers()
+        app.startServers()
     }
 
     Popup2 {
         id: popup
+    }
+
+    AppEvents {
+        id: notifications
     }
 
 }

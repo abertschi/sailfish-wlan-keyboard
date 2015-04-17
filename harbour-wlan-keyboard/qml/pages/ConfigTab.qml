@@ -21,8 +21,8 @@ Item {
             }
 
             Connections {
-                target: httpServer
-                onRunningChanged: {
+                target: notifications
+                onConnectivityAvailableChanged: {
                     interfaceRepeater.model = utils.getAvailableEndpointsAsQVariant()
                 }
             }

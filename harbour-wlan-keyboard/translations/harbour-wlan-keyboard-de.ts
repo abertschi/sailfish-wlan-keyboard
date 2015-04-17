@@ -8,10 +8,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;i&gt;Typing just easier &lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The &lt;b&gt;sailfish-wlan-keyboard&lt;/b&gt; provides an easy way to use you your computer keyboard to type on your phone.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -28,7 +24,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tell what you like about this app or what you&apos;d like to see in a further release. File an issue on Github or write me an email at &lt;i&gt;sailfish@abertschi.ch&lt;/i&gt;</source>
+        <source>Do you have any suggestion or just want to tell me something? File an issue on Github or just write me an email at &lt;i&gt;sailfish@abertschi.ch&lt;/i&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
