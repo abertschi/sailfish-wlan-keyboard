@@ -39,7 +39,6 @@ Page {
                     family: Theme.fontFamilyHeading
                 }
                 text: "v.1.1"
-                //height: Theme.paddingSmall
             }
 
             Item {
@@ -58,7 +57,7 @@ Page {
                     width: parent.width
                     horizontalAlignment: Text.AlignHCenter
                     color: Theme.highlightColor
-                    text: qsTr("<i>Typing just easier </i>")
+                    //text: qsTr("<i>Typing just easier </i>")
                     wrapMode: Text.Wrap
                 }
             }
@@ -66,7 +65,6 @@ Page {
 
             Label {
                 width: parent.width
-                // horizontalAlignment: Text.AlignHCenter
                 text: qsTr("The <b>sailfish-wlan-keyboard</b> provides an easy way to use you your computer keyboard to type on your phone.")
                 wrapMode: Text.Wrap
             }
@@ -94,7 +92,7 @@ Page {
 
             Label {
                 width: parent.width
-                text: qsTr("Tell what you like about this app or what you'd like to see in a further release. File an issue on Github or write me an email at <i>sailfish@abertschi.ch</i>")
+                text: qsTr("Do you have any suggestion or just want to tell me something? File an issue on Github or just write me an email at <i>sailfish@abertschi.ch</i>")
                 wrapMode: Text.Wrap
             }
 

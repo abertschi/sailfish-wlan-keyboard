@@ -30,8 +30,4 @@ Image {
             }
         }
     }
-
-    Popup2 {
-        id: popup
-    }
 }
