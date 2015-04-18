@@ -40,6 +40,7 @@
 #include <QGuiApplication>
 
 #include "server_configurator.h"
+#include "settings.h"
 #endif
 
 int main(int argc, char *argv[])
@@ -52,6 +53,10 @@ int main(int argc, char *argv[])
 
     Utils appUtils;
     view->rootContext()->setContextProperty("utils", &appUtils);
+
+    Settings &settings = Settings::getInstance();
+    view->rootContext()->setContextProperty("_qtSettings", &settings);
+    qmlRegisterType<Settings>("harbour.wlan.keyboard",1,0,"Settings");
 
     view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
     view->showFullScreen();

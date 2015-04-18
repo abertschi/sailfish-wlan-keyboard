@@ -75,14 +75,33 @@ void ServerConfigurator::processEventNewKeycode(rapidjson::Document * document) 
 void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document) {
     qDebug() << "processing event: newKeyrow";
 
-    QString keyrow = (*document)["data"].GetString();
+    QString result;
+    QString keys = (*document)["data"].GetString();
+
+
+    if (Settings.getInstance().getKeyboardMode() == Settings::KeyboardMode::CLIPBOARD)
+    {
+        result = keys;
+    }
+    else
+    { // Settings::KeyboardMode::HEADLESS
+        if (Settings.getInstance().getHeadlessMode() == Settings::KeyboardMode::RETURN_BASED)
+        {
+
+        }
+        else
+        { // Settings::KeyboardMode::CONTINUOUS
+
+        }
+    }
+
 
 
     QString insert("{\"cmd\":\"%1\",\"arg\":\"%2\"}");
     insert = insert.arg("insert_text").arg(keyrow);
 
     qDebug() << "Clipboard set: " << insert;
-    m_keyboardUtils->setClipboard(insert);
+    m_keyboardUtils->setClipboard(result);
 }
 
 

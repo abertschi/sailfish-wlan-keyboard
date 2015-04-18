@@ -17,6 +17,12 @@ var privateScope = {
     }
 }
 
+function initSettings() {
+   privateScope.getDatabase().transation(function(tx){
+       tx.executeSql('DROP TABLE settings');
+   });
+}
+
 function isEmpty() {
     var init = true;
      privateScope.getDatabase().transaction(function(tx){

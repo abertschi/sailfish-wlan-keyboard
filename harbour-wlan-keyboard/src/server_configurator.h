@@ -13,6 +13,7 @@
 #include "rapidjson/error/en.h"
 #include "http_server.h"
 #include "websocket_server.h"
+#include "settings.h"
 #endif // SERVER_CONFIGURATOR_H
 
 class ServerConfigurator: public QObject

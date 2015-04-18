@@ -21,7 +21,8 @@ SOURCES += \
     $$PWD/src/websocket_server.cpp \
     src/utils.cpp \
     src/server_configurator.cpp \
-    src/server_endpoint.cpp
+    src/server_endpoint.cpp \
+    src/settings.cpp
 
 QT += core gui quick network
 
@@ -69,7 +70,8 @@ HEADERS += \
     src/utils.h \
     src/server_configurator.h \
     src/start_server_input.h \
-    src/server_endpoint.h
+    src/server_endpoint.h \
+    src/settings.h
 
 include(inc/qhttpserver/qhttpserver.pri)
 include(inc/QtWebsocket/qtwebsocket_headers.pri)
@@ -80,10 +82,10 @@ LIB_BASE = _DO_DEFINE
 QMAKE_RPATHDIR +=  /usr/share/harbour-wlan-keyboard/lib
 
 linux-g++-64 {
-LIB_BASE = $$PWD/lib/armv7hl
+LIB_BASE = $$PWD/lib/i486
 }
 else:linux-g++ {
-LIB_BASE = $$PWD/lib/armv7hl # $$PWD/lib/armv7hl  i486
+LIB_BASE = $$PWD/lib/i486 # $$PWD/lib/armv7hl  i486
 }
 
 # LIBS += -L$$LIB_BASE -lqhttpserver
