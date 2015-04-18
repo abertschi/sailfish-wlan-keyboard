@@ -33,7 +33,7 @@ Page {
                 MenuItem {
                     id: start
                     text: "Start server"
-                    visible: notifications.serverRunning
+                    visible: ! notifications.serverRunning && notifications.connectivityAvailable
                     onClicked: {
                         console.log("clicked");
                         app.startServers();
@@ -43,7 +43,7 @@ Page {
                 MenuItem {
                     id: stop
                     text: "Stop server"
-                    visible: !notifications.serverRunning
+                    visible: notifications.serverRunning && notifications.connectivityAvailable
                     onClicked: {
                         app.stopServers();
                     }
@@ -62,7 +62,7 @@ Page {
 
         TouchInteractionHint {
             id: verticalFlick
-            loops: Animation.Infinite
+            loops: settings.firstRun ? Animation.Infinite : 1
             anchors.horizontalCenter: parent.horizontalCenter
             direction:  TouchInteraction.Down
         }

@@ -28,6 +28,7 @@ Item {
                         anyContextMenu.text = "Any"
                     }
                     else {
+                        interfaceRepeater.model = undefined
                         anyContextMenu.text = "-"
                     }
                 }

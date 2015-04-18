@@ -52,7 +52,6 @@ QtObject {
     onConnectionInterfaceIndexChanged: {
         LocalStore.set('connectionInterfaceIndex', connectionInterfaceIndex)
     }
-
     onFirstRunChanged: {
         LocalStore.set('firstRun', firstRun)
     }
