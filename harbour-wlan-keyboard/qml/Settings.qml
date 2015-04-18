@@ -14,33 +14,21 @@ QtObject {
     property bool useAnyConnection
     property bool firstRun;
 
-    // index of interfaces if not useAnyConnection is chosenx`
     property string connectionInterface
+
     property int connectionInterfaceIndex
 
     Component.onCompleted: {
-        if (LocalStore.isEmpty() ) {
-            LocalStore.set('httpPort', wsPort);
-            LocalStore.set('wsPort', wsPort);
-            LocalStore.set('autostart', autostart);
-            LocalStore.set('useHttps', useHttps);
-            LocalStore.set('keyboardMode', keyboardMode);
-            LocalStore.set('useAnyConnection', useAnyConnection);
-            LocalStore.set('connectionInterface', connectionInterface);
-            LocalStore.set('connectionInterfaceIndex', connectionInterfaceIndex);
-            LocalStore.set('firstRun', firstRun);
-        }
-        else {
-            httpPort = LocalStore.get('httpPort', 7777);
-            wsPort = LocalStore.get('wsPort', 7778);
-            autostart = LocalStore.get('autostart', false);
-            useHttps = LocalStore.get('useHttps', false);
-            keyboardMode = LocalStore.get('keyboardMode', _KEYBOARD_MODE_CLIPBOARD);
-            useAnyConnection = LocalStore.get('useAnyConnection', true);
-            connectionInterface = LocalStore.get('connectionInterface', null);
-            connectionInterfaceIndex = LocalStore.get('connectionInterfaceIndex', 0);
-            firstRun = LocalStore.get('firstRun', true);
-        }
+        httpPort = LocalStore.get('httpPort', 7777);
+        wsPort = LocalStore.get('wsPort', 7778);
+        autostart = LocalStore.get('autostart', false);
+        useHttps = LocalStore.get('useHttps', false);
+        keyboardMode = LocalStore.get('keyboardMode', _KEYBOARD_MODE_CLIPBOARD);
+        useAnyConnection = LocalStore.get('useAnyConnection', true);
+        connectionInterface = LocalStore.get('connectionInterface', null);
+        connectionInterfaceIndex = LocalStore.get('connectionInterfaceIndex', 0);
+        firstRun = LocalStore.get('firstRun', true);
+
     }
 
     onHttpPortChanged: {
