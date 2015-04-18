@@ -23,7 +23,13 @@ Item {
             Connections {
                 target: notifications
                 onConnectivityAvailableChanged: {
-                    interfaceRepeater.model = utils.getAvailableEndpointsAsQVariant()
+                    if (notifications.connectivityAvailable) {
+                        interfaceRepeater.model = utils.getAvailableEndpointsAsQVariant()
+                        anyContextMenu.text = "Any"
+                    }
+                    else {
+                        anyContextMenu.text = "-"
+                    }
                 }
             }
 
@@ -40,6 +46,7 @@ Item {
 
                 menu: ContextMenu {
                     MenuItem {
+                        id: anyContextMenu
                         text: "Any"
                     }
                     Repeater {
