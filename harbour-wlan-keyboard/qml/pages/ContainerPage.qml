@@ -33,23 +33,19 @@ Page {
                 MenuItem {
                     id: start
                     text: "Start server"
-                    visible: true
+                    visible: notifications.serverRunning
                     onClicked: {
                         console.log("clicked");
                         app.startServers();
-                        visible = false;
-                        stop.visible = true;
                         verticalFlick.stop()
                     }
                 }
                 MenuItem {
                     id: stop
                     text: "Stop server"
-                    visible: false
+                    visible: !notifications.serverRunning
                     onClicked: {
                         app.stopServers();
-                        visible = false;
-                        start.visible = true;
                     }
                 }
             }
