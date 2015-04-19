@@ -1,7 +1,10 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+
 import "pages"
-import "widget"
+import "components"
+import "services"
+import "cover"
 import "."
 
 ApplicationWindow
@@ -9,7 +12,7 @@ ApplicationWindow
     id: app
 
     initialPage: Component {
-        ContainerPage { }
+        PageContainer { }
     }
 
     Component.onCompleted: {
@@ -41,14 +44,10 @@ ApplicationWindow
         var httpPort = settings.httpPort
         var wsPort = settings.wsPort;
 
-        console.log('httpPort: ' + httpPort)
-        console.log('wsPort: ' + wsPort)
-
         if (settings.useAnyConnection) {
             httpServer.startServerBroadcast(httpPort)
             websocketServer.startServerBroadcast(wsPort);
         } else {
-            //attention: interface/ ip could change, check here first, if changed, pubish on any interface
             var interf = settings.connectionInterface
             httpServer.startServer(interf, httpPort);
             websocketServer.startServer(interf, wsPort);
@@ -70,6 +69,18 @@ ApplicationWindow
         popup.load("Restarting server", 2000)
         app.stopServers()
         app.startServers()
+    }
+
+    function openPageHeadlessMode() {
+
+    }
+
+    function openPageAbout() {
+
+    }
+
+    function openPageClipboardMode() {
+
     }
 
     Popup2 {

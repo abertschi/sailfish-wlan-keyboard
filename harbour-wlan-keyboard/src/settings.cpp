@@ -145,9 +145,9 @@ Settings::HeadlessMode Settings::getHeadlessMode()
     return m_headlessMode;
 }
 
-QString* Settings::toJson()
+QString* Settings::toJson() const
 {
-    return "";
+    return new QString("");
 
 }
 

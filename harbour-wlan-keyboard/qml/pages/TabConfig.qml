@@ -160,12 +160,12 @@ Item {
                 onCurrentIndexChanged: {
                     if(currentIndex == 0) {
                         settings.keyboardMode = settings._KEYBOARD_MODE_CLIPBOARD
-                        pageStack.push(Qt.resolvedUrl("ClipboardModePage.qml"))
+                        pageStack.push(Qt.resolvedUrl("PageClipboardMode.qml"))
 
                     }
                     else {
                         settings.keyboardMode = settings._KEYBOARD_MODE_ALT_KEYBOARD
-                        pageStack.push(Qt.resolvedUrl("HeadlessModePage.qml"))
+                        pageStack.push(Qt.resolvedUrl("PageHeadlessMode.qml"))
                     }
                 }
             }

@@ -79,15 +79,17 @@ void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document) {
     QString keys = (*document)["data"].GetString();
 
 
-    if (Settings.getInstance().getKeyboardMode() == Settings::KeyboardMode::CLIPBOARD)
+    if (Settings::getInstance().getKeyboardMode() == Settings::KeyboardMode::CLIPBOARD)
     {
         result = keys;
     }
     else
     { // Settings::KeyboardMode::HEADLESS
-        if (Settings.getInstance().getHeadlessMode() == Settings::KeyboardMode::RETURN_BASED)
+        if (Settings::getInstance().getHeadlessMode() == Settings::HeadlessMode::RETURN_BASED)
         {
 
+            QString tmplt("{\"cmd\":\"%1\",\"arg\":\"%2\"}");
+            result = tmplt.arg("insert_text").arg(keys);
         }
         else
         { // Settings::KeyboardMode::CONTINUOUS
@@ -95,12 +97,7 @@ void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document) {
         }
     }
 
-
-
-    QString insert("{\"cmd\":\"%1\",\"arg\":\"%2\"}");
-    insert = insert.arg("insert_text").arg(keyrow);
-
-    qDebug() << "Clipboard set: " << insert;
+    qDebug() << "Clipboard set: " << result;
     m_keyboardUtils->setClipboard(result);
 }
 

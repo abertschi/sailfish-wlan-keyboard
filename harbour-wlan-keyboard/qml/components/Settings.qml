@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import "LocalStore.js" as LocalStore
+import "../services/LocalStore.js" as LocalStore
 
 QtObject {
 

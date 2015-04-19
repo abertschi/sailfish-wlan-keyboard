@@ -1,5 +1,4 @@
 .pragma library
-
 .import QtQuick.LocalStorage 2.0 as Sql
 
 var privateScope = {

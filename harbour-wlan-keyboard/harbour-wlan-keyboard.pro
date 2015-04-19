@@ -40,24 +40,23 @@ OTHER_FILES += \
     index.html \
     qm/cover/cover.png \
     qml/pages/HomePage.qml \
-    qml/pages/Popup.qml \
-    qml/widget/MyActionButton.qml \
-    qml/pages/ContainerPage.qml \
-    qml/pages/RuntimeTab.qml \
-    qml/pages/ConfigTab.qml \
-    qml/pages/TraceTab.qml \
-    qml/LocalStore.js \
-    qml/Settings.js \
-    qml/Settings.qml \
-    qml/pages/Popup2.qml \
-    qml/pages/ClipboardModePage.qml \
-    qml/pages/HeadlessModePage.qml \
-    qml/pages/RuntimeNoConnection.qml \
-    qml/pages/RuntimeNotRunning.qml \
-    qml/pages/RuntimeConnections.qml \
-    qml/pages/About.qml \
+    qml/components/Popup.qml \
+    qml/components/MyActionButton.qml \
+    qml/services/LocalStore.js \
+    qml/components/Settings.qml \
+    qml/components/Popup2.qml \
     qml/pages/AboutImage.qml \
-    qml/pages/AppEvents.qml
+    qml/components/AppEvents.qml \
+    qml/components/RuntimeActiveState.qml \
+    qml/components/RuntimeNoConnectivityState.qml \
+    qml/components/RuntimeInactivState.qml \
+    qml/pages/PageAbout.qml \
+    qml/pages/PageHeadlessMode.qml \
+    qml/pages/PageContainer.qml \
+    qml/pages/TabRuntime.qml \
+    qml/pages/TabConfig.qml \
+    qml/pages/PageClipboardMode.qml \
+    qml/services/Servers.js
 
 # to disable building translations every time, comment out the
 # following CONFIG line

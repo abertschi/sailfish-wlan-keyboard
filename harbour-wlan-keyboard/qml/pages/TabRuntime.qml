@@ -1,6 +1,7 @@
 import QtQuick 2.1
 import QtFeedback 5.0
 import Sailfish.Silica 1.0
+import "../components"
 
 Item {
     id: tabRuntime
@@ -36,15 +37,15 @@ Item {
     NumberAnimation { targets: [noConnection, notRunning, connections]; properties: "opacity"; duration: 1000 }
 
 
-    RuntimeNoConnection {
+    RuntimeNoConnectivityState {
         id: noConnection
     }
 
-    RuntimeNotRunning {
+    RuntimeInactivState {
         id: notRunning
     }
 
-    RuntimeConnections {
+    RuntimeActiveState {
         id: connections
     }
 }
