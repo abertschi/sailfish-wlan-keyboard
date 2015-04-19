@@ -10,6 +10,7 @@ import "."
 ApplicationWindow
 {
     id: app
+    cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
     initialPage: Component {
         PageContainer { }
@@ -25,7 +26,13 @@ ApplicationWindow
         id: settings
     }
 
-    cover: Qt.resolvedUrl("cover/CoverPage.qml")
+    Popup2 {
+        id: popup
+    }
+
+    AppEvents {
+        id: notifications
+    }
 
     Timer {
         id: startStopTimer
@@ -72,24 +79,23 @@ ApplicationWindow
     }
 
     function openPageHeadlessMode() {
-
+        pageStack.push(Qt.resolvedUrl("PageHeadlessMode.qml"))
     }
 
     function openPageAbout() {
-
+        pageStack.push(Qt.resolvedUrl("PageAbout.qml"))
     }
 
     function openPageClipboardMode() {
-
+        pageStack.push(Qt.resolvedUrl("PageClipboardMode.qml"))
     }
 
-    Popup2 {
-        id: popup
+    function getNotifications() {
+        return notifications;
     }
 
-    AppEvents {
-        id: notifications
+    function getSettings() {
+        return settings;
     }
-
 }
 

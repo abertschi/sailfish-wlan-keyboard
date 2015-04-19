@@ -40,7 +40,6 @@ OTHER_FILES += \
     index.html \
     qm/cover/cover.png \
     qml/pages/HomePage.qml \
-    qml/components/Popup.qml \
     qml/components/MyActionButton.qml \
     qml/services/LocalStore.js \
     qml/components/Settings.qml \

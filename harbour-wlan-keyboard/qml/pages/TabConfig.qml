@@ -40,7 +40,7 @@ Item {
                 description: "Option <i>Any</i> &nbsp; exposes to WLAN and USB"
                 focus: true
                 width: parent.width
-                currentIndex: settings.connectionInterfaceIndex
+                currentIndex: app.getSettings().connectionInterfaceIndex
                 anchors.left: parent.left
 
                 onEntered: console.log("entered")
@@ -62,15 +62,15 @@ Item {
                     onActivated: {
                         if (index == 0) {
                             // expose on any if
-                            settings.useAnyConnection = true
+                            app.getSettings().useAnyConnection = true
                         }
                         else {
                             var item = interfaceRepeater.itemAt(index - 1);
                             console.debug(item.text + " selected");
-                            settings.useAnyConnection = false
-                            settings.connectionInterface = item.iName
+                            app.getSettings().useAnyConnection = false
+                            app.getSettings().connectionInterface = item.iName
                         }
-                        settings.connectionInterfaceIndex = index
+                        app.getSettings().connectionInterfaceIndex = index
                     }
                 }
             }
@@ -101,12 +101,12 @@ Item {
                     width: parent.width - portSpacer.width - portLabel.width
                     inputMethodHints: Qt.ImhDialableCharactersOnly
                     anchors.top: parent.top
-                    text:  settings.httpPort
+                    text:  app.getSettings().httpPort
                     color: Theme.highlightColor
                     horizontalAlignment: TextInput.AlignTop
                     EnterKey.onClicked: {
-                        settings.httpPort = parseInt(portTextInput.text)
-                        settings.wsPort = parseInt(portTextInput.text) +5
+                        app.getSettings().httpPort = parseInt(portTextInput.text)
+                        app.getSettings().wsPort = parseInt(portTextInput.text) +5
                         parent.focus = true
                     }
                     validator: RegExpValidator { regExp: /^[0-9]{4}$/ }
@@ -135,21 +135,20 @@ Item {
             }
 
             /* 15-04-12: not yet implemented
-        TextSwitch {
-            id: httpsSwitch
-            text: "Use HTTPS"
-            checked: settings.useHttps
-            onCheckedChanged: {
-                settings.useHttps = checked
+            TextSwitch {
+                id: httpsSwitch
+                text: "Use HTTPS"
+                checked: settings.useHttps
+                onCheckedChanged: {
+                    settings.useHttps = checked
+                }
             }
-        }
-        */
-
+            */
             ComboBox {
                 id: keyboardMode
                 width: parent.width
                 label: "Keyboard mode"
-                currentIndex: settings.keyboardMode == settings._KEYBOARD_MODE_CLIPBOARD ? 0 : 1
+                currentIndex: app.getSettings().keyboardMode === app.getSettings().enumKeyboardMode.CLIPBOARD ? 0 : 1
                 anchors.left: parent.left
                 description: "Mode to process incomming keystrokes"
                 menu: ContextMenu {
@@ -159,14 +158,14 @@ Item {
 
                 onCurrentIndexChanged: {
                     if(currentIndex == 0) {
-                        settings.keyboardMode = settings._KEYBOARD_MODE_CLIPBOARD
-                        pageStack.push(Qt.resolvedUrl("PageClipboardMode.qml"))
-
+                        settings.keyboardMode = app.getSettings().enumKeyboardMode.CLIPBOARD
+                        app.openPageClipboardMode()
                     }
                     else {
-                        settings.keyboardMode = settings._KEYBOARD_MODE_ALT_KEYBOARD
-                        pageStack.push(Qt.resolvedUrl("PageHeadlessMode.qml"))
+                        settings.keyboardMode = app.getSettings().enumKeyboardMode.HEADLESS
+                        app.openPageHeadlessMode()
                     }
+                    console.log("HERE" + app.getSttings())
                 }
             }
         }

@@ -16,7 +16,6 @@ Column {
     spacing:10
 
     Column {
-        //anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         width: parent.width
         spacing: 7
@@ -53,6 +52,4 @@ Column {
             width: parent.width
         }
     }
-
-
 }

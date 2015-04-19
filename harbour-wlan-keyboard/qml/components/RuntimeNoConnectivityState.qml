@@ -20,7 +20,6 @@ Column {
         anchors.horizontalCenter: parent.horizontalCenter
         font.pixelSize: Theme.fontSizeExtraLarge
         color: Theme.highlightColor
-        //anchors.verticalCenter: parent.verticalCenter
     }
 
     Label {
@@ -31,10 +30,7 @@ Column {
         anchors.horizontalCenter: parent.horizontalCenter
         font.pixelSize: Theme.fontSizeMedium
         color: Theme.highlightColor
-        //anchors.verticalCenter: parent.verticalCenter
     }
-
-
 }
 
 
