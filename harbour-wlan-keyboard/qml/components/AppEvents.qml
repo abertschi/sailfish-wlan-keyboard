@@ -3,12 +3,9 @@ import Sailfish.Silica 1.0
 
 Item {
 
-    QtObject {
-        id: serverStates
-        property int stateActive: 0
-        property int stateInActive: 1
-        property int stateNoConnectivity: 2
-    }
+    property int _SERVER_STATE_ACTIVE: 0
+    property int _SERVER_STATE_INACTIVE: 1
+    property int _SERVER_STATE_NO_CONNECTIVITY: 2
 
     id: appEvents
 
@@ -18,13 +15,11 @@ Item {
     }
 
     property int serverState:
-        (notifications.serverRunning && notifications.connectivityAvailable) ? serverStates.stateActive :
-           (!notifications.serverRunning && notifications.connectivityAvailable) ? serverStates.stateInActive :
-                serverStates.stateNoConnectivity
+        (notifications.serverRunning && notifications.connectivityAvailable) ? _SERVER_STATE_ACTIVE :
+           (!notifications.serverRunning && notifications.connectivityAvailable) ? _SERVER_STATE_INACTIVE :
+                _SERVER_STATE_NO_CONNECTIVITY
 
-    Component.onCompleted:  {
-        console.log("starting timer")
-    }
+    onServerStateChanged: console.log("Changed: " + serverState)
 
     Connections {
         target: httpServer

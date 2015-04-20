@@ -158,7 +158,6 @@ Page {
                     height: parent.height
                     width: naviRow.width / naviRepeater.count
                     property int ind: index
-                    Component.onCompleted: console.log(parent.count)
 
                     Label {
                         text: modelData

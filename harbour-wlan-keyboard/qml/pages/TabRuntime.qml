@@ -13,20 +13,20 @@ Item {
     states: [
         State {
             name: "RUNNING"
-            when: notifications.serverState === notifications.serverStates.stateActive
+            when: notifications.serverState === notifications._SERVER_STATE_ACTIVE
             PropertyChanges { target: connections; opacity: 1 ; visible: true}
             PropertyChanges { target: notRunning; visible: false }
             PropertyChanges { target: noConnection; visible: false }
         },
         State {
             name: "NOT_RUNNING"
-            when: notifications.serverState === notifications.serverStates.stateInActive
+            when: notifications.serverState === notifications._SERVER_STATE_INACTIVE
             PropertyChanges { target: connections; visible: false }
             PropertyChanges { target: notRunning; visible: true }
             PropertyChanges { target: noConnection; visible: false }
         },
         State {
-            when: notifications.serverState === notifications.serverStates.stateNoConnectivity
+            when: notifications.serverState === notifications._SERVER_STATE_NO_CONNECTIVITY
             name: "NO_CONNECTION"
             PropertyChanges { target: connections; visible: false }
             PropertyChanges { target: notRunning; visible: false }
