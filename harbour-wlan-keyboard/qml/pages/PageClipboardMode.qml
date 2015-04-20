@@ -25,8 +25,7 @@ Page {
 
             Label {
                 width: parent.width
-
-                text: "This mode copies all incomming keystrokes to your clipboard."
+                text: "This mode copies all incomming keystrokes to your clipboard. Copy paste them in a focused input widget."
                 wrapMode: Text.Wrap
                 //horizontalAlignment: Text.AlignHCenter
             }
