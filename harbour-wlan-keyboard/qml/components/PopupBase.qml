@@ -2,10 +2,16 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 MouseArea {
-    id: popup
+    id: popupBase
     anchors.bottom: parent.top
     width: parent.width
-    height:busyIndicator.height + 2 * Theme.paddingLarge
+    height: placeHolder.height + 2 * Theme.paddingLarge
+
+    property alias placeHolderContent: placeHolder.children
+    property alias textLabel: textLabel
+
+    property bool showImage: true
+    property alias background: background
 
     onClicked: hide()
 
@@ -20,59 +26,44 @@ MouseArea {
 
     states: [ State {
             name: "visible"
-            AnchorChanges { target: popup; anchors.top: popup.parent.top; anchors.bottom: undefined }
+            AnchorChanges { target: popupBase; anchors.top: popupBase.parent.top; anchors.bottom: undefined }
         },
 
         State {
             name: "invisible"
-            AnchorChanges { target: popup; anchors.bottom: popup.parent.top }
+            AnchorChanges { target: popupBase; anchors.bottom: popupBase.parent.top }
         }
 
     ]
-
-    Timer {
-        id: waitingBullets
-        property int count: 0
-        repeat: true
-        running: false
-        interval: 400
-        onTriggered: {
-            if (count == 3) {
-                ///var len = textLabel.text.length
-                //textLabel.text = textLabel.text.substring(0 , len -4);
-                count = 0
-            }
-            else {
-                if (count == 0) {
-                    //textLabel.text += " "
-                }
-                //textLabel.text += "."
-                //count ++
-            }
-        }
-    }
 
     transitions: Transition {
         // smoothly reanchor myRect and move into new position
         AnchorAnimation { duration: 800; easing.type: Easing.OutExpo}
     }
 
-    BusyIndicator {
-
-        id: busyIndicator
-        running: true
-        color: Theme.primaryColor
-        size: BusyIndicatorSize.Medium
+    Item {
+        id: placeHolder
         anchors.left: parent.left
+        height: showImage ? 3* Theme.paddingLarge : 0
+        width: height
         anchors.leftMargin: Theme.paddingLarge
         anchors.verticalCenter: parent.verticalCenter
+
+        /*
+        Rectangle {
+            anchors.fill: parent
+            color: "red"
+
+        }
+
+        */
     }
 
     Label {
         id: textLabel
         text: ""
         anchors.verticalCenter: parent.verticalCenter
-        anchors.left: busyIndicator.right
+        anchors.left: placeHolder.right
         anchors.leftMargin: Theme.paddingLarge
         //font.bold: false
         font.pixelSize: Theme.fontSizeSmall
@@ -82,7 +73,6 @@ MouseArea {
     Timer {
         id: hideTimer
         triggeredOnStart: false
-        repeat: false
         interval: 2000
         onTriggered: {
             hide()
@@ -90,12 +80,14 @@ MouseArea {
         }
     }
 
+    //Component.onCompleted: show("Port requires 4 digits")
+
     function _popupShow() {
-        popup.state = "visible"
+        popupBase.state = "visible"
     }
 
     function _popupHide() {
-        popup.state = "invisible"
+        popupBase.state = "invisible"
     }
 
     function hide() {
@@ -107,13 +99,15 @@ MouseArea {
     }
 
     function load(msg, time) {
+        show(msg, time)
+    }
+
+    function show(msg, time) {
         if ((typeof(time) !== 'undefined') && (time !== null)) {
             hideTimer.interval = time
         }
         _popupShow()
-        waitingBullets.restart()
         hideTimer.restart()
-
         textLabel.text = msg
     }
 }

@@ -26,8 +26,12 @@ ApplicationWindow
         id: settings
     }
 
-    Popup2 {
-        id: popup
+    PopupLoad {
+        id: popupLoad
+    }
+
+    PopupError {
+        id: popupError
     }
 
     AppEvents {
@@ -41,7 +45,7 @@ ApplicationWindow
         repeat: false
         triggeredOnStart: false
         onTriggered: {
-            popup.load(text, 1500)
+            popupLoad.show(text, 1500)
         }
     }
 
@@ -73,7 +77,7 @@ ApplicationWindow
     }
 
     function restartServers() {
-        popup.load("Restarting server", 2000)
+        loadPopup.load("Restarting server", 2000)
         app.stopServers()
         app.startServers()
     }

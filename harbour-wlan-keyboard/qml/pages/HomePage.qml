@@ -136,7 +136,7 @@ Page {
 
                 if (isRunning) {
                     var notifyMsg = qsTr("Browse") + " " + httpServer.getFullAddress();
-                    popup.notify(notifyMsg);
+                    loadPopup.notify(notifyMsg);
                     serverStatusSwitch.icon.source = "image://theme/icon-cover-play";
                     serverStatusSwitch.description = qsTr("Server is running");
                     ipAddressLabel.text = httpServer.getFullAddress();

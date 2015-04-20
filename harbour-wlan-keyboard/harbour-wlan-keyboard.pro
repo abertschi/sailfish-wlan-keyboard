@@ -43,7 +43,6 @@ OTHER_FILES += \
     qml/components/MyActionButton.qml \
     qml/services/LocalStore.js \
     qml/components/Settings.qml \
-    qml/components/Popup2.qml \
     qml/components/AboutImage.qml \
     qml/components/AppEvents.qml \
     qml/components/RuntimeActiveState.qml \
@@ -54,7 +53,10 @@ OTHER_FILES += \
     qml/pages/PageContainer.qml \
     qml/pages/TabRuntime.qml \
     qml/pages/TabConfig.qml \
-    qml/pages/PageClipboardMode.qml
+    qml/pages/PageClipboardMode.qml \
+    qml/components/PopupBase.qml \
+    qml/components/PopupError.qml \
+    qml/components/PopupLoad.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -79,10 +81,10 @@ LIB_BASE = _DO_DEFINE
 QMAKE_RPATHDIR +=  /usr/share/harbour-wlan-keyboard/lib
 
 linux-g++-64 {
-LIB_BASE = $$PWD/lib/i486
+LIB_BASE = $$PWD/lib/armv7hl
 }
 else:linux-g++ {
-LIB_BASE = $$PWD/lib/i486 # $$PWD/lib/armv7hl  i486
+LIB_BASE = $$PWD/lib/armv7hl # $$PWD/lib/armv7hl  i486
 }
 
 # LIBS += -L$$LIB_BASE -lqhttpserver

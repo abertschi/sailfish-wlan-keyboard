@@ -106,8 +106,9 @@ Item {
                     horizontalAlignment: TextInput.AlignTop
                     EnterKey.onClicked: {
                         if (portTextInput.text.length != 4) {
-                            popup.load("4 digits required")
+                            popupError.show("Port requires 4 digits")
                             console.log("Port is invalid")
+                            color: "red"
                         }
                         else {
                             settings.httpPort = parseInt(portTextInput.text)
