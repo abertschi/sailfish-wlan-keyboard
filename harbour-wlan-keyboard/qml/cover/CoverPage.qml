@@ -8,21 +8,21 @@ CoverBackground {
     states: [
         State {
             name: "RUNNING"
-            when: notifications.serverState === notifications.serverStates.stateActive
+            when: notifications.serverState === notifications._SERVER_STATE_ACTIVE
             PropertyChanges { target: statusLabel; text: "Status: <b>active</b>"}
-            PropertyChanges { target: addrLabel; text: extractHttpPrefix(httpServer.getFullAddresses().at(0))}
+            PropertyChanges { target: labelRepeater; model: httpServer.getFullAddresses()}
         },
         State {
             name: "NOT_RUNNING"
-            when: notifications.serverState === notifications.serverStates.stateInActive
+            when: notifications.serverState === notifications._SERVER_STATE_INACTIVE
             PropertyChanges { target: statusLabel; text: "Status: <b>inactive</b>"}
-            PropertyChanges { target: addrLabel; text: "Start the server"}
+            PropertyChanges { target: labelRepeater; model: ["Ready to start"]}
         },
         State {
-            when: notifications.serverState === notifications.serverStates.stateNoConnectivity
+            when: notifications.serverState === notifications._SERVER_STATE_NO_CONNECTIVITY
             name: "NO_CONNECTION"
             PropertyChanges { target: statusLabel; text: "Status: <b>no connectivity</b>"}
-            PropertyChanges { target: addrLabel; text: "Connect your device"}
+            PropertyChanges { target: labelRepeater; model: ["Connect your device"]}
         }
     ]
 
@@ -39,34 +39,29 @@ CoverBackground {
     }
 
     Column {
-
+        id: column
         width: parent.width
         anchors {
             left: parent.left
             horizontalCenter: parent.horizontalCenter
             top: image.bottom
-            topMargin: Theme.paddingMedium
         }
-        height: parent.height
 
         Label {
             id: statusLabel
-            //text: "Status: <b>inactive</b>"
-            //width: parent.width - 2 * Theme.paddingLarge
             wrapMode: Text.Wrap
-            //font.bold: true
             horizontalAlignment: Text.AlignHCenter
             anchors.horizontalCenter: parent.horizontalCenter
             font.pixelSize: Theme.fontSizeTiny
             color: Theme.highlightColor
         }
-
         Label {
-            id: addrLabel
-            //text: extractHttpPrefix("http://192.168.111.111:7777")
-            //width: parent.width - 2 * Theme.paddingLarge
+            id: keyboardMode
+            text: {
+                var mode = settings.keyboardMode === settings._KEYBOARD_MODE_CLIPBOARD ? "Clipboard" : "Headless";
+                return "Mode: <b>" + mode + "</b>"
+            }
             wrapMode: Text.Wrap
-            font.bold: true
             horizontalAlignment: Text.AlignHCenter
             anchors.horizontalCenter: parent.horizontalCenter
             font.pixelSize: Theme.fontSizeTiny
@@ -74,6 +69,32 @@ CoverBackground {
         }
     }
 
+    Column {
+        id: column2
+        width: parent.width
+        anchors {
+            left: parent.left
+            horizontalCenter: parent.horizontalCenter
+            top: column.bottom
+            topMargin: Theme.paddingMedium
+        }
+
+        Repeater {
+            id: labelRepeater
+            width: parent.width
+            model: ""
+            Label {
+                id: addrLabel
+                wrapMode: Text.Wrap
+                text: modelData
+                font.bold: true
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeTiny
+                color: Theme.highlightColor
+            }
+        }
+    }
 
     function extractHttpPrefix(addr) {
         if(addr !== 'undefined' && addr.length > 1) {
@@ -86,13 +107,22 @@ CoverBackground {
         id: coverAction
 
         CoverAction {
-            iconSource: "image://theme/icon-cover-new"
+            iconSource: "image://theme/icon-cover-pause"
             onTriggered: {
+                if (app.isServerRunning() && notifications.serverState !== notifications._SERVER_STATE_NO_CONNECTIVITY) {
+                    console.log("Coveraction to stop the server pressed")
+
+                    app.stopServers();
+                }
             }
         }
         CoverAction {
-            iconSource: "image://theme/icon-cover-new"
+            iconSource: "image://theme/icon-cover-play"
             onTriggered: {
+                if (!app.isServerRunning() && notifications.serverState !== notifications._SERVER_STATE_NO_CONNECTIVITY) {
+                    onsole.log("Coveraction to start the server pressed")
+                    app.startServers();
+                }
             }
         }
     }
