@@ -79,23 +79,15 @@ ApplicationWindow
     }
 
     function openPageHeadlessMode() {
-        pageStack.push(Qt.resolvedUrl("PageHeadlessMode.qml"))
+        pageStack.push(Qt.resolvedUrl("pages/PageHeadlessMode.qml"))
     }
 
     function openPageAbout() {
-        pageStack.push(Qt.resolvedUrl("PageAbout.qml"))
+        pageStack.push(Qt.resolvedUrl("pages/PageAbout.qml"))
     }
 
     function openPageClipboardMode() {
-        pageStack.push(Qt.resolvedUrl("PageClipboardMode.qml"))
-    }
-
-    function getNotifications() {
-        return notifications;
-    }
-
-    function getSettings() {
-        return settings;
+        pageStack.push(Qt.resolvedUrl("pages/PageClipboardMode.qml"))
     }
 }
 

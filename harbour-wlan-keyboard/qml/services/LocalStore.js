@@ -17,14 +17,15 @@ var privateScope = {
 }
 
 function initSettings() {
-   privateScope.getDatabase().transation(function(tx){
-       tx.executeSql('DROP TABLE settings');
+   console.log("start initSettings")
+   privateScope.getDatabase().transaction(function(tx) {
+       tx.executeSql('DROP TABLE IF EXISTS settings');
    });
 }
 
 function isEmpty() {
     var init = true;
-     privateScope.getDatabase().transaction(function(tx){
+     privateScope.getDatabase().transaction(function(tx) {
          var table = tx.executeSql('SELECT * FROM settings');
          init = table.rows.lenght === 0 ? true: false;
      });
@@ -38,7 +39,7 @@ function set(key, value) {
         value = rs.rows.item(0).value;
     });
 
-    console.log(key + ": " + value)
+    console.log("set property: " + key + ": " + value)
 }
 
 function get(key, defvalue) {
@@ -49,6 +50,7 @@ function get(key, defvalue) {
             res = rs.rows.item(0).value
         }
     });
-    console.log(key + ": " + res)
-    return ((typeof(res) == 'undefined') || (res === null)) ? defvalue : res;
+    var returnVal =  ((typeof(res) == 'undefined') || (res == null)) ? defvalue : res;
+    console.log("get property: " + key + ": " + returnVal)
+    return returnVal
 }

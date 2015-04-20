@@ -26,7 +26,7 @@ Page {
                     id: about
                     text: "About"
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("About.qml"))
+                        app.openPageAbout()
                     }
                 }
 
@@ -92,8 +92,8 @@ Page {
         pressDelay: 300
         keyNavigationWraps: true
 
-        property bool runtimeTabIsShowing
-        property bool configTabIsShowing
+        property bool tabRuntimeIsShowing
+        property bool tabConfigIsShowing
 
         NumberAnimation { target: parent; property: "contentX"; duration: 1000; easing.type: Easing.InOutQuad }
 
@@ -106,14 +106,14 @@ Page {
         VerticalScrollDecorator{}
 
         model: VisualItemModel {
-            RuntimeTab { id: runtimeTab }
-            ConfigTab { id: configTab }
+            TabRuntime { id: tabRuntime }
+            TabConfig { id: tabConfig }
 
         }
 
         onCurrentIndexChanged: {
-            runtimeTabIsShowing = tabs.currentIndex == 0
-            configTabIsShowing = tabs.currentIndex == 1
+            tabRuntimeIsShowing = tabs.currentIndex == 0
+            tabConfigIsShowing = tabs.currentIndex == 1
 
         }
     }

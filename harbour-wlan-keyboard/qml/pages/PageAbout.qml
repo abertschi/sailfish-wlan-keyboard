@@ -4,7 +4,6 @@ import Sailfish.Silica 1.0
 
 Page {
     id: page
-
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height + 2 * Theme.paddingLarge

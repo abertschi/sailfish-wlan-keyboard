@@ -54,8 +54,7 @@ OTHER_FILES += \
     qml/pages/PageContainer.qml \
     qml/pages/TabRuntime.qml \
     qml/pages/TabConfig.qml \
-    qml/pages/PageClipboardMode.qml \
-    qml/services/Servers.js
+    qml/pages/PageClipboardMode.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

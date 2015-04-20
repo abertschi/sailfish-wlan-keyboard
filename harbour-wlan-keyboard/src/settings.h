@@ -21,15 +21,15 @@ class Settings : public QObject
 public:
     explicit Settings(QObject *parent = 0);
 
-    enum KeyboardMode: qint32
+    enum KeyboardMode
     {
          CLIPBOARD = 0,
          HEADLESS = 1
      };
 
-    enum HeadlessMode: qint8
+    enum HeadlessMode
     {
-        RETURN_BASED =0,
+        RETURN_BASED = 0,
         CONTINUOUS = 1
     };
 

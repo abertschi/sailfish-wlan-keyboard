@@ -40,7 +40,7 @@ Item {
                 description: "Option <i>Any</i> &nbsp; exposes to WLAN and USB"
                 focus: true
                 width: parent.width
-                currentIndex: app.getSettings().connectionInterfaceIndex
+                currentIndex: settings.connectionInterfaceIndex
                 anchors.left: parent.left
 
                 onEntered: console.log("entered")
@@ -62,15 +62,15 @@ Item {
                     onActivated: {
                         if (index == 0) {
                             // expose on any if
-                            app.getSettings().useAnyConnection = true
+                            settings.useAnyConnection = true
                         }
                         else {
                             var item = interfaceRepeater.itemAt(index - 1);
                             console.debug(item.text + " selected");
-                            app.getSettings().useAnyConnection = false
-                            app.getSettings().connectionInterface = item.iName
+                            settings.useAnyConnection = false
+                            settings.connectionInterface = item.iName
                         }
-                        app.getSettings().connectionInterfaceIndex = index
+                        settings.connectionInterfaceIndex = index
                     }
                 }
             }
@@ -101,12 +101,12 @@ Item {
                     width: parent.width - portSpacer.width - portLabel.width
                     inputMethodHints: Qt.ImhDialableCharactersOnly
                     anchors.top: parent.top
-                    text:  app.getSettings().httpPort
+                    text:  settings.httpPort
                     color: Theme.highlightColor
                     horizontalAlignment: TextInput.AlignTop
                     EnterKey.onClicked: {
-                        app.getSettings().httpPort = parseInt(portTextInput.text)
-                        app.getSettings().wsPort = parseInt(portTextInput.text) +5
+                        settings.httpPort = parseInt(portTextInput.text)
+                        settings.wsPort = parseInt(portTextInput.text) +5
                         parent.focus = true
                     }
                     validator: RegExpValidator { regExp: /^[0-9]{4}$/ }
@@ -148,7 +148,7 @@ Item {
                 id: keyboardMode
                 width: parent.width
                 label: "Keyboard mode"
-                currentIndex: app.getSettings().keyboardMode === app.getSettings().enumKeyboardMode.CLIPBOARD ? 0 : 1
+                currentIndex: settings.keyboardMode === settings._KEYBOARD_MODE_CLIPBOARD ? 0 : 1
                 anchors.left: parent.left
                 description: "Mode to process incomming keystrokes"
                 menu: ContextMenu {
@@ -158,14 +158,14 @@ Item {
 
                 onCurrentIndexChanged: {
                     if(currentIndex == 0) {
-                        settings.keyboardMode = app.getSettings().enumKeyboardMode.CLIPBOARD
+                        settings.keyboardMode = settings._KEYBOARD_MODE_CLIPBOARD
                         app.openPageClipboardMode()
                     }
                     else {
-                        settings.keyboardMode = app.getSettings().enumKeyboardMode.HEADLESS
+                        settings.keyboardMode = settings._KEYBOARD_MODE_HEADLESS
                         app.openPageHeadlessMode()
                     }
-                    console.log("HERE" + app.getSttings())
+                    console.log("HERE" + app.settings)
                 }
             }
         }

@@ -2,24 +2,16 @@ import QtQuick 2.0
 import "../services/LocalStore.js" as LocalStore
 
 QtObject {
+    id: settings
 
-    QtObject {
-        id: enumHeadlessMode
-        property int RETURN_BASED: _qtSettings.RETURN_BASED
-        property int CONTINUOUS: _qtSettings.CONTINUOUS
-    }
+    // todo: always throws Unable to assign [undefined] to int
+    property int _HEADLESS_MODE_RETURN_BASED: 0 //_qtSettings.RETURN_BASED
+    property int _HEADLESS_MODE_CONTINUOUS: 1 //_qtSettings.CONTINUOUS
 
-    QtObject {
-        id: enumKeyboardMode
-        property int CLIPBOARD: _qtSettings.CLIPBOARD
-        property int HEADLESS: _qtSettings.HEADLESS
-    }
+    property int _KEYBOARD_MODE_HEADLESS: 1 //_qtSettings.HEADLESS
+    property int _KEYBOARD_MODE_CLIPBOARD: 0 //_qtSettings.CLIPBOARD
 
-    // deprecated: use enumKeyboardMode
-    property int _KEYBOARD_MODE_ALT_KEYBOARD: _qtSettings.HEADLESS
-    property int _KEYBOARD_MODE_CLIPBOARD: _qtSettings.CLIPBOARD
-
-    property int httpPort: _qtSettings.httpPort
+    property int httpPort //: _qtSettings.httpPort
 
     property int wsPort: _qtSettings.wsPort
 
@@ -48,10 +40,10 @@ QtObject {
         wsPort = LocalStore.get('wsPort', 7778);
         autostart = LocalStore.get('autostart', false);
         useHttps = LocalStore.get('useHttps', false);
-        keyboardMode = LocalStore.get('keyboardMode', enumKeyboardMode.CLIPBOARD);
-        headlessMode = LocalStore.get('headlessMode', enumHeadlessMode.RETURN_BASED);
+        keyboardMode = LocalStore.get('keyboardMode', _KEYBOARD_MODE_HEADLESS);
+        headlessMode = LocalStore.get('headlessMode', _HEADLESS_MODE_RETURN_BASED);
         useAnyConnection = LocalStore.get('useAnyConnection', true);
-        connectionInterface = LocalStore.get('connectionInterface', null);
+        connectionInterface = LocalStore.get('connectionInterface', "");
         connectionInterfaceIndex = LocalStore.get('connectionInterfaceIndex', 0);
         firstRun = LocalStore.get('firstRun', true);
     }

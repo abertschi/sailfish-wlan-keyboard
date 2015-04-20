@@ -26,13 +26,13 @@ QList<ServerEndpoint*> Utils::getAvailableEndpoints()
                     e->setInterfaceName(interface.name());
                     e->setIpAddress(entry.ip().toString());
                     e->setHardwareAddr(interface.hardwareAddress());
-                    qDebug() << interface.name() << " " << entry.ip().toString() << " " << interface.hardwareAddress();
+                    //qDebug() << interface.name() << " " << entry.ip().toString() << " " << interface.hardwareAddress();
                     endpoints.append(e);
                 }
             }
         }
     }
-    qDebug() << endpoints;
+    //qDebug() << endpoints;
     return endpoints;
 }
 
@@ -41,7 +41,7 @@ QVariant Utils::getAvailableEndpointsAsQVariant()
     QList<QObject*> dataList;
     foreach (ServerEndpoint* endpoint, getAvailableEndpoints())
     {
-        qDebug() << "add as qvariant: " << endpoint->ipAddress();
+        //qDebug() << "add as qvariant: " << endpoint->ipAddress();
         dataList.append(endpoint);
     }
     return QVariant::fromValue(dataList);
@@ -57,7 +57,7 @@ QHostAddress Utils::getHostAddressByInterfaceName(QString host)
             {
                 if ( interface.hardwareAddress() != "00:00:00:00:00:00" && entry.ip().toString().contains("."))
                 {
-                    qDebug() << "ip found: " << entry.ip().toString();
+                    //qDebug() << "ip found: " << entry.ip().toString();
                     return entry.ip();
                 }
             }
