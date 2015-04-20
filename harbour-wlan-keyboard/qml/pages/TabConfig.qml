@@ -168,14 +168,17 @@ Item {
 
                 onCurrentIndexChanged: {
                     if(currentIndex == 0) {
+                        console.log("Setting keyboardMode to Clipboard")
+
                         settings.keyboardMode = settings._KEYBOARD_MODE_CLIPBOARD
                         app.openPageClipboardMode()
                     }
                     else {
+                        console.log("Setting keyboardMode to Headless")
+
                         settings.keyboardMode = settings._KEYBOARD_MODE_HEADLESS
                         app.openPageHeadlessMode()
                     }
-                    console.log("HERE" + app.settings)
                 }
             }
         }

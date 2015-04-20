@@ -44,7 +44,7 @@ QtObject {
         console.log("AUTOSTART: " + a)
         autostart =  a
         useHttps = LocalStore.get('useHttps', 0);
-        keyboardMode = LocalStore.get('keyboardMode', _KEYBOARD_MODE_HEADLESS);
+        keyboardMode = LocalStore.get('keyboardMode', _KEYBOARD_MODE_CLIPBOARD);
         headlessMode = LocalStore.get('headlessMode', _HEADLESS_MODE_RETURN_BASED);
         useAnyConnection = LocalStore.get('useAnyConnection', 1);
         connectionInterface = LocalStore.get('connectionInterface', "");
