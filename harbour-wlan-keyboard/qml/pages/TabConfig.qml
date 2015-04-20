@@ -105,11 +105,20 @@ Item {
                     color: Theme.highlightColor
                     horizontalAlignment: TextInput.AlignTop
                     EnterKey.onClicked: {
-                        settings.httpPort = parseInt(portTextInput.text)
-                        settings.wsPort = parseInt(portTextInput.text) +5
-                        parent.focus = true
+                        if (portTextInput.text.length != 4) {
+                            popup.load("4 digits required")
+                            console.log("Port is invalid")
+                        }
+                        else {
+                            settings.httpPort = parseInt(portTextInput.text)
+                            settings.wsPort = parseInt(portTextInput.text) +5
+                            parent.focus = true
+                        }
                     }
-                    validator: RegExpValidator { regExp: /^[0-9]{4}$/ }
+                    validator: RegExpValidator {
+                        id: portValidator
+                        regExp: /^[0-9]{4}$/
+                    }
                 }
             }
 

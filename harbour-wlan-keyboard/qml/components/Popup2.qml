@@ -107,7 +107,7 @@ MouseArea {
     }
 
     function load(msg, time) {
-        if(time !== 'undefined' && time !== null) {
+        if ((typeof(time) !== 'undefined') && (time !== null)) {
             hideTimer.interval = time
         }
         _popupShow()
