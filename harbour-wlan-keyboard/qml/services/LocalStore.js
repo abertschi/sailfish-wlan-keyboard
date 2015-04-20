@@ -50,7 +50,7 @@ function get(key, defvalue) {
             res = rs.rows.item(0).value
         }
     });
-    var returnVal =  ((typeof(res) == 'undefined') || (res == null)) ? defvalue : res;
+    var returnVal =  ((typeof(res) === 'undefined') || (res === null)) ? defvalue : res;
     console.log("get property: " + key + ": " + returnVal)
     return returnVal
 }

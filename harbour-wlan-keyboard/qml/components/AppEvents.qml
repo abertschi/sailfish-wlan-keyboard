@@ -10,9 +10,9 @@ Item {
     property int _SERVER_STATE_NO_CONNECTIVITY: 2
 
     property bool connectivityAvailable: true
-    property bool serverRunning: {
-        return settings.autostart
-    }
+    property bool serverRunning
+
+     property bool inForeground: true
 
     property int serverState:
         (notifications.serverRunning && notifications.connectivityAvailable) ? _SERVER_STATE_ACTIVE :
@@ -25,6 +25,25 @@ Item {
             serverRunning = isRunning
         }
     }
+
+    Component.onCompleted: {
+        serverRunning =  settings.autostart
+    }
+
+    /*
+    Connections {
+        target: Qt.application
+        onActiveChanged: {
+            if (animationGroup.running) {
+                if (Qt.application.active) {
+                    inForeground = true
+                } else {
+                    inForeground = false
+                }
+            }
+        }
+    }
+    */
 
     Timer {
         id: connectivityTimer

@@ -11,21 +11,23 @@ QtObject {
     property int _KEYBOARD_MODE_HEADLESS: 1 //_qtSettings.HEADLESS
     property int _KEYBOARD_MODE_CLIPBOARD: 0 //_qtSettings.CLIPBOARD
 
-    property int httpPort //: _qtSettings.httpPort
+
+    // boolean doesnt seem to work, therefore bools are int
+    property int httpPort: _qtSettings.httpPort
 
     property int wsPort: _qtSettings.wsPort
 
-    property bool autostart: _qtSettings.autostart
+    property int autostart: _qtSettings.autostart
 
-    property bool useHttps: _qtSettings.useHttps
+    property int useHttps: _qtSettings.useHttps
 
     property int keyboardMode: _qtSettings.keyboardMode
 
     property int headlessMode: _qtSettings.headlessMode
 
-    property bool useAnyConnection: _qtSettings.useAnyConnection
+    property int useAnyConnection: _qtSettings.useAnyConnection
 
-    property bool firstRun: _qtSettings.firstRun
+    property int firstRun: _qtSettings.firstRun
 
     property string connectionInterface: _qtSettings.connectionInterface
 
@@ -38,14 +40,16 @@ QtObject {
 
         httpPort = LocalStore.get('httpPort', 7777);
         wsPort = LocalStore.get('wsPort', 7778);
-        autostart = LocalStore.get('autostart', false);
-        useHttps = LocalStore.get('useHttps', false);
+        var a = LocalStore.get('autostart', 0);
+        console.log("AUTOSTART: " + a)
+        autostart =  a
+        useHttps = LocalStore.get('useHttps', 0);
         keyboardMode = LocalStore.get('keyboardMode', _KEYBOARD_MODE_HEADLESS);
         headlessMode = LocalStore.get('headlessMode', _HEADLESS_MODE_RETURN_BASED);
-        useAnyConnection = LocalStore.get('useAnyConnection', true);
+        useAnyConnection = LocalStore.get('useAnyConnection', 1);
         connectionInterface = LocalStore.get('connectionInterface', "");
         connectionInterfaceIndex = LocalStore.get('connectionInterfaceIndex', 0);
-        firstRun = LocalStore.get('firstRun', true);
+        firstRun = LocalStore.get('firstRun', 1);
     }
 
     onHttpPortChanged: {
@@ -57,6 +61,8 @@ QtObject {
         _qtSettings.wsPort = wsPort
     }
     onAutostartChanged: {
+        console.log("AUTOSTART: " + autostart)
+
         LocalStore.set('autostart', autostart)
         _qtSettings.autostart = autostart
     }
@@ -78,7 +84,7 @@ QtObject {
     }
     onFirstRunChanged: {
         LocalStore.set('firstRun', firstRun)
-        _qtSettings.connectionInterfaceIndex = connectionInterfaceIndex
+        _qtSettings.firstRun = firstRun
     }
     onHeadlessModeChanged: {
         LocalStore.set('headlessMode', headlessMode)

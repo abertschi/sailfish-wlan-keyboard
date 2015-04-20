@@ -10,12 +10,13 @@ Column {
     anchors.topMargin: parent.width * 0.25
     anchors {
         left: parent.left
-        verticalCenter: parent.verticalCenter
+        //verticalCenter: parent.verticalCenter
 
     }
     spacing:10
 
     Column {
+        id: column
         anchors.top: parent.top
         width: parent.width
         spacing: 7
@@ -32,7 +33,7 @@ Column {
             model: httpServer.getFullAddresses()
             Rectangle {
                 color: Theme.highlightBackgroundColor
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.horizontalCenter: column.horizontalCenter
                 height: Theme.itemSizeSmall
                 width: parent.width
                 Label {
