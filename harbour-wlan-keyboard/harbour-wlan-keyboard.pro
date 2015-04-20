@@ -44,7 +44,7 @@ OTHER_FILES += \
     qml/services/LocalStore.js \
     qml/components/Settings.qml \
     qml/components/Popup2.qml \
-    qml/pages/AboutImage.qml \
+    qml/components/AboutImage.qml \
     qml/components/AppEvents.qml \
     qml/components/RuntimeActiveState.qml \
     qml/components/RuntimeNoConnectivityState.qml \

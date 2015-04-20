@@ -64,7 +64,7 @@ Page {
 
         TouchInteractionHint {
             id: verticalFlick
-            loops: 10
+            loops: Animation.Infinite
             running: false
             anchors.horizontalCenter: parent.horizontalCenter
             direction:  TouchInteraction.Down

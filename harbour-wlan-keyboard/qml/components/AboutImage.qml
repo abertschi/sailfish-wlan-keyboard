@@ -19,15 +19,5 @@ Image {
             image.pressed += 1
         }
     }
-
-    Connections {
-        target: image
-        onPressedChanged: {
-            if (pressed % 25) {
-                popup.load("You reached " + pressed + " :)")
-            } else if(pressed == 200) {
-
-            }
-        }
-    }
 }
+
