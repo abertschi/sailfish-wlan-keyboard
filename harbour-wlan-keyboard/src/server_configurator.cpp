@@ -87,9 +87,13 @@ void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document) {
     { // Settings::KeyboardMode::HEADLESS
         if (Settings::getInstance().getHeadlessMode() == Settings::HeadlessMode::RETURN_BASED)
         {
+            QString templateCmds("{\"cmds\":[%1]}");
+            QString templateCmd("{\"cmd\":\"%1\",\"arg\":\"%2\"}");
+            QString setLabel = templateCmd.arg("set_label").arg(m_http_server->getFullAddresses().at(0));
+            QString insertText = templateCmd.arg("insert_text").arg(keys);
 
-            QString tmplt("{\"cmd\":\"%1\",\"arg\":\"%2\"}");
-            result = tmplt.arg("insert_text").arg(keys);
+            QString allCmds = QString("%1,%2").arg(setLabel).arg(insertText);
+            result = templateCmds.arg(allCmds);
         }
         else
         { // Settings::KeyboardMode::CONTINUOUS
