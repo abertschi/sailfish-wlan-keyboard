@@ -93,8 +93,8 @@ MouseArea {
     function hide() {
         if (hideTimer.running)
             hideTimer.stop()
-        if(waitingBullets.running)
-            waitingBullets.stop()
+        /*if(waitingBullets.running)
+            waitingBullets.stop() */
         _popupHide()
     }
 
