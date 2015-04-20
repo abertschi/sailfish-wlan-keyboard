@@ -14,38 +14,38 @@ Item {
         State {
             name: "RUNNING"
             when: notifications.serverState === notifications._SERVER_STATE_ACTIVE
-            PropertyChanges { target: connections; opacity: 1 ; visible: true}
-            PropertyChanges { target: notRunning; visible: false }
-            PropertyChanges { target: noConnection; visible: false }
+            PropertyChanges { target: active; opacity: 1 ; visible: true}
+            PropertyChanges { target: inActive; visible: false }
+            PropertyChanges { target: noConnectivity; visible: false }
         },
         State {
             name: "NOT_RUNNING"
             when: notifications.serverState === notifications._SERVER_STATE_INACTIVE
-            PropertyChanges { target: connections; visible: false }
-            PropertyChanges { target: notRunning; visible: true }
-            PropertyChanges { target: noConnection; visible: false }
+            PropertyChanges { target: active; visible: false }
+            PropertyChanges { target: inActive; visible: true }
+            PropertyChanges { target: noConnectivity; visible: false }
         },
         State {
             when: notifications.serverState === notifications._SERVER_STATE_NO_CONNECTIVITY
             name: "NO_CONNECTION"
-            PropertyChanges { target: connections; visible: false }
-            PropertyChanges { target: notRunning; visible: false }
-            PropertyChanges { target: noConnection; visible: true }
+            PropertyChanges { target: active; visible: false }
+            PropertyChanges { target: inActive; visible: false }
+            PropertyChanges { target: noConnectivity; visible: true }
         }
     ]
 
-    NumberAnimation { targets: [noConnection, notRunning, connections]; properties: "opacity"; duration: 1000 }
+    NumberAnimation { targets: [noConnectivity, inActive, active]; properties: "opacity"; duration: 1000 }
 
 
     RuntimeNoConnectivityState {
-        id: noConnection
+        id: noConnectivity
     }
 
     RuntimeInactivState {
-        id: notRunning
+        id: inActive
     }
 
     RuntimeActiveState {
-        id: connections
+        id: active
     }
 }
