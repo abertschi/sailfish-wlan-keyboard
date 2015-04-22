@@ -107,7 +107,7 @@ CoverBackground {
         id: coverAction
 
         CoverAction {
-            iconSource: "image://theme/icon-cover-pause"
+            iconSource: "image://theme/icon-l-developer-mode"
             onTriggered: {
                 if (app.isServerRunning() && notifications.serverState !== notifications._SERVER_STATE_NO_CONNECTIVITY) {
                     console.log("Coveraction to stop the server pressed")
