@@ -12,12 +12,14 @@ Item {
     property bool connectivityAvailable: true
     property bool serverRunning
 
-     property bool inForeground: true
+    property bool inForeground: true
 
     property int serverState:
         (notifications.serverRunning && notifications.connectivityAvailable) ? _SERVER_STATE_ACTIVE :
            (!notifications.serverRunning && notifications.connectivityAvailable) ? _SERVER_STATE_INACTIVE :
                 _SERVER_STATE_NO_CONNECTIVITY
+
+     signal onStateReload()
 
     Connections {
         target: httpServer
@@ -30,31 +32,27 @@ Item {
         serverRunning =  settings.autostart
     }
 
-    /*
-    Connections {
-        target: Qt.application
-        onActiveChanged: {
-            if (animationGroup.running) {
-                if (Qt.application.active) {
-                    inForeground = true
-                } else {
-                    inForeground = false
-                }
-            }
-        }
+    onServerStateChanged: {
+        onStateReload()
     }
-    */
 
     Timer {
         id: connectivityTimer
+        property int lastSize: -1
+
         repeat: true
         interval: 5000
         running: true
         onTriggered: {
             console.log("Checking network connectivity ...")
+            var endpoints = utils.getAvailableEndpointSize();
+            if (lastSize !== endpoints) {
+                lastSize = endpoints
+                onStateReload()
+            }
 
             // todo: check if there is a way with system notifications, dbus
-            if (utils.getAvailableEndpointSize() > 0) {
+            if (endpoints > 0) {
                 if (! connectivityAvailable) {
                     connectivityAvailable = true
                     console.log("New network connectivity available")
