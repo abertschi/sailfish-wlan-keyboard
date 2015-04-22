@@ -12,7 +12,7 @@ Page {
         Column {
             id: column
             width: parent.width
-            spacing: Theme.paddingLarge
+            spacing: Theme.paddingLarge * 2
 
             anchors {
                 rightMargin: Theme.paddingLarge
@@ -25,18 +25,23 @@ Page {
 
             Label {
                 width: parent.width
-                text: "This mode copies all incomming keystrokes to your clipboard. Copy paste them in a focused input widget."
+                text: "Simply copy and paste your text from your clipboard into a focused  widget."
                 wrapMode: Text.Wrap
-                //horizontalAlignment: Text.AlignHCenter
+            }
+
+            SectionHeader {
+                text: "Preview"
+                font.bold: true
             }
 
             AnimatedImage {
                 id: animation
+                asynchronous: true
                 playing: true
-                width: 300
+                 width: parent.width - 2 * Theme.paddingLarge
                 anchors.horizontalCenter: parent.horizontalCenter
                 fillMode: Image.PreserveAspectFit
-                source: "sample.gif"
+                source: "img/clipboard.gif"
             }
         }
     }

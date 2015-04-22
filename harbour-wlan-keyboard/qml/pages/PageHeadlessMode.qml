@@ -37,17 +37,18 @@ Page {
 
             AnimatedImage {
                 id: animation
+                asynchronous: true
                 playing: true
-                width: 300
+                width: parent.width - 2 * Theme.paddingLarge
                 anchors.horizontalCenter: parent.horizontalCenter
                 fillMode: Image.PreserveAspectFit
-                source: "sample.gif"
+                source: "img/headless.gif"
             }
 
             SectionHeader {
                 text: "Configuration"
                 font.bold: true
-                height: Theme.paddingMedium
+                //height: Theme.paddingMedium
             }
 
             /*
@@ -76,13 +77,13 @@ Page {
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeTiny
             }
-            */
+
 
             SectionHeader {
                 text: "Installation"
                 font.bold: true
-                height: Theme.paddingMedium
-            }
+                //height: Theme.paddingMedium
+            } */
 
             Label {
                 text: "To use this mode, you need to install the <b> headless keyboard </b> layout."
@@ -103,7 +104,7 @@ Page {
             SectionHeader {
                 text: "Download"
                 font.bold: true
-                height: Theme.paddingMedium
+                //height: Theme.paddingMedium
             }
 
             Label {

@@ -38,6 +38,8 @@ OTHER_FILES += \
     harbour-wlan-keyboard.desktop \
     harbour-wlan-keyboard.png \
     index.html \
+    qml/pages/img/headless.gif \
+    qml/pages/img/clipboard.gif \
     qm/cover/cover.png \
     qml/pages/HomePage.qml \
     qml/components/MyActionButton.qml \

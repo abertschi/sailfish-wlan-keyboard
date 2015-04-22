@@ -22,7 +22,7 @@ Item {
 
             Connections {
                 target: notifications
-                onConnectivityAvailableChanged: {
+                onStateReload: {
                     if (notifications.connectivityAvailable) {
                         interfaceRepeater.model = utils.getAvailableEndpointsAsQVariant()
                         anyContextMenu.text = "Any"
