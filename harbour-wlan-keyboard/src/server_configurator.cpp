@@ -90,9 +90,18 @@ void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document) {
             QString templateCmds("{\"cmds\":[%1]}");
             QString templateCmd("{\"cmd\":\"%1\",\"arg\":\"%2\"}");
             QString setLabel = templateCmd.arg("set_label").arg(m_http_server->getFullAddresses().at(0));
-            QString insertText = templateCmd.arg("insert_text").arg(keys);
 
-            QString allCmds = QString("%1,%2").arg(setLabel).arg(insertText);
+            QString cmd;
+            if (keys == "")
+            {
+                cmd = templateCmd.arg("key_return").arg(keys);
+            }
+            else
+            {
+                cmd = templateCmd.arg("insert_text").arg(keys);
+            }
+
+            QString allCmds = QString("%1,%2").arg(setLabel).arg(cmd);
             result = templateCmds.arg(allCmds);
         }
         else
