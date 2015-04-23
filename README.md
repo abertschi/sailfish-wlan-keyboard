@@ -4,7 +4,7 @@
 
 Did you get fed up with small smartphone keyboards? Do you have your computer anyway always with you? Use *WlanKeyboard for SailfishOS* to type on your phone by using your computer keyboard.
 
-![Sailfish WlanKeyboard](http://abertschi.ch/default_public/harbour-wlan-keyboard.png)
+![Sailfish WlanKeyboard](http://abertschi.ch/default_public/harbour-wlan-keyboard-devel.png)
 
 # How does it work
 Simply connect your phone to the same network as your computer. Browse a website published by your phone and start typing. Your keystrokes are available in your clipboard and can be pasted into a focused input widget of any application.
