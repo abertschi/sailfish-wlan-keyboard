@@ -25,7 +25,7 @@ Page {
 
             Label {
                 width: parent.width
-                text: "Simply copy and paste your text from your clipboard into a focused  widget."
+                text: "This mode copies all incomming keystrokes to your clipboard. Copy and paste them into a focused widget."
                 wrapMode: Text.Wrap
             }
 

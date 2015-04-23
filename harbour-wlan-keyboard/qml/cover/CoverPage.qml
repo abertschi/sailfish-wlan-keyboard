@@ -107,7 +107,7 @@ CoverBackground {
         id: coverAction
 
         CoverAction {
-            iconSource: "image://theme/icon-l-developer-mode"
+           iconSource: "image://theme/icon-cover-pause"
             onTriggered: {
                 if (app.isServerRunning() && notifications.serverState !== notifications._SERVER_STATE_NO_CONNECTIVITY) {
                     console.log("Coveraction to stop the server pressed")
@@ -120,7 +120,7 @@ CoverBackground {
             iconSource: "image://theme/icon-cover-play"
             onTriggered: {
                 if (!app.isServerRunning() && notifications.serverState !== notifications._SERVER_STATE_NO_CONNECTIVITY) {
-                    onsole.log("Coveraction to start the server pressed")
+                    console.log("Coveraction to start the server pressed")
                     app.startServers();
                 }
             }

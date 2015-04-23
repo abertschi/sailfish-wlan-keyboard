@@ -10,6 +10,8 @@ Page {
 
         VerticalScrollDecorator {}
 
+        RemorsePopup { id: remorse }
+
         Column {
             id: column
             width: parent.width
@@ -94,7 +96,7 @@ Page {
             }
 
             Label {
-                text: "The headless keyboard layout is completely Free and Opensource Software. However, alternative keyboard layouts are not yet supported in the official Harbor store. Therefore, you install it on your own risk."
+                text: "The headless keyboard layout is completely Free and Open Source Software. However, alternative keyboard layouts are not yet supported in the official Harbor store. Therefore, you install it on your own risk."
                 width: parent.width
                 wrapMode: Text.Wrap
                 //horizontalAlignment: Text.AlignHCenter
@@ -113,6 +115,11 @@ Page {
                 wrapMode: Text.Wrap
                 //horizontalAlignment: Text.AlignHCenter
                 anchors.horizontalCenter: parent.horizontalCenter
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: remorse.execute("Browsing Source Code ", function() { Qt.openUrlExternally("https://github.com/abertschi/sailfish-headless-keyboard-layout"); } )
+                }
             }
 
             Button {
@@ -120,10 +127,10 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 onClicked: {
-                    Qt.openUrlExternally("www.abertschi.ch");
-                    console.log('open url')
+                    remorse.execute("Browsing openrepos.net ", function() { Qt.openUrlExternally("https://openrepos.net/content/abertschi/headless-keyboard"); } )
                 }
             }
+
         }
     }
 }

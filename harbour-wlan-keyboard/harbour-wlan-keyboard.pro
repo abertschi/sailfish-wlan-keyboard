@@ -83,10 +83,10 @@ LIB_BASE = _DO_DEFINE
 QMAKE_RPATHDIR +=  /usr/share/harbour-wlan-keyboard/lib
 
 linux-g++-64 {
-LIB_BASE = $$PWD/lib/i486
+LIB_BASE = $$PWD/lib/armv7hl
 }
 else:linux-g++ {
-LIB_BASE = $$PWD/lib/i486 # $$PWD/lib/armv7hl  i486
+LIB_BASE = $$PWD/lib/armv7hl # $$PWD/lib/armv7hl  i486
 }
 
 # LIBS += -L$$LIB_BASE -lqhttpserver

@@ -43,10 +43,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Your personal information belongs to you. This is Free and OpenSource Software that respects your privacy. Dig into the code on &lt;a href=&apos;https://github.com/abertschi/sailfish-headless-keyboard-layout&apos;&gt;Github &lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Do you have any suggestion or just want to tell me something? File an issue on Github or just write me an email at &lt;i&gt;sailfish@abertschi.ch&lt;/i&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -55,7 +51,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Andrin Bertschi&lt;br/&gt; www.abertschi.ch</source>
+        <source>Your personal information belongs to you. This is Free and OpenSource Software that respects your privacy. Dig into the code on &lt;a href=&apos;https://github.com/abertschi/sailfish-wlan-keyboard&apos;&gt;Github &lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

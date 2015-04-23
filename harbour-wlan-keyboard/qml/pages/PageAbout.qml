@@ -11,6 +11,8 @@ Page {
 
         VerticalScrollDecorator {}
 
+        RemorsePopup { id: remorse }
+
         Column {
             id: column
             width: parent.width
@@ -39,7 +41,7 @@ Page {
                     pixelSize: Theme.fontSizeSmall
                     family: Theme.fontFamilyHeading
                 }
-                text: "v.1.1"
+                text: "v1.0"
             }
 
             Item {
@@ -63,14 +65,11 @@ Page {
                 }
             }
 
-
             Label {
                 width: parent.width
                 text: qsTr("The <b>sailfish-wlan-keyboard</b> provides an easy way to use you your computer keyboard to type on your phone.")
                 wrapMode: Text.Wrap
             }
-
-
 
             SectionHeader {
                 text: "Privacy"
@@ -78,11 +77,19 @@ Page {
                 height: Theme.paddingMedium
             }
 
+
             Label {
+                id: l
                 width: parent.width
                 //horizontalAlignment: Text.AlignHCenter
-                text: qsTr("Your personal information belongs to you. This is Free and OpenSource Software that respects your privacy. Dig into the code on <a href='https://github.com/abertschi/sailfish-headless-keyboard-layout'>Github </a>.")
+                text: qsTr("Your personal information belongs to you. This is Free and OpenSource Software that respects your privacy. Dig into the code on <a href='https://github.com/abertschi/sailfish-wlan-keyboard'>Github </a>.")
                 wrapMode: Text.Wrap
+                 MouseArea {
+                     anchors.fill: parent
+                     onClicked: {
+                         remorse.execute("Browsing source code ", function() { Qt.openUrlExternally("https://github.com/abertschi/sailfish-wlan-keyboard"); } )
+                     }
+                 }
             }
 
             SectionHeader {
@@ -114,7 +121,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 onClicked: {
-                    Qt.openUrlExternally("http://www.abertschi.ch");
+
                     console.log('open url')
                 }
             }
@@ -128,7 +135,7 @@ Page {
             Label {
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
-                text: qsTr("Andrin Bertschi<br/> www.abertschi.ch")
+                text: "Andrin Bertschi<br/> www.abertschi.ch <br/> Twitter: @andrinbertschi"
                 wrapMode: Text.Wrap
             }
         }
