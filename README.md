@@ -1,35 +1,28 @@
 # sailfish-wlan-keyboard
 
-> Use your computer keyboard to type on your phone
-
-Did you get fed up with small smartphone keyboards? Do you have your computer anyway always with you? Use *WlanKeyboard for SailfishOS* to type on your phone by using your computer keyboard.
+The sailfish-wlan-keyboard provides an easy way to use you your computer keyboard to type on your phone.
 
 ![Sailfish WlanKeyboard](http://abertschi.ch/default_public/harbour-wlan-keyboard-devel.png)
 
-# How does it work
-Simply connect your phone to the same network as your computer. Browse a website published by your phone and start typing. Your keystrokes are available in your clipboard and can be pasted into a focused input widget of any application.
+Simply connect your phone to WIFI or USB and browse a website on your computer published by your phone. Keystrokes being entered there are transmitted to your phone and inserted at your cursor position. No hassel any longer with tiny smartphone keyboards or just too big fingers.
 
-# Harbour store restrictions
-Due to some harbour restrictions, an alternative keyboard layout cannot be provided. Therefore, this app copies your keystrokes into the clipboard and you need to paste them into the focused widget.
+==================================================================
 
-I am about to write an alternative keyboard layout that should automatically pasting the keystrokes into the focused widget.
- However, this part cannot be published in the harbour store. See `./harbour-wlan-keys-layout/`
+# Developer notes
 
-## Project internals
-    # Sub projects
-    harbour-wlan-keyboard/              sailfish app
-    harbour-wlan-html/                  html5 UI for browser
-    harbour-wlan-keyboard-layout/       alternative keyboard layout
+## Technology stack
+ - C++ with Qt 5 and QML Quick 2.1
+ - HTML5 with Websockets
 
+## Contributing
 
-## Used technologies
- - c++
- - Qt, Qml
- - html5, websockets
- - npm, gulp
+Help is always welcome. Contribute to the project by forking and submitting a pull request.
 
 
 ## License
+
+This project is released under the GNU General Public License. See LICENSE file.
+
 - sailfish-wlan-keyboard license
 
         sailfish-wlan-keyboard - Use your computer keyboard to type on your phone.
@@ -37,8 +30,7 @@ I am about to write an alternative keyboard layout that should automatically pas
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
-        the Free Software Foundation, either version 3 of the License, or
-        (at your option) any later version.
+        the Free Software Foundation Version 3 of the License.
 
         This program is distributed in the hope that it will be useful,
         but WITHOUT ANY WARRANTY; without even the implied warranty of
