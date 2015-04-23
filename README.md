@@ -8,18 +8,18 @@ Simply connect your phone to WIFI or USB and browse a website on your computer p
 
 ==================================================================
 
-# Developer notes
+## Developer notes
 
-## Technology stack
+### Technology stack
  - C++ with Qt 5 and QML Quick 2.1
  - HTML5 with Websockets
 
-## Contributing
+### Contributing
 
 Help is always welcome. Contribute to the project by forking and submitting a pull request.
 
 
-## License
+### License
 
 This project is released under the GNU General Public License. See LICENSE file.
 
