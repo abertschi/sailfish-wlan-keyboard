@@ -35,21 +35,14 @@ void ServerConfigurator::modifyHtmlContent(QString *content)
 
 void ServerConfigurator::processSocketMessage(QString *message)
 {
-    QScopedPointer<rapidjson::Document> document (new rapidjson::Document);
-    const char* messageChar = message->toLatin1();
-    qDebug() <<QString::fromUtf8(messageChar);
-
-    if (document->Parse(messageChar))
+    QJsonDocument d = QJsonDocument::fromJson(message->toUtf8());
+    if (d.isObject())
     {
-        qDebug() << "error in parsing message "
-                 << rapidjson::GetParseError_En(document->Parse(messageChar).GetParseError()); // todo fix
-    }
-    if (document->HasMember("event"))
-    {
-        QString event = (*document.data())["event"].GetString();
+        QJsonObject jsonObj = d.object();
+        QString event = jsonObj["event"].toString();
         if (event == "insert_text")
         {
-            QString text = (*document)["data"].GetString();
+            QString text = jsonObj["data"].toString();
             processInsertText(text);
         }
         else if (event == "send_key_return")
@@ -61,7 +54,7 @@ void ServerConfigurator::processSocketMessage(QString *message)
             processKeyDel();
         }
         else if (event == "send_key_arrow") {
-            QString direction = (*document)["data"].GetString();
+            QString direction = jsonObj["data"].toString();
             processKeyArrow(direction);
         }
         else
