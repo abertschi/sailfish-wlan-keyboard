@@ -13,7 +13,7 @@
 
 TARGET = harbour-wlan-keyboard
 
-CONFIG += sailfishapp warn_off plugin c++11
+CONFIG += sailfishapp warn_off plugin c++11 qdbus
 
 SOURCES += \
     $$PWD/src/harbour-wlan-keyboard.cpp \
@@ -22,7 +22,8 @@ SOURCES += \
     src/utils.cpp \
     src/server_configurator.cpp \
     src/server_endpoint.cpp \
-    src/settings.cpp
+    src/settings.cpp \
+    src/headless_keyboard_delegate.cpp
 
 QT += core gui quick network
 
@@ -72,7 +73,8 @@ HEADERS += \
     src/server_configurator.h \
     src/start_server_input.h \
     src/server_endpoint.h \
-    src/settings.h
+    src/settings.h \
+    src/headless_keyboard_delegate.h
 
 include(inc/qhttpserver/qhttpserver.pri)
 include(inc/QtWebsocket/qtwebsocket_headers.pri)

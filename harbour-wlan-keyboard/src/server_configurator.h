@@ -14,6 +14,7 @@
 #include "http_server.h"
 #include "websocket_server.h"
 #include "settings.h"
+#include "headless_keyboard_delegate.h"
 #endif // SERVER_CONFIGURATOR_H
 
 class ServerConfigurator: public QObject
@@ -29,12 +30,15 @@ private slots:
     void processSocketMessage(QString *message);
 
 private:
-    void processEventNewKeycode(rapidjson::Document *document);
-    void processEventNewKeyrow(rapidjson::Document *document);
+    void processInsertText(QString text);
+    void processKeyReturn();
+    void processKeyDel();
+    void processKeyArrow(QString arrow);
 
     http_server * m_http_server;
     websocket_server * m_websocket_server;
     Utils * m_keyboardUtils;
+    HeadlessKeyboardDelegate * m_headless_keyboard;
 };
 
 
