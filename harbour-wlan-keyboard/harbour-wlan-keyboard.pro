@@ -78,7 +78,6 @@ HEADERS += \
 
 include(inc/qhttpserver/qhttpserver.pri)
 include(inc/QtWebsocket/qtwebsocket_headers.pri)
-include(inc/rapidjson/rapidjson.pri)
 
 # Third Party libs
 LIB_BASE = _DO_DEFINE

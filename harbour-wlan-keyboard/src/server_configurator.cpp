@@ -17,12 +17,14 @@ void ServerConfigurator::configure(QQuickView *view)
     this->m_websocket_server = new websocket_server(QObject::parent());
     view->rootContext()->setContextProperty("websocketServer", m_websocket_server);
     connect(m_websocket_server, SIGNAL(processMessage(QString*)), this, SLOT(processSocketMessage(QString*)));
+    //connect(m_websocket_server, SIGNAL(processNewClientConnected())), this, SLOT(onNewClientConnected());
 
     this->m_http_server = new http_server(QObject::parent());
     m_http_server->setStaticContent("/usr/share/harbour-wlan-keyboard/index.html");
     view->rootContext()->setContextProperty("httpServer", m_http_server);
-
     connect(m_http_server, SIGNAL(modifyHtmlResponse(QString*)), this, SLOT(modifyHtmlContent(QString*)));
+
+    //connect(Settings::getInstance(), SIGNAL(settingsChanged(Settings*)), this, SLOT(onSettingsChanged(Settings*)));
 }
 
 void ServerConfigurator::modifyHtmlContent(QString *content)
@@ -31,6 +33,12 @@ void ServerConfigurator::modifyHtmlContent(QString *content)
     if(content->contains(ENDPOINT_MARKER)) {
         *content = content->replace(ENDPOINT_MARKER, addr) ;
     }
+}
+
+void ServerConfigurator::sendSettingsToWsClients(QString settingsJson)
+{
+    QString templ = QString("{\"event\":\"update_settings\", \"data\": %1 }").arg(settingsJson);
+    m_websocket_server->send(templ);
 }
 
 void ServerConfigurator::processSocketMessage(QString *message)
@@ -113,6 +121,21 @@ void ServerConfigurator::processKeyArrow(QString in)
     m_headless_keyboard->send_key_arrow(arrowEnum);
 }
 
+void ServerConfigurator::send(QString msg)
+{
+    m_websocket_server->send(msg);
+}
+
+void ServerConfigurator::onNewClientConnected()
+{
+    sendSettingsToWsClients(Settings::getInstance().toJson());
+}
+
+void ServerConfigurator::onSettingsChanged(Settings * s)
+{
+    sendSettingsToWsClients(s->toJson());
+}
+
 /*
 void ServerConfigurator::processEventNewKeycode(rapidjson::Document * document)
 {
@@ -127,12 +150,9 @@ void ServerConfigurator::processEventNewKeycode(rapidjson::Document * document)
 
     qDebug() << "Clipboard set: " << insert;
     //m_keyboardUtils->setClipboard(insert);
-
-
 }
 
 void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document)
 {
 }
 */
-

@@ -43,11 +43,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Do you have any suggestion or just want to tell me something? File an issue on Github or just write me an email at &lt;i&gt;sailfish@abertschi.ch&lt;/i&gt;</source>
+        <source>This application is powered by your donation. If you like my app, buy me a coffee. &lt;b&gt; Thank you! &lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This application is powered by your donation. If you like my app, buy me a coffee. &lt;b&gt; Thank you! &lt;/b&gt;</source>
+        <source>Do you have any suggestion, found a bug or just want to tell me something? File an issue on Github or just write me an email at &lt;i&gt;sailfish@abertschi.ch&lt;/i&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

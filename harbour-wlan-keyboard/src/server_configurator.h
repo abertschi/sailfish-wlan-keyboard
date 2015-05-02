@@ -9,8 +9,6 @@
 #include <QQuickView>
 #include <QQmlEngine>
 #include <QGuiApplication>
-#include "rapidjson/document.h"
-#include "rapidjson/error/en.h"
 #include "http_server.h"
 #include "websocket_server.h"
 #include "settings.h"
@@ -24,16 +22,22 @@ public:
     explicit ServerConfigurator(QObject *parent = 0);
     virtual ~ ServerConfigurator();
     void configure(QQuickView *view);
+    void send(QString msg);
+
 
 private slots:
     void modifyHtmlContent(QString *content);
     void processSocketMessage(QString *message);
+    void onNewClientConnected();
+    void onSettingsChanged(Settings *s);
 
 private:
     void processInsertText(QString text);
     void processKeyReturn();
     void processKeyDel();
     void processKeyArrow(QString arrow);
+
+    void sendSettingsToWsClients(QString settingsJson);
 
     http_server * m_http_server;
     websocket_server * m_websocket_server;

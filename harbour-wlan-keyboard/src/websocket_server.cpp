@@ -59,7 +59,17 @@ void websocket_server::processNewConnection()
 
     m_clients << clientSocket;
 
+    emit processNewClientConnected();
+
     qDebug() << "New websocket client connected";
+}
+
+void websocket_server::send(QString msg)
+{
+    foreach(QtWebsocket::QWsSocket*  clientSocket, m_clients)
+    {
+        clientSocket->write(msg);
+    }
 }
 
 void websocket_server::processMessageInternal(QString message)
