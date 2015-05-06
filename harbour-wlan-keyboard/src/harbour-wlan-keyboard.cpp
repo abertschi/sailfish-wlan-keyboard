@@ -28,9 +28,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifdef QT_QML_DEBUG
 #include <QtQuick>
-
 #include <sailfishapp.h>
 #include <QDebug>
 #include <QDir>
@@ -41,7 +39,6 @@
 
 #include "server_configurator.h"
 #include "settings.h"
-#endif
 
 int main(int argc, char *argv[])
 {

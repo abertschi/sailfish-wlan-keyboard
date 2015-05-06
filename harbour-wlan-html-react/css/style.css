@@ -6,23 +6,18 @@ body {
   box-sizing: border-box;
   overflow-y: hidden; }
 
-.container {
-  width: 80%;
-  margin: 0 auto; }
+h1 {
+  font-weight: 100;
+  font-size: 60px;
+  opacity: .7; }
 
 .header {
-  padding-top: 30px; }
+  padding-top: 6em; }
 
 .header__title {
-  font-weight: 100;
-  font-size: 30px;
-  text-align: center;
-  text-rendering: optimizeLegibility; }
+  text-align: center; }
 
 .message {
-  width: 100%;
-  margin: 20px auto;
-  position: relative;
   box-shadow: -18px 37px 81px 10px rgba(20, 20, 20, 0.1);
   border: none;
   font-size: 20px;
@@ -30,11 +25,13 @@ body {
   background-color: white; }
 
 .message__input {
+  margin-top: 2px;
+  margin-left: 5px;
   border: medium none;
-  width: 100%;
-  padding: 16px 16px 16px 16px;
+  padding: 16px 16px 0px 16px;
   font-style: italic;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-size: 20px; }
 
 .message__input:focus {
   outline: 0px; }
@@ -89,6 +86,7 @@ body {
     overflow: hidden;
     height: 200px;
     z-index: 9999; }
+
   #forkongithub a {
     width: 230px;
     position: absolute;
@@ -100,3 +98,5 @@ body {
     -moz-transform: rotate(315deg);
     -o-transform: rotate(315deg);
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); } }
+
+/*# sourceMappingURL=style.css.map */

@@ -25,9 +25,8 @@ var WlanKeyboard = React.createClass({
     render: function() {
 
         return(
-            <div>
-                <Header/>
-            </div>
+
+                            <Header/>
         );
     }
 });

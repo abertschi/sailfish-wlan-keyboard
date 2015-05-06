@@ -12,12 +12,21 @@ var Header = React.createClass({
 
     render: function () {
         return (
-            <div>
-                <h1>sailfish-wlan-keyboard</h1>
-                <TextInput
-                    placeholder="Enter your text"
-                    keyMode={this.state.keyMode}/>
-            </div>
+            <section className="header" >
+                <div className="container">
+                <div className="row">
+                    <div className="column header__title">
+                        <h1>sailfish-wlan-keyboard</h1>
+                    </div>
+                     <div className="offset-by-two eight columns message">
+                        <TextInput
+                            placeholder="Enter your text"
+                            className="message__input"
+                            keyMode={this.state.keyMode}/>
+                     </div>
+                </div>
+                </div>
+            </section>
         );
     }
 });

@@ -10,9 +10,13 @@ Simply connect your phone to WIFI or USB and browse a website on your computer p
 
 ## Developer notes
 
-### Technology stack
+### Technology Stack
  - C++ with Qt 5 and QML Quick 2.1
- - HTML5 with Websockets
+ - React.js with Flux application architecture, HTML5, WebSockets
+
+#### Development Tool Stack
+ - SailfishSDK based on Qt Creator 3
+ - npm with browserify, reactify, watchify
 
 ### Contributing
 

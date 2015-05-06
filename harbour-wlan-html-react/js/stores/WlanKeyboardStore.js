@@ -2,6 +2,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmmiter = require('events').EventEmitter;
 var WlanKeyboardConstants = require('../constants/WlanKeyboardConstants');
 var assign = require('object-assign');
+var JollaAppConnection = require('../utils/JollaAppConnection');
 
 var CHANGE_EVENT = 'change';
 
@@ -33,15 +34,33 @@ var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
 
 });
 
-AppDispatcher.register(function (action) {
+AppDispatcher.register(function(action) {
 
     switch (action.type) {
         case WlanKeyboardConstants.ActionTypes.RECEIVE_SETTINGS:
+            break;
+
+        case WlanKeyboardConstants.ActionTypes.SEND_TEXT:
+            JollaAppConnection.sendText(action.text);
+            break;
+
+        case WlanKeyboardConstants.ActionTypes.SEND_KEY_ENTER:
+            console.log("new action received" + action);
+            JollaAppConnection.sendKeyEnter();
+            break;
+
+        case WlanKeyboardConstants.ActionTypes.SEND_KEY_DEL:
+            JollaAppConnection.sendKeyDel();
+            break;
+
+        case WlanKeyboardConstants.ActionTypes.SEND_KEY_ARROW:
+            JollaAppConnection.sendKeyArrow(action.direction);
             break;
 
         default:
             break;
     }
 });
+
 
 module.exports = WlanKeyboardStore;
