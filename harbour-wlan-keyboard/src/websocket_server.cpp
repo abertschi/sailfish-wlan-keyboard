@@ -11,6 +11,7 @@ websocket_server:: ~ websocket_server()
     {
         stopServer();
     }
+    this->m_server->deleteLater();
     delete(this->m_server);
 }
 
@@ -47,19 +48,36 @@ void websocket_server::stopServer()
 {
     this->m_isRunning = false;
     QObject::disconnect(m_server, SIGNAL(newConnection()), this, SLOT(processNewConnection()));
+
+    foreach(QtWebsocket::QWsSocket* client, m_clients)
+    {
+        QObject::disconnect(client, SIGNAL(frameReceived(QString)), this, SLOT(processMessageInternal(QString)));
+        QObject::disconnect(client, SIGNAL(disconnected()), this, SLOT(socketDisconnected()));
+        QObject::disconnect(client, SIGNAL(pong(quint64)), this, SLOT(processPong(quint64)));
+    }
+
     m_server->close();
+    qDebug() << "WebsocketServer closed ";
 }
 
 void websocket_server::processNewConnection()
 {
-    QtWebsocket::QWsSocket* clientSocket = m_server -> nextPendingConnection();
-    QObject::connect(clientSocket, SIGNAL(frameReceived(QString)), this, SLOT(processMessageInternal(QString)));
-    QObject::connect(clientSocket, SIGNAL(disconnected()), this, SLOT(socketDisconnected()));
-    QObject::connect(clientSocket, SIGNAL(pong(quint64)), this, SLOT(processPong(quint64)));
+    if (this->m_isRunning)
+    {
+        QtWebsocket::QWsSocket* clientSocket = m_server -> nextPendingConnection();
+        QObject::connect(clientSocket, SIGNAL(frameReceived(QString)), this, SLOT(processMessageInternal(QString)));
+        QObject::connect(clientSocket, SIGNAL(disconnected()), this, SLOT(socketDisconnected()));
+        QObject::connect(clientSocket, SIGNAL(pong(quint64)), this, SLOT(processPong(quint64)));
 
-    m_clients << clientSocket;
+        m_clients << clientSocket;
 
-    qDebug() << "New websocket client connected";
+        qDebug() << "New websocket client connected";
+    }
+    else
+    {
+        qDebug() << "processNewConnection called eventhough server was not running. something wrong";
+    }
+
 }
 
 void websocket_server::processMessageInternal(QString message)
