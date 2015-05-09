@@ -4,12 +4,21 @@ body {
   font-smoothing: antialiased;
   background: none repeat scroll 0 0 #f5f5f5;
   box-sizing: border-box;
-  overflow-y: hidden; }
+  overflow-y: hidden;
+  font-weight: 100; }
 
 h1 {
   font-weight: 100;
   font-size: 55px;
   opacity: .7; }
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box; }
 
 .header {
   padding-top: 6em; }
@@ -25,10 +34,47 @@ h1 {
   border-bottom: 1px solid #dddddd;
   background-color: #ffffff; }
 
-.config_bar {
+.configuration {
   background-color: white;
   height: 3em;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2); }
+
+.configuration__status {
+  float: right;
+  margin-right: 30px;
+  height: 100%;
+  line-height: 100%; }
+
+.text__center {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
+.configuration__button {
+  float: left;
+  margin-left: 30px;
+  height: 100%;
+  line-height: 100%; }
+
+.configuration__button_layout {
+  border-radius: 3px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  padding: 3px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff; }
+
+.configuration__button_layout:hover {
+  border: 1px solid #b3b3b3;
+  color: #000000; }
+
+.configuration__button_layout--selected {
+  border: 1px solid #b3b3b3;
+  color: #000000; }
 
 ::-webkit-input-placeholder {
   font-style: italic; }
@@ -42,13 +88,20 @@ h1 {
 ::-moz-placeholder {
   font-style: italic; }
 
+.message__input__textfield {
+  width: 100%;
+  border: medium none; }
+
+.message__input__textfield:focus {
+  outline: 0px; }
+
 .message__input {
-  float: left;
-  border: medium none;
   box-sizing: border-box;
   font-size: 24px;
   line-height: 1.4em;
-  width: 90%;
+  width: auto;
+  overflow: hidden;
+  background-color: blue;
   background: none;
   background-color: white; }
 
@@ -59,17 +112,9 @@ h1 {
   font-size: 24px;
   line-height: 1.4em;
   box-sizing: border-box;
-  width: 10%;
+  width: 70px;
   text-align: center;
   color: #acacae; }
-
-.message__input:focus {
-  outline: 0px; }
-
-.configuration {
-  margin-top: 35px;
-  font-size: 15px;
-  font-weight: 100; }
 
 #forkongithub a {
   background: #952a1b;
@@ -102,7 +147,7 @@ h1 {
   bottom: 1px;
   top: auto; }
 
-@media screen and (min-width: 0px) {
+@media screen and (min-width: 500px) {
   #forkongithub {
     position: absolute;
     display: block;

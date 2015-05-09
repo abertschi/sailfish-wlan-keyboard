@@ -1,23 +1,38 @@
 var WsSocket = require('./ws_events_dispatcher');
 var Actions = require('../actions/WlanKeyboardActions');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
-var WlanKeyboardConstants = require('../constants/WlanKeyboardConstants');
+
+var ConnectionStatus = require('../constants/WlanKeyboardConstants').ConnectionStatus;
 
 console.log("init from jolla app");
 
 var socket = {};
+var endpoint = {};
+var isCheckStatus = false;
 
 function checkStatus() {
+    isCheckStatus = true;
+
+        //CONNECTING	0	The connection is not yet open.
+        //OPEN	1	The connection is open and ready to communicate.
+        //CLOSING	2	The connection is in the process of closing.
+        //CLOSED	3	The connection is closed or couldn't be opened.
 
     setTimeout(function() {
-        var readyStateMsg = [
-            [0, 'connecting'],
-            [1, 'connected'],
-            [2, 'disconnecting'],
-            [3, 'not connected']];
-
-        Actions.connectionStatusChanged(readyStateMsg[socket.getSocket().readyState][1]);
-
+        var state;
+        var readyState = socket.getSocket().readyState;
+        switch (readyState) {
+            case 1:
+                state = ConnectionStatus.CONNECTED;
+                break;
+            case 0:
+            case 2:
+            case 3:
+            default:
+                state = ConnectionStatus.NOT_CONNECTED;
+                JollaAppConnection.connect(endpoint);
+        }
+        Actions.connectionStatusChanged(state);
         checkStatus();
     }, 1000);
 
@@ -25,25 +40,26 @@ function checkStatus() {
 
 var JollaAppConnection = {
 
-    connect: function (endpoint) {
-        socket = new WsSocket(endpoint);
-        checkStatus();
+    connect: function (endP) {
+        endpoint = endP;
+        try {
+            socket = new WsSocket(endpoint);
+        } catch (e) {
+
+        }
+
+        if(!isCheckStatus) {
+            checkStatus();
+        }
 
         socket.bind("update_settings", function (data) {
             Actions.jollaAppSettingsUpdated(data);
         });
 
-        socket.bind('open', function () {
-
-        });
 
         socket.bind('close', function () {
-
         });
 
-        socket.bind('open', function () {
-
-        });
     },
 
     sendKeyEnter: function () {

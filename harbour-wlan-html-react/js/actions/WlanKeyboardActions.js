@@ -42,6 +42,13 @@ var WlanKeyboardActions = {
             type: AppConstants.ActionTypes.CONNECTION_STATUS_CHANGED,
             status: status
         });
+    },
+
+    keyModeChanged: function (mode) {
+        AppDispatcher.dispatch({
+            type: AppConstants.ActionTypes.KEY_MODE_CHANGED,
+            keyMode: mode
+        });
     }
 };
 

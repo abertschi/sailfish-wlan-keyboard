@@ -20,15 +20,13 @@ var TextInput = React.createClass({
         };
     },
 
-    getDefaultProps: function() {
-        return {
-            keyMode: WlanKeyboardConstants.KeyMode.HEADLESS
-        };
+    componentDidMount: function () {
+        window.onkeydown = this._windowListener;
     },
 
-    render: function() {
+    render: function () {
         return (
-            <div>
+            <div className={this.props.classNameContainer}>
                 <input ref="textInput"
                     className={this.props.className}
                     id={this.props.id}
@@ -37,6 +35,7 @@ var TextInput = React.createClass({
                     autoFocus={true}
                 />
             </div>
+
         );
     },
 
@@ -44,57 +43,71 @@ var TextInput = React.createClass({
         var eventInput = React.findDOMNode(this.refs.textInput);
         this.setState({value: eventInput.value});
 
-        switch (event.keyCode) {
+        var isModeHeadless = this.props.keyMode == WlanKeyboardConstants.KeyMode.HEADLESS;
 
-            case KEY_ENTER:
-                if (eventInput.value == "") {
-                    AppActions.actionEnterKeyPressed();
-                }
-                else {
-                    if (this.props.keyMode == WlanKeyboardConstants.KeyMode.HEADLESS) {
+        if (!isModeHeadless) {
+            if (event.keyCode == KEY_ENTER) {
+                AppActions.actionNewText(eventInput.value);
+                eventInput.value = '';
+            }
+        }
+        else {
+            switch (event.keyCode) {
+
+                case KEY_ENTER:
+                    if (eventInput.value == "") {
                         AppActions.actionEnterKeyPressed();
                     }
                     else {
-                        AppActions.actionNewText(eventInput.value);
+                        AppActions.actionEnterKeyPressed();
+                        eventInput.value = '';
                     }
-                    eventInput.value= '';
-                }
-                break;
+                    break;
 
-            case (KEY_ARROW_DEL):
-            case (KEY_ARROW_BACK_SPACE):
-                AppActions.actionDelKeyPressed();
-                break;
+                case (KEY_ARROW_DEL):
+                case (KEY_ARROW_BACK_SPACE):
+                    AppActions.actionDelKeyPressed();
+                    break;
 
-            case KEY_ARROW_UP:
-                AppActions.actionArrowKeyPressed('up');
-                break;
+                case KEY_ARROW_UP:
+                    AppActions.actionArrowKeyPressed('up');
+                    break;
 
-            case KEY_ARROW_DOWN:
-                AppActions.actionArrowKeyPressed('down');
-                break;
+                case KEY_ARROW_DOWN:
+                    AppActions.actionArrowKeyPressed('down');
+                    break;
 
-            case KEY_ARROW_LEFT:
-                AppActions.actionArrowKeyPressed('left');
-                break;
+                case KEY_ARROW_LEFT:
+                    AppActions.actionArrowKeyPressed('left');
+                    break;
 
-            case KEY_ARROW_RIGHT:
-                AppActions.actionArrowKeyPressed('right');
-                break;
+                case KEY_ARROW_RIGHT:
+                    AppActions.actionArrowKeyPressed('right');
+                    break;
 
-            default:
-                var value = eventInput.value;
-                var lastValue = this.state.lastValue;
-                if (value != lastValue) {
-                    if (value.length > lastValue.length) {
-                        var newText = value.substr(lastValue.length);
-                        AppActions.actionNewText(newText);
+                default:
+                    var value = eventInput.value;
+                    var lastValue = this.state.lastValue;
+                    if (value != lastValue) {
+                        if (value.length > lastValue.length) {
+                            var newText = value.substr(lastValue.length);
+                            AppActions.actionNewText(newText);
+                        }
                     }
-                }
-                break;
+                    break;
+
+            }
         }
+
         this.setState({value: eventInput.value, lastValue: eventInput.value});
+    },
+
+    _windowListener: function(event) {
+        var eventInput = React.findDOMNode(this.refs.textInput);
+        eventInput.focus();
     }
+
+
 });
 
 module.exports = TextInput;

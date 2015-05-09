@@ -8,6 +8,10 @@ var CHANGE_EVENT = 'change';
 
 var _serverSettings = {};
 
+var _connectionStatus = {};
+
+var _keyMode = _keyMode || WlanKeyboardConstants.KeyMode.HEADLESS;
+
 var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
 
     emitChange: function () {
@@ -28,8 +32,21 @@ var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
     },
 
     getKeyMode: function() {
-        var settings = WlanKeyboardStore.getServerSettings() || {};
-        return WlanKeyboardConstants.KeyMode.HEADLESS;
+        return _keyMode;
+    },
+
+    updateKeyMode: function(keyMode) {
+        _keyMode = keyMode;
+        this.emitChange();
+    },
+
+    getConnectionStatus: function() {
+        return _connectionStatus;
+    },
+
+    updateConnectionStatus: function(status) {
+        _connectionStatus = status;
+        this.emitChange();
     }
 
 });
@@ -55,6 +72,18 @@ AppDispatcher.register(function(action) {
 
         case WlanKeyboardConstants.ActionTypes.SEND_KEY_ARROW:
             JollaAppConnection.sendKeyArrow(action.direction);
+            break;
+
+        case WlanKeyboardConstants.ActionTypes.KEY_MODE_CHANGED:
+            WlanKeyboardStore.updateKeyMode(action.keyMode);
+            console.log(action);
+            break;
+
+        case WlanKeyboardConstants.ActionTypes.CONNECTION_STATUS_CHANGED:
+                WlanKeyboardStore.updateConnectionStatus(action.status);
+                if (action.status != WlanKeyboardStore.getConnectionStatus) {
+                    WlanKeyboardStore.updateConnectionStatus(action.status);
+                }
             break;
 
         default:
