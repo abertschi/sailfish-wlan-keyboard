@@ -72,7 +72,7 @@ public:
     void setConnectionInterfaceIndex(qint32 connectionInterfaceIndex);
     qint32 getConnectionInterfaceIndex();
 
-    QString * toJson() const;
+    QByteArray toJson() const;
 
 
 signals:
@@ -103,7 +103,7 @@ private:
     qint32 m_connectionInterfaceIndex;
 
     //singelton
-    Settings(Settings const&)        = delete;
+    //Settings(Settings const&)        = delete;
     void operator=(Settings const&)  = delete;
 };
 

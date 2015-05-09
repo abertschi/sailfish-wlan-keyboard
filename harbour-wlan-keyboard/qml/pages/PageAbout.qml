@@ -41,7 +41,7 @@ Page {
                     pixelSize: Theme.fontSizeSmall
                     family: Theme.fontFamilyHeading
                 }
-                text: "v1.0"
+                text: app.settings.version;
             }
 
             Item {
@@ -81,15 +81,14 @@ Page {
             Label {
                 id: l
                 width: parent.width
-                //horizontalAlignment: Text.AlignHCenter
                 text: qsTr("Your personal information belongs to you. This is Free and OpenSource Software that respects your privacy. Dig into the code on <a href='https://github.com/abertschi/sailfish-wlan-keyboard'>Github </a>.")
                 wrapMode: Text.Wrap
-                 MouseArea {
-                     anchors.fill: parent
-                     onClicked: {
-                         remorse.execute("Browsing source code ", function() { Qt.openUrlExternally("https://github.com/abertschi/sailfish-wlan-keyboard"); } )
-                     }
-                 }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        remorse.execute("Browsing Source", function() { Qt.openUrlExternally("https://github.com/abertschi/sailfish-wlan-keyboard"); } )
+                    }
+                }
             }
 
             SectionHeader {
@@ -98,9 +97,10 @@ Page {
                 height: Theme.paddingMedium
             }
 
+
             Label {
                 width: parent.width
-                text: qsTr("Do you have any suggestion or just want to tell me something? File an issue on Github or just write me an email at <i>sailfish@abertschi.ch</i>")
+                text: qsTr("Do you have any suggestion, found a bug or just want to tell me something? File an issue on Github or just write me an email at <i>sailfish@abertschi.ch</i>")
                 wrapMode: Text.Wrap
             }
 
@@ -134,9 +134,10 @@ Page {
 
             Label {
                 width: parent.width
-                horizontalAlignment: Text.AlignHCenter
-                text: "Andrin Bertschi<br/> www.abertschi.ch <br/> Twitter: @andrinbertschi"
+                //horizontalAlignment: Text.AlignHCenter
+                text: "Andrin Bertschi<br/>www.abertschi.ch <br/>Twitter: <i>@andrinbertschi</i>"
                 wrapMode: Text.Wrap
+                fontSizeMode: Theme.fontSizeSmall
             }
         }
     }

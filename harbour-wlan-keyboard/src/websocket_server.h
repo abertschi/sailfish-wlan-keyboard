@@ -34,15 +34,22 @@ public:
     Q_INVOKABLE QStringList getIpAddresses() const;
     Q_INVOKABLE QStringList getFullAddresses() const;
 
+    Q_INVOKABLE void send(QString msg);
+
+public slots:
+
 private slots:
     void processNewConnection();
     void processMessageInternal(QString message);
     void processPong(quint64 elapsedTime);
     void socketDisconnected();
 
+Q_SIGNALS:
 signals:
     void processMessage(QString *message);
     void runningChanged(bool isRunning);
+    void processNewClientConnected();
+
 
 private:
     QtWebsocket::QWsServer * m_server;

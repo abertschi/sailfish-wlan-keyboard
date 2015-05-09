@@ -24,6 +24,7 @@ ApplicationWindow
 
     Settings {
         id: settings
+        property string version: "v1.0";
     }
 
     PopupLoad {

@@ -127,7 +127,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 onClicked: {
-                    remorse.execute("Browsing openrepos.net ", function() { Qt.openUrlExternally("https://openrepos.net/content/abertschi/headless-keyboard"); } )
+                    remorse.execute("Browsing Download Page ", function() { Qt.openUrlExternally("https://openrepos.net/content/abertschi/headless-keyboard"); } )
                 }
             }
 

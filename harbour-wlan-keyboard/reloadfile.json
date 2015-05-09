@@ -7,7 +7,7 @@
     },
     "sync": {
         "src": [
-            "/home/abertschi/beandata/pgm/proj/sailfish-wlan-keyboard/harbour-wlan-keyboard/qml/**/*.*"
+            "/Users/abertschi/beandata/pgm/sailfish-devel/sailfish-wlan-keyboard/harbour-wlan-keyboard/qml/**/*.*"
         ],
         "dest": "/usr/share/harbour-wlan-keyboard/qml"
     },
