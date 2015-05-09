@@ -26,7 +26,7 @@ void websocket_server::startServer(const QString interfaceName, qint16 port)
     m_isBroadcasting = false;
     QHostAddress addr = Utils::getHostAddressByInterfaceName(interfaceName);
     qDebug() << interfaceName << addr.toString() << "addr: " << addr.toString() << "port: " << port;
-     qDebug()  << addr.toString();
+    qDebug()  << addr.toString();
     this->startServer(addr, port);
 }
 
@@ -154,4 +154,14 @@ bool websocket_server::isBroadcasting() const
 {
     return m_isBroadcasting;
 }
+
+void websocket_server::send(QString msg)
+{
+    foreach(QtWebsocket::QWsSocket*  clientSocket, m_clients)
+    {
+        clientSocket->write(msg);
+        qDebug() << "processNewConnection called eventhough server was not running. something wrong";
+    }
+}
+
 

@@ -36,9 +36,9 @@ public:
     Q_ENUMS(KeyboardMode)
     Q_ENUMS(HeadlessMode)
 
-    static Settings&  getInstance()
+    static Settings& getInstance()
     {
-        static Settings instance;
+        static Settings instance ;
         return instance;
     }
 
@@ -102,9 +102,6 @@ private:
     QString m_connectionInterface;
     qint32 m_connectionInterfaceIndex;
 
-    //singelton
-    //Settings(Settings const&)        = delete;
-    void operator=(Settings const&)  = delete;
 };
 
 #endif // SETTINGS_H

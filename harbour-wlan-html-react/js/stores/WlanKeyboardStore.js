@@ -47,6 +47,12 @@ var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
     updateConnectionStatus: function(status) {
         _connectionStatus = status;
         this.emitChange();
+    },
+
+    updateServerSettings: function(s) {
+        _serverSettings = s;
+        this.updateKeyMode(s.keyboardMode);
+        this.emitChange();
     }
 
 });
@@ -55,6 +61,22 @@ AppDispatcher.register(function(action) {
 
     switch (action.type) {
         case WlanKeyboardConstants.ActionTypes.RECEIVE_SETTINGS:
+            // layout:
+            //    data": {
+            //        "autostart": true,
+            //        "connectionInterface": "wlan0",
+            //        "connectionInterfaceIndex": 0,
+            //        "firstRun": false,
+            //        "headlessMode": 0,
+            //        "httpPort": 7779,
+            //        "keyboardMode": 1,
+            //        "useAnyConnection": false,
+            //        "useHttps": false,
+            //        "wsPort": 7784
+            //    }
+
+            console.log(action.settings);
+            WlanKeyboardStore.updateServerSettings(action.settings);
             break;
 
         case WlanKeyboardConstants.ActionTypes.SEND_TEXT:

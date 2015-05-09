@@ -33,7 +33,7 @@ var WlanKeyboardActions = {
     jollaAppSettingsUpdated: function (settings) {
         AppDispatcher.dispatch({
             type: AppConstants.ActionTypes.RECEIVE_SETTINGS,
-            text: settings
+            settings: settings
         });
     },
 

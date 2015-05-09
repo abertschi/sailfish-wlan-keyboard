@@ -24,7 +24,8 @@ void ServerConfigurator::configure(QQuickView *view)
     view->rootContext()->setContextProperty("httpServer", m_http_server);
     connect(m_http_server, SIGNAL(modifyHtmlResponse(QString*)), this, SLOT(modifyHtmlContent(QString*)));
 
-    //connect(Settings::getInstance(), SIGNAL(settingsChanged(Settings*)), this, SLOT(onSettingsChanged(Settings*)));
+    Settings * s = &Settings::getInstance();
+    connect(s, SIGNAL(settingsChanged(Settings*)), this, SLOT(onSettingsChanged(Settings*)));
 }
 
 void ServerConfigurator::modifyHtmlContent(QString *content)
@@ -38,6 +39,7 @@ void ServerConfigurator::modifyHtmlContent(QString *content)
 void ServerConfigurator::sendSettingsToWsClients(QString settingsJson)
 {
     QString templ = QString("{\"event\":\"update_settings\", \"data\": %1 }").arg(settingsJson);
+    qDebug() << templ;
     m_websocket_server->send(templ);
 }
 
@@ -133,6 +135,7 @@ void ServerConfigurator::onNewClientConnected()
 
 void ServerConfigurator::onSettingsChanged(Settings * s)
 {
+
     sendSettingsToWsClients(s->toJson());
 }
 

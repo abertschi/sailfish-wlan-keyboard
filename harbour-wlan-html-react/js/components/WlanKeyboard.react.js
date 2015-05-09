@@ -31,7 +31,6 @@ var WlanKeyboard = React.createClass({
 
     render: function () {
 
-
         var isHeadless = this.state.keyMode == AppConstants.KeyMode.HEADLESS;
 
         return (

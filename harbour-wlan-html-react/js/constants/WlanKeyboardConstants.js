@@ -13,8 +13,8 @@ module.exports = {
   }),
 
     KeyMode: {
-        HEADLESS: 0,
-        CLIPBOARD: 1
+        HEADLESS: 1,
+        CLIPBOARD: 0
     },
 
     ConnectionStatus: keyMirror({

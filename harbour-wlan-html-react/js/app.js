@@ -13,12 +13,6 @@ if (wsEndpoint == debugCheck) {
 
 JollaAppConn.connect(wsEndpoint);
 
-console.log("ABOUT TO CALL");
-setTimeout(function() {
-
-    console.log("CALLLLED");
-}, 1000);
-
 React.render(
     <WlanKeyboard />,
     document.getElementById('app')
