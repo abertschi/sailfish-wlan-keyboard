@@ -38,7 +38,6 @@ OTHER_FILES += \
     translations/*.ts \
     harbour-wlan-keyboard.desktop \
     harbour-wlan-keyboard.png \
-    index.html \
     qml/pages/img/headless.gif \
     qml/pages/img/clipboard.gif \
     qm/cover/cover.png \
@@ -59,7 +58,8 @@ OTHER_FILES += \
     qml/pages/PageClipboardMode.qml \
     qml/components/PopupBase.qml \
     qml/components/PopupError.qml \
-    qml/components/PopupLoad.qml
+    qml/components/PopupLoad.qml \
+    ../harbour-wlan-html-react/dist/index.html
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -102,7 +102,7 @@ lib.path = \
 
 INSTALLS += lib
 
-resources.files += index.html
+resources.files += ../harbour-wlan-html-react/dist/index.html
 resources.path = /usr/share/harbour-wlan-keyboard
 
 INSTALLS += resources
