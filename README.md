@@ -48,9 +48,6 @@ With the Web Frontend generated, import the files under `./harbour-wlan-keyboard
 
 Help is always welcome. Contribute to the project by forking and submitting a pull request.
 
-# Feedback and Issues  
-Are you missing a feature or did you find a bug? File an issue [here](https://github.com/abertschi/sailfish-wlan-keyboard/issues).
-
 ## License
 
 This project is released under the GNU General Public License V3.
