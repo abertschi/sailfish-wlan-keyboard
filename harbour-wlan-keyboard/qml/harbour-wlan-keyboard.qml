@@ -1,24 +1,73 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+
 import "pages"
+import "components"
+import "services"
+import "cover"
+import "."
 
 ApplicationWindow
 {
-    initialPage: Component {
-        HomePage { }
-    }
-
+    id: app
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
-    property int httpServerPort: 7778
-    property int websocketServerPort: 7777;
+    initialPage: Component {
+        PageContainer { }
+    }
+
+    Component.onCompleted: {
+        if (settings.autostart) {
+            startServers()
+        }
+    }
+
+    Settings {
+        id: settings
+    }
+
+    PopupLoad {
+        id: popupLoad
+    }
+
+    PopupError {
+        id: popupError
+    }
+
+    AppEvents {
+        id: notifications
+    }
+
+    Timer {
+        id: startStopTimer
+        property string text
+        interval: 500
+        repeat: false
+        triggeredOnStart: false
+        onTriggered: {
+            popupLoad.show(text, 1500)
+        }
+    }
 
     function startServers() {
-        httpServer.startServer(httpServerPort);
-        websocketServer.startServer(websocketServerPort);
+        startStopTimer.text = qsTr("Starting server ...")
+        startStopTimer.start()
+        var httpPort = settings.httpPort
+        var wsPort = settings.wsPort;
+
+        if (settings.useAnyConnection) {
+            httpServer.startServerBroadcast(httpPort)
+            websocketServer.startServerBroadcast(wsPort);
+        } else {
+            var interf = settings.connectionInterface
+            httpServer.startServer(interf, httpPort);
+            websocketServer.startServer(interf, wsPort);
+        }
     }
 
     function stopServers() {
+        startStopTimer.text = qsTr("Stopping server ...")
+        startStopTimer.start()
         httpServer.stopServer();
         websocketServer.stopServer();
     }
@@ -27,8 +76,22 @@ ApplicationWindow
         return httpServer.isRunning() && websocketServer.isRunning();
     }
 
-    Popup {
-        id: popup
+    function restartServers() {
+        loadPopup.load(qsTr("Restarting server"), 2000)
+        app.stopServers()
+        app.startServers()
+    }
+
+    function openPageHeadlessMode() {
+        pageStack.push(Qt.resolvedUrl("pages/PageHeadlessMode.qml"))
+    }
+
+    function openPageAbout() {
+        pageStack.push(Qt.resolvedUrl("pages/PageAbout.qml"))
+    }
+
+    function openPageClipboardMode() {
+        pageStack.push(Qt.resolvedUrl("pages/PageClipboardMode.qml"))
     }
 }
 

@@ -7,3 +7,13 @@ node_modules
 harbour-wlan-keyboard/qml/pages/HomePage copy 2.qml
 harbour-wlan-keyboard/qml/pages/HomePage copy 3.qml
 *.pro.user.*
+harbour-wlan-keyboard.sublime-project
+harbour-wlan-keyboard.sublime-workspace
+.idea
+bundle.js
+dist/index.html
+npm-debug.log
+harbour-wlan-html-react/dist
+harbour-wlan-keyboard.spec.22200
+harbour-wlan-html/dist
+harbour-wlan-keyboard-html/dist

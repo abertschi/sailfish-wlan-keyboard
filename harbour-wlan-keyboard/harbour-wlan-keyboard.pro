@@ -13,14 +13,19 @@
 
 TARGET = harbour-wlan-keyboard
 
-CONFIG += sailfishapp warn_off plugin c++11
+CONFIG += sailfishapp warn_off plugin c++11 qdbus
+
+include(gitversion.pri)
 
 SOURCES += \
     $$PWD/src/harbour-wlan-keyboard.cpp \
     $$PWD/src/http_server.cpp \
     $$PWD/src/websocket_server.cpp \
     src/utils.cpp \
-    src/server_configurator.cpp
+    src/server_configurator.cpp \
+    src/server_endpoint.cpp \
+    src/settings.cpp \
+    src/headless_keyboard_delegate.cpp
 
 QT += core gui quick network
 
@@ -35,10 +40,28 @@ OTHER_FILES += \
     translations/*.ts \
     harbour-wlan-keyboard.desktop \
     harbour-wlan-keyboard.png \
-    index.html \
+    qml/pages/img/headless.gif \
+    qml/pages/img/clipboard.gif \
     qm/cover/cover.png \
-    qml/pages/HomePage.qml \
-    qml/pages/Popup.qml
+    qml/components/MyActionButton.qml \
+    qml/services/LocalStore.js \
+    qml/components/Settings.qml \
+    qml/components/AboutImage.qml \
+    qml/components/AppEvents.qml \
+    qml/components/RuntimeActiveState.qml \
+    qml/components/RuntimeNoConnectivityState.qml \
+    qml/components/RuntimeInactivState.qml \
+    qml/pages/PageAbout.qml \
+    qml/pages/PageHeadlessMode.qml \
+    qml/pages/PageContainer.qml \
+    qml/pages/TabRuntime.qml \
+    qml/pages/TabConfig.qml \
+    qml/pages/PageClipboardMode.qml \
+    qml/components/PopupBase.qml \
+    qml/components/PopupError.qml \
+    qml/components/PopupLoad.qml \
+    404.html
+    #../harbour-wlan-html-react/dist/index.html
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -49,11 +72,14 @@ HEADERS += \
     src/http_server.h \
     src/websocket_server.h \
     src/utils.h \
-    src/server_configurator.h
+    src/server_configurator.h \
+    src/start_server_input.h \
+    src/server_endpoint.h \
+    src/settings.h \
+    src/headless_keyboard_delegate.h
 
 include(inc/qhttpserver/qhttpserver.pri)
 include(inc/QtWebsocket/qtwebsocket_headers.pri)
-include(inc/rapidjson/rapidjson.pri)
 
 # Third Party libs
 LIB_BASE = _DO_DEFINE
@@ -78,9 +104,12 @@ lib.path = \
 
 INSTALLS += lib
 
-resources.files += index.html
-resources.path = /usr/share/harbour-wlan-keyboard
+html.files += ../harbour-wlan-html-react/dist/*
+html.path = /usr/share/harbour-wlan-keyboard/publish
 
-INSTALLS += resources
+html404.files += 404.html
+html404.path = /usr/share/harbour-wlan-keyboard/
 
+INSTALLS += html html404
 
+RESOURCES +=

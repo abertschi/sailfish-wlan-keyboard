@@ -3,6 +3,7 @@
 #include <QNetworkInterface>
 #include <QClipboard>
 #include <QGuiApplication>
+#include "server_endpoint.h"
 #define UTILS_H
 
 class Utils : public QObject
@@ -11,7 +12,12 @@ class Utils : public QObject
 public:
     Utils(QObject *parent = 0);
 
-    static QString getIpAddress();
+    Q_INVOKABLE QVariant getAvailableEndpointsAsQVariant();
+    static QList<ServerEndpoint*> getAvailableEndpoints();
+    Q_INVOKABLE static int getAvailableEndpointSize();
+
+    static QHostAddress getHostAddressByInterfaceName(QString name);
+    //static QList<QHostAddress> Utils::getAllHostAdresses();
 
     void setClipboard(QString content);
     QClipboard * getClipboard();
@@ -20,5 +26,6 @@ private:
     QClipboard *m_clipboard;
 
 };
+
 
 #endif // UTILS_H

@@ -1,0 +1,202 @@
+body {
+  color: #4d4d4d;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-smoothing: antialiased;
+  background: none repeat scroll 0 0 #f5f5f5;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  font-weight: 100; }
+
+h1 {
+  font-weight: 100;
+  font-size: 55px;
+  opacity: .7; }
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }
+
+.header {
+  padding-top: 6em; }
+
+.header__title {
+  text-align: center; }
+
+.message {
+  border: none;
+  font-weight: 100;
+  padding: 15px 5px 1px 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid #dddddd;
+  background-color: #ffffff; }
+
+.configuration {
+  background-color: white;
+  height: 3em;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2); }
+
+.configuration__status {
+  float: right;
+  margin-right: 30px;
+  height: 100%;
+  line-height: 100%; }
+
+.text__center {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
+.footer {
+  margin-top: 5em;
+  font-size: 12px;
+  font-style: italic; }
+
+.lineHead {
+  overflow: hidden;
+  text-align: center; }
+
+.lineHead a {
+  text-decoration: none;
+  color: #c1c1c1; }
+
+.lineHead:before,
+.lineHead:after {
+  background-color: #e2e2e2;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%; }
+
+.lineHead:before {
+  right: 0.5em;
+  margin-left: -50%; }
+
+.lineHead:after {
+  left: 0.5em;
+  margin-right: -50%; }
+
+.configuration__button {
+  float: right;
+  margin-right: 30px;
+  height: 100%;
+  line-height: 100%; }
+
+.configuration__button_layout {
+  border-radius: 3px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  padding: 3px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff; }
+
+.configuration__button_layout--selected {
+  border: 1px solid #b3b3b3;
+  color: #000000; }
+
+::-webkit-input-placeholder {
+  font-style: italic; }
+
+:-ms-input-placeholder {
+  font-style: italic; }
+
+:-moz-placeholder {
+  font-style: italic; }
+
+::-moz-placeholder {
+  font-style: italic; }
+
+.message__input__textfield {
+  width: 100%;
+  border: medium none; }
+
+.message__input__textfield:focus {
+  outline: 0px; }
+
+.message__input {
+  box-sizing: border-box;
+  font-size: 24px;
+  line-height: 1.4em;
+  width: auto;
+  overflow: hidden;
+  background-color: blue;
+  background: none;
+  background-color: white; }
+
+.message__input_icon {
+  float: left;
+  border: medium none;
+  box-sizing: border-box;
+  font-size: 24px;
+  line-height: 1.4em;
+  box-sizing: border-box;
+  width: 70px;
+  text-align: center;
+  color: #acacae; }
+
+#forkongithub a {
+  background: #952a1b;
+  color: #fff;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: 100;
+  text-align: center;
+  padding: 0px -500px 0px 20px;
+  font-size: 12px;
+  line-height: 2rem;
+  position: relative;
+  transition: 0.5s; }
+
+#forkongithub a:hover {
+  background: #952a1b;
+  color: #fff; }
+
+#forkongithub a::before, #forkongithub a::after {
+  content: "";
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  height: 1px;
+  background: #fff; }
+
+#forkongithub a::after {
+  bottom: 1px;
+  top: auto; }
+
+@media screen and (min-width: 500px) {
+  #forkongithub {
+    position: absolute;
+    display: block;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    overflow: hidden;
+    height: 200px;
+    z-index: 9999; }
+  #forkongithub a {
+    width: 230px;
+    position: absolute;
+    top: 120px;
+    right: -50px;
+    transform: rotate(315deg);
+    -webkit-transform: rotate(315deg);
+    -ms-transform: rotate(315deg);
+    -moz-transform: rotate(315deg);
+    -o-transform: rotate(315deg);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); } }

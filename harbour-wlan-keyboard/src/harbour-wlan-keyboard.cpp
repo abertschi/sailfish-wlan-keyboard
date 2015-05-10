@@ -28,9 +28,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifdef QT_QML_DEBUG
 #include <QtQuick>
-
 #include <sailfishapp.h>
 #include <QDebug>
 #include <QDir>
@@ -40,7 +38,17 @@
 #include <QGuiApplication>
 
 #include "server_configurator.h"
-#endif
+#include "settings.h"
+
+static QJSValue appVersionSingletonProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+
+    QJSValue appInfo = scriptEngine->newObject();
+    appInfo.setProperty("version", GIT_VERSION);
+    return appInfo;
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -49,6 +57,15 @@ int main(int argc, char *argv[])
 
     QScopedPointer<ServerConfigurator> serverConfigurator (new ServerConfigurator(app.data()));
     serverConfigurator->configure(view.data());
+
+    qmlRegisterSingletonType("harbour.wlan.keyboard", 1, 0, "AppInfo", appVersionSingletonProvider);
+
+    Utils appUtils;
+    view->rootContext()->setContextProperty("utils", &appUtils);
+
+    Settings &settings = Settings::getInstance();
+    view->rootContext()->setContextProperty("_qtSettings", &settings);
+    qmlRegisterType<Settings>("harbour.wlan.keyboard",1,0,"Settings");
 
     view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
     view->showFullScreen();
