@@ -1,18 +1,18 @@
 Name: harbour-wlan-keyboard
-Summary: Wlan keyboard for Sailfish OS
-Version: 0.1
+Summary: The sailfish-wlan-keyboard provides an easy way to use you your computer keyboard to type on your phone.
+Version: 0.3.1
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # http://gitorious.org/meego-developer-tools/spectacle/blobs/master/data/GROUPS
 Group: Qt/Qt
-URL: http://example.org/
-License: LICENSE
+URL: https://github.com/abertschi/sailfish-wlan-keyboard
+License: GNU GENERAL PUBLIC LICENSE Version 3
 # This must be generated before uploading a package to a remote build service.
 # Usually this line does not need to be modified.
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
-  Short description of my SailfishOS Application
+  Simply connect your phone to WIFI or USB and browse a website on your computer published by your phone. Keystrokes being entered there are transmitted to your phone and inserted at your cursor position. No hassle any longer with tiny smartphone keyboards or just too big fingers.
 Configure: none
 # The qtc5 builder inserts macros to allow QtCreator to have fine
 # control over qmake/make execution
@@ -40,6 +40,7 @@ Requires:
 
 # All installed files
 Files:
+  - '%defattr(-,root,root,-)'
   - '%{_bindir}'
   - '%{_datadir}/%{name}'
   - '%{_datadir}/applications/%{name}.desktop'
