@@ -25,6 +25,7 @@ ApplicationWindow
     Settings {
         id: settings
         property string version: "v1.0";
+        property string paypalDonation: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M7MC5SBL972KG";
     }
 
     PopupLoad {
@@ -51,7 +52,7 @@ ApplicationWindow
     }
 
     function startServers() {
-        startStopTimer.text = "Starting server ..."
+        startStopTimer.text = qsTr("Starting server ...")
         startStopTimer.start()
         var httpPort = settings.httpPort
         var wsPort = settings.wsPort;
@@ -67,7 +68,7 @@ ApplicationWindow
     }
 
     function stopServers() {
-        startStopTimer.text = "Stopping server ..."
+        startStopTimer.text = qsTr("Stopping server ...")
         startStopTimer.start()
         httpServer.stopServer();
         websocketServer.stopServer();
@@ -78,7 +79,7 @@ ApplicationWindow
     }
 
     function restartServers() {
-        loadPopup.load("Restarting server", 2000)
+        loadPopup.load(qsTr("Restarting server"), 2000)
         app.stopServers()
         app.startServers()
     }
