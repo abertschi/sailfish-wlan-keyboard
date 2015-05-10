@@ -13,6 +13,8 @@ if (wsEndpoint == debugCheck) {
 
 JollaAppConn.connect(wsEndpoint);
 
+window.React = React;
+
 React.render(
     <WlanKeyboard />,
     document.getElementById('app')
