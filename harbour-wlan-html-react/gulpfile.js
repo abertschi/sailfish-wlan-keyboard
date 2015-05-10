@@ -1,16 +1,18 @@
-var gulp = require('gulp');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var reactify = require('reactify');
-var watchify = require('watchify');
-var connect = require('gulp-connect');
-var sass = require('gulp-sass');
-var inlinesource = require('gulp-inline-source');
-var img64 = require('gulp-img64');
-var gulpif = require('gulp-if');
-var argv = require('yargs').argv;
-var uglify = require('gulp-uglify');
-var streamify = require('gulp-streamify');
+var gulp            = require('gulp');
+var browserify      = require('browserify');
+var source          = require('vinyl-source-stream');
+var reactify        = require('reactify');
+var watchify        = require('watchify');
+var connect         = require('gulp-connect');
+var sass            = require('gulp-sass');
+var inlinesource    = require('gulp-inline-source');
+var img64           = require('gulp-img64');
+var gulpif          = require('gulp-if');
+var argv            = require('yargs').argv;
+var uglify          = require('gulp-uglify');
+var streamify       = require('gulp-streamify');
+
+var production = argv.production == true;
 
 // live reload
 gulp.task('connect', function () {
@@ -25,9 +27,9 @@ gulp.task('connect', function () {
 gulp.task('browserify', function () {
     var browserifyBundle = browserify(
         {
-            entries: ['./js/app.js'],
+            entries: ['./app/js/app.js'],
             transform: [reactify],
-            debug: !argv.release,
+            debug: ! production,
             cache: {}, packageCache: {}, fullPaths: false
         }
     );
@@ -37,35 +39,55 @@ gulp.task('browserify', function () {
         .on('update', function () {
             console.log('Updating changes');
             watcher.bundle().pipe(source('bundle.js'))
-                .pipe(gulp.dest('./js/'));
+                .pipe(gulp.dest('./app/js/'));
         })
         .bundle() // Create the initial bundle when starting the task
         .pipe(source('bundle.js'))
-        .pipe(gulp.dest('./js/'));
+        .pipe(gulp.dest('./app/js/'));
 });
 
 // styles
 gulp.task('sass', function () {
-    return gulp.src('css/**/*.scss')
+    return gulp.src('./app/css/**/*.scss')
         .pipe(sass())
-        .pipe(gulp.dest('./css'));
+        .pipe(gulp.dest('./app/css'));
 });
 
 
-// create single file in ./dist if --release given
-gulp.task('dist', function () {
-    return gulp.src('*.html')
-        .pipe(gulpif(argv.release, inlinesource()))
-        .pipe(gulpif(argv.release, img64()))
+gulp.task('dist-html', function() {
+    return gulp.src(['./app/*.html'])
         .pipe(gulp.dest('./dist'))
-        //.pipe(gulpif(argv.release, streamify(uglify())))
         .pipe(connect.reload());
 });
 
-gulp.task('watch', function () {
-    gulp.watch(['./**/*.scss'], ['sass']);
-    gulp.watch(['./*.html', './**/*.css', './js/bundle.js'], ['dist']);
+gulp.task('dist-style', function() {
+    return gulp.src(['./app/css/**/*.css'])
+        .pipe(gulp.dest('./dist/css'));
+        //.pipe(gulpif(argv.release, streamify(uglify())))
+});
+
+gulp.task('dist-js', function() {
+    return gulp.src(['./app/js/bundle.js'])
+        .pipe(gulp.dest('./dist/js'));
+});
+
+gulp.task('dist-img', function() {
+    return gulp.src(['./app/img/**/*.*'])
+        .pipe(gulp.dest('./dist/img'));
 });
 
 
-gulp.task('default', ['browserify', 'watch', 'connect']);
+gulp.task('watch', function () {
+    gulp.watch(['./app/css/**/*.scss'], ['sass']);
+
+    if (production) {
+        gulp.watch(['./app/*.html'], ['dist-html']);
+        gulp.watch(['./app/css/**/*.css'], ['dist-style']);
+        gulp.watch(['./app/js/bundle.js'], ['dist-js']);
+        gulp.watch(['./app/img/**/*.*'], ['dist-img']);
+    }
+});
+
+gulp.task('dist', ['dist-html', 'dist-style', 'dist-js', 'dist-img']);
+
+gulp.task('default', ['browserify', 'watch', 'connect', 'dist']);

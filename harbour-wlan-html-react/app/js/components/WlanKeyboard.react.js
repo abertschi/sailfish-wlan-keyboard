@@ -44,7 +44,7 @@ var WlanKeyboard = React.createClass({
 
                     <section className="footer">
                         <div className="lineHead">
-                            <a href="https://github.com/abertschi/sailfish-wlan-keyboard">Released under the GPL v3</a>
+                            <a href="https://github.com/abertschi/sailfish-wlan-keyboard">Released under GPL v3</a>
                         </div>
                     </section>
 
