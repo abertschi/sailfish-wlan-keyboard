@@ -23,7 +23,10 @@ public:
 
     Q_INVOKABLE bool isRunning() const;
 
-    Q_INVOKABLE void setStaticContent(QString filePath);
+    Q_INVOKABLE void setBasePath(QString filePath);
+    Q_INVOKABLE void setError404File(QString filePath);
+
+
     Q_INVOKABLE QString getStaticContent();
 
     Q_INVOKABLE qint16 getPort() const;
@@ -40,7 +43,8 @@ private slots:
 
 private:
     QHttpServer * m_server;
-    QString m_staticContent;
+    QString m_basePath;
+    QString m_error404File;
     bool m_isRunning;
     bool m_isBroadcasting;
 };

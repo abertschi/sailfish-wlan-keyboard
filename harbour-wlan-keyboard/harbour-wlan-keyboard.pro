@@ -59,7 +59,8 @@ OTHER_FILES += \
     qml/pages/PageClipboardMode.qml \
     qml/components/PopupBase.qml \
     qml/components/PopupError.qml \
-    qml/components/PopupLoad.qml
+    qml/components/PopupLoad.qml \
+    404.html
     #../harbour-wlan-html-react/dist/index.html
 
 # to disable building translations every time, comment out the
@@ -103,11 +104,12 @@ lib.path = \
 
 INSTALLS += lib
 
-resources.files += ../harbour-wlan-html-react/dist/index.html
-resources.path = /usr/share/harbour-wlan-keyboard
+html.files += ../harbour-wlan-html-react/dist/*
+html.path = /usr/share/harbour-wlan-keyboard/publish
 
-INSTALLS += resources
+html404.files += 404.html
+html404.path = /usr/share/harbour-wlan-keyboard/
+
+INSTALLS += html html404
 
 RESOURCES +=
-
-

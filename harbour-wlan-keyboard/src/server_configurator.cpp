@@ -20,7 +20,8 @@ void ServerConfigurator::configure(QQuickView *view)
     //connect(m_websocket_server, SIGNAL(processNewClientConnected())), this, SLOT(onNewClientConnected());
 
     this->m_http_server = new http_server(QObject::parent());
-    m_http_server->setStaticContent("/usr/share/harbour-wlan-keyboard/index.html");
+    m_http_server->setBasePath("/usr/share/harbour-wlan-keyboard/publish/");
+    m_http_server->setError404File("/usr/share/harbour-wlan-keyboard/404.html");
     view->rootContext()->setContextProperty("httpServer", m_http_server);
     connect(m_http_server, SIGNAL(modifyHtmlResponse(QString*)), this, SLOT(modifyHtmlContent(QString*)));
 

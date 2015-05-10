@@ -74,10 +74,28 @@ void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp)
 
     QString content;
     QFile file;
-    file.setFileName(this->m_staticContent);
 
-    if(file.open(QIODevice::ReadOnly) == 0) {
-        content="Error in opening file!";
+    if (req->path() == "/") {
+        file.setFileName(this->m_basePath + "index.html");
+    }
+    else {
+        file.setFileName(this->m_basePath + req->path());
+    }
+
+    if(file.open(QIODevice::ReadOnly) == 0)
+    {
+        if (!m_error404File.isNull() || m_error404File != "")
+        {
+            QFile file;
+            file.setFileName(m_error404File);
+            file.open(QIODevice::ReadOnly);
+            qDebug() << m_error404File;
+            QTextStream in(&file);
+            content = in.readAll();
+        } else
+        {
+            content = "Error 404. Cant find file";
+        }
     }
     else {
         QTextStream in(&file);
@@ -95,15 +113,23 @@ bool http_server::isRunning() const
     return m_isRunning;
 }
 
-void http_server::setStaticContent(QString filePath)
+void http_server::setBasePath(QString filePath)
 {
-    qDebug() << "static content set " << filePath;
-    this->m_staticContent = filePath;
+    if (!filePath.endsWith("/")) {
+        filePath = filePath + "/";
+    }
+    qDebug() << "basepath content set " << filePath;
+    this->m_basePath = filePath;
+}
+
+void http_server::setError404File(QString filePath)
+{
+    this->m_error404File = filePath;
 }
 
 QString http_server::getStaticContent()
 {
-    return this->m_staticContent;
+    return this->m_basePath;
 }
 
 qint16 http_server::getPort() const
