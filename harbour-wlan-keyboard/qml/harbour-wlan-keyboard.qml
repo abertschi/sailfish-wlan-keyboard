@@ -24,7 +24,6 @@ ApplicationWindow
 
     Settings {
         id: settings
-        property string version: "v1.0";
         property string paypalDonation: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M7MC5SBL972KG";
     }
 

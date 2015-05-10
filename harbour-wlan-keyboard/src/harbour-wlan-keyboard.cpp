@@ -40,6 +40,16 @@
 #include "server_configurator.h"
 #include "settings.h"
 
+static QJSValue appVersionSingletonProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+
+    QJSValue appInfo = scriptEngine->newObject();
+    appInfo.setProperty("version", GIT_VERSION);
+    return appInfo;
+}
+
+
 int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
@@ -47,6 +57,8 @@ int main(int argc, char *argv[])
 
     QScopedPointer<ServerConfigurator> serverConfigurator (new ServerConfigurator(app.data()));
     serverConfigurator->configure(view.data());
+
+    qmlRegisterSingletonType("harbour.wlan.keyboard", 1, 0, "AppInfo", appVersionSingletonProvider);
 
     Utils appUtils;
     view->rootContext()->setContextProperty("utils", &appUtils);

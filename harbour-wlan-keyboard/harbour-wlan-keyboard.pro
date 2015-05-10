@@ -15,6 +15,8 @@ TARGET = harbour-wlan-keyboard
 
 CONFIG += sailfishapp warn_off plugin c++11 qdbus
 
+include(gitversion.pri)
+
 SOURCES += \
     $$PWD/src/harbour-wlan-keyboard.cpp \
     $$PWD/src/http_server.cpp \

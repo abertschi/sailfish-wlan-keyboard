@@ -1,10 +1,17 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import harbour.wlan.keyboard 1.0
 import "../components"
 
 
 Page {
     id: page
+
+    property string paypalDonate: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M7MC5SBL972KG";
+    property string twitterUrl: "https://twitter.com/andrinbertschi";
+    property string githubUrl: "https://github.com/abertschi/sailfish-wlan-keyboard";
+    property string appVersion: AppInfo.version
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height + 2 * Theme.paddingLarge
@@ -41,7 +48,7 @@ Page {
                     pixelSize: Theme.fontSizeSmall
                     family: Theme.fontFamilyHeading
                 }
-                text: app.settings.version;
+                text: appVersion;
             }
 
             Item {
@@ -86,7 +93,7 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        remorse.execute(qsTr("Browsing Source"), function() { Qt.openUrlExternally("https://github.com/abertschi/sailfish-wlan-keyboard"); } )
+                        remorse.execute(qsTr("Browsing Source"), function() { Qt.openUrlExternally(githubUrl); } )
                     }
                 }
             }
@@ -120,7 +127,7 @@ Page {
                 text: qsTr("Donate")
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
-                    Qt.openUrlExternally(app.settings.paypalDonation);
+                    remorse.execute(qsTr("Browsing PayPal"), function() { Qt.openUrlExternally(paypalDonate); } )
                 }
             }
 
@@ -135,6 +142,12 @@ Page {
                 text: "Andrin Bertschi<br/> Twitter: <i>@andrinbertschi</i>"
                 wrapMode: Text.Wrap
                 fontSizeMode: Theme.fontSizeSmall
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                          remorse.execute(qsTr("Browsing Twitter"), function() { Qt.openUrlExternally(twitterUrl); } )
+                    }
+                }
             }
         }
     }
