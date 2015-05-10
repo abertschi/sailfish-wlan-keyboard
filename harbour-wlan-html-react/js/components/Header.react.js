@@ -24,13 +24,14 @@ var Header = React.createClass({
     },
 
     render: function () {
+        var arrowIcon = "\u276F";
         return (
             <section className="header">
                 <div className="header__title">
                     <h1>sailfish-wlan-keyboard</h1>
                 </div>
                 <div className="message">
-                    <div className="message__input_icon">&#10095;</div>
+                    <div className="message__input_icon">{arrowIcon}</div>
                     <TextInput
                         placeholder="Enterd your text"
                         className="message__input__textfield"

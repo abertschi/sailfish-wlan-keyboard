@@ -58,8 +58,8 @@ OTHER_FILES += \
     qml/pages/PageClipboardMode.qml \
     qml/components/PopupBase.qml \
     qml/components/PopupError.qml \
-    qml/components/PopupLoad.qml \
-    ../harbour-wlan-html-react/dist/index.html
+    qml/components/PopupLoad.qml
+    #../harbour-wlan-html-react/dist/index.html
 
 # to disable building translations every time, comment out the
 # following CONFIG line

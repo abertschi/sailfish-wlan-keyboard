@@ -39,23 +39,16 @@ gulp.task('browserify', function () {
         })
         .bundle() // Create the initial bundle when starting the task
         .pipe(source('bundle.js'))
-        .pipe(gulp.dest('./js/'))
-        .pipe(connect.reload());
+        .pipe(gulp.dest('./js/'));
 });
 
 // styles
 gulp.task('sass', function () {
     return gulp.src('css/**/*.scss')
         .pipe(sass())
-        .pipe(gulp.dest('./css'))
-        .pipe(connect.reload());
+        .pipe(gulp.dest('./css'));
 });
 
-// html livereload
-gulp.task('html', function () {
-    return gulp.src('*.html')
-        .pipe(connect.reload());
-});
 
 // create single file in ./dist if --release given
 gulp.task('dist', function () {
@@ -68,7 +61,7 @@ gulp.task('dist', function () {
 
 gulp.task('watch', function () {
     gulp.watch(['./**/*.scss'], ['sass']);
-    gulp.watch(['./*.html', './**/*.css', './js/bundle.js'], ['html', 'dist']);
+    gulp.watch(['./*.html', './**/*.css', './js/bundle.js'], ['dist']);
 });
 
 
