@@ -1,14 +1,16 @@
-var gulp            = require('gulp');
-var browserify      = require('browserify');
-var source          = require('vinyl-source-stream');
-var reactify        = require('reactify');
-var watchify        = require('watchify');
-var connect         = require('gulp-connect');
-var sass            = require('gulp-sass');
-var inlinesource    = require('gulp-inline-source');
-var img64           = require('gulp-img64');
-var gulpif          = require('gulp-if');
-var argv            = require('yargs').argv;
+var gulp = require('gulp');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var reactify = require('reactify');
+var watchify = require('watchify');
+var connect = require('gulp-connect');
+var sass = require('gulp-sass');
+var inlinesource = require('gulp-inline-source');
+var img64 = require('gulp-img64');
+var gulpif = require('gulp-if');
+var argv = require('yargs').argv;
+var uglify = require('gulp-uglify');
+var streamify = require('gulp-streamify');
 
 // live reload
 gulp.task('connect', function () {
@@ -25,8 +27,8 @@ gulp.task('browserify', function () {
         {
             entries: ['./js/app.js'],
             transform: [reactify],
-            debug: true,
-            cache: {}, packageCache: {}, fullPaths: true
+            debug: !argv.release,
+            cache: {}, packageCache: {}, fullPaths: false
         }
     );
     var watcher = watchify(browserifyBundle);
@@ -56,6 +58,7 @@ gulp.task('dist', function () {
         .pipe(gulpif(argv.release, inlinesource()))
         .pipe(gulpif(argv.release, img64()))
         .pipe(gulp.dest('./dist'))
+        //.pipe(gulpif(argv.release, streamify(uglify())))
         .pipe(connect.reload());
 });
 
