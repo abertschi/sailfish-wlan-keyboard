@@ -16,8 +16,8 @@ Name: harbour-wlan-keyboard
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Wlan keyboard for SailfishOS
-Version:    0.1
-Release:    1
+Version:    0.3.0
+Release:    2
 Group:      Qt/Qt
 License:    LICENSE
 URL:        https://github.com/abertschi/sailfish-wlan-keyboard
@@ -37,6 +37,7 @@ Use your computer keyboard as input device on SailfishOS
 
 %prep
 %setup -q -n %{name}-%{version}
+rm $(find . -name .DS_Store)
 
 # >> setup
 # << setup

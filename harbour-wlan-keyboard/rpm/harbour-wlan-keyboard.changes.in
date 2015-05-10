@@ -11,4 +11,10 @@
 * Sat Feb 21 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.1
 - Initial version
 
+* Sun May 10 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.3.0
+- all new design for Qml UI
+- introduce two keyModes: Clipboard and Headless
+- add support for the headless-keyboard-layout
+- add react.js web frontend
+
 
