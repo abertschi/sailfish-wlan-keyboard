@@ -12,3 +12,4 @@ harbour-wlan-keyboard.sublime-workspace
 .idea
 bundle.js
 dist/index.html
+npm-debug.log
