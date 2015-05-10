@@ -4,7 +4,7 @@ var React = require('react');
 var WlanKeyboardStore = require('../stores/WlanKeyboardStore');
 var Header = require('./Header.react');
 var ConnectionStatus = require('./ConnectionStatus.react');
-var KeyModeButton = require('./KeyModeButton.react');
+var KeyModeStatus = require('./KeyModeStatus.react');
 var AppConstants = require('../constants/WlanKeyboardConstants');
 var WlanKeyboardActions = require('../actions/WlanKeyboardActions');
 
@@ -30,43 +30,37 @@ var WlanKeyboard = React.createClass({
     },
 
     render: function () {
-
-        var isHeadless = this.state.keyMode == AppConstants.KeyMode.HEADLESS;
-
         return (
             <div>
                 <div className="container">
                     <Header/>
                     <section className="configuration">
-                        <div className="configuration__button">
-                            <KeyModeButton
-                                label="headless"
-                                onClick={this._onHeadlessClicked}
-                                selected={isHeadless}
-                                classNameSelected="configuration__button_layout--selected"
-                                className="configuration__button_layout text__center"/>
-                        </div>
-                        <div className="configuration__button">
-                            <KeyModeButton
-                                label="clipboard"
-                                onClick={this._onClipboardSelected}
-                                selected={!isHeadless}
-                                classNameSelected="configuration__button_layout--selected"
-                                className="configuration__button_layout text__center"/>
-                        </div>
+
                         <div className="configuration__status">
                             <ConnectionStatus status={this.state.status} className="text__center"/>
                         </div>
 
-
                     </section>
 
+                    <section className="footer">
+                        <div className="lineHead">
+                            <a href="https://github.com/abertschi/sailfish-wlan-keyboard">Released under the GPL v3</a>
+                        </div>
+                    </section>
 
                 </div>
 
 
             </div>
         );
+
+        /*
+         <div className="configuration__button">
+         <KeyModeStatus
+         keyMode={this.state.keyMode}
+         className="configuration__button_layout text__center"/>
+         </div>
+         */
     },
 
     _onChange: function () {

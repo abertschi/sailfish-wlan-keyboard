@@ -18,7 +18,13 @@ h1 {
   max-width: 700px;
   margin: 0 auto;
   padding: 0 20px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }
 
 .header {
   padding-top: 6em; }
@@ -53,9 +59,40 @@ h1 {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%); }
 
+.footer {
+  margin-top: 5em;
+  font-size: 12px;
+  font-style: italic; }
+
+.lineHead {
+  overflow: hidden;
+  text-align: center; }
+
+.lineHead a {
+  text-decoration: none;
+  color: #c1c1c1; }
+
+.lineHead:before,
+.lineHead:after {
+  background-color: #e2e2e2;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%; }
+
+.lineHead:before {
+  right: 0.5em;
+  margin-left: -50%; }
+
+.lineHead:after {
+  left: 0.5em;
+  margin-right: -50%; }
+
 .configuration__button {
-  float: left;
-  margin-left: 30px;
+  float: right;
+  margin-right: 30px;
   height: 100%;
   line-height: 100%; }
 
@@ -63,14 +100,9 @@ h1 {
   border-radius: 3px;
   border: 1px solid #dcdcdc;
   display: inline-block;
-  cursor: pointer;
   padding: 3px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff; }
-
-.configuration__button_layout:hover {
-  border: 1px solid #b3b3b3;
-  color: #000000; }
 
 .configuration__button_layout--selected {
   border: 1px solid #b3b3b3;
@@ -157,7 +189,6 @@ h1 {
     overflow: hidden;
     height: 200px;
     z-index: 9999; }
-
   #forkongithub a {
     width: 230px;
     position: absolute;
@@ -169,5 +200,3 @@ h1 {
     -moz-transform: rotate(315deg);
     -o-transform: rotate(315deg);
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); } }
-
-/*# sourceMappingURL=style.css.map */

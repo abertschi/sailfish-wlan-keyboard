@@ -5,7 +5,7 @@ var WlanKeyboardStore = require('../stores/WlanKeyboardStore');
 
 var Header = React.createClass({
 
-    getStateFromStores: function() {
+    getStateFromStores: function () {
         return {
             keyMode: WlanKeyboardStore.getKeyMode()
         };
@@ -30,7 +30,7 @@ var Header = React.createClass({
                     <h1>sailfish-wlan-keyboard</h1>
                 </div>
                 <div className="message">
-                    <div className="message__input_icon">❯</div>
+                    <div className="message__input_icon">&#10095;</div>
                     <TextInput
                         placeholder="Enterd your text"
                         className="message__input__textfield"
@@ -41,7 +41,7 @@ var Header = React.createClass({
         );
     },
 
-    _onChange: function() {
+    _onChange: function () {
         this.setState(this.getStateFromStores());
     }
 });

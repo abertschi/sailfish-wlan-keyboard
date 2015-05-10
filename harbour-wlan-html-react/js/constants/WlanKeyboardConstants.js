@@ -21,4 +21,4 @@ module.exports = {
             CONNECTED: null,
             NOT_CONNECTED: null
     })
-};
+}

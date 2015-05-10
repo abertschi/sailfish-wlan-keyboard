@@ -102,7 +102,7 @@ var TextInput = React.createClass({
         this.setState({value: eventInput.value, lastValue: eventInput.value});
     },
 
-    _windowListener: function(event) {
+    _windowListener: function (event) {
         var eventInput = React.findDOMNode(this.refs.textInput);
         eventInput.focus();
     }
