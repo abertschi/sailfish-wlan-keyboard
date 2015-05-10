@@ -13,7 +13,7 @@ BASE_GIT_COMMAND = git --git-dir $$PWD/../.git --work-tree $$PWD
  
 # Trying to get version from git tag / revision
 # v-0.0.1
-GIT_VERSION = $$system($$BASE_GIT_COMMAND describe --always --tags --match "v-[0-9]*" --dirty=@ 2> $$NULL_DEVICE)
+GIT_VERSION = $$system($$BASE_GIT_COMMAND describe --always --tags --match "v-[0-9]*" 2> $$NULL_DEVICE)
  
 message($$GIT_VERSION)
 
