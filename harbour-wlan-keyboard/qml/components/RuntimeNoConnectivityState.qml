@@ -12,7 +12,7 @@ Column {
     }
 
     Label {
-        text: "Sorry, no connectivity"
+        text: qsTr("Sorry, no connectivity")
         width: parent.width - 2 * Theme.paddingLarge
         wrapMode: Text.Wrap
         font.bold: true
@@ -23,7 +23,7 @@ Column {
     }
 
     Label {
-        text: "Find a WIFI connection or use USB."
+        text: qsTr("Find a WIFI connection or use USB.")
         width: parent.width - 2 * Theme.paddingLarge
         wrapMode: Text.Wrap
         horizontalAlignment: Text.AlignHCenter

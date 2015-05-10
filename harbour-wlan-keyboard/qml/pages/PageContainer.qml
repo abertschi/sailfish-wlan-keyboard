@@ -4,9 +4,7 @@ import Sailfish.Silica 1.0
 import "../components"
 
 Page {
-    //https://github.com/lukedirtwalker/cutespotify/blob/sailfish/qml/FullControls.qml#L136
     id: page
-
     property int heightHeader: parent.height / 3
     property int heightNavi: Theme.paddingLarge *3
     property int heightTab: parent.height - heightNavi - heightHeader
@@ -24,7 +22,7 @@ Page {
 
                 MenuItem {
                     id: about
-                    text: "About"
+                    text: qsTr("About")
                     onClicked: {
                         app.openPageAbout()
                     }
@@ -32,10 +30,9 @@ Page {
 
                 MenuItem {
                     id: start
-                    text: "Start server"
+                    text: qsTr("Start server")
                     visible: notifications.serverState === notifications._SERVER_STATE_INACTIVE
                     onClicked: {
-                        console.log("clicked");
                         app.startServers();
                         verticalFlick.stop()
                         verticalFlick.running = false
@@ -44,7 +41,7 @@ Page {
                 }
                 MenuItem {
                     id: stop
-                    text: "Stop server"
+                    text: qsTr("Stop server")
                     visible: notifications.serverState === notifications._SERVER_STATE_ACTIVE
                     onClicked: {
                         app.stopServers();
@@ -98,11 +95,7 @@ Page {
         property bool tabRuntimeIsShowing
         property bool tabConfigIsShowing
 
-        NumberAnimation { target: parent; property: "contentX"; duration: 1000; easing.type: Easing.InOutQuad }
-
-        onContentXChanged: {
-            console.log("changed")
-        }
+        //NumberAnimation { target: parent; property: "contentX"; duration: 1000; easing.type: Easing.InOutQuad }
 
         highlightFollowsCurrentItem: true
 

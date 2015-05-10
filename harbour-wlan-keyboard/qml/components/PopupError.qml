@@ -9,10 +9,7 @@ PopupBase {
     textLabel.font.bold: true
 
     Component.onCompleted: {
-        // debugging
-        //show("Port requires 4 digits", 100000)
     }
-
 
     Label {
         text: "!"

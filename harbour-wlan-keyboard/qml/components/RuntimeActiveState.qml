@@ -11,7 +11,6 @@ Column {
     anchors {
         left: parent.left
         //verticalCenter: parent.verticalCenter
-
     }
     spacing:10
 
@@ -45,7 +44,7 @@ Column {
         }
 
         Text {
-            text: "Open the above site in your browser"
+            text: qsTr("Open the above site in your browser")
             color: Theme.secondaryColor
             font.pixelSize: Theme.fontSizeExtraSmall
             anchors.horizontalCenter: parent.horizontalCenter

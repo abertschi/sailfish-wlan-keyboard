@@ -36,19 +36,17 @@ Item {
 
             ComboBox {
                 id: interfaceComboBox
-                label: "Interface"
-                description: "Option <i>Any</i> &nbsp; exposes to WLAN and USB"
+                label: qsTr("Interface")
+                description: qsTr("Option <i>Any</i> &nbsp; exposes to WLAN and USB")
                 focus: true
                 width: parent.width
                 currentIndex: settings.connectionInterfaceIndex
                 anchors.left: parent.left
 
-                onEntered: console.log("entered")
-
                 menu: ContextMenu {
                     MenuItem {
                         id: anyContextMenu
-                        text: "Any"
+                        text: qsTr("Any")
                     }
                     Repeater {
                         id: interfaceRepeater
@@ -87,7 +85,7 @@ Item {
 
                 Label {
                     id: portLabel
-                    text: "Port"
+                    text: qsTr("Port")
                     anchors.top: parent.top
                 }
 
@@ -106,7 +104,7 @@ Item {
                     horizontalAlignment: TextInput.AlignTop
                     EnterKey.onClicked: {
                         if (portTextInput.text.length != 4) {
-                            popupError.show("Port requires 4 digits")
+                            popupError.show(qsTr("Port requires 4 digits"))
                             console.log("Port is invalid")
                             color: "red"
                         }
@@ -124,7 +122,7 @@ Item {
             }
 
             Label {
-                text: "Port to listen for keystrokes"
+                text: qsTr("Port to listen for keystrokes")
                 anchors {
                     rightMargin: Theme.paddingLarge
                     leftMargin: Theme.paddingLarge
@@ -136,8 +134,8 @@ Item {
             }
 
             TextSwitch {
-                text: "Start on launch"
-                description: "Start server on app launch"
+                text: qsTr("Start on launch")
+                description: qsTr("Start server on app launch")
                 checked: settings.autostart
                 onCheckedChanged: {
                     settings.autostart = checked
@@ -157,13 +155,13 @@ Item {
             ComboBox {
                 id: keyboardMode
                 width: parent.width
-                label: "Keyboard mode"
+                label: qsTr("Keyboard mode")
                 currentIndex: settings.keyboardMode === settings._KEYBOARD_MODE_CLIPBOARD ? 0 : 1
                 anchors.left: parent.left
-                description: "Mode to process incomming keystrokes"
+                description: qsTr("Mode to process incomming keystrokes")
                 menu: ContextMenu {
-                    MenuItem { text: "Clipboard" }
-                    MenuItem { text: "Headless" }
+                    MenuItem { text: qsTr("Clipboard") }
+                    MenuItem { text: qsTr("Headless") }
                 }
 
                 onCurrentIndexChanged: {

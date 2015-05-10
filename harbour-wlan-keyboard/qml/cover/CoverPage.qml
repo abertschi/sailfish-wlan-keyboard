@@ -58,8 +58,8 @@ CoverBackground {
         Label {
             id: keyboardMode
             text: {
-                var mode = settings.keyboardMode === settings._KEYBOARD_MODE_CLIPBOARD ? "Clipboard" : "Headless";
-                return "Mode: <b>" + mode + "</b>"
+                var mode = settings.keyboardMode === settings._KEYBOARD_MODE_CLIPBOARD ? qsTr("Clipboard") : qsTr("Headless");
+                return qsTr("Mode:") + " <b>" + mode + "</b>"
             }
             wrapMode: Text.Wrap
             horizontalAlignment: Text.AlignHCenter

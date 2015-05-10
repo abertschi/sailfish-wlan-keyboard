@@ -49,14 +49,6 @@ MouseArea {
         anchors.leftMargin: Theme.paddingLarge
         anchors.verticalCenter: parent.verticalCenter
 
-        /*
-        Rectangle {
-            anchors.fill: parent
-            color: "red"
-
-        }
-
-        */
     }
 
     Label {
@@ -65,7 +57,6 @@ MouseArea {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: placeHolder.right
         anchors.leftMargin: Theme.paddingLarge
-        //font.bold: false
         font.pixelSize: Theme.fontSizeSmall
         color: "black"
     }
@@ -80,8 +71,6 @@ MouseArea {
         }
     }
 
-    //Component.onCompleted: show("Port requires 4 digits")
-
     function _popupShow() {
         popupBase.state = "visible"
     }
@@ -93,8 +82,6 @@ MouseArea {
     function hide() {
         if (hideTimer.running)
             hideTimer.stop()
-        /*if(waitingBullets.running)
-            waitingBullets.stop() */
         _popupHide()
     }
 

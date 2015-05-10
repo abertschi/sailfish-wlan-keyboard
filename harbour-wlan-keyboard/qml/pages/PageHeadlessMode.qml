@@ -27,13 +27,13 @@ Page {
             PageHeader { title: "Headless mode" }
 
             Label {
-                text: "This mode automatically inserts incomming keystrokes into your currently focused widget."
+                text: qsTr("This mode automatically inserts incomming keystrokes into your currently focused widget.")
                 width: parent.width
                 wrapMode: Text.Wrap
             }
 
             SectionHeader {
-                text: "Preview"
+                text: qsTr("Preview")
                 font.bold: true
             }
 
@@ -48,7 +48,7 @@ Page {
             }
 
             SectionHeader {
-                text: "Configuration"
+                text: qsTr("Configuration")
                 font.bold: true
                 //height: Theme.paddingMedium
             }
@@ -88,7 +88,7 @@ Page {
             } */
 
             Label {
-                text: "To use this mode, you need to install the <b> headless keyboard </b> layout."
+                text: qsTr("To use this mode, you need to install the <b> headless keyboard </b> layout.")
                 width: parent.width
                 wrapMode: Text.Wrap
                 //horizontalAlignment: Text.AlignHCenter
@@ -96,7 +96,7 @@ Page {
             }
 
             Label {
-                text: "The headless keyboard layout is completely Free and Open Source Software. However, alternative keyboard layouts are not yet supported in the official Harbor store. Therefore, you install it on your own risk."
+                text: qsTr("The headless keyboard layout is completely Free and Open Source Software. However, alternative keyboard layouts are not yet supported in the official Harbor store. Therefore, you install it on your own risk.")
                 width: parent.width
                 wrapMode: Text.Wrap
                 //horizontalAlignment: Text.AlignHCenter
@@ -104,13 +104,13 @@ Page {
             }
 
             SectionHeader {
-                text: "Download"
+                text: qsTr("Download")
                 font.bold: true
                 //height: Theme.paddingMedium
             }
 
             Label {
-                text: "Download the keyboard with the Button below or take a look at the <a href='https://github.com/abertschi/sailfish-headless-keyboard-layout'>source code</a>."
+                text: qsTr("Download the keyboard with the Button below or take a look at the <a href='https://github.com/abertschi/sailfish-headless-keyboard-layout'>source code</a>.")
                 width: parent.width
                 wrapMode: Text.Wrap
                 //horizontalAlignment: Text.AlignHCenter
@@ -118,16 +118,16 @@ Page {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: remorse.execute("Browsing Source Code ", function() { Qt.openUrlExternally("https://github.com/abertschi/sailfish-headless-keyboard-layout"); } )
+                    onClicked: remorse.execute(qsTr("Browsing Source Code "), function() { Qt.openUrlExternally("https://github.com/abertschi/sailfish-headless-keyboard-layout"); } )
                 }
             }
 
             Button {
-                text: "Download"
+                text: qsTr("Download")
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 onClicked: {
-                    remorse.execute("Browsing Download Page ", function() { Qt.openUrlExternally("https://openrepos.net/content/abertschi/headless-keyboard"); } )
+                    remorse.execute(qsTr("Browsing Download Page "), function() { Qt.openUrlExternally("https://openrepos.net/content/abertschi/headless-keyboard"); } )
                 }
             }
 

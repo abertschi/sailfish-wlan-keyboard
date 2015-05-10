@@ -21,16 +21,16 @@ Page {
                 right: parent.right
             }
 
-            PageHeader { title: "Clipboard Mode" }
+            PageHeader { title: qsTr("Clipboard Mode") }
 
             Label {
                 width: parent.width
-                text: "This mode copies all incomming keystrokes to your clipboard. You need to paste them into a focused widget."
+                text: qsTr("This mode copies all incomming keystrokes to your clipboard. You need to paste them into a focused widget.")
                 wrapMode: Text.Wrap
             }
 
             SectionHeader {
-                text: "Preview"
+                text: qsTr("Preview")
                 font.bold: true
             }
 

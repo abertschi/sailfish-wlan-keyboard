@@ -72,7 +72,7 @@ Page {
             }
 
             SectionHeader {
-                text: "Privacy"
+                text: qsTr("Privacy")
                 font.bold: true
                 height: Theme.paddingMedium
             }
@@ -86,13 +86,13 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        remorse.execute("Browsing Source", function() { Qt.openUrlExternally("https://github.com/abertschi/sailfish-wlan-keyboard"); } )
+                        remorse.execute(qsTr("Browsing Source"), function() { Qt.openUrlExternally("https://github.com/abertschi/sailfish-wlan-keyboard"); } )
                     }
                 }
             }
 
             SectionHeader {
-                text: "Feedback"
+                text: qsTr("Feedback")
                 font.bold: true
                 height: Theme.paddingMedium
             }
@@ -105,7 +105,7 @@ Page {
             }
 
             SectionHeader {
-                text: "Donation"
+                text: qsTr("Donation")
                 font.bold: true
                 height: Theme.paddingMedium
             }
@@ -117,25 +117,22 @@ Page {
             }
 
             Button {
-                text: "Donate"
+                text: qsTr("Donate")
                 anchors.horizontalCenter: parent.horizontalCenter
-
                 onClicked: {
-
-                    console.log('open url')
+                    Qt.openUrlExternally(app.settings.paypalDonation);
                 }
             }
 
             SectionHeader {
-                text: "Autor"
+                text: qsTr("Autor")
                 font.bold: true
                 height: Theme.paddingMedium
             }
 
             Label {
                 width: parent.width
-                //horizontalAlignment: Text.AlignHCenter
-                text: "Andrin Bertschi<br/>www.abertschi.ch <br/>Twitter: <i>@andrinbertschi</i>"
+                text: "Andrin Bertschi<br/> Twitter: <i>@andrinbertschi</i>"
                 wrapMode: Text.Wrap
                 fontSizeMode: Theme.fontSizeSmall
             }

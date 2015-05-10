@@ -2,37 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>HomePage</name>
-    <message>
-        <source>Configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Server is running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Server is not running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect your phone to a WLAN network.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>PageAbout</name>
     <message>
         <source>sailfish-wlan-keyboard</source>
@@ -52,6 +21,29 @@
     </message>
     <message>
         <source>Your personal information belongs to you. This is Free and OpenSource Software that respects your privacy. Dig into the code on &lt;a href=&apos;https://github.com/abertschi/sailfish-wlan-keyboard&apos;&gt;Github &lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Privacy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Donate</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PageClipboardMode</name>
+    <message>
+        <source>Clipboard Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This mode copies all incomming keystrokes to your clipboard. You need to paste them into a focused widget.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

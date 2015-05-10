@@ -14,7 +14,7 @@ Column {
     height: parent.height
 
     Label {
-        text: "Ready to start"
+        text: qsTr("Ready to start")
         width: parent.width - 2 * Theme.paddingLarge
         wrapMode: Text.Wrap
         font.bold: true
@@ -25,7 +25,7 @@ Column {
     }
 
     Label {
-        text: "Run the server and start typing."
+        text: qsTr("Run the server and start typing.")
         width: parent.width - 2 * Theme.paddingLarge
         wrapMode: Text.Wrap
         horizontalAlignment: Text.AlignHCenter
