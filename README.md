@@ -9,6 +9,21 @@ Simply connect your phone to WIFI or USB and browse a website on your computer p
 
 ![Sailfish WlanKeyboard](http://abertschi.ch/default_public/harbour-wlan-keyboard-html-and-phone.png)
 
+
+
+## Keyboard Modes
+The saiflish-wlan-keyboard features a *clipboard* and a *headless* keyboard modes for text insert.
+
+### Headless Keyboard Mode
+The former mode is based on an alternative keyboard and relies on the [sailfish-headless-keyboard-dbus](https://github.com/abertschi/sailfish-headless-keyboard-dbus) implementation.
+
+![headless-keyboard-layout](http://abertschi.ch/default_public/harbour-wlan-keyboard-devel-clipboard-headless.gif)
+
+### Clipboard based Keyboard Mode
+The latter mode copies incoming keystrokes into the clipboard.
+
+![headless-keyboard-layout](http://abertschi.ch/default_public/harbour-wlan-keyboard-devel-clipboard.gif)
+
 ==================================================================
 
 ## Developer notes
