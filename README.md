@@ -23,6 +23,9 @@ The latter mode copies incoming keystrokes into the clipboard.
 
 ![headless-keyboard-layout](http://abertschi.ch/default_public/harbour-wlan-keyboard-devel-clipboard.gif)
 
+## Download Binary
+Search for `wlan-keyboard` in the harbour store or download the binary from [openrepos.net](https://openrepos.net/content/abertschi/sailfish-wlan-keyboard).
+
 ==================================================================
 
 ## Developer notes
