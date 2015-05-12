@@ -1,0 +1,20 @@
+# Harbour Store Description
+
+## Description:
+The sailfish-wlan-keyboard provides an easy way to use you your computer keyboard to type on your phone.
+
+Simply connect your phone to WIFI or USB and browse a website on your computer published by your phone. Keystrokes being entered there are transmitted to your phone and inserted at your cursor position. No hassle any longer with tiny smartphone keyboards or just too big fingers.
+
+## Summary
+Use your computer keyboard to type on your phone.
+
+## Recent changes
+
+-v-0.3.0:
++ all new design
++ introduce two keyModes: Clipboard and Headless
++ add support for the headless-keyboard-layout
++ add react.js web frontend
+
+- v-0.1.0:
++ Initial version. Added basic UI for simple on/off switching of server.
