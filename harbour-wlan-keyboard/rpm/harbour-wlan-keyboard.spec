@@ -16,7 +16,7 @@ Name:       harbour-wlan-keyboard
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    The sailfish-wlan-keyboard provides an easy way to use you your computer keyboard to type on your phone.
-Version:    0.3.2
+Version:    0.3.1
 Release:    1
 Group:      Qt/Qt
 License:    GNU GENERAL PUBLIC LICENSE Version 3
