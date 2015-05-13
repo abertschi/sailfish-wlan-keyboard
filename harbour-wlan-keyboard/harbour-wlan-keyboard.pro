@@ -37,7 +37,7 @@ OTHER_FILES += \
     rpm/harbour-wlan-keyboard.changes.in \
     rpm/harbour-wlan-keyboard.spec \
     rpm/harbour-wlan-keyboard.yaml \
-    translations/*.ts \
+    translations/**.ts \
     harbour-wlan-keyboard.desktop \
     harbour-wlan-keyboard.png \
     qml/pages/img/headless.gif \
@@ -67,6 +67,9 @@ OTHER_FILES += \
 # following CONFIG line
 CONFIG += sailfishapp_i18n static
 TRANSLATIONS += translations/harbour-wlan-keyboard-de.ts
+TRANSLATIONS += translations/harbour-wlan-keyboard-sv.ts
+TRANSLATIONS += translations/harbour-wlan-keyboard-zh_CN.ts
+TRANSLATIONS += translations/harbour-wlan-keyboard.ts
 
 HEADERS += \
     src/http_server.h \
@@ -110,6 +113,6 @@ html.path = /usr/share/harbour-wlan-keyboard/publish
 html404.files += 404.html
 html404.path = /usr/share/harbour-wlan-keyboard/
 
-INSTALLS += html html404
+INSTALLS += html html404 trans
 
 RESOURCES +=
