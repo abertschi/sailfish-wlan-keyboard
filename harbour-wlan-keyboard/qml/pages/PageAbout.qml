@@ -132,7 +132,7 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Autor")
+                text: qsTr("Author")
                 font.bold: true
                 height: Theme.paddingMedium
             }

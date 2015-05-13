@@ -59,7 +59,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Autor</source>
+        <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

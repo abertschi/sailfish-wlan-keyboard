@@ -59,7 +59,7 @@
         <translation>Donation</translation>
     </message>
     <message>
-        <source>Autor</source>
+        <source>Author</source>
         <translation>Utvecklare</translation>
     </message>
     <message>
