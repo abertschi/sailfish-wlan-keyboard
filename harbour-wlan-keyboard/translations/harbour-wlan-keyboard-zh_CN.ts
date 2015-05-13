@@ -185,7 +185,7 @@
     </message>
     <message>
         <source>Option &lt;i&gt;Any&lt;/i&gt; &amp;nbsp; exposes to WLAN and USB</source>
-        <translation>&lt;i&gt;任何&lt;/i&gt; &amp;nbsp; 选项表示暴露在WLAN和USB下</translation>
+        <translation>&lt;i&gt;任何&lt;/i&gt; &amp;nbsp; 选项表示同时使用WLAN和USB</translation>
     </message>
     <message>
         <source>Any</source>
