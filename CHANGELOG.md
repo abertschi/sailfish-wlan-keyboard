@@ -1,8 +1,6 @@
 # Change Log
 
-## [Unreleased](https://github.com/abertschi/sailfish-wlan-keyboard/tree/HEAD)
-
-## [v-0.3.1](https://github.com/abertschi/sailfish-wlan-keyboard/tree/v-0.3.1) (2015-05-13)
+## [v-0.3.1](https://github.com/abertschi/sailfish-wlan-keyboard/tree/v-0-3-1) (2015-05-13)
 
 - add Swedish tranlsations
 - add Chinese Simplified translations
