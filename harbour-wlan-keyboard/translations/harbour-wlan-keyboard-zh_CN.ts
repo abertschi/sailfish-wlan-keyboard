@@ -59,7 +59,7 @@
         <translation>资助</translation>
     </message>
     <message>
-        <source>Autor</source>
+        <source>Author</source>
         <translation>作者</translation>
     </message>
     <message>
