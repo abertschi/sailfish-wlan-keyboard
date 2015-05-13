@@ -17,4 +17,6 @@
 - add support for the headless-keyboard-layout
 - add react.js web frontend
 
-
+* Sun May 13 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.3.1
+- add Swedish tranlsations
+- add Chinese Simplified translations
