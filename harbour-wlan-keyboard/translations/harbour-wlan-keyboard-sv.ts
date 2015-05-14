@@ -17,19 +17,19 @@
     </message>
     <message>
         <source>Status: &lt;b&gt;active&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Status: &lt;b&gt;Aktiv&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Status: &lt;b&gt;inactive&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Status: &lt;b&gt;Inaktiv&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Ready to start</source>
-        <translation type="unfinished">Klar att starta</translation>
+        <translation>Klar att starta</translation>
     </message>
     <message>
         <source>Connect your device</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslut din enhet</translation>
     </message>
 </context>
 <context>
@@ -263,7 +263,7 @@
     <name>websocket_server</name>
     <message>
         <source>ping: %1 ms</source>
-        <translation>ping: %1 ms</translation>
+        <translation>Ping: %1 ms</translation>
     </message>
 </context>
 </TS>
