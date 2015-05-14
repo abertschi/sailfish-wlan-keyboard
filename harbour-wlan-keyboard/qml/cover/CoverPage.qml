@@ -9,20 +9,20 @@ CoverBackground {
         State {
             name: "RUNNING"
             when: notifications.serverState === notifications._SERVER_STATE_ACTIVE
-            PropertyChanges { target: statusLabel; text: "Status: <b>active</b>"}
+            PropertyChanges { target: statusLabel; text: qsTr("Status: <b>active</b>")}
             PropertyChanges { target: labelRepeater; model: httpServer.getFullAddresses()}
         },
         State {
             name: "NOT_RUNNING"
             when: notifications.serverState === notifications._SERVER_STATE_INACTIVE
-            PropertyChanges { target: statusLabel; text: "Status: <b>inactive</b>"}
-            PropertyChanges { target: labelRepeater; model: ["Ready to start"]}
+            PropertyChanges { target: statusLabel; text: qsTr("Status: <b>inactive</b>")}
+            PropertyChanges { target: labelRepeater; model: [qsTr("Ready to start")]}
         },
         State {
             when: notifications.serverState === notifications._SERVER_STATE_NO_CONNECTIVITY
             name: "NO_CONNECTION"
             PropertyChanges { target: statusLabel; text: "Status: <b>no connectivity</b>"}
-            PropertyChanges { target: labelRepeater; model: ["Connect your device"]}
+            PropertyChanges { target: labelRepeater; model: [qsTr("Connect your device")]}
         }
     ]
 
