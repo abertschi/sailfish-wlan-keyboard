@@ -20,3 +20,6 @@
 * Sun May 13 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.3.1
 - add Swedish translations
 - add Chinese Simplified translations
+
+* Sun May 30 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.3.2
+- Fix issue in clipboard mode to set new keystrokes correctly in clipboard
