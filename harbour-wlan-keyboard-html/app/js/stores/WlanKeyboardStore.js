@@ -51,6 +51,7 @@ var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
 
     updateServerSettings: function(s) {
         _serverSettings = s;
+        console.log(s);
         this.updateKeyMode(s.keyboardMode);
         this.emitChange();
     }
@@ -84,7 +85,6 @@ AppDispatcher.register(function(action) {
             break;
 
         case WlanKeyboardConstants.ActionTypes.SEND_KEY_ENTER:
-            console.log("new action received" + action);
             JollaAppConnection.sendKeyEnter();
             break;
 
@@ -98,7 +98,6 @@ AppDispatcher.register(function(action) {
 
         case WlanKeyboardConstants.ActionTypes.KEY_MODE_CHANGED:
             WlanKeyboardStore.updateKeyMode(action.keyMode);
-            console.log(action);
             break;
 
         case WlanKeyboardConstants.ActionTypes.CONNECTION_STATUS_CHANGED:

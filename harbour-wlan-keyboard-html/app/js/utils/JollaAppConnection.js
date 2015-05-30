@@ -42,11 +42,9 @@ var JollaAppConnection = {
 
     connect: function (endP) {
         endpoint = endP;
-        try {
-            socket = new WsSocket(endpoint);
-        } catch (e) {
 
-        }
+        console.log("Connecting to websocket at " + endP);
+        socket = new WsSocket(endpoint);
 
         if(!isCheckStatus) {
             checkStatus();
@@ -63,7 +61,6 @@ var JollaAppConnection = {
     },
 
     sendKeyEnter: function () {
-        console.log('socket.send(');
         socket.send('send_key_return', '');
     },
 
