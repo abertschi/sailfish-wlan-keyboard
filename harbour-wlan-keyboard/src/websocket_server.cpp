@@ -70,6 +70,7 @@ void websocket_server::processNewConnection()
         QObject::connect(clientSocket, SIGNAL(pong(quint64)), this, SLOT(processPong(quint64)));
 
         m_clients << clientSocket;
+        emit processNewClientConnected();
 
         qDebug() << "New websocket client connected";
     }

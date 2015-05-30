@@ -17,7 +17,7 @@ void ServerConfigurator::configure(QQuickView *view)
     this->m_websocket_server = new websocket_server(QObject::parent());
     view->rootContext()->setContextProperty("websocketServer", m_websocket_server);
     connect(m_websocket_server, SIGNAL(processMessage(QString*)), this, SLOT(processSocketMessage(QString*)));
-    //connect(m_websocket_server, SIGNAL(processNewClientConnected())), this, SLOT(onNewClientConnected());
+    connect(m_websocket_server, SIGNAL(processNewClientConnected()), this, SLOT(onNewClientConnected()));
 
     this->m_http_server = new http_server(QObject::parent());
     m_http_server->setBasePath("/usr/share/harbour-wlan-keyboard/publish/");
@@ -136,7 +136,7 @@ void ServerConfigurator::onNewClientConnected()
 
 void ServerConfigurator::onSettingsChanged(Settings * s)
 {
-
+    qDebug("Client is requesting app settigs");
     sendSettingsToWsClients(s->toJson());
 }
 
