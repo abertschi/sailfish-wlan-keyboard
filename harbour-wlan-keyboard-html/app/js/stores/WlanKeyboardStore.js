@@ -51,9 +51,9 @@ var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
 
     updateServerSettings: function(s) {
         _serverSettings = s;
-        console.log(s);
         this.updateKeyMode(s.keyboardMode);
         this.emitChange();
+        console.log("Received settings from qt app.");
     }
 
 });
@@ -76,7 +76,6 @@ AppDispatcher.register(function(action) {
             //        "wsPort": 7784
             //    }
 
-            console.log(action.settings);
             WlanKeyboardStore.updateServerSettings(action.settings);
             break;
 
