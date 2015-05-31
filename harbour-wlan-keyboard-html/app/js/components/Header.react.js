@@ -33,7 +33,7 @@ var Header = React.createClass({
                 <div className="message">
                     <div className="message__input_icon">{arrowIcon}</div>
                     <TextInput
-                        placeholder="Enterd your text"
+                        placeholder="Enter your text"
                         className="message__input__textfield"
                         classNameContainer="message__input"
                         keyMode={this.state.keyMode}/>
