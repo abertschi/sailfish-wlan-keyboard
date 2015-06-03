@@ -17,19 +17,19 @@
     </message>
     <message>
         <source>Status: &lt;b&gt;active&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>状态：&lt;b&gt;已激活&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Status: &lt;b&gt;inactive&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>状态：&lt;b&gt;未激活&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Ready to start</source>
-        <translation type="unfinished">准备开始</translation>
+        <translation>准备开始</translation>
     </message>
     <message>
         <source>Connect your device</source>
-        <translation type="unfinished"></translation>
+        <translation>连接到你的设备</translation>
     </message>
 </context>
 <context>
