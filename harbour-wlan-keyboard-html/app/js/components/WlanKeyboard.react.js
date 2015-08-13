@@ -30,16 +30,42 @@ var WlanKeyboard = React.createClass({
     },
 
     render: function () {
+
+        var arrowIcon = "\u276F";
+
         return (
             <div>
                 <div className="container">
                     <Header/>
                     <section className="configuration">
 
+
+
+                        <div className="configuration__status configuration__status">
+                            <div className="configuration__button text__center">
+                                 ...
+                            </div>
+                        </div>
+
                         <div className="configuration__status">
                             <ConnectionStatus status={this.state.status} className="text__center"/>
                         </div>
 
+                        <div className="configuration__status configuration__status">
+                            <div className="configuration__button text__center">
+                                sync clipboards
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="clipboard">
+                        <div className="clipboard__input">
+
+
+                        <input className="clipboard__input_inner" value="Clipboard value">
+                            </input>
+
+                        </div>
                     </section>
 
                     <section className="footer">
