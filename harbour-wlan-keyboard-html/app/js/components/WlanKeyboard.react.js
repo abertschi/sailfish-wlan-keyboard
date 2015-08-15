@@ -13,7 +13,8 @@ var WlanKeyboard = React.createClass({
     getStateFromStores: function () {
         return {
             status: WlanKeyboardStore.getConnectionStatus(),
-            keyMode: WlanKeyboardStore.getKeyMode()
+            keyMode: WlanKeyboardStore.getKeyMode(),
+            clipboard: WlanKeyboardStore.getPhoneClipboard() || "test"
         };
     },
 
@@ -23,6 +24,17 @@ var WlanKeyboard = React.createClass({
 
     componentDidMount: function () {
         WlanKeyboardStore.addChangeListener(this._onChange);
+
+
+
+        setTimeout(function() {
+            //console.log("Checkig cb");
+            //var cb = window.clipboardData.getData('Text');
+            //console.log(cb);
+            //if (cb && WlanKeyboardStore.getPhoneClipboard() != cb) {
+            //    WlanKeyboardActions.actionSetClipboardOnPhone(cb);
+            //}
+        }, 1000);
     },
 
     componentWillUnmount: function () {
@@ -59,11 +71,15 @@ var WlanKeyboard = React.createClass({
                     </section>
 
                     <section className="clipboard">
+
+                        <div className="clibparod__input_icon ">
+                            ❯
+                        </div>
+
                         <div className="clipboard__input">
 
-
-                        <input className="clipboard__input_inner" value="Clipboard value">
-                            </input>
+                        <input className="clipboard__input_inner" value={this.state.clipboard} readonly="true" placeholder="Copy text into your clipboard">
+                        </input>
 
                         </div>
                     </section>

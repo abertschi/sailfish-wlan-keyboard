@@ -12,6 +12,8 @@ var _connectionStatus = {};
 
 var _keyMode = _keyMode || WlanKeyboardConstants.KeyMode.HEADLESS;
 
+var _phoneClipboard = "";
+
 var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
 
     emitChange: function () {
@@ -54,6 +56,15 @@ var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
         this.updateKeyMode(s.keyboardMode);
         this.emitChange();
         console.log("Received settings from qt app.");
+    },
+
+    updatePhoneClipboard: function(clipboardValue) {
+        _phoneClipboard = clipboardValue;
+        this.emitChange();
+    },
+
+    getPhoneClipboard: function() {
+        return _phoneClipboard;
     }
 
 });
@@ -106,6 +117,13 @@ AppDispatcher.register(function(action) {
                 }
             break;
 
+        case WlanKeyboardConstants.ActionTypes.RECEIVE_CLIPBOARD_VALUE:
+                WlanKeyboardStore.updatePhoneClipboard(action.clipboard);
+            break;
+
+        case WlanKeyboardConstants.ActionTypes.SET_CLIPBOARD_VALUE:
+                JollaAppConnection.setClipboardOnPhone(action.clipboard);
+            break;
         default:
             break;
     }

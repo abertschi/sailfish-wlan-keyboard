@@ -58,6 +58,10 @@ var JollaAppConnection = {
         socket.bind('close', function () {
         });
 
+        socket.bind('clipboard_was_set', function(data){
+            Actions.actionSetClipboardOnComputer(data);
+        });
+
     },
 
     sendKeyEnter: function () {
@@ -74,6 +78,10 @@ var JollaAppConnection = {
 
     sendText: function (text) {
         socket.send('insert_text', text);
+    },
+
+    setClipboardOnPhone: function (text) {
+        socket.send('set_clipboad', text);
     }
 }
 
