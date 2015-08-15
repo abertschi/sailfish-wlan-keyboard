@@ -133,6 +133,11 @@ h1 {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
   padding: 0.5em 0.5em 0em 2em; }
 
+.clibboard__icon {
+  background-color: red;
+  overflow: hidden;
+  display: inline-block; }
+
 .clipboard__button {
   float: right;
   height: 100%;
@@ -161,15 +166,19 @@ h1 {
   font-size: 18px;
   line-height: 1.4em;
   overflow: hidden;
-  background: none; }
+  background: none;
+  margin-left: 30px;
+  font-style: italic; }
 
 .clipboard__input--marked {
   border-left: 1px solid #b3b3b3; }
 
+.clibparod__input_icon {
+  float: left; }
+
 .clipboard__input_inner {
   width: 100%;
   border: medium none;
-  border-left: 1.5px solid #b3b3b3;
   padding-left: 20px; }
 
 .clipboard__input_inner:focus {

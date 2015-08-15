@@ -186,6 +186,12 @@ h1 {
 
 }
 
+.clibboard__icon {
+  background-color: red;
+  overflow: hidden;
+  display:inline-block;
+}
+
 .clipboard__button {
   float: right;
   //margin-right: 30px;
@@ -229,6 +235,10 @@ h1 {
   //background-color: blue;
   background: none;
  // background-color: white;
+  //float: left;
+  //width: 80 %;
+  margin-left: 30px;
+  font-style: italic;
 
 }
 
@@ -236,12 +246,18 @@ h1 {
   border-left: 1px solid #b3b3b3;
 }
 
+.clibparod__input_icon {
+  float: left;
+
+}
+
 .clipboard__input_inner {
     width: 100%;
     border: medium none;
     //background-color: yellow;
-    border-left: 1.5px solid #b3b3b3;
-  padding-left: 20px;
+    //border-left: 1.5px solid #b3b3b3;
+    padding-left: 20px;
+ // background-color: b3b3b3;
 }
 
 .clipboard__input_inner:focus {
