@@ -14,6 +14,8 @@ var _keyMode = _keyMode || WlanKeyboardConstants.KeyMode.HEADLESS;
 
 var _phoneClipboard = "";
 
+var _moreOptionsExtended = false;
+
 var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
 
     emitChange: function () {
@@ -65,6 +67,15 @@ var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
 
     getPhoneClipboard: function() {
         return _phoneClipboard;
+    },
+
+    isMoreOptions: function() {
+        return _moreOptionsExtended;
+    },
+
+    updateMoreOptions: function(isExtended) {
+        _moreOptionsExtended = isExtended;
+        this.emitChange();
     }
 
 });
@@ -121,9 +132,11 @@ AppDispatcher.register(function(action) {
                 WlanKeyboardStore.updatePhoneClipboard(action.clipboard);
             break;
 
-        case WlanKeyboardConstants.ActionTypes.SET_CLIPBOARD_VALUE:
-                JollaAppConnection.setClipboardOnPhone(action.clipboard);
+        case WlanKeyboardConstants.ActionTypes.MORE_OPTIONS_VISIBLE:
+            console.log("log event received " + action.visble);
+            WlanKeyboardStore.updateMoreOptions(action.visble);
             break;
+
         default:
             break;
     }

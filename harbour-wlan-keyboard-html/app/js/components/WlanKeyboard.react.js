@@ -12,26 +12,27 @@ var KeyModeButton = require('./KeyModeButton.react');
 var WlanKeyboard = React.createClass({
 
     getStateFromStores: function () {
+
+        console.log("store status init:" +  WlanKeyboardStore.isMoreOptions());
         return {
             status: WlanKeyboardStore.getConnectionStatus(),
             keyMode: WlanKeyboardStore.getKeyMode(),
-            clipboard: WlanKeyboardStore.getPhoneClipboard() || "test",
-            moreOptions: false
+            clipboard: WlanKeyboardStore.getPhoneClipboard() || "",
+            moreOptions: WlanKeyboardStore.isMoreOptions()
         };
     },
-
 
 
     getInitialState: function () {
         return this.getStateFromStores();
     },
 
+
     componentDidMount: function () {
         WlanKeyboardStore.addChangeListener(this._onChange);
 
 
-
-        setTimeout(function() {
+        setTimeout(function () {
             //console.log("Checkig cb");
             //var cb = window.clipboardData.getData('Text');
             //console.log(cb);
@@ -49,33 +50,23 @@ var WlanKeyboard = React.createClass({
 
         var arrowIcon = "\u276F";
 
-        this.props.moreOptions = this.props.moreOptions || false;
-
         return (
+
             <div>
                 <div className="container">
                     <Header/>
                     <section className="configuration">
-
-
-
                         <div className="configuration__status">
-                             <KeyModeButton
-                                label="..."
-                                onClick={this._onMoreOptionsClicked}
-                                selected={this.props.moreOptions}
-                                classNameSelected="configuration__button--selected"
-                                className="configuration__button text__center"/>
-
-
+                            <div className={(this.state.moreOptions ? "configuration__button--selected " : " " ) + " configuration__button text__center"}
+                                onClick={this._onMoreOptionsClicked}>
+                                 ...
+                            </div>
                         </div>
 
                         <div className="configuration__status">
                             <ConnectionStatus status={this.state.status} className="text__center"/>
                         </div>
-
                     </section>
-
 
 
                     <section className="clipboard">
@@ -86,12 +77,10 @@ var WlanKeyboard = React.createClass({
 
                         <div className="clipboard__input">
 
-
-                        <input className="clipboard__input_inner" value={this.state.clipboard} readonly="true" placeholder="Empty phone clipboard">
-                        </input>
+                            <input className="clipboard__input_inner" value={this.state.clipboard} readonly="true" placeholder="Empty phone clipboard">
+                            </input>
 
                         </div>
-
 
                     </section>
 
@@ -102,17 +91,15 @@ var WlanKeyboard = React.createClass({
                     </section>
 
                 </div>
-
-
             </div>
         );
 
-          //
-          //<div className="configuration__status configuration__status">
-          //                  <div className="configuration__button text__center">
-          //                      sync clipboards
-          //                  </div>
-          //              </div>
+        //
+        //<div className="configuration__status configuration__status">
+        //                  <div className="configuration__button text__center">
+        //                      sync clipboards
+        //                  </div>
+        //              </div>
 
         /*
          <div className="configuration__button">
@@ -127,12 +114,9 @@ var WlanKeyboard = React.createClass({
         this.setState(this.getStateFromStores());
     },
 
-
-    _onMoreOptionsClicked: function() {
-        this.props.moreOptions = ! this.props.moreOptions;
-        console.log("@@@ " + this.props.moreOptions);
+    _onMoreOptionsClicked: function () {
+        WlanKeyboardActions.moreOptionsVisibled(!this.state.moreOptions);
     },
-
 
 
     _onHeadlessClicked: function (state) {
