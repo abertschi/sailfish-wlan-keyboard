@@ -69,7 +69,7 @@ var WlanKeyboard = React.createClass({
                     </section>
 
 
-                    <section className="clipboard">
+                    <section className={(this.state.moreOptions ? "": "invisible ") + "clipboard "}>
 
                         <div className="clibparod__input_icon ">
                             <img className="clipboard__img" src="img/clipboard.png" />
