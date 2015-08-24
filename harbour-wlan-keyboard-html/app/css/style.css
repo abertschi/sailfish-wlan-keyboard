@@ -164,10 +164,12 @@ h1 {
 .clipboard__input {
   box-sizing: border-box;
   font-size: 18px;
+  float: left;
   line-height: 1.4em;
+  width: 70%;
+  background-color: red;
   overflow: hidden;
   background: none;
-  margin-left: 30px;
   font-style: italic; }
 
 .clipboard__input--marked {
@@ -180,6 +182,10 @@ h1 {
   width: 100%;
   border: medium none;
   padding-left: 20px; }
+
+.clipboard__img {
+  padding-top: .2em;
+  width: 1em; }
 
 .clipboard__input_inner:focus {
   outline: 0px; }

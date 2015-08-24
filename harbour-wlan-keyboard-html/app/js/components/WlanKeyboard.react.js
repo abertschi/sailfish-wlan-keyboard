@@ -7,6 +7,7 @@ var ConnectionStatus = require('./ConnectionStatus.react');
 var KeyModeStatus = require('./KeyModeStatus.react');
 var AppConstants = require('../constants/WlanKeyboardConstants');
 var WlanKeyboardActions = require('../actions/WlanKeyboardActions');
+var KeyModeButton = require('./KeyModeButton.react');
 
 var WlanKeyboard = React.createClass({
 
@@ -14,9 +15,12 @@ var WlanKeyboard = React.createClass({
         return {
             status: WlanKeyboardStore.getConnectionStatus(),
             keyMode: WlanKeyboardStore.getKeyMode(),
-            clipboard: WlanKeyboardStore.getPhoneClipboard() || "test"
+            clipboard: WlanKeyboardStore.getPhoneClipboard() || "test",
+            moreOptions: false
         };
     },
+
+
 
     getInitialState: function () {
         return this.getStateFromStores();
@@ -45,6 +49,8 @@ var WlanKeyboard = React.createClass({
 
         var arrowIcon = "\u276F";
 
+        this.props.moreOptions = this.props.moreOptions || false;
+
         return (
             <div>
                 <div className="container">
@@ -53,35 +59,40 @@ var WlanKeyboard = React.createClass({
 
 
 
-                        <div className="configuration__status configuration__status">
-                            <div className="configuration__button text__center">
-                                 ...
-                            </div>
+                        <div className="configuration__status">
+                             <KeyModeButton
+                                label="..."
+                                onClick={this._onMoreOptionsClicked}
+                                selected={this.props.moreOptions}
+                                classNameSelected="configuration__button--selected"
+                                className="configuration__button text__center"/>
+
+
                         </div>
 
                         <div className="configuration__status">
                             <ConnectionStatus status={this.state.status} className="text__center"/>
                         </div>
 
-                        <div className="configuration__status configuration__status">
-                            <div className="configuration__button text__center">
-                                sync clipboards
-                            </div>
-                        </div>
                     </section>
+
+
 
                     <section className="clipboard">
 
                         <div className="clibparod__input_icon ">
-                            ❯
+                            <img className="clipboard__img" src="img/clipboard.png" />
                         </div>
 
                         <div className="clipboard__input">
 
-                        <input className="clipboard__input_inner" value={this.state.clipboard} readonly="true" placeholder="Copy text into your clipboard">
+
+                        <input className="clipboard__input_inner" value={this.state.clipboard} readonly="true" placeholder="Empty phone clipboard">
                         </input>
 
                         </div>
+
+
                     </section>
 
                     <section className="footer">
@@ -96,6 +107,13 @@ var WlanKeyboard = React.createClass({
             </div>
         );
 
+          //
+          //<div className="configuration__status configuration__status">
+          //                  <div className="configuration__button text__center">
+          //                      sync clipboards
+          //                  </div>
+          //              </div>
+
         /*
          <div className="configuration__button">
          <KeyModeStatus
@@ -108,6 +126,14 @@ var WlanKeyboard = React.createClass({
     _onChange: function () {
         this.setState(this.getStateFromStores());
     },
+
+
+    _onMoreOptionsClicked: function() {
+        this.props.moreOptions = ! this.props.moreOptions;
+        console.log("@@@ " + this.props.moreOptions);
+    },
+
+
 
     _onHeadlessClicked: function (state) {
         var keyMode = state === true ? AppConstants.KeyMode.HEADLESS : AppConstants.KeyMode.CLIPBOARD;
