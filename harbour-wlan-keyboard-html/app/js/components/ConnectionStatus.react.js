@@ -10,9 +10,9 @@ var ConnectionStatus = React.createClass({
 
         var msg;
         if (this.props.status == WlanKeyboardConstants.ConnectionStatus.CONNECTED) {
-            msg = "connected";
+            msg = "Connected";
         } else {
-            msg = "error";
+            msg = "No connection to device";
         }
 
         return (
