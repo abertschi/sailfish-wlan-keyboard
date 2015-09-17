@@ -26,7 +26,7 @@ Page {
             PageHeader { title: "Headless mode" }
 
             Label {
-                text: qsTr("This mode automatically inserts incomming keystrokes into your currently focused widget.")
+                text: qsTr("This mode automatically inserts incoming keystrokes into your currently focused widget.")
                 width: parent.width
                 wrapMode: Text.Wrap
             }
@@ -66,14 +66,14 @@ Page {
             }
 
             Label {
-                text: "Option <b>Continuous</b> delegates incomming keystrokes to the focused widget. The text appears instantly."
+                text: "Option <b>Continuous</b> delegates incoming keystrokes to the focused widget. The text appears instantly."
                 width: parent.width
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeTiny
             }
 
             Label {
-                text: "Option <b>Return key based</b> caches incomming keystrokes until return is hit before the text appears."
+                text: "Option <b>Return key based</b> caches incoming keystrokes until return is hit before the text appears."
                 width: parent.width
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeTiny
