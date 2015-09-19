@@ -158,7 +158,7 @@ Item {
                 label: qsTr("Keyboard mode")
                 currentIndex: settings.keyboardMode === settings._KEYBOARD_MODE_CLIPBOARD ? 0 : 1
                 anchors.left: parent.left
-                description: qsTr("Mode to process incomming keystrokes")
+                description: qsTr("Mode to process incoming keystrokes")
                 menu: ContextMenu {
                     MenuItem { text: qsTr("Clipboard") }
                     MenuItem { text: qsTr("Headless") }

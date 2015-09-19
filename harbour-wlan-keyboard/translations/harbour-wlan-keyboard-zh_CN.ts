@@ -94,7 +94,7 @@
         <translation>剪贴板模式</translation>
     </message>
     <message>
-        <source>This mode copies all incomming keystrokes to your clipboard. You need to paste them into a focused widget.</source>
+        <source>This mode copies all incoming keystrokes to your clipboard. You need to paste them into a focused widget.</source>
         <translation>这个模式会将所有的按键输入拷贝到你的剪贴板。你需要自行复制到聚焦的组件中。</translation>
     </message>
     <message>
@@ -128,7 +128,7 @@
 <context>
     <name>PageHeadlessMode</name>
     <message>
-        <source>This mode automatically inserts incomming keystrokes into your currently focused widget.</source>
+        <source>This mode automatically inserts incoming keystrokes into your currently focused widget.</source>
         <translation>这个模式会自动将所有的按键输入插入到聚焦的组件中。</translation>
     </message>
     <message>
@@ -232,7 +232,7 @@
         <translation>键盘模式</translation>
     </message>
     <message>
-        <source>Mode to process incomming keystrokes</source>
+        <source>Mode to process incoming keystrokes</source>
         <translation>传递键盘输入的模式</translation>
     </message>
     <message>

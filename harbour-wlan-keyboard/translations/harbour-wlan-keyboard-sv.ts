@@ -94,7 +94,7 @@
         <translation>Urklippsläge</translation>
     </message>
     <message>
-        <source>This mode copies all incomming keystrokes to your clipboard. You need to paste them into a focused widget.</source>
+        <source>This mode copies all incoming keystrokes to your clipboard. You need to paste them into a focused widget.</source>
         <translation>Detta läge kopierar alla inkommande tangentnedslag till Urklipp. Du måste sedan klistra in dem i fokuserad app.</translation>
     </message>
     <message>
@@ -128,7 +128,7 @@
 <context>
     <name>PageHeadlessMode</name>
     <message>
-        <source>This mode automatically inserts incomming keystrokes into your currently focused widget.</source>
+        <source>This mode automatically inserts incoming keystrokes into your currently focused widget.</source>
         <translation>Det här läget infogar automatiskt inkommande tangentnedslag i fokuserad app.</translation>
     </message>
     <message>
@@ -232,7 +232,7 @@
         <translation>Tangentbordsläge</translation>
     </message>
     <message>
-        <source>Mode to process incomming keystrokes</source>
+        <source>Mode to process incoming keystrokes</source>
         <translation>Processläge för inkommande tangentnedslag</translation>
     </message>
     <message>
