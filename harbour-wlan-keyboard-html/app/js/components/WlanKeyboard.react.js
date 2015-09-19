@@ -76,7 +76,6 @@ var WlanKeyboard = React.createClass({
                         </div>
 
                         <div className="clipboard__input">
-
                             <input className="clipboard__input_inner" value={this.state.clipboard} readonly="true" placeholder="Empty phone clipboard">
                             </input>
 
