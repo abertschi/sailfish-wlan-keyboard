@@ -28,8 +28,7 @@ void ServerConfigurator::configure(QQuickView *view)
     Settings * s = &Settings::getInstance();
     connect(s, SIGNAL(settingsChanged(Settings*)), this, SLOT(onSettingsChanged(Settings*)));
 
-    connect(m_keyboardUtils->getClipboard(), SIGNAL(dataChanged()), this, SLOT(onPhoneClipboardChanged()));
-
+    connect(m_headless_keyboard, SIGNAL(on_clipboard_set(QString)), this, SLOT(onPhoneClipboardChanged(QString)));
     //connect()
 }
 
@@ -48,13 +47,14 @@ void ServerConfigurator::sendSettingsToWsClients(QString settingsJson)
     m_websocket_server->send(templ);
 }
 
-void ServerConfigurator::onPhoneClipboardChanged()
+void ServerConfigurator::onPhoneClipboardChanged(QString cb)
 {
     // The clipboard mode uses the clipboard to transmit text.
     // In this case, notifications about clipboard changes are not
-    // useful.
+    // useful. TODO
 
-    sendClipboardToClients(m_keyboardUtils->getClipboard()->text());
+    qDebug() << "CB: recognized cb change with text: " << cb;
+    sendClipboardToClients(cb);
 }
 
 void ServerConfigurator::processSocketMessage(QString *message)
@@ -156,7 +156,7 @@ void ServerConfigurator::onSettingsChanged(Settings * s)
 
 void ServerConfigurator::sendClipboardToClients(QString cb)
 {
-    QString templ = QString("{\"event\":\"clipboard_was_set\", \"data\": %1 }").arg(cb);
+    QString templ = QString("{\"event\":\"clipboard_was_set\", \"data\": \"%1\" }").arg(cb);
     qDebug() << templ;
     m_websocket_server->send(templ);
 }

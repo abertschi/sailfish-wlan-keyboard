@@ -51,7 +51,6 @@ signals:
     void processNewClientConnected();
 
 
-
 private:
     QtWebsocket::QWsServer * m_server;
     QList<QtWebsocket::QWsSocket*>  m_clients;

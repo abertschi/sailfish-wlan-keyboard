@@ -32,7 +32,12 @@ public:
     void send_enable_debug(bool enabled);
     void send_enable_keyboard();
 
-public slots:
+private slots:
+    void receive_clibpoard_changed_private(QString cb);
+
+Q_SIGNALS:
+signals:
+        void on_clipboard_set(QString cb);
 
 private:
     QDBusInterface * m_dbus_iface;

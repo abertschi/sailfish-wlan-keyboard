@@ -30,7 +30,7 @@ private slots:
     void processSocketMessage(QString *message);
     void onNewClientConnected();
     void onSettingsChanged(Settings *s);
-    void onPhoneClipboardChanged();
+    void onPhoneClipboardChanged(QString cb);
 
 private:
     void processInsertText(QString text);
