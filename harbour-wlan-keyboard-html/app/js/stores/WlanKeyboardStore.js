@@ -12,6 +12,10 @@ var _connectionStatus = {};
 
 var _keyMode = _keyMode || WlanKeyboardConstants.KeyMode.HEADLESS;
 
+var _phoneClipboard = "";
+
+var _moreOptionsExtended = false;
+
 var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
 
     emitChange: function () {
@@ -54,6 +58,24 @@ var WlanKeyboardStore = assign({}, EventEmmiter.prototype, {
         this.updateKeyMode(s.keyboardMode);
         this.emitChange();
         console.log("Received settings from qt app.");
+    },
+
+    updatePhoneClipboard: function(clipboardValue) {
+        _phoneClipboard = clipboardValue;
+        this.emitChange();
+    },
+
+    getPhoneClipboard: function() {
+        return _phoneClipboard;
+    },
+
+    isMoreOptions: function() {
+        return _moreOptionsExtended;
+    },
+
+    updateMoreOptions: function(isExtended) {
+        _moreOptionsExtended = isExtended;
+        this.emitChange();
     }
 
 });
@@ -104,6 +126,15 @@ AppDispatcher.register(function(action) {
                 if (action.status != WlanKeyboardStore.getConnectionStatus) {
                     WlanKeyboardStore.updateConnectionStatus(action.status);
                 }
+            break;
+
+        case WlanKeyboardConstants.ActionTypes.RECEIVE_CLIPBOARD_VALUE:
+                WlanKeyboardStore.updatePhoneClipboard(action.clipboard);
+            break;
+
+        case WlanKeyboardConstants.ActionTypes.MORE_OPTIONS_VISIBLE:
+            console.log("log event received " + action.visble);
+            WlanKeyboardStore.updateMoreOptions(action.visble);
             break;
 
         default:

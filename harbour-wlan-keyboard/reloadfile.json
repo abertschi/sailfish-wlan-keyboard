@@ -1,25 +1,15 @@
 {
-    "sshfs": {
-        "host": "localhost",
-        "user": "root",
-        "port": "2223",
-        "keyfile": "/Applications/sailfish-sdk/vmshare/ssh/private_keys/SailfishOS_Emulator/root"
+    "device": {
+        "host": "192.168.1.165",
+        "port": "22"
     },
     "sync": {
-        "src": [
-            "/Users/abertschi/beandata/pgm/sailfish-devel/sailfish-wlan-keyboard/harbour-wlan-keyboard/qml/**/*.*"
-        ],
-        "dest": "/usr/share/harbour-wlan-keyboard/qml"
-    },
-    "mount": "/mnt/jolla",
-    "sailfish": {
-        "autoLaunch": true,
-        "app": "harbour-wlan-keyboard",
-        "ssh": {
-            "host": "localhost",
-            "user": "nemo",
-            "port": "2223",
-            "keyfile": "/Applications/sailfish-sdk/vmshare/ssh/private_keys/SailfishOS_Emulator/nemo"
-        }
+        "user": "root",
+        "files": [
+            {
+                "from": ["/Users/abertschi/beandata/pgm/sailfish-devel/sailfish-wlan-keyboard/harbour-wlan-keyboard/qml/**/*.*"],
+                "to": "/usr/share/harbour-wlan-keyboard/qml"
+            }
+        ]
     }
 }

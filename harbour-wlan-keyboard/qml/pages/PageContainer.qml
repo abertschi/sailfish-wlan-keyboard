@@ -7,6 +7,8 @@ Page {
     property int heightHeader: parent.height / 3
     property int heightNavi: Theme.paddingLarge *3
     property int heightTab: parent.height - heightNavi - heightHeader
+    property double animationRunOpacity: .8
+    property double animationStopOpacity: .5
 
     Item {
         id: powerSwitch
@@ -14,6 +16,17 @@ Page {
         height: heightHeader
 
         SilicaFlickable {
+            onDragStarted: {
+                 console.log("onDragStarted")
+                animation.opacity = .05
+            }
+
+            onDraggingChanged: {
+                if (!flick.dragging)
+                 animation.opacity = (animation.playing ? animationRunOpacity: animationStopOpacity);
+                 console.log("onDraggingChanged")
+
+            }
             id: flick
             anchors.fill: parent
             PullDownMenu {
@@ -29,7 +42,7 @@ Page {
 
                 MenuItem {
                     id: start
-                    text: qsTr("Start server")
+                    text: qsTr("Starts server")
                     visible: notifications.serverState === notifications._SERVER_STATE_INACTIVE
                     onClicked: {
                         app.startServers();
@@ -48,14 +61,6 @@ Page {
                 }
             }
 
-            MyActionButton {
-                text: "Start server"
-                iconSource: "image://theme/harbour-wlan-keyboard"
-                //: console.log("pressend")
-                width: parent.width
-                height: parent.height
-                anchors.fill: parent
-            }
         }
 
         TouchInteractionHint {
@@ -70,6 +75,27 @@ Page {
             if(settings.firstRun) {
                 verticalFlick.start()
                 settings.firstRun = false
+            }
+        }
+
+        AnimatedImage {
+            id: animation;
+            source: "img/server_run.gif"
+            width: parent.width
+            height: parent.height
+            //anchors.topMargin: Theme.paddingLarge
+            anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
+            opacity: (animation.playing ? .7: .5)
+            playing: notifications.serverRunning
+            onPlayingChanged: {
+                if (!animation.playing) {
+                     animation.currentFrame = 4
+                     opacity = animationStopOpacity
+                }
+                else {
+                    opacity = animationRunOpacity
+                }
             }
         }
     }

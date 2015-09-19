@@ -2,6 +2,7 @@ var React = require('react');
 var ReactPropTypes = React.PropTypes;
 var AppActions = require('../actions/WlanKeyboardActions');
 var WlanKeyboardConstants = require('../constants/WlanKeyboardConstants');
+var WlanKeyboardStore = require('../stores/WlanKeyboardStore')
 
 var KEY_ENTER = 13;
 var KEY_ARROW_LEFT = 37;
@@ -103,10 +104,12 @@ var TextInput = React.createClass({
     },
 
     _windowListener: function (event) {
-        var eventInput = React.findDOMNode(this.refs.textInput);
-        eventInput.focus();
+        console.log("window listener");
+        if (!WlanKeyboardStore.isMoreOptions()) {
+            var eventInput = React.findDOMNode(this.refs.textInput);
+            eventInput.focus();
+        }
     }
-
 
 });
 

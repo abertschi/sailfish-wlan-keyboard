@@ -60,10 +60,7 @@ Item {
         opacity: mouse.pressed ? 1 : .7
         smooth: true
     }
-    MouseArea {
-        id: mouse
-        anchors.fill: parent
-    }
+
 
 
 

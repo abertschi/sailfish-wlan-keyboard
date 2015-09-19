@@ -1,4 +1,4 @@
-#ifndef SERVER_ENDPOINT_H
+    #ifndef SERVER_ENDPOINT_H
 #define SERVER_ENDPOINT_H
 
 #include <QObject>

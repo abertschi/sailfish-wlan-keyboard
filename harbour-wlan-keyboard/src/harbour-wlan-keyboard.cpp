@@ -60,8 +60,8 @@ int main(int argc, char *argv[])
 
     qmlRegisterSingletonType("harbour.wlan.keyboard", 1, 0, "AppInfo", appVersionSingletonProvider);
 
-    Utils appUtils;
-    view->rootContext()->setContextProperty("utils", &appUtils);
+    //Utils appUtils = ;
+    view->rootContext()->setContextProperty("utils", &Utils::getInstance(app.data()));
 
     Settings &settings = Settings::getInstance();
     view->rootContext()->setContextProperty("_qtSettings", &settings);

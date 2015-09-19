@@ -8,8 +8,11 @@ module.exports = {
       SEND_KEY_ENTER: null,
       SEND_KEY_DEL: null,
       SEND_KEY_ARROW: null,
+      RECEIVE_CLIPBOARD_VALUE: null,
+      SET_CLIPBOARD_VALUE: null,
       CONNECTION_STATUS_CHANGED: null,
-      KEY_MODE_CHANGED: null
+      KEY_MODE_CHANGED: null,
+      MORE_OPTIONS_VISIBLE: null
   }),
 
     KeyMode: {

@@ -37,6 +37,22 @@ var WlanKeyboardActions = {
         });
     },
 
+    actionSetClipboardOnPhone: function(clipboard) {
+        console.log("actionSetClipboardOnPhone: " + clipboard);
+        AppDispatcher.dispatch({
+           type: AppConstants.ActionTypes.SET_CLIPBOARD_VALUE,
+            clipboard: clipboard
+        });
+    },
+
+    actionSetClipboardOnComputer: function(clipboard) {
+        console.log("actionSetClipboardOnComputer: " + clipboard);
+        AppDispatcher.dispatch({
+            type: AppConstants.ActionTypes.RECEIVE_CLIPBOARD_VALUE,
+            clipboard: clipboard
+        });
+    },
+
     connectionStatusChanged: function (status) {
         AppDispatcher.dispatch({
             type: AppConstants.ActionTypes.CONNECTION_STATUS_CHANGED,
@@ -48,6 +64,13 @@ var WlanKeyboardActions = {
         AppDispatcher.dispatch({
             type: AppConstants.ActionTypes.KEY_MODE_CHANGED,
             keyMode: mode
+        });
+    },
+
+    moreOptionsVisibled: function(state) {
+        AppDispatcher.dispatch({
+            type: AppConstants.ActionTypes.MORE_OPTIONS_VISIBLE,
+            visble: state
         });
     }
 };
