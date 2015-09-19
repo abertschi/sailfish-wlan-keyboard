@@ -10,7 +10,6 @@ class Utils : public QObject
 {
     Q_OBJECT
 public:
-    Utils(QObject *parent = 0);
 
     Q_INVOKABLE QVariant getAvailableEndpointsAsQVariant();
     static QList<ServerEndpoint*> getAvailableEndpoints();
@@ -22,7 +21,14 @@ public:
     void setClipboard(QString content);
     QClipboard * getClipboard();
 
+    static Utils& getInstance(QObject *parent)
+    {
+        static Utils instance(parent) ;
+        return instance;
+    }
+
 private:
+    Utils(QObject *parent = 0);
     QClipboard *m_clipboard;
 
 };

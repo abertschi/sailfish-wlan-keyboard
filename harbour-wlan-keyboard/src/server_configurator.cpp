@@ -5,7 +5,7 @@ static const QString ENDPOINT_MARKER("__WS_ENDPOINT__");
 
 ServerConfigurator::ServerConfigurator(QObject *parent): QObject(parent)
 {
-    this->m_keyboardUtils = new Utils(QObject::parent());
+    this->m_keyboardUtils =  &Utils::getInstance(QObject::parent());
     this->m_headless_keyboard = new HeadlessKeyboardDelegate(parent);
 }
 
@@ -27,6 +27,10 @@ void ServerConfigurator::configure(QQuickView *view)
 
     Settings * s = &Settings::getInstance();
     connect(s, SIGNAL(settingsChanged(Settings*)), this, SLOT(onSettingsChanged(Settings*)));
+
+    connect(m_keyboardUtils->getClipboard(), SIGNAL(dataChanged()), this, SLOT(onPhoneClipboardChanged()));
+
+    //connect()
 }
 
 void ServerConfigurator::modifyHtmlContent(QString *content)
@@ -42,6 +46,15 @@ void ServerConfigurator::sendSettingsToWsClients(QString settingsJson)
     QString templ = QString("{\"event\":\"update_settings\", \"data\": %1 }").arg(settingsJson);
     qDebug() << templ;
     m_websocket_server->send(templ);
+}
+
+void ServerConfigurator::onPhoneClipboardChanged()
+{
+    // The clipboard mode uses the clipboard to transmit text.
+    // In this case, notifications about clipboard changes are not
+    // useful.
+
+    sendClipboardToClients(m_keyboardUtils->getClipboard()->text());
 }
 
 void ServerConfigurator::processSocketMessage(QString *message)
@@ -139,6 +152,13 @@ void ServerConfigurator::onSettingsChanged(Settings * s)
 {
     qDebug("Client is requesting app settigs");
     sendSettingsToWsClients(s->toJson());
+}
+
+void ServerConfigurator::sendClipboardToClients(QString cb)
+{
+    QString templ = QString("{\"event\":\"clipboard_was_set\", \"data\": %1 }").arg(cb);
+    qDebug() << templ;
+    m_websocket_server->send(templ);
 }
 
 /*

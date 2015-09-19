@@ -30,18 +30,19 @@ private slots:
     void processSocketMessage(QString *message);
     void onNewClientConnected();
     void onSettingsChanged(Settings *s);
+    void onPhoneClipboardChanged();
 
 private:
     void processInsertText(QString text);
     void processKeyReturn();
     void processKeyDel();
     void processKeyArrow(QString arrow);
-
     void sendSettingsToWsClients(QString settingsJson);
+    void sendClipboardToClients(QString cb);
 
     http_server * m_http_server;
     websocket_server * m_websocket_server;
-    Utils * m_keyboardUtils;
+    Utils * m_keyboardUtils; // todo: make singelton
     HeadlessKeyboardDelegate * m_headless_keyboard;
 };
 

@@ -32,8 +32,6 @@ public:
     void send_enable_debug(bool enabled);
     void send_enable_keyboard();
 
-signals:
-
 public slots:
 
 private:
