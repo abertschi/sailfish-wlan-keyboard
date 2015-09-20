@@ -4,32 +4,16 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>Clipboard</source>
-        <translation>剪贴板</translation>
+        <source>&lt;b&gt;inactive&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Headless</source>
-        <translation>极简</translation>
+        <source>Wlan Keyboard</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Mode:</source>
-        <translation>模式：</translation>
-    </message>
-    <message>
-        <source>Status: &lt;b&gt;active&lt;/b&gt;</source>
-        <translation>状态：&lt;b&gt;已激活&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Status: &lt;b&gt;inactive&lt;/b&gt;</source>
-        <translation>状态：&lt;b&gt;未激活&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Ready to start</source>
-        <translation>准备开始</translation>
-    </message>
-    <message>
-        <source>Connect your device</source>
-        <translation>连接到你的设备</translation>
+        <source>&lt;b&gt;running&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -117,12 +101,12 @@
         <translation>关于</translation>
     </message>
     <message>
-        <source>Start server</source>
-        <translation>启动服务</translation>
-    </message>
-    <message>
         <source>Stop server</source>
         <translation>停止服务</translation>
+    </message>
+    <message>
+        <source>Starts server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -140,14 +124,6 @@
         <translation>配置</translation>
     </message>
     <message>
-        <source>To use this mode, you need to install the &lt;b&gt; headless keyboard &lt;/b&gt; layout.</source>
-        <translation>使用这个模式需要先安装&lt;b&gt; headless keyboard &lt;/b&gt;键盘布局</translation>
-    </message>
-    <message>
-        <source>The headless keyboard layout is completely Free and Open Source Software. However, alternative keyboard layouts are not yet supported in the official Harbor store. Therefore, you install it on your own risk.</source>
-        <translation>headless keyboard键盘布局是一个完全自由开源的软件。可惜的是，官方Jolla应用商店还不支持本地键盘应用。因此，安装可能造成的问题需要你自行承担。</translation>
-    </message>
-    <message>
         <source>Download</source>
         <translation>下载</translation>
     </message>
@@ -162,6 +138,14 @@
     <message>
         <source>Browsing Download Page </source>
         <translation>即将打开下载页面</translation>
+    </message>
+    <message>
+        <source>To use this mode, you need to install the &lt;b&gt; headless keyboard &lt;/b&gt; extension.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The headless keyboard extension is completely Free and Open Source Software. Due to harbor policies, it needs to be distributed in an alternative store. Therefore, you install it on your own risk.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

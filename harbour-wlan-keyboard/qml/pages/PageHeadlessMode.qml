@@ -87,7 +87,7 @@ Page {
             } */
 
             Label {
-                text: qsTr("To use this mode, you need to install the <b> headless keyboard </b> layout.")
+                text: qsTr("To use this mode, you need to install the <b> headless keyboard </b> extension.")
                 width: parent.width
                 wrapMode: Text.Wrap
                 //horizontalAlignment: Text.AlignHCenter
@@ -95,7 +95,7 @@ Page {
             }
 
             Label {
-                text: qsTr("The headless keyboard layout is completely Free and Open Source Software. However, alternative keyboard layouts are not yet supported in the official Harbor store. Therefore, you install it on your own risk.")
+                text: qsTr("The headless keyboard extension is completely Free and Open Source Software. Due to harbor policies, it needs to be distributed in an alternative store. Therefore, you install it on your own risk.")
                 width: parent.width
                 wrapMode: Text.Wrap
                 //horizontalAlignment: Text.AlignHCenter

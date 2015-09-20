@@ -60,12 +60,14 @@ int main(int argc, char *argv[])
 
     qmlRegisterSingletonType("harbour.wlan.keyboard", 1, 0, "AppInfo", appVersionSingletonProvider);
 
-    //Utils appUtils = ;
     view->rootContext()->setContextProperty("utils", &Utils::getInstance(app.data()));
+
+    QGuiApplication * guiApp = (QGuiApplication*) app.data();
+    view->rootContext()->setContextProperty("qGuiApplication", guiApp);
 
     Settings &settings = Settings::getInstance();
     view->rootContext()->setContextProperty("_qtSettings", &settings);
-    qmlRegisterType<Settings>("harbour.wlan.keyboard",1,0,"Settings");
+    //qmlRegisterType<Settings>("harbour.wlan.keyboard",1,0,"Settings");
 
     view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
     view->showFullScreen();

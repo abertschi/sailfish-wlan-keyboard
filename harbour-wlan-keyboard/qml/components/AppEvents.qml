@@ -28,6 +28,14 @@ Item {
         }
     }
 
+    Connections {
+        target: qGuiApplication
+        onApplicationStateChanged: {
+            console.log("application state: " + state);
+            connectivityTimer.running = (state == 4); // 4 =  active
+        }
+    }
+
     Component.onCompleted: {
         serverRunning =  settings.autostart
     }
@@ -44,7 +52,6 @@ Item {
         interval: 5000
         running: true
         onTriggered: {
-            console.log("Checking network connectivity ...")
             var endpoints = utils.getAvailableEndpointSize();
             if (lastSize !== endpoints) {
                 lastSize = endpoints
@@ -61,7 +68,7 @@ Item {
             else {
                 if (connectivityAvailable) {
                     connectivityAvailable = false
-                     console.log("Connectivity was dropped")
+                    console.log("Connectivity was dropped")
                 }
             }
         }
