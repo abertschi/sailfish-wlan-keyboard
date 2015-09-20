@@ -133,7 +133,6 @@ AppDispatcher.register(function(action) {
             break;
 
         case WlanKeyboardConstants.ActionTypes.MORE_OPTIONS_VISIBLE:
-            console.log("log event received " + action.visble);
             WlanKeyboardStore.updateMoreOptions(action.visble);
             break;
 

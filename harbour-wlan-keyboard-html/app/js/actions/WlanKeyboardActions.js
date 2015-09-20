@@ -38,7 +38,6 @@ var WlanKeyboardActions = {
     },
 
     actionSetClipboardOnPhone: function(clipboard) {
-        console.log("actionSetClipboardOnPhone: " + clipboard);
         AppDispatcher.dispatch({
            type: AppConstants.ActionTypes.SET_CLIPBOARD_VALUE,
             clipboard: clipboard
@@ -46,7 +45,6 @@ var WlanKeyboardActions = {
     },
 
     actionSetClipboardOnComputer: function(clipboard) {
-        console.log("actionSetClipboardOnComputer: " + clipboard);
         AppDispatcher.dispatch({
             type: AppConstants.ActionTypes.RECEIVE_CLIPBOARD_VALUE,
             clipboard: clipboard

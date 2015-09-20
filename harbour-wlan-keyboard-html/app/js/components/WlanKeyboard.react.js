@@ -12,8 +12,6 @@ var KeyModeButton = require('./KeyModeButton.react');
 var WlanKeyboard = React.createClass({
 
     getStateFromStores: function () {
-
-        console.log("store status init:" +  WlanKeyboardStore.isMoreOptions());
         return {
             status: WlanKeyboardStore.getConnectionStatus(),
             keyMode: WlanKeyboardStore.getKeyMode(),
@@ -47,9 +45,6 @@ var WlanKeyboard = React.createClass({
     },
 
     render: function () {
-
-        var arrowIcon = "\u276F";
-
         return (
 
             <div>
@@ -70,17 +65,17 @@ var WlanKeyboard = React.createClass({
 
 
                     <section className={(this.state.moreOptions ? "": "invisible ") + "clipboard "}>
+                        <div>
 
-                        <div className="clibparod__input_icon ">
+                            <div className="clibparod__input_icon ">
                             <img className="clipboard__img" src="img/clipboard.png" />
+                            </div>
+
+                            <div className="clipboard__textarea__outer">
+                                <textarea className="clipboard__textarea" readonly="false" placeholder="Empty phone clipboard" value={this.state.clipboard} />
+                            </div>
+
                         </div>
-
-                        <div className="clipboard__input">
-                            <input className="clipboard__input_inner" value={this.state.clipboard} readonly="true" placeholder="Empty phone clipboard">
-                            </input>
-
-                        </div>
-
                     </section>
 
                     <section className="footer">

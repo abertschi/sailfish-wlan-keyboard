@@ -4,7 +4,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 
 var ConnectionStatus = require('../constants/WlanKeyboardConstants').ConnectionStatus;
 
-console.log("init from jolla app");
+console.log("Hello planet earth");
 
 var socket = {};
 var endpoint = {};
@@ -61,7 +61,6 @@ var JollaAppConnection = {
         socket.bind('clipboard_was_set', function(data){
             Actions.actionSetClipboardOnComputer(data);
         });
-
     },
 
     sendKeyEnter: function () {

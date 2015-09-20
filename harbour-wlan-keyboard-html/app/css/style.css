@@ -122,9 +122,9 @@ h1 {
 .clipboard {
   border-top: 1px solid #dddddd;
   background-color: white;
-  height: 2.5em;
+  min-height: 2.5em;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
-  padding: 0.5em 0.5em 0em 2em; }
+  padding: 0.5em 0.5em 0.1em 2em; }
 
 .clipboard_footer {
   border-top: 1px solid #dddddd;
@@ -134,7 +134,6 @@ h1 {
   padding: 0.5em 0.5em 0em 2em; }
 
 .clibboard__icon {
-  background-color: red;
   overflow: hidden;
   display: inline-block; }
 
@@ -149,6 +148,7 @@ h1 {
   border: 1px solid #dcdcdc;
   display: inline-block;
   padding: 1px;
+  background-color: green;
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff; }
 
@@ -170,10 +170,28 @@ h1 {
   float: left;
   line-height: 1.4em;
   width: 70%;
-  background-color: red;
   overflow: hidden;
   background: none;
   font-style: italic; }
+
+.clipboard__textarea {
+  padding-top: .1em;
+  resize: none;
+  font-size: 18px;
+  line-height: 1.4em;
+  margin-left: 20px;
+  width: 90%;
+  border: medium none;
+  overflow: hidden;
+  font-style: italic; }
+
+.clipboard__textarea__outer {
+  height: 30px;
+  overflow: hidden; }
+
+.clipboard__textarea:focus {
+  outline: 0px;
+  border: medium none; }
 
 .clipboard__input--marked {
   border-left: 1px solid #b3b3b3; }

@@ -104,7 +104,6 @@ var TextInput = React.createClass({
     },
 
     _windowListener: function (event) {
-        console.log("window listener");
         if (!WlanKeyboardStore.isMoreOptions()) {
             var eventInput = React.findDOMNode(this.refs.textInput);
             eventInput.focus();
