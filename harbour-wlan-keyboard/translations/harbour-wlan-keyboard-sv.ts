@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sv_SE">
+<TS version="2.1" language="sv">
 <context>
     <name>CoverPage</name>
     <message>
         <source>&lt;b&gt;inactive&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;inaktiv&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wlan Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Wlan Keyboard</translation>
     </message>
     <message>
         <source>&lt;b&gt;running&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;aktiv&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -106,7 +106,7 @@
     </message>
     <message>
         <source>Starts server</source>
-        <translation type="unfinished"></translation>
+        <translation>Startar server</translation>
     </message>
 </context>
 <context>
@@ -141,11 +141,11 @@
     </message>
     <message>
         <source>To use this mode, you need to install the &lt;b&gt; headless keyboard &lt;/b&gt; extension.</source>
-        <translation type="unfinished"></translation>
+        <translation>För att använda det här läget måste du installera tillägget, &lt;b&gt; headless keyboard&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>The headless keyboard extension is completely Free and Open Source Software. Due to harbor policies, it needs to be distributed in an alternative store. Therefore, you install it on your own risk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Headless keyboard-tillägget är fri och öppen källkodsmjukvara. På grund av Jolla Store policy, måste den distribueras från alternativt förråd. Därför installerar du på egen risk.</translation>
     </message>
 </context>
 <context>
@@ -251,3 +251,4 @@
     </message>
 </context>
 </TS>
+
