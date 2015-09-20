@@ -76,7 +76,6 @@ HEADERS += \
     src/websocket_server.h \
     src/utils.h \
     src/server_configurator.h \
-    src/start_server_input.h \
     src/server_endpoint.h \
     src/settings.h \
     src/headless_keyboard_delegate.h
@@ -107,7 +106,7 @@ lib.path = \
 
 INSTALLS += lib
 
-html.files += ../harbour-wlan-keyboard-html/dist/*
+html.files += ../harbour-wlan-keyboard-html/dist/**/*.*
 html.path = /usr/share/harbour-wlan-keyboard/publish
 
 html404.files += 404.html
