@@ -156,28 +156,8 @@ void ServerConfigurator::onSettingsChanged(Settings * s)
 
 void ServerConfigurator::sendClipboardToClients(QString cb)
 {
-    QString templ = QString("{\"event\":\"clipboard_was_set\", \"data\": \"%1\" }").arg(cb);
+    QString templ = QString("{\"event\":\"clipboard_was_set\", \"data\": \"%1\" }").arg(Utils::escapeJsonString(cb));
     qDebug() << templ;
     m_websocket_server->send(templ);
 }
 
-/*
-void ServerConfigurator::processEventNewKeycode(rapidjson::Document * document)
-{
-
-    const rapidjson::Value& data = (*document)["data"];
-
-    const rapidjson::Value& value = data["keyvalue"];
-
-    qDebug() << "processing event: newKeycode";
-    QString insert("{\"cmd\":\"%1\",\"arg\":\"%2\"}");
-    insert = insert.arg("insert_text").arg(value.GetString());
-
-    qDebug() << "Clipboard set: " << insert;
-    //m_keyboardUtils->setClipboard(insert);
-}
-
-void ServerConfigurator::processEventNewKeyrow(rapidjson::Document * document)
-{
-}
-*/

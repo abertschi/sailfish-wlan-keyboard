@@ -27,6 +27,8 @@ public:
         return instance;
     }
 
+    static QString escapeJsonString(QString str);
+
 private:
     Utils(QObject *parent = 0);
     QClipboard *m_clipboard;

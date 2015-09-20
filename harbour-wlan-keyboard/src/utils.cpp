@@ -1,4 +1,5 @@
 #include "utils.h"
+#include <sstream>
 
 Utils::Utils(QObject *parent) :QObject(parent)
 {
@@ -67,25 +68,6 @@ QHostAddress Utils::getHostAddressByInterfaceName(QString host)
     qDebug() << "host not found ...";
 }
 
-/*
-QList<QHostAddress> Utils::getAllHostAdresses()
-{
-    QList<QHostAddress> resultAddrs;
-    QList<QHostAddress> addrs = QNetworkInterface::allAddresses();
-    QList<QString> ignores;
-    ignores << "127.0.0.1";
-    ignores << "::1";
-
-    for(int i = 0; i < addrs.count(); i ++) {
-        QHostAddress addr = addrs[i];
-        if(! ignores.contains(addr.toString()))
-            resultAddrs << addr;
-    }
-    return resultAddrs;
-}
-
-*/
-
 void Utils::setClipboard(QString content)
 {
     m_clipboard->setText(content);
@@ -96,3 +78,22 @@ QClipboard * Utils::getClipboard()
     return this->m_clipboard;
 }
 
+QString Utils::escapeJsonString(QString str)
+{
+   std::ostringstream ss;
+   std::string input = str.toStdString();
+   for (auto iter = input.cbegin(); iter != input.cend(); iter++) {
+           switch (*iter) {
+               case '\\': ss << "\\\\"; break;
+               case '"': ss << "\\\""; break;
+               case '/': ss << "\\/"; break;
+               case '\b': ss << "\\b"; break;
+               case '\f': ss << "\\f"; break;
+               case '\n': ss << "\\n"; break;
+               case '\r': ss << "\\r"; break;
+               case '\t': ss << "\\t"; break;
+               default: ss << *iter; break;
+           }
+       }
+    return QString::fromStdString(ss.str());
+}
