@@ -84,4 +84,4 @@ var JollaAppConnection = {
     }
 }
 
-module.exports = JollaAppConnection
+module.exports = JollaAppConnection;
