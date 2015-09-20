@@ -16,6 +16,8 @@ class websocket_server : public QObject
 
     Q_PROPERTY(bool m_isRunning READ isRunning NOTIFY runningChanged)
 
+    Q_PROPERTY(int m_numberOfClients READ getNumberOfClients NOTIFY numberOfClientsChanged)
+
 public:
     explicit websocket_server(QObject *parent = 0);
 
@@ -28,6 +30,7 @@ public:
 
     Q_INVOKABLE bool isRunning() const;
     bool isBroadcasting() const;
+    Q_INVOKABLE int getNumberOfClients();
 
     Q_INVOKABLE qint16 getPort() const;
 
@@ -49,6 +52,7 @@ signals:
     void processMessage(QString *message);
     void runningChanged(bool isRunning);
     void processNewClientConnected();
+    void numberOfClientsChanged(int number);
 
 
 private:

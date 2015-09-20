@@ -4,31 +4,15 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>Clipboard</source>
+        <source>&lt;b&gt;inactive&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Headless</source>
+        <source>Wlan Keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Mode:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Status: &lt;b&gt;active&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Status: &lt;b&gt;inactive&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ready to start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect your device</source>
+        <source>&lt;b&gt;running&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -117,11 +101,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Start server</source>
+        <source>Stop server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Stop server</source>
+        <source>Starts server</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -140,14 +124,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>To use this mode, you need to install the &lt;b&gt; headless keyboard &lt;/b&gt; layout.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The headless keyboard layout is completely Free and Open Source Software. However, alternative keyboard layouts are not yet supported in the official Harbor store. Therefore, you install it on your own risk.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -161,6 +137,14 @@
     </message>
     <message>
         <source>Browsing Download Page </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To use this mode, you need to install the &lt;b&gt; headless keyboard &lt;/b&gt; extension.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The headless keyboard extension is completely Free and Open Source Software. Due to harbor policies, it needs to be distributed in an alternative store. Therefore, you install it on your own risk.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

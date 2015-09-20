@@ -9,18 +9,11 @@ HeadlessKeyboardDelegate::HeadlessKeyboardDelegate(QObject *parent) : QObject(pa
         //exit(1); // todo
     }
     qDebug() << "dbus connection successfully created";
-
-
     QDBusConnection::sessionBus().connect(SERVICE,
                                           PATH,
                                           IF_NAME,
                                           "receive_clipboard_changed",
                                           this, SLOT(receive_clibpoard_changed_private(QString)));
-
-    //connect(m_dbus_iface, "send_clipboard_set", this, SLOT(receive_clibpoard_changed_private(QString)));
-    emit receive_clibpoard_changed_private("TEXT");
-
-    //todo remove object
 }
 
 HeadlessKeyboardDelegate:: ~ HeadlessKeyboardDelegate()
@@ -89,8 +82,5 @@ void HeadlessKeyboardDelegate::send_enable_keyboard()
 
 void HeadlessKeyboardDelegate::receive_clibpoard_changed_private(QString cb)
 {
-    qDebug() << "##CB: " << cb;
-    qDebug() << "##CB: " << cb;
-    qDebug() << "##CB: " << cb;
     emit on_clipboard_set(cb);
 }

@@ -32,13 +32,13 @@ void websocket_server::startServer(const QString interfaceName, qint16 port)
 
 void websocket_server::startServer(const QHostAddress &address, qint16 port)
 {
+    this->m_isRunning = true;
     if (! m_server->listen(address, port))
     {
         qDebug() << "Error: Can't launch server, " << m_server->errorString();
     }
     else
     {
-        this->m_isRunning = true;
         QObject::connect(m_server, SIGNAL(newConnection()), this, SLOT(processNewConnection()));
         qDebug() << "WebsocketServer started and listening on port " << port;
     }
@@ -55,7 +55,8 @@ void websocket_server::stopServer()
         QObject::disconnect(client, SIGNAL(disconnected()), this, SLOT(socketDisconnected()));
         QObject::disconnect(client, SIGNAL(pong(quint64)), this, SLOT(processPong(quint64)));
     }
-
+    m_clients.clear();
+    emit numberOfClientsChanged(m_clients.size());
     m_server->close();
     qDebug() << "WebsocketServer closed ";
 }
@@ -70,6 +71,7 @@ void websocket_server::processNewConnection()
         QObject::connect(clientSocket, SIGNAL(pong(quint64)), this, SLOT(processPong(quint64)));
 
         m_clients << clientSocket;
+        emit numberOfClientsChanged(m_clients.size());
         emit processNewClientConnected();
 
         qDebug() << "New websocket client connected";
@@ -102,6 +104,7 @@ void websocket_server::socketDisconnected()
 
     m_clients.removeOne(socket);
     socket->deleteLater();
+    emit numberOfClientsChanged(m_clients.size());
 
     qDebug() << "Client disconnected";
 }
@@ -161,8 +164,12 @@ void websocket_server::send(QString msg)
     foreach(QtWebsocket::QWsSocket*  clientSocket, m_clients)
     {
         clientSocket->write(msg);
-        qDebug() << "processNewConnection called eventhough server was not running. something wrong";
     }
+}
+
+int websocket_server::getNumberOfClients()
+{
+    return m_clients.size();
 }
 
 

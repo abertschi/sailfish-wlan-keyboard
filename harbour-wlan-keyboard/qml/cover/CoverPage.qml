@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 CoverBackground {
+    id: cover
 
     state: "RUNNING"
 
@@ -9,120 +10,160 @@ CoverBackground {
         State {
             name: "RUNNING"
             when: notifications.serverState === notifications._SERVER_STATE_ACTIVE
-            PropertyChanges { target: statusLabel; text: qsTr("Status: <b>active</b>")}
-            PropertyChanges { target: labelRepeater; model: httpServer.getFullAddresses()}
+            PropertyChanges { target: statusLabel; text: qsTr("<b>running</b>")}
+            PropertyChanges { target: action; iconSource: "image://theme/icon-cover-pause" }
         },
         State {
             name: "NOT_RUNNING"
             when: notifications.serverState === notifications._SERVER_STATE_INACTIVE
-            PropertyChanges { target: statusLabel; text: qsTr("Status: <b>inactive</b>")}
-            PropertyChanges { target: labelRepeater; model: [qsTr("Ready to start")]}
+            PropertyChanges { target: statusLabel; text: qsTr("<b>inactive</b>")}
+            PropertyChanges { target: action; iconSource: "image://theme/icon-cover-play" }
+
         },
         State {
             when: notifications.serverState === notifications._SERVER_STATE_NO_CONNECTIVITY
             name: "NO_CONNECTION"
-            PropertyChanges { target: statusLabel; text: "Status: <b>no connectivity</b>"}
-            PropertyChanges { target: labelRepeater; model: [qsTr("Connect your device")]}
+            PropertyChanges { target: statusLabel; text: "<b>no connectivity</b>"}
         }
     ]
 
-    Image {
-        id: image
-        //y: Theme.paddingLarge
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: Theme.paddingSmall
-        anchors.top: parent.top
-        opacity: 1
-        width: parent.width / 3 * 2
-        fillMode: Image.PreserveAspectFit
-        source: "../pages/server-switch.png"
+    BackgroundItem {
+        id: bg
+        anchors.top: cover.top
+        anchors.left: cover.left
+        anchors.bottom: cover.bottom
+        anchors.fill: parent
+
+        AnimatedImage {
+            id: animation;
+            source: "../pages/img/server_run_slow.gif"
+            width: parent.width * 2
+            rotation: 300
+            anchors.top: bg.top
+            anchors.topMargin: Theme.paddingLarge
+            fillMode: Image.PreserveAspectFit
+            opacity: (animation.playing ? .5: .2)
+            playing: notifications.serverRunning
+
+            onPlayingChanged: {
+                if (!animation.playing) {
+                    animation.currentFrame = 4
+                }
+            }
+        }
     }
+
+    Rectangle {
+        id: bgNumber
+        anchors.top: cover.top
+        anchors.right: cover.right
+        anchors.rightMargin: Theme.paddingSmall* 2
+        anchors.topMargin: Theme.paddingSmall * 2
+        width: Theme.paddingSmall * 1.5
+        height: Theme.paddingSmall * 1.5
+        color: "transparent"
+        border.color:  "transparent"
+        radius: 100
+
+        Label {
+            id: numberOfConnections
+            text: ""
+            wrapMode: Text.Wrap
+            font.bold: true
+            anchors.centerIn: parent
+
+            font.pixelSize: Theme.fontSizeTiny * .7
+            color: Theme.highlightColor
+            opacity: .8
+        }
+
+     }
+
+    Connections {
+        target: websocketServer
+        onNumberOfClientsChanged: {
+            if (websocketServer.getNumberOfClients() == 0) {
+                bgNumber.color = "transparent";
+                bgNumber.border.color = "transparent";
+            }
+            else {
+                bgNumber.color = Theme.highlightColor;
+                bgNumber.border.color = Theme.highlightColor;
+            }
+        }
+
+    }
+
+
+
+
+
+    Column {
+        id: column0
+        width: parent.width
+        anchors.top: cover.top
+        anchors.left: cover.left
+        anchors.leftMargin: Theme.paddingSmall* 2
+        anchors.topMargin: Theme.paddingSmall
+
+
+        Label {
+            id: text
+            text: qsTr("Wlan Keyboard")
+            wrapMode: Text.Wrap
+            font.bold: true
+
+
+            font.pixelSize: Theme.fontSizeTiny
+            color: Theme.highlightColor
+            opacity: .8
+        }
+
+
+    }
+
 
     Column {
         id: column
         width: parent.width
-        anchors {
-            left: parent.left
-            horizontalCenter: parent.horizontalCenter
-            top: image.bottom
-        }
+        anchors.centerIn: parent
 
-        Label {
-            id: statusLabel
-            wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignHCenter
+        Rectangle {
+            color: "transparent"
+            border.color: Theme.highlightColor
             anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: Theme.fontSizeTiny
-            color: Theme.highlightColor
-        }
-        Label {
-            id: keyboardMode
-            text: {
-                var mode = settings.keyboardMode === settings._KEYBOARD_MODE_CLIPBOARD ? qsTr("Clipboard") : qsTr("Headless");
-                return qsTr("Mode:") + " <b>" + mode + "</b>"
-            }
-            wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignHCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: Theme.fontSizeTiny
-            color: Theme.highlightColor
-        }
-    }
+            width: statusLabel.width * 1.5
+            height: statusLabel.height
+            radius: 5
 
-    Column {
-        id: column2
-        width: parent.width
-        anchors {
-            left: parent.left
-            horizontalCenter: parent.horizontalCenter
-            top: column.bottom
-            topMargin: Theme.paddingMedium
-        }
-
-        Repeater {
-            id: labelRepeater
-            width: parent.width
-            model: ""
             Label {
-                id: addrLabel
+                id: statusLabel
                 wrapMode: Text.Wrap
-                text: modelData
-                font.bold: true
                 horizontalAlignment: Text.AlignHCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeTiny
+                font.pixelSize: Theme.fontSizeSmall
                 color: Theme.highlightColor
             }
         }
-    }
 
-    function extractHttpPrefix(addr) {
-        if(addr !== 'undefined' && addr.length > 1) {
-            return addr.substr(7, addr.length);
-        }
-        return addr;
     }
 
     CoverActionList {
         id: coverAction
 
         CoverAction {
-           iconSource: "image://theme/icon-cover-pause"
-            onTriggered: {
-                if (app.isServerRunning() && notifications.serverState !== notifications._SERVER_STATE_NO_CONNECTIVITY) {
-                    console.log("Coveraction to stop the server pressed")
-
-                    app.stopServers();
-                }
-            }
-        }
-        CoverAction {
-            iconSource: "image://theme/icon-cover-play"
+            id: action
+            iconSource: app.isServerRunning() ? "image://theme/icon-cover-pause": "image://theme/icon-cover-play"
             onTriggered: {
                 if (!app.isServerRunning() && notifications.serverState !== notifications._SERVER_STATE_NO_CONNECTIVITY) {
                     console.log("Coveraction to start the server pressed")
                     app.startServers();
                 }
+                else if (app.isServerRunning() && notifications.serverState !== notifications._SERVER_STATE_NO_CONNECTIVITY) {
+                    console.log("Coveraction to stop the server pressed")
+                    app.stopServers();
+                }
+
             }
         }
     }

@@ -4,32 +4,16 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>Clipboard</source>
-        <translation>Urklipp</translation>
+        <source>&lt;b&gt;inactive&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Headless</source>
-        <translation>Headless</translation>
+        <source>Wlan Keyboard</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Mode:</source>
-        <translation>Läge:</translation>
-    </message>
-    <message>
-        <source>Status: &lt;b&gt;active&lt;/b&gt;</source>
-        <translation>Status: &lt;b&gt;Aktiv&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Status: &lt;b&gt;inactive&lt;/b&gt;</source>
-        <translation>Status: &lt;b&gt;Inaktiv&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Ready to start</source>
-        <translation>Klar att starta</translation>
-    </message>
-    <message>
-        <source>Connect your device</source>
-        <translation>Anslut din enhet</translation>
+        <source>&lt;b&gt;running&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -117,12 +101,12 @@
         <translation>Om</translation>
     </message>
     <message>
-        <source>Start server</source>
-        <translation>Starta servern</translation>
-    </message>
-    <message>
         <source>Stop server</source>
         <translation>Stoppa servern</translation>
+    </message>
+    <message>
+        <source>Starts server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -140,14 +124,6 @@
         <translation>Konfiguration</translation>
     </message>
     <message>
-        <source>To use this mode, you need to install the &lt;b&gt; headless keyboard &lt;/b&gt; layout.</source>
-        <translation>För att använda det här läget, måste du installera &lt;b&gt; headless keyboard&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>The headless keyboard layout is completely Free and Open Source Software. However, alternative keyboard layouts are not yet supported in the official Harbor store. Therefore, you install it on your own risk.</source>
-        <translation>Headless keyboard är fri och öppen källkod. Dock stöds ännu inte alternativa tangentbordslayouter, i den officiella Harbour store. Därför installerar du den på egen risk.</translation>
-    </message>
-    <message>
         <source>Download</source>
         <translation>Ladda ner</translation>
     </message>
@@ -162,6 +138,14 @@
     <message>
         <source>Browsing Download Page </source>
         <translation>Går till nedladdningssidan </translation>
+    </message>
+    <message>
+        <source>To use this mode, you need to install the &lt;b&gt; headless keyboard &lt;/b&gt; extension.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The headless keyboard extension is completely Free and Open Source Software. Due to harbor policies, it needs to be distributed in an alternative store. Therefore, you install it on your own risk.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
