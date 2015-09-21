@@ -58,11 +58,12 @@ var WebSocketWrapper = function(url){
  
   // dispatch to the right handlers
   conn.onmessage = function(evt){
-    dispatch(json.event, json.data)
+    var json = JSON.parse(evt.data);
+    dispatch(json.event, json.data);
   };
  
-  conn.onclose = function(){dispatch('close',null)}
-  conn.onopen = function(){dispatch('open',null)}
+  conn.onclose = function(){dispatch('close',null)};
+  conn.onopen = function(){dispatch('open',null)};
  
   var dispatch = function(event_name, message){
     var chain = callbacks[event_name];
