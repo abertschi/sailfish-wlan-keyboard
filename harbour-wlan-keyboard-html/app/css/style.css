@@ -206,7 +206,8 @@ h1 {
 
 .clipboard__img {
   padding-top: .2em;
-  width: 1em; }
+  width: 1em;
+  opacity: .6; }
 
 .clipboard__input_inner:focus {
   outline: 0px; }

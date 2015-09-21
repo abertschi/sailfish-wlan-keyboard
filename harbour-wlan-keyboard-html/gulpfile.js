@@ -55,7 +55,7 @@ gulp.task('sass', function () {
 
 
 gulp.task('dist-html', function() {
-    return gulp.src(['./app/*.html'])
+    return gulp.src(['./app/*.html', './app/*.ico'])
         .pipe(gulp.dest('./dist'))
         .pipe(connect.reload());
 });
@@ -82,6 +82,7 @@ gulp.task('watch', function () {
 
     if (production) {
         gulp.watch(['./app/*.html'], ['dist-html']);
+        gulp.watch(['./app/*.ico'], ['dist-html']); // favicon
         gulp.watch(['./app/css/**/*.css'], ['dist-style']);
         gulp.watch(['./app/js/bundle.js'], ['dist-js']);
         gulp.watch(['./app/img/**/*.*'], ['dist-img']);
