@@ -87,12 +87,18 @@ include(inc/QtWebsocket/qtwebsocket_headers.pri)
 LIB_BASE = _DO_DEFINE
 QMAKE_RPATHDIR +=  /usr/share/harbour-wlan-keyboard/lib
 
-linux-g++-64 {
+linux-g++-64: {
 LIB_BASE = $$PWD/lib/armv7hl
 }
-else:linux-g++ {
+else {
 LIB_BASE = $$PWD/lib/armv7hl # $$PWD/lib/armv7hl  i486
 }
+
+unix {
+    # get rid of mac osx DS_Store files
+    system(find $$PWD -name ".DS_Store" -depth -exec rm {} \;)
+}
+
 
 # LIBS += -L$$LIB_BASE -lqhttpserver
 
