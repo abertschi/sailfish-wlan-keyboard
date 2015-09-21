@@ -72,7 +72,7 @@ var WlanKeyboard = React.createClass({
                             </div>
 
                             <div className="clipboard__textarea__outer">
-                                <textarea className="clipboard__textarea" readonly="false" placeholder="Empty phone clipboard" value={this.state.clipboard} />
+                                <textarea className="clipboard__textarea" readOnly="true" placeholder="Empty phone clipboard" value={this.state.clipboard} />
                             </div>
 
                         </div>
