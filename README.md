@@ -26,6 +26,9 @@ The latter mode copies incoming keystrokes into the clipboard.
 ## Download Binary
 Search for `wlan-keyboard` in the harbour store or download the binary from [openrepos.net](https://openrepos.net/content/abertschi/sailfish-wlan-keyboard).
 
+## Changelog
+See [CHANGELOG.md](https://github.com/abertschi/sailfish-wlan-keyboard/blob/master/CHANGELOG.md)
+
 ==================================================================
 
 ## Developer notes
