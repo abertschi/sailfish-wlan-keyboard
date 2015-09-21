@@ -106,7 +106,7 @@ lib.path = \
 
 INSTALLS += lib
 
-html.files += ../harbour-wlan-keyboard-html/dist/**/*.*
+html.files += ../harbour-wlan-keyboard-html/dist/*
 html.path = /usr/share/harbour-wlan-keyboard/publish
 
 html404.files += 404.html
