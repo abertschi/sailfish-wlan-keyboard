@@ -73,12 +73,14 @@ TRANSLATIONS += translations/harbour-wlan-keyboard.ts
 LIB_BASE = _DO_DEFINE
 QMAKE_RPATHDIR +=  /usr/share/harbour-wlan-keyboard/lib
 
-linux-g++-64: {
+#linux-g++-64: {
+#LIB_BASE = $$PWD/lib/armv7hl
+#}
+#else {
+#LIB_BASE = $$PWD/lib/armv7hl # $$PWD/lib/armv7hl  i486
+#}
+
 LIB_BASE = $$PWD/lib/armv7hl
-}
-else {
-LIB_BASE = $$PWD/lib/armv7hl # $$PWD/lib/armv7hl  i486
-}
 
 unix {
     # get rid of mac osx DS_Store files
