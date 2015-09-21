@@ -124,14 +124,14 @@ h1 {
   background-color: white;
   min-height: 2.5em;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
-  padding: 0.5em 0.5em 0.1em 2em; }
+  padding: .5em .5em .1em 2em; }
 
 .clipboard_footer {
   border-top: 1px solid #dddddd;
   background-color: white;
   height: .5em;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
-  padding: 0.5em 0.5em 0em 2em; }
+  padding: .5em .5em 0em 2em; }
 
 .clibboard__icon {
   overflow: hidden;
@@ -205,7 +205,7 @@ h1 {
   padding-left: 20px; }
 
 .clipboard__img {
-  padding-top: .2em;
+  padding-top: .25em;
   width: 1em;
   opacity: .6; }
 
@@ -263,6 +263,32 @@ h1 {
   height: 100%;
   line-height: 100%; }
 
+#feedback {
+  display: block;
+  position: fixed;
+  bottom: 5%;
+  right: 0px;
+  color: white;
+  margin-right: -20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-left: 2px #C4BCB0 solid;
+  background: #252A2E; }
+
+#feedback a {
+  display: none; }
+
+#feedback:hover {
+  margin-right: 0px; }
+
+#feedback:hover a {
+  display: block;
+  color: white;
+  padding-bottom: 10px; }
+
+#feedback span {
+  font-size: 40px; }
+
 #forkongithub a {
   background: #952a1b;
   color: #fff;
@@ -304,6 +330,7 @@ h1 {
     overflow: hidden;
     height: 200px;
     z-index: 9999; }
+
   #forkongithub a {
     width: 230px;
     position: absolute;
@@ -315,3 +342,5 @@ h1 {
     -moz-transform: rotate(315deg);
     -o-transform: rotate(315deg);
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); } }
+
+/*# sourceMappingURL=style.css.map */

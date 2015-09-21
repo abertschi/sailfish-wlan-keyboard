@@ -294,7 +294,7 @@ h1 {
 }
 
 .clipboard__img {
-  padding-top: .2em;
+  padding-top: .25em;
   width: 1em;
   opacity: .6;
 
@@ -361,6 +361,34 @@ h1 {
 
 
 }
+
+
+#feedback{
+  display:block;
+  position:fixed;
+  //top:65%;
+  bottom: 5%;
+  right: 0px;
+  //font-family:georgia;
+  //font-size: px;
+  color: white;
+  margin-right: -20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-left:2px #C4BCB0 solid; //C4BCB0 E50055
+  background:#252A2E
+}
+#feedback a{display:none}
+
+#feedback:hover {
+   margin-right: 0px;
+}
+#feedback:hover a{
+  display:block;
+  color: white;
+  padding-bottom: 10px;
+}
+#feedback span {font-size: 40px;}
 
 #forkongithub a {
 	background: #952a1b;
