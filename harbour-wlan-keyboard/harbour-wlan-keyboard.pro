@@ -1,19 +1,10 @@
-# NOTICE:
-#
-# Application name defined in TARGET has a corresponding QML filename.
-# If name defined in TARGET is changed, the following needs to be done
-# to match new name:
-#   - corresponding QML filename must be changed
-#   - desktop icon filename must be changed
-#   - desktop filename must be changed
-#   - icon definition filename in desktop file must be changed
-#   - translation filenames have to be changed
-
-# The name of your application
-
 TARGET = harbour-wlan-keyboard
 
 CONFIG += sailfishapp warn_off plugin c++11 qdbus
+
+QT += core gui quick network
+
+INCLUDEPATH += inc src
 
 include(gitversion.pri)
 
@@ -27,9 +18,17 @@ SOURCES += \
     src/settings.cpp \
     src/headless_keyboard_delegate.cpp
 
-QT += core gui quick network
+HEADERS += \
+    src/http_server.h \
+    src/websocket_server.h \
+    src/utils.h \
+    src/server_configurator.h \
+    src/server_endpoint.h \
+    src/settings.h \
+    src/headless_keyboard_delegate.h
 
-INCLUDEPATH += inc src
+include(inc/qhttpserver/qhttpserver.pri)
+include(inc/QtWebsocket/qtwebsocket_headers.pri)
 
 OTHER_FILES += \
     qml/harbour-wlan-keyboard.qml \
@@ -63,25 +62,12 @@ OTHER_FILES += \
     404.html \
     ../harbour-wlan-keyboard-html/dist/**/*.*
 
-# to disable building translations every time, comment out the
-# following CONFIG line
 CONFIG += sailfishapp_i18n static
+
 TRANSLATIONS += translations/harbour-wlan-keyboard-de.ts
 TRANSLATIONS += translations/harbour-wlan-keyboard-sv.ts
 TRANSLATIONS += translations/harbour-wlan-keyboard-zh_CN.ts
 TRANSLATIONS += translations/harbour-wlan-keyboard.ts
-
-HEADERS += \
-    src/http_server.h \
-    src/websocket_server.h \
-    src/utils.h \
-    src/server_configurator.h \
-    src/server_endpoint.h \
-    src/settings.h \
-    src/headless_keyboard_delegate.h
-
-include(inc/qhttpserver/qhttpserver.pri)
-include(inc/QtWebsocket/qtwebsocket_headers.pri)
 
 # Third Party libs
 LIB_BASE = _DO_DEFINE
@@ -98,9 +84,6 @@ unix {
     # get rid of mac osx DS_Store files
     system(find $$PWD -name ".DS_Store" -depth -exec rm {} \;)
 }
-
-
-# LIBS += -L$$LIB_BASE -lqhttpserver
 
 LIBS += $$LIB_BASE/libqhttpserver.so.0
 LIBS += $$LIB_BASE/libQtWebsocket.so.1
