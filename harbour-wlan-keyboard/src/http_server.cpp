@@ -15,7 +15,8 @@ http_server::http_server(QObject *parent): QObject(parent), m_isRunning(false)
 
 http_server:: ~ http_server()
 {
-    if (m_isRunning) {
+    if (m_isRunning)
+    {
         stopServer();
     }
     delete(this->m_server);
@@ -39,16 +40,18 @@ void http_server::startServer(const QHostAddress &address, qint16 port)
 {
     qDebug() << "Starting httpServer on port " << m_server;
 
-    if (m_server->listen(address, port)) {
-
+    if (m_server->listen(address, port))
+    {
         connect(m_server, SIGNAL(newRequest(QHttpRequest*, QHttpResponse*)),
-                this, SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
+                this,
+                SLOT(handleRequest(QHttpRequest*, QHttpResponse*)));
 
         m_isRunning = true;
         emit runningChanged(true);
         qDebug() << "HttpServer successfully started";
     }
-    else {
+    else
+    {
         qDebug() << "Error in starting httpServer, error: " << m_server->getEngine()->errorString();
     }
 }
@@ -72,16 +75,16 @@ void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp)
              <<  "methodString: " <<req->methodString()
               << " body-size: " << req->body().size();
 
-    QString content;
+    QByteArray content;
     QFile file;
-
-    if (req->path() == "/") {
+    if (req->path() == "/")
+    {
         file.setFileName(this->m_basePath + "index.html");
     }
-    else {
+    else
+    {
         file.setFileName(this->m_basePath + req->path());
     }
-
     if(file.open(QIODevice::ReadOnly) == 0)
     {
         if (!m_error404File.isNull() || m_error404File != "")
@@ -89,22 +92,22 @@ void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp)
             QFile file;
             file.setFileName(m_error404File);
             file.open(QIODevice::ReadOnly);
-            qDebug() << m_error404File;
-            QTextStream in(&file);
-            content = in.readAll();
+            content = file.readAll();
         } else
         {
             content = "Error 404. Cant find file";
         }
     }
-    else {
-        QTextStream in(&file);
-        content = in.readAll();
-        emit modifyHtmlResponse(&content);
+    else
+    {
+        content = file.readAll();
+        QString text (content);
+        emit modifyHtmlResponse(&text);
     }
-    resp->setHeader("Content-Length", QString::number(content.size()));
+
+    resp->setHeader("Content-Length", QString::number(content.length()));
     resp->writeHead(200);
-    resp->end(content.toUtf8());
+    resp->end(content);
     file.close();
 }
 
@@ -144,7 +147,6 @@ QStringList http_server::getIpAddresses() const
     {
         if (m_isBroadcasting)
         {
-
             foreach(ServerEndpoint* endpoint, Utils::getAvailableEndpoints())
             {
                 list << endpoint->ipAddress();
