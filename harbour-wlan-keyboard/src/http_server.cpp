@@ -103,6 +103,12 @@ void http_server::handleRequest(QHttpRequest *req, QHttpResponse *resp)
         content = file.readAll();
         QString text (content);
         emit modifyHtmlResponse(&text);
+        if (text != QString(content))
+        {
+            //overwrite input with modified content
+            content = text.toUtf8();
+        }
+        qDebug() << text;
     }
 
     resp->setHeader("Content-Length", QString::number(content.length()));
