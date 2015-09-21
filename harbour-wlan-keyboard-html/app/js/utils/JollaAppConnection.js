@@ -4,8 +4,6 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 
 var ConnectionStatus = require('../constants/WlanKeyboardConstants').ConnectionStatus;
 
-console.log("Hello planet earth");
-
 var socket = {};
 var endpoint = {};
 var isCheckStatus = false;

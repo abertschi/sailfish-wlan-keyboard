@@ -11,6 +11,9 @@ if (wsEndpoint == debugCheck) {
     wsEndpoint = 'ws://192.168.1.165:8890';
 }
 
+console.log("Booting sailfish-wlan-keyboard frontend");
+console.log("Using websocket endpoint: " + wsEndpoint);
+
 JollaAppConn.connect(wsEndpoint);
 
 window.React = React;
