@@ -156,7 +156,7 @@ Item {
 
             ComboBox {
                 id: keyboardMode
-                Component.onCompleted: headlessKeyboard.isRunning() ? keyboardMode.resetLabels() : keyboardMode.showHeadlessError();
+                Component.onCompleted:  checkHeadlessAvailability()
 
                 Connections {
                     target: headlessKeyboard
@@ -192,13 +192,23 @@ Item {
                         settings.keyboardMode = settings._KEYBOARD_MODE_HEADLESS
                         app.openPageHeadlessMode()
                     }
+                     checkHeadlessAvailability()
+                }
+
+                function checkHeadlessAvailability() {
+                    if (!headlessKeyboard.isRunning() && settings.keyboardMode == settings._KEYBOARD_MODE_HEADLESS) {
+                        console.log("Showing Headless Error");
+                        keyboardMode.showHeadlessError();
+                    } else {
+                        console.log("Resetting Headless Error");
+                        keyboardMode.resetLabels()
+                    }
                 }
 
                 function showHeadlessError() {
                     keyboardMode.labelColor = "red"
                     keyboardMode.valueColor= "red"
-                    keyboardMode.description =
-                            qsTr("Mode to process incoming keystrokes") + "<br />" +"<b>" + qsTr("Headless Keyboard not detected") + "</b>"
+                    keyboardMode.description = "<b>" + qsTr("Headless Keyboard not detected") + "</b>"
                 }
 
                 function resetLabels() {
