@@ -31,16 +31,22 @@ public:
     void send_keyboard_label(QString label);
     void send_enable_debug(bool enabled);
     void send_enable_keyboard();
+    bool isRunning();
 
 private slots:
-    void receive_clibpoard_changed_private(QString cb);
+    void onClipboardChangedPrivate(QString cb);
+    void onServiceRegistered(QString s);
+    void onServiceUnRegistered(QString s);
 
 Q_SIGNALS:
 signals:
-        void on_clipboard_set(QString cb);
+        void onClipboardChanged(QString cb);
+        void runningChanged(bool isRunning);
 
 private:
     QDBusInterface * m_dbus_iface;
+    QDBusServiceWatcher * m_service_watcher;
+    bool m_is_running;
 
 };
 #endif // HEADLESS_KEYBOARD_DELEGATE_H
