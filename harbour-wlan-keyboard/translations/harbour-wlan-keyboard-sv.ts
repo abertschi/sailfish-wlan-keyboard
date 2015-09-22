@@ -79,7 +79,7 @@
     </message>
     <message>
         <source>This mode copies all incoming keystrokes to your clipboard. You need to paste them into a focused widget.</source>
-        <translation>Detta läge kopierar alla inkommande tangentnedslag till Urklipp. Du måste sedan klistra in dem i fokuserad app.</translation>
+        <translation>Detta läge kopierar alla inkommande tangentnedslag till urklipp. Du måste sedan klistra in dem i fokuserad app.</translation>
     </message>
     <message>
         <source>Preview</source>
@@ -145,15 +145,15 @@
     </message>
     <message>
         <source>The headless keyboard extension is completely Free and Open Source Software. Due to harbor policies, it needs to be distributed in an alternative store. Therefore, you install it on your own risk.</source>
-        <translation>Headless keyboard-tillägget är fri och öppen källkodsmjukvara. På grund av Jolla Store policy, måste den distribueras från alternativt förråd. Därför installerar du på egen risk.</translation>
+        <translation>Headless keyboard-tillägget är fri och öppen källkodsmjukvara. På grund av Jolla Store-policy, måste den distribueras från alternativt förråd. Därför installerar du på egen risk.</translation>
     </message>
     <message>
         <source>Phone clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefonens urklipp</translation>
     </message>
     <message>
         <source>This mode features a bidirectional text exchange so you can access your phone clipboard on your computer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Detta läge är ett dubbelriktad textutbyte, så att du kan komma åt telefonens urklippsinnehåll på din dator.</translation>
     </message>
 </context>
 <context>
@@ -237,7 +237,7 @@
     </message>
     <message>
         <source>Headless Keyboard not detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Headless Keyboard hittas inte</translation>
     </message>
 </context>
 <context>
