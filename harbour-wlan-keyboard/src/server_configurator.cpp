@@ -28,14 +28,15 @@ void ServerConfigurator::configure(QQuickView *view)
     Settings * s = &Settings::getInstance();
     connect(s, SIGNAL(settingsChanged(Settings*)), this, SLOT(onSettingsChanged(Settings*)));
 
-    connect(m_headless_keyboard, SIGNAL(on_clipboard_set(QString)), this, SLOT(onPhoneClipboardChanged(QString)));
-    //connect()
+    view->rootContext()->setContextProperty("headlessKeyboard", m_headless_keyboard);
+    connect(m_headless_keyboard, SIGNAL(onClipboardChanged(QString)), this, SLOT(onPhoneClipboardChanged(QString)));
 }
 
 void ServerConfigurator::modifyHtmlContent(QString *content)
 {
     QString addr = m_websocket_server->getFullAddresses().at(0);
-    if(content->contains(ENDPOINT_MARKER)) {
+    if(content->contains(ENDPOINT_MARKER))
+    {
         *content = content->replace(ENDPOINT_MARKER, addr) ;
     }
 }
