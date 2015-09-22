@@ -49,7 +49,6 @@ static QJSValue appVersionSingletonProvider(QQmlEngine *engine, QJSEngine *scrip
     return appInfo;
 }
 
-
 int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
@@ -67,11 +66,9 @@ int main(int argc, char *argv[])
 
     Settings &settings = Settings::getInstance();
     view->rootContext()->setContextProperty("_qtSettings", &settings);
-    //qmlRegisterType<Settings>("harbour.wlan.keyboard",1,0,"Settings");
 
     view->setSource(SailfishApp::pathTo("qml/harbour-wlan-keyboard.qml") );
     view->showFullScreen();
 
     return app->exec();
-
 }

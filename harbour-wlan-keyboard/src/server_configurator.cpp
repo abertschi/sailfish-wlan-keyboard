@@ -28,14 +28,15 @@ void ServerConfigurator::configure(QQuickView *view)
     Settings * s = &Settings::getInstance();
     connect(s, SIGNAL(settingsChanged(Settings*)), this, SLOT(onSettingsChanged(Settings*)));
 
-    connect(m_headless_keyboard, SIGNAL(on_clipboard_set(QString)), this, SLOT(onPhoneClipboardChanged(QString)));
-    //connect()
+    view->rootContext()->setContextProperty("headlessKeyboard", m_headless_keyboard);
+    connect(m_headless_keyboard, SIGNAL(onClipboardChanged(QString)), this, SLOT(onPhoneClipboardChanged(QString)));
 }
 
 void ServerConfigurator::modifyHtmlContent(QString *content)
 {
     QString addr = m_websocket_server->getFullAddresses().at(0);
-    if(content->contains(ENDPOINT_MARKER)) {
+    if(content->contains(ENDPOINT_MARKER))
+    {
         *content = content->replace(ENDPOINT_MARKER, addr) ;
     }
 }
@@ -53,7 +54,7 @@ void ServerConfigurator::onPhoneClipboardChanged(QString cb)
     // In this case, notifications about clipboard changes are not
     // useful. TODO
 
-    qDebug() << "CB: recognized cb change with text: " << cb;
+    qDebug() << "Clipboard change was detected" << cb;
     sendClipboardToClients(cb);
 }
 
@@ -95,9 +96,7 @@ void ServerConfigurator::processInsertText(QString text)
         m_keyboardUtils->setClipboard(text);
     }
     else
-    { // Settings::KeyboardMode::HEADLESS
-        QString label = m_http_server->getFullAddresses().at(0);
-        m_headless_keyboard->send_keyboard_label(label);
+    {
         m_headless_keyboard->send_text(text);
         qDebug() << "Sending keystroke to headless end: " << text;
     }

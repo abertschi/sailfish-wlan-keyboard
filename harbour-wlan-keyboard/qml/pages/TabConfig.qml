@@ -152,13 +152,28 @@ Item {
                 }
             }
             */
+
+
             ComboBox {
                 id: keyboardMode
+                Component.onCompleted:  checkHeadlessAvailability()
+
+                Connections {
+                    target: headlessKeyboard
+                    onRunningChanged: {
+                        if (isRunning) {
+                            keyboardMode.resetLabels();
+                        }
+                        else {
+                            keyboardMode.showHeadlessError();
+                        }
+                    }
+                }
+
                 width: parent.width
                 label: qsTr("Keyboard mode")
                 currentIndex: settings.keyboardMode === settings._KEYBOARD_MODE_CLIPBOARD ? 0 : 1
                 anchors.left: parent.left
-                description: qsTr("Mode to process incoming keystrokes")
                 menu: ContextMenu {
                     MenuItem { text: qsTr("Clipboard") }
                     MenuItem { text: qsTr("Headless") }
@@ -177,6 +192,30 @@ Item {
                         settings.keyboardMode = settings._KEYBOARD_MODE_HEADLESS
                         app.openPageHeadlessMode()
                     }
+                     checkHeadlessAvailability()
+                }
+
+                function checkHeadlessAvailability() {
+                    if (!headlessKeyboard.isRunning() && settings.keyboardMode == settings._KEYBOARD_MODE_HEADLESS) {
+                        console.log("Showing Headless Error");
+                        keyboardMode.showHeadlessError();
+                    } else {
+                        console.log("Resetting Headless Error");
+                        keyboardMode.resetLabels()
+                    }
+                }
+
+                function showHeadlessError() {
+                    keyboardMode.labelColor = "red"
+                    keyboardMode.valueColor= "red"
+                    keyboardMode.description = "<b>" + qsTr("Headless Keyboard not detected") + "</b>"
+                }
+
+                function resetLabels() {
+                    keyboardMode.labelColor = "white"
+                    keyboardMode.valueColor= Theme.highlightColor
+                    keyboardMode.description =
+                            qsTr("Mode to process incoming keystrokes")
                 }
             }
         }

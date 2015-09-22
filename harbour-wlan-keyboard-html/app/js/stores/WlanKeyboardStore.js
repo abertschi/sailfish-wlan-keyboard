@@ -10,7 +10,7 @@ var _serverSettings = {};
 
 var _connectionStatus = {};
 
-var _keyMode = _keyMode || WlanKeyboardConstants.KeyMode.HEADLESS;
+var _keyMode = _keyMode || WlanKeyboardConstants.KeyMode.CLIPBOARD;
 
 var _phoneClipboard = "";
 

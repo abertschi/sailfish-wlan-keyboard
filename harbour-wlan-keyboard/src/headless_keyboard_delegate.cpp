@@ -2,18 +2,28 @@
 
 HeadlessKeyboardDelegate::HeadlessKeyboardDelegate(QObject *parent) : QObject(parent)
 {
+    this->m_service_watcher = new QDBusServiceWatcher(SERVICE, QDBusConnection::sessionBus());
+
+    QObject::connect(m_service_watcher, SIGNAL(serviceRegistered(QString)),
+                     this, SLOT(onServiceRegistered(QString)));
+
+    QObject::connect(m_service_watcher, SIGNAL(serviceUnregistered(QString)),
+                     this, SLOT(onServiceUnRegistered(QString)));
+
     this->m_dbus_iface = new QDBusInterface(SERVICE, PATH, IF_NAME, QDBusConnection::sessionBus(), parent);
     if (! m_dbus_iface->isValid())
     {
-        qDebug() << "dbus interface is invalid";
-        //exit(1); // todo
+        qDebug() << "dbus interface " << SERVICE << " is invalid";
+        m_is_running = false;
+        runningChanged(false);
     }
     qDebug() << "dbus connection successfully created";
     QDBusConnection::sessionBus().connect(SERVICE,
                                           PATH,
                                           IF_NAME,
                                           "receive_clipboard_changed",
-                                          this, SLOT(receive_clibpoard_changed_private(QString)));
+                                          this, SLOT(onClipboardChangedPrivate(QString)));
+
 }
 
 HeadlessKeyboardDelegate:: ~ HeadlessKeyboardDelegate()
@@ -67,7 +77,7 @@ void HeadlessKeyboardDelegate::send_key_arrow (ArrowDirection direction)
 
 void HeadlessKeyboardDelegate::send_keyboard_label(QString label)
 {
-    m_dbus_iface->asyncCall("send_keyboard_label", label);
+    qDebug() << "Feature is not supported";
 }
 
 void HeadlessKeyboardDelegate::send_enable_debug(bool enabled)
@@ -80,7 +90,27 @@ void HeadlessKeyboardDelegate::send_enable_keyboard()
     m_dbus_iface->asyncCall("send_enable_keyboard");
 }
 
-void HeadlessKeyboardDelegate::receive_clibpoard_changed_private(QString cb)
+void HeadlessKeyboardDelegate::onClipboardChangedPrivate(QString cb)
 {
-    emit on_clipboard_set(cb);
+    emit onClipboardChanged(cb);
+}
+
+bool HeadlessKeyboardDelegate::isRunning()
+{
+    return m_is_running;
+}
+
+void HeadlessKeyboardDelegate::onServiceRegistered(QString s)
+{
+    qDebug() << "headless mode service was registered " << s;
+    m_is_running = true;
+    emit runningChanged(true);
+
+}
+
+void HeadlessKeyboardDelegate::onServiceUnRegistered(QString s)
+{
+    qDebug() << "headless mode service was unregistered " << s;
+    m_is_running = false;
+    emit runningChanged(false);
 }

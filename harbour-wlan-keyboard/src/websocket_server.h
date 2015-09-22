@@ -15,7 +15,6 @@ class websocket_server : public QObject
     Q_OBJECT
 
     Q_PROPERTY(bool m_isRunning READ isRunning NOTIFY runningChanged)
-
     Q_PROPERTY(int m_numberOfClients READ getNumberOfClients NOTIFY numberOfClientsChanged)
 
 public:
@@ -23,8 +22,9 @@ public:
 
     virtual ~ websocket_server();
 
-    Q_INVOKABLE void startServerBroadcast(qint16 port = 7777);
     void startServer(const QHostAddress &address, qint16 m_port);
+
+    Q_INVOKABLE void startServerBroadcast(qint16 port = 7777);
     Q_INVOKABLE void startServer(const QString address, qint16 port);
     Q_INVOKABLE void stopServer();
 
