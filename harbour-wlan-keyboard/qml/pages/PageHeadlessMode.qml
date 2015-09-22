@@ -47,9 +47,20 @@ Page {
             }
 
             SectionHeader {
+                text: qsTr("Phone clipboard")
+                font.bold: true
+            }
+
+            Label {
+                text: qsTr("This mode features a bidirectional text exchange so you can access your phone clipboard on your computer.")
+                width: parent.width
+                wrapMode: Text.Wrap
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            SectionHeader {
                 text: qsTr("Configuration")
                 font.bold: true
-                //height: Theme.paddingMedium
             }
 
             /*
