@@ -12,14 +12,13 @@ Item {
     property bool connectivityAvailable: true
     property bool serverRunning
 
-    property bool inForeground: true
-
     property int serverState:
         (notifications.serverRunning && notifications.connectivityAvailable) ? _SERVER_STATE_ACTIVE :
            (!notifications.serverRunning && notifications.connectivityAvailable) ? _SERVER_STATE_INACTIVE :
                 _SERVER_STATE_NO_CONNECTIVITY
 
      signal onStateReload()
+     signal applicationStateActive(bool active) // active if in foreground
 
     Connections {
         target: httpServer
@@ -33,6 +32,7 @@ Item {
         onApplicationStateChanged: {
             console.log("application state: " + state);
             connectivityTimer.running = (state == 4); // 4 =  active
+            applicationStateActive(state == 4);
         }
     }
 
