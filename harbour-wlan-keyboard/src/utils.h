@@ -16,7 +16,6 @@ public:
     Q_INVOKABLE static int getAvailableEndpointSize();
 
     static QHostAddress getHostAddressByInterfaceName(QString name);
-    //static QList<QHostAddress> Utils::getAllHostAdresses();
 
     void setClipboard(QString content);
     QClipboard * getClipboard();
@@ -34,6 +33,5 @@ private:
     QClipboard *m_clipboard;
 
 };
-
 
 #endif // UTILS_H

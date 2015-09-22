@@ -54,7 +54,7 @@ void ServerConfigurator::onPhoneClipboardChanged(QString cb)
     // In this case, notifications about clipboard changes are not
     // useful. TODO
 
-    qDebug() << "CB: recognized cb change with text: " << cb;
+    qDebug() << "Clipboard change was detected" << cb;
     sendClipboardToClients(cb);
 }
 
@@ -96,7 +96,7 @@ void ServerConfigurator::processInsertText(QString text)
         m_keyboardUtils->setClipboard(text);
     }
     else
-    { // Settings::KeyboardMode::HEADLESS
+    {
         QString label = m_http_server->getFullAddresses().at(0);
         m_headless_keyboard->send_keyboard_label(label);
         m_headless_keyboard->send_text(text);

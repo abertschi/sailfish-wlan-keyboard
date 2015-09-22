@@ -77,7 +77,6 @@ void HeadlessKeyboardDelegate::send_key_arrow (ArrowDirection direction)
 
 void HeadlessKeyboardDelegate::send_keyboard_label(QString label)
 {
-    //m_dbus_iface->asyncCall("send_keyboard_label", label);
     qDebug() << "Feature is not supported";
 }
 

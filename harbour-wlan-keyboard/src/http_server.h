@@ -16,9 +16,9 @@ public:
     explicit http_server(QObject *parent = 0);
     virtual ~ http_server();
 
+    void startServer(const QHostAddress &address, qint16 port);
     Q_INVOKABLE void startServerBroadcast(qint16 port);
     Q_INVOKABLE void startServer(const QString interfaceName, qint16 port);
-    void startServer(const QHostAddress &address, qint16 port);
     Q_INVOKABLE void stopServer();
 
     Q_INVOKABLE bool isRunning() const;
@@ -26,11 +26,9 @@ public:
     Q_INVOKABLE void setBasePath(QString filePath);
     Q_INVOKABLE void setError404File(QString filePath);
 
-
     Q_INVOKABLE QString getStaticContent();
 
     Q_INVOKABLE qint16 getPort() const;
-
     Q_INVOKABLE QStringList getFullAddresses() const;
     Q_INVOKABLE QStringList getIpAddresses() const;
 

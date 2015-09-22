@@ -42,8 +42,8 @@ private slots:
 
 Q_SIGNALS:
 signals:
-        void onClipboardChanged(QString cb);
-        void runningChanged(bool isRunning);
+    void onClipboardChanged(QString cb);
+    void runningChanged(bool isRunning);
 
 private:
     QDBusInterface * m_dbus_iface;
