@@ -4,11 +4,11 @@ HeadlessKeyboardDelegate::HeadlessKeyboardDelegate(QObject *parent) : QObject(pa
 {
     this->m_service_watcher = new QDBusServiceWatcher(SERVICE, QDBusConnection::sessionBus());
 
-    QObject::connect(m_service_watcher, SIGNAL(serviceRegistered(const QString&)),
-                     this, SLOT(serviceRegistered(const QString&)));
+    QObject::connect(m_service_watcher, SIGNAL(serviceRegistered(QString)),
+                     this, SLOT(onServiceRegistered(QString)));
 
-    QObject::connect(m_service_watcher, SIGNAL(serviceUnregistered(const QString&)),
-                     this, SLOT(serviceUnregistered(const QString&)));
+    QObject::connect(m_service_watcher, SIGNAL(serviceUnregistered(QString)),
+                     this, SLOT(onServiceUnRegistered(QString)));
 
     this->m_dbus_iface = new QDBusInterface(SERVICE, PATH, IF_NAME, QDBusConnection::sessionBus(), parent);
     if (! m_dbus_iface->isValid())
