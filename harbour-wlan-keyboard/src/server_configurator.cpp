@@ -97,8 +97,6 @@ void ServerConfigurator::processInsertText(QString text)
     }
     else
     {
-        QString label = m_http_server->getFullAddresses().at(0);
-        m_headless_keyboard->send_keyboard_label(label);
         m_headless_keyboard->send_text(text);
         qDebug() << "Sending keystroke to headless end: " << text;
     }
