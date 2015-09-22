@@ -227,6 +227,10 @@
         <source>Headless</source>
         <translation>极简</translation>
     </message>
+    <message>
+        <source>Headless Keyboard not detected</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>harbour-wlan-keyboard</name>
