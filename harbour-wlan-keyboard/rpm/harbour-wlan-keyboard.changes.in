@@ -29,5 +29,10 @@
 - change cover page
 - add server animations
 - headless keyboard mode can be used with any installed keyboard layout
-        -
+
+* Tue Sep 22 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.4.1
+- add headless keyboard detection
+- disable feature to access phone clipboard if headless keyboard not installed
+                -
+
 

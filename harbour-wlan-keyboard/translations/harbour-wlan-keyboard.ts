@@ -147,6 +147,14 @@
         <source>The headless keyboard extension is completely Free and Open Source Software. Due to harbor policies, it needs to be distributed in an alternative store. Therefore, you install it on your own risk.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Phone clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This mode features a bidirectional text exchange so you can access your phone clipboard on your computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RuntimeActiveState</name>
