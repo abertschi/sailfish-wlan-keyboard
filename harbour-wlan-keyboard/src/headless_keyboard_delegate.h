@@ -11,6 +11,7 @@
 class HeadlessKeyboardDelegate : public QObject
 {
     Q_OBJECT
+
 public:
     explicit HeadlessKeyboardDelegate(QObject *parent = 0);
     virtual ~ HeadlessKeyboardDelegate();
@@ -31,7 +32,8 @@ public:
     void send_keyboard_label(QString label);
     void send_enable_debug(bool enabled);
     void send_enable_keyboard();
-    bool isRunning();
+
+    Q_INVOKABLE bool isRunning();
 
 private slots:
     void onClipboardChangedPrivate(QString cb);

@@ -156,7 +156,7 @@ Item {
 
             ComboBox {
                 id: keyboardMode
-                Component.onCompleted: resetLabels()
+                Component.onCompleted: headlessKeyboard.isRunning() ? keyboardMode.resetLabels() : keyboardMode.showHeadlessError();
 
                 Connections {
                     target: headlessKeyboard
