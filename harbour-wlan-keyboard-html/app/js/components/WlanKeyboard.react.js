@@ -50,33 +50,32 @@ var WlanKeyboard = React.createClass({
             <div>
                 <div className="container">
                     <Header/>
-                    <section className="configuration">
-                        <div className="configuration__status">
-                            <div className={(this.state.moreOptions ? "configuration__button--selected " : " " ) + " configuration__button text__center"}
-                                onClick={this._onMoreOptionsClicked}>
-                                 ...
-                            </div>
-                        </div>
-
-                        <div className="configuration__status">
-                            <ConnectionStatus status={this.state.status} className="text__center"/>
-                        </div>
-                    </section>
-
-
-                    <section className={(this.state.moreOptions ? "": "invisible ") + "clipboard "}>
-                        <div>
-
-                            <div className="clibparod__input_icon ">
-                            <img className="clipboard__img" src="img/clipboard.png" />
+                        <section className="configuration">
+                            <div className={(this.state.keyMode != AppConstants.KeyMode.HEADLESS ? "invisible" : "") + " configuration__status"} >
+                                <div className={(this.state.moreOptions ? "configuration__button--selected " : " " ) + " configuration__button text__center"}
+                                    onClick={this._onMoreOptionsClicked}>
+                                     ...
+                                </div>
                             </div>
 
-                            <div className="clipboard__textarea__outer">
-                                <textarea className="clipboard__textarea" readOnly="true" placeholder="Empty phone clipboard" value={this.state.clipboard} />
+                            <div className="configuration__status">
+                                <ConnectionStatus status={this.state.status} className="text__center"/>
                             </div>
+                        </section>
 
-                        </div>
-                    </section>
+                        <section className={(this.state.moreOptions ? "": "invisible ") + "clipboard "}>
+                            <div>
+
+                                <div className="clibparod__input_icon ">
+                                <img className="clipboard__img" src="img/clipboard.png" />
+                                </div>
+
+                                <div className="clipboard__textarea__outer">
+                                    <textarea className="clipboard__textarea" readOnly="true" placeholder="Empty phone clipboard" value={this.state.clipboard} />
+                                </div>
+
+                            </div>
+                        </section>
 
                     <section className="footer">
                         <div className="lineHead">
