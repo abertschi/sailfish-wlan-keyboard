@@ -1,7 +1,11 @@
 # Change Log
 
-## v-0.4.0
+## v-0.4.1
 
+**Features:**
+- Headless keyboard detection added [#24](https://github.com/abertschi/sailfish-wlan-keyboard/pull/24)
+
+## v-0.4.0
 
 **Features:**
 
