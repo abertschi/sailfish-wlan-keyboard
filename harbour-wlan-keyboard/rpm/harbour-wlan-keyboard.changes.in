@@ -1,28 +1,10 @@
-# Rename this file as harbour-wlan-keyboard.changes to include changelog
-# entries in your RPM file.
-#
-# Add new changelog entries following the format below.
-# Add newest entries to the top of the list.
-# Separate entries from eachother with a blank line.
+              -
+* Wed Sep 23 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.4.2
+- update swedish translations
 
-# * date Author's Name <author's email> version-release
-# - Summary of changes
-
-* Sat Feb 21 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.1
-- Initial version
-
-* Sun May 10 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.3.0
-- all new design for Qml UI
-- introduce two keyModes: Clipboard and Headless
-- add support for the headless-keyboard-layout
-- add react.js web frontend
-
-* Sun May 13 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.3.1
-- add Swedish translations
-- add Chinese Simplified translations
-
-* Sun May 30 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.3.2
-- Fix issue in clipboard mode to set new keystrokes correctly in clipboard
+* Tue Sep 22 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.4.1
+- add headless keyboard detection
+- disable feature to access phone clipboard if headless keyboard not installed
 
 * Mon Sep 21 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.4.0
 - add option to sync phone clipboard with computer
@@ -30,9 +12,19 @@
 - add server animations
 - headless keyboard mode can be used with any installed keyboard layout
 
-* Tue Sep 22 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.4.1
-- add headless keyboard detection
-- disable feature to access phone clipboard if headless keyboard not installed
-                -
+* Sun May 30 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.3.2
+- Fix issue in clipboard mode to set new keystrokes correctly in clipboard
 
+* Sun May 13 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.3.1
+- add Swedish translations
+- add Chinese Simplified translations
+
+* Sun May 10 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.3.0
+- all new design for Qml UI
+- introduce two keyModes: Clipboard and Headless
+- add support for the headless-keyboard-layout
+- add react.js web frontend
+
+* Sat Feb 21 2015 Andrin Bertschi <andrin.bertschi@gmail.com> 0.1
+- Initial version
 
