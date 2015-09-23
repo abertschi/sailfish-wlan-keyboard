@@ -1,8 +1,18 @@
 # Change Log
 
+
+## v-0.4.2
+
+**Features:**  
+
+
+- Update Swedish translations [#25](https://github.com/abertschi/sailfish-wlan-keyboard/pull/25)
+
+
 ## v-0.4.1
 
-**Features:**
+**Features:**  
+
 - Headless keyboard detection added [#24](https://github.com/abertschi/sailfish-wlan-keyboard/pull/24)
 
 ## v-0.4.0
