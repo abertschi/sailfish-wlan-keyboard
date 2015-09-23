@@ -17,15 +17,12 @@ Page {
 
         SilicaFlickable {
             onDragStarted: {
-                 console.log("onDragStarted")
                 animation.opacity = .05
             }
 
             onDraggingChanged: {
                 if (!flick.dragging)
                  animation.opacity = (animation.playing ? animationRunOpacity: animationStopOpacity);
-                 console.log("onDraggingChanged")
-
             }
             id: flick
             anchors.fill: parent
@@ -83,7 +80,6 @@ Page {
             source: "img/server_run.gif"
             width: parent.width
             height: parent.height
-            //anchors.topMargin: Theme.paddingLarge
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
             opacity: (animation.playing ? .7: .5)
@@ -119,8 +115,6 @@ Page {
 
         property bool tabRuntimeIsShowing
         property bool tabConfigIsShowing
-
-        //NumberAnimation { target: parent; property: "contentX"; duration: 1000; easing.type: Easing.InOutQuad }
 
         highlightFollowsCurrentItem: true
 

@@ -42,7 +42,6 @@ OTHER_FILES += \
     qml/pages/img/headless.gif \
     qml/pages/img/clipboard.gif \
     qm/cover/cover.png \
-    qml/components/MyActionButton.qml \
     qml/services/LocalStore.js \
     qml/components/Settings.qml \
     qml/components/AboutImage.qml \

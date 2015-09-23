@@ -9,7 +9,6 @@ Column {
     anchors.topMargin: parent.width * 0.25
     anchors {
         left: parent.left
-        //verticalCenter: parent.verticalCenter
     }
     spacing:10
 
