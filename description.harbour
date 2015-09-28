@@ -14,6 +14,14 @@ Features:
 Use your computer keyboard to type on your phone.
 
 ## Recent changes
+
+-v-0.4.2:
++ update swedish translations
+
+-v-0.4.1:
++ add headless keyboard detection
++ disable feature to access phone clipboard if headless keyboard not installed
+
 -v-0.4.0:
 + add bidirectional text exchange
 + add new cover page

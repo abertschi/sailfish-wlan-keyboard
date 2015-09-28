@@ -99,7 +99,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 onClicked: {
-                    remorse.execute(qsTr("Browsing Download Page "), function() { Qt.openUrlExternally("https://openrepos.net/content/abertschi/headless-keyboard"); } )
+                    remorse.execute(qsTr("Browsing Download Page "), function() { Qt.openUrlExternally("https://github.com/abertschi/sailfish-headless-keyboard-dbus/releases"); } )
                 }
             }
         }
