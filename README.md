@@ -29,8 +29,6 @@ Search for `wlan-keyboard` in the harbour store or download the binary from [ope
 ## Changelog
 See [CHANGELOG.md](https://github.com/abertschi/sailfish-wlan-keyboard/blob/master/CHANGELOG.md)
 
-==================================================================
-
 ## Developer notes
 
 ### Technology Stack
